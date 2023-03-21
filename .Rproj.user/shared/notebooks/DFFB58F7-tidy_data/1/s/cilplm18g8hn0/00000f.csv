@@ -1,0 +1,3 @@
+"0","data_raven_sep <- data_raven %>% select(id,gender,pr_correct) %>% unite(""gender/pr_correct"",c(gender,pr_correct),sep = ""/"")"
+"0",""
+"0","data_raven_uni <- data_raven %>% select(id,gender) %>% mutate(site_id = str_sub(id,start = 1, end = 3), session_n = str_sub(id,start = 4, end = 6), subject_n = str_sub(id,start = 7, end = 9)) %>% select(-id) %>% relocate(gender, .after = subject_n)"

@@ -1,0 +1,32 @@
+{
+    "id": "5F0788E0",
+    "path": "~/Documents/Teaching/quarto_book/template.qmd",
+    "project_path": "template.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1679000210043.0,
+    "source_on_save": false,
+    "relative_order": 21,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "28,0",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "676:0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1679025818,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1679025818461,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,33 @@
+{
+    "id": "273A6BD0",
+    "path": "~/Documents/Teaching/quarto_book/which_graph.qmd",
+    "project_path": "which_graph.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1677388505679.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "3,0",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "2:0",
+        "docOutlineSize": "122"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1678602802,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1678779715118,
+    "read_only": false,
+    "read_only_alternatives": []
+}

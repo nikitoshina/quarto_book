@@ -1,0 +1,63 @@
+project:
+  type: book
+  output-dir: "./output"
+
+book:
+  title: "Research Toolkit"
+  author: "Nikita Tkachenko"
+  date: today
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - setup.qmd
+    - repres.qmd
+    - part: "Lit Review and Writing"
+      chapters:
+        - litreview.qmd
+        - write.qmd
+        - layout_refs.qmd
+        - template.qmd
+        - collaboration.qmd
+    - part: "Collecting the Data"
+      chapters:
+      # Survey Standard Error
+      # Survey Design Tools
+      # What Questions to use
+      # Google APIs
+      # Building a Data Base in Google Sheets
+      # Creating Code Book and Documentation + Flow Charts
+        - qualtrics_api.qmd
+    - part: "Working with Data"
+      chapters:
+        - data_manipulation.qmd
+        - tidy_data.qmd
+        - data_bases.qmd
+        # cleaning(dealing with NAs), validation, export
+    - part: "Presenting the Data"
+      chapters:
+        - data_viz.qmd
+        - color.qmd
+        - which_graph.qmd # add corelation matrix plots, and ggmargins
+        # How to make good looking tables 
+    - part: "Power Analysis and Simulations"
+        # Power Analysis and Simulations
+        # Modeling 
+        # Vizualizing models and model assumptions
+    - references.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+ # pdf:
+  #  documentclass: book
+comments:
+  hypothesis: 
+    theme: clean
+
+reference-location: margin
+citation-location: margin
+

@@ -1,0 +1,259 @@
+---
+title: "Data Visualization"
+editor: visual
+---
+
+## Types of Data Visualisation
+
+```{r include = F}
+library(datasauRus)
+library(tidyverse)
+library(patchwork)
+library(gridExtra)
+knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
+data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% 
+  select(id, mean_temp_celsius,gender, pr_correct, tr_correct, ch_tournament, ch_correct) 
+```
+
+Data visualization is an essential tool for understanding and communicating complex information. There are two main types of visualization: 1. Exploratory It is common to look at summary statistics such as mean and standard deviation. But these numbers obscure the datapoints hiding the form of our datasets. Matejka and Fitzmaurice generated datasets with Identical Statistics that look distinctly different. You can access all 12 patterns with `datasauRus` package. It is important to *see* the structure to move your analyses forward.
+
+```{r echo = FALSE}
+datasaurus_dozen %>% 
+  group_by(dataset) %>% 
+  summarize(
+       mean_x = round(mean(x),2),
+       mean_y = round(mean(y),2),
+    std_dev_x = round(sd(x),2),
+    std_dev_y = round(sd(y),2),
+     corr_x_y = round(cor(x, y),2)) %>% 
+  filter(dataset == "dino") %>% 
+  select(-dataset) %>% 
+  kableExtra::kable() 
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+    
+datasauRus::datasaurus_dozen %>% filter(dataset %in% c("away","dino", "star")) %>%
+mutate(dataset = str_to_upper(dataset)) %>%
+ggplot(aes(x = x, y = y, colour = dataset)) +
+  geom_point() +
+  theme_void(base_size = 18) +
+  theme(legend.position = "none",  
+        strip.text = element_text(face = "bold")) +
+  facet_wrap(~dataset, ncol = 3) +
+  coord_fixed(ratio = 0.8)
+
+```
+
+2.  Explanatory So, you got your results together and now you need to not only present them, but also convince non-techical audience. They don't care whether your model user cross-validation or how you optimized your gradient boosted forest, all they want is a convincing simple message. That is why you won't see fency overloaded graphs in forward facing presentation it all about the message. Look at the graph Apple used to show their M1 MacBooks are better. !["Apple MacBook Comparison](images/apple_graph.png)
+
+R offers a variety of packages for creating visually appealing and informative plots. One of the most popular and versatile packages for data visualization in R is `ggplot2`. We will explore the basics of using `ggplot2` to create different types of plots and customize them to suit your needs. We can load it separately `libary(ggplot2)` or with `libary(tidyverse)`.
+
+## Grammar of Graphics
+
+The Grammar of Graphics is a concept in data visualization that was developed by Leland Wilkinson in his book "The Grammar of Graphics" [@GrammarGraphics2005] in 1999. The Grammar of Graphics is essentially a system of rules that describes how to represent data visually using a set of graphical elements and mappings between data variables and visual properties.
+
+"Excel Enjoyers" are familiar with the Excel plotting workflow: you select a plot you want and it just produces one for you.
+
+!["Excel GUI"](images/Excel_Plotting.png)
+
+Under this framework scatter plot and bar plots appear completely different:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+point_plot <- data_raven %>% count(pr_correct, name = "count") %>% ggplot(aes(x = pr_correct, y = count)) + geom_point(size = 3) + theme_minimal()
+col_plot <- data_raven %>% count(pr_correct, name = "count") %>% ggplot(aes(x = pr_correct, y = count)) + geom_col() + theme_minimal()
+point_plot + col_plot
+```
+
+However, under the Grammar of Graphics we see how similar these graphics are! They are exactly the same in terms everything, but geometries! The first one use "points" while the second uses "columns" to display the data.
+
+The Grammar of Graphics provides a framework for creating complex visualizations by breaking down the visualization process into a set of components.
+
+!["Grammar of Graphics Visual, from QCBS R Workshop 3"](images/Grammar_of_Graphics.png)
+
+1.  Data: The information that is being visualized. To explore how grammar of graphics works in `ggplot2` we will use `iris` dataset, which is a built-in dataset of measurements of different parts of iris flowers.
+
+```{r echo = F}
+head(iris)
+```
+
+The Data layer of the graph is just a blank canvas. Becase we have not specified any graphing elements yet.
+
+```{r}
+data_layer <- ggplot(data = iris)
+data_layer
+```
+
+2.  Aesthetics: The visual properties used to represent the data, such as x, y, color or size. Once we add aethetics we see out plotting area being set up and if we check mapping we see that `Sepal.Length` was assigned to `x` and `Sepal.Width` was assigned to `y`.
+
+```{r}
+aes_layer <- ggplot(data = iris, 
+                    aes(x = Sepal.Length, y = Sepal.Width)) 
+aes_layer
+aes_layer$mapping
+```
+
+3.  Geometries: The visual elements used to represent the data, such as points or bars. Once we add geometry we start seeing our data!
+
+```{r}
+geometry_layer <- aes_layer + geom_point()
+geometry_layer
+```
+
+4.  Scales: The mapping between the data and the aesthetics, such as how numeric values are mapped to positions on a graph. There are different scales for color, fill, size, log(x), etc. Here we added scale `color`. Checking the mapping we see `Species` is mapped to `colour`.
+
+```{r}
+scales_layer <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  # We case scale function to edit the scale for example we can set our own color manually
+  scale_color_manual(values = c("red","orange","pink"))
+scales_layer
+scales_layer$mapping
+```
+
+5.  Statistics: Mathematical transformations applied to the data before visualization, such as summary statistics or new variables. Histogram for example *splits* data into bins and *counts* observations.
+
+```{r}
+stat_layer <- ggplot(data = iris, aes(x = Sepal.Length)) + 
+  geom_histogram(bins = 20, color = "white")
+stat_layer
+```
+
+6.  Facets: Ways of dividing the data into subgroups and creating separate visualizations for each subgroup.
+
+```{r}
+facets_layer <- geometry_layer + facet_wrap(vars(Species), ncol = 3) 
+facets_layer
+```
+
+7.  Theme: Adding Polishing touches to your visual and making it look exactly the way you want.
+
+```{r}
+theme_layer <- facets_layer + theme_minimal(base_size = 18) +  
+  geom_point(size = 2, color = "#ffb86c") +
+  theme(plot.background = element_rect(fill = "#282a36", color = "#44475A"),
+        axis.text = element_text(color = "#f8f8f2"),
+        axis.title = element_text(color = "#f8f8f2"),
+        strip.text = element_text(color = "#f8f8f2"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = "#44475a")
+        ) +
+  labs(x = "Sepal Length", y = "Sepal Width")
+theme_layer
+```
+
+## `ggplot()`
+
+If you used R before then you are familiar with the default graphing function `plot`,`hist`, etc. `ggplot2` has it own version of quickly making a graph `qplot()`. To learn about `qplot()` check out [this vignette](http://www.sthda.com/english/wiki/qplot-quick-plot-with-ggplot2-r-software-and-data-visualization).
+
+```{r warning=FALSE}
+data_raven %>% pull(pr_correct) %>% hist() 
+data_raven %>% qplot(pr_correct, data = ., geom = 'histogram', bins = length(unique(data_raven$pr_correct)))
+```
+
+The `ggplot()` function sets up the basic structure of a plot, and additional layers, such as points, lines, and facets, can be added using `+` operator (like `%>%`, but for `+`). This makes it easy to understand, modify the code, and build complex plots by adding layers. This allows for easy creation of plots that reveal patterns in the data. In contrast, the basic R plotting functions and `qplot()` have a simpler and less expressive syntax, making it harder to create complex and multi-layered plots. Mastering `ggplot()` is well worth your time and effort as it will teach you how to think about graphs and what goes into building them. For example, let's improve the histogram from earlier!
+
+```{r}
+data_raven %>% 
+  count(pr_correct) %>% # I prefer calculating statistics myself
+  ggplot(aes(x = as.factor(pr_correct), y = n)) + # We use aes to set x and y
+  geom_col(fill = "steelblue") +
+  theme_minimal(base_size = 15) + 
+  theme(panel.grid = element_blank(), 
+        panel.grid.major.y = element_line(linewidth = 0.5, linetype = 2, color = "grey")) +
+  labs(x = "Number of Correct Answers", 
+       y = "Subject Count", 
+       title = "Distribution of Correct Answers in Piece-rate Game")
+```
+
+Ah much better! We added labels, removed unnecessary grid lines, and added some color. If you want to learn more about ggplot check out [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org) [@hadleyGgplot22016] and [the cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf).
+
+We can use an amazing package `esquisse` to build our plots with drag-and-drop!
+
+```{r}
+# install.packages('esquisse')
+library(esquisse)
+```
+
+You can access `esquisse` by going to "Addins" in the top panel or with `esquisser(your_data)`. Now go learn more about this package [here](https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html).
+
+## Tips
+
+### `group`
+
+Usually ggplot groups your data by one the aesthetics you provided such as `color` and `fill`; however, sometimes it fails to do so. When that happens it is worth specifying group argument on your own.
+
+```{r include = FALSE}
+us_spending <- read_csv("data/USFR_StmtNetCost_2017_2022.csv") %>% janitor::clean_names() %>% filter((restatement_flag == "N") & (agency_name != "Total")) %>% select(year = statement_fiscal_year, agency_name, net_cost_in_billions) %>% mutate(net_cost_in_billions = as.numeric(net_cost_in_billions)) %>% group_by(year) %>% mutate(proportion = round(net_cost_in_billions/sum(net_cost_in_billions),2)) %>% ungroup()
+
+spending_plot_data <- us_spending %>% group_by(year) %>% mutate(rank = rank(-1*net_cost_in_billions), agency = ifelse(rank>=5, "Other", agency_name)) %>% count(year,agency,wt = net_cost_in_billions) %>%
+  mutate(other = agency == "Other") %>%
+  group_by(other) %>%
+  arrange(desc(n),.by_group = T) %>%
+  ungroup() %>%
+  mutate(order = -1*row_number()) %>%
+  mutate(agency = recode( agency,
+"Department of Veterans Affairs" = "Veterans Affairs",
+"Department of Health and Human Services" = "HHS",
+"Department of Defense" = "Defense",
+"Social Security Administration" = "SSA",
+"Department of the Treasury" = "Treasury",
+"Interest on Treasury Securities Held by the Public" = "i on Treasuries"
+)) %>% mutate(agency = factor(agency,c("Other", "i on Treasuries", "Veterans Affairs", "Defense", "Treasury", "SSA", "HHS")))
+```
+
+Notice how labels for years 2020, 2021, 2022 are all over the place.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+spending_plot_data %>% 
+  ggplot(aes(x = year, y = n, fill = agency, label = agency)) + 
+  geom_col(position="fill", show.legend = T) +
+  scale_fill_manual( 
+    values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")) +
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(y = "Millions Spent", fill = "Department") +
+  geom_label( size = 3, position = position_fill(vjust = 0.5), fill = "white", alpha = 0.5)
+```
+
+If we specify group aesthetic everything goes back to its place!
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+spending_plot_data %>% 
+  ggplot(aes(x = year, y = n, fill = agency, label = agency)) + 
+  geom_col(position="fill", show.legend = T) +
+  scale_fill_manual( 
+    values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")) +
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(y = "Millions Spent", fill = "Department") +
+  geom_label( aes(group = agency),size = 3, position = position_fill(vjust = 0.5), fill = "white", alpha = 0.5)
+```
+
+This error is very common in line charts too.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+group_line_data <- tibble(
+ measure = c(rep("hot",5),rep("cool",5)),
+ date = rep(seq(2000,2004, by = 1),2),
+ value = c(89,111,100,130,159,24,37,88,69,105)
+) 
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+group_line_data %>% ggplot (aes(x=date, y= value)) + geom_line() + theme (legend.position = "bottom",legend.title = element_blank()) + theme_minimal()
+
+group_line_data %>% ggplot (aes(x=date, y= value, group = measure)) + geom_line () + theme (legend.position = "bottom",legend.title = element_blank()) + theme_minimal()
+```

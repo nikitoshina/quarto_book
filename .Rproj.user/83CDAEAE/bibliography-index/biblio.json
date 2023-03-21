@@ -1,0 +1,408 @@
+{
+    "sources": [
+        {
+            "DOI": "10.1093/comjnl/27.2.97",
+            "ISSN": "0010-4620",
+            "URL": "https://doi.org/10.1093/comjnl/27.2.97",
+            "author": [
+                {
+                    "family": "Knuth",
+                    "given": "Donald E."
+                }
+            ],
+            "container-title": "Comput. J.",
+            "id": "knuth84",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1984,
+                        5
+                    ]
+                ]
+            },
+            "page": "97-111",
+            "publisher": "Oxford University Press, Inc.",
+            "publisher-place": "USA",
+            "title": "Literate programming",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "URL": "http://inkfumes.blogspot.com/2011/10/poster-designs-color-design-typography.html",
+            "author": [
+                {
+                    "family": "Wilson",
+                    "given": "Seth"
+                }
+            ],
+            "id": "wilsonInkfumesPosterDesigns2011",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        10,
+                        8
+                    ]
+                ]
+            },
+            "title": "Inkfumes: Poster designs: Color, design, typography theory",
+            "title-short": "Inkfumes",
+            "type": ""
+        },
+        {
+            "URL": "https://www.youtube.com/watch?v=HlDySNpGbyc",
+            "author": [
+                {
+                    "family": "Lars Juhl Jensen"
+                }
+            ],
+            "id": "larsjuhljensenColorRepresentationsDeeper2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        8,
+                        9
+                    ]
+                ]
+            },
+            "title": "Color representations: A deeper dive into how to represent colors in data visualization",
+            "title-short": "Color representations",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1038/s41467-020-19160-7",
+            "URL": "https://www.nature.com/articles/s41467-020-19160-7",
+            "author": [
+                {
+                    "family": "Crameri",
+                    "given": "Fabio"
+                },
+                {
+                    "family": "Shephard",
+                    "given": "Grace E."
+                },
+                {
+                    "family": "Heron",
+                    "given": "Philip J."
+                }
+            ],
+            "container-title": "Nature Communications",
+            "id": "crameriMisuseColourScience2020",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020,
+                        10,
+                        28
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "5444",
+            "title": "The misuse of colour in science communication",
+            "type": "article-journal",
+            "volume": "11"
+        },
+        {
+            "DOI": "10.1109/6.736450",
+            "URL": "https://ieeexplore.ieee.org/document/736450/",
+            "author": [
+                {
+                    "family": "Rogowitz",
+                    "given": "B. E."
+                },
+                {
+                    "family": "Treinish",
+                    "given": "L. A."
+                }
+            ],
+            "container-title": "IEEE Spectrum",
+            "id": "rogowitzDataVisualizationEnd1998",
+            "issue": "12",
+            "issued": {
+                "date-parts": [
+                    [
+                        1998,
+                        12
+                    ]
+                ]
+            },
+            "page": "52-59",
+            "title": "Data visualization: The end of the rainbow",
+            "title-short": "Data visualization",
+            "type": "article-journal",
+            "volume": "35"
+        },
+        {
+            "DOI": "10.1109/MCG.2007.323435",
+            "URL": "https://ieeexplore.ieee.org/document/4118486/",
+            "author": [
+                {
+                    "family": "Borland",
+                    "given": "David"
+                },
+                {
+                    "family": "Taylor Ii",
+                    "given": "Russell M."
+                }
+            ],
+            "container-title": "IEEE Computer Graphics and Applications",
+            "id": "borlandRainbowColorMap2007",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007,
+                        3
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "14-17",
+            "title": "Rainbow Color Map (Still) Considered Harmful",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "DOI": "10.1109/TVCG.2011.192",
+            "URL": "http://ieeexplore.ieee.org/document/6065015/",
+            "author": [
+                {
+                    "family": "Borkin",
+                    "given": "M."
+                },
+                {
+                    "family": "Gajos",
+                    "given": "K."
+                },
+                {
+                    "family": "Peters",
+                    "given": "A."
+                },
+                {
+                    "family": "Mitsouras",
+                    "given": "D."
+                },
+                {
+                    "family": "Melchionna",
+                    "given": "S."
+                },
+                {
+                    "family": "Rybicki",
+                    "given": "F."
+                },
+                {
+                    "family": "Feldman",
+                    "given": "C."
+                },
+                {
+                    "family": "Pfister",
+                    "given": "H."
+                }
+            ],
+            "container-title": "IEEE Transactions on Visualization and Computer Graphics",
+            "id": "borkinEvaluationArteryVisualizations2011",
+            "issue": "12",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        12
+                    ]
+                ]
+            },
+            "page": "2479-2488",
+            "title": "Evaluation of artery visualizations for heart disease diagnosis",
+            "type": "article-journal",
+            "volume": "17"
+        },
+        {
+            "URL": "https://www.color-blindness.com/coblis-color-blindness-simulator/",
+            "id": "CoblisColorBlindness",
+            "language": "en-US",
+            "title": "Coblis  color blindness simulator  colblindor",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "family": "Hadley",
+                    "given": "Wickham"
+                }
+            ],
+            "id": "hadleyGgplot22016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "Springer Science+Business Media, LLC",
+            "publisher-place": "New York, NY",
+            "title": "Ggplot2",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1007/0-387-28695-0",
+            "URL": "http://link.springer.com/10.1007/0-387-28695-0",
+            "collection-title": "Statistics and Computing",
+            "id": "GrammarGraphics2005",
+            "issued": {
+                "date-parts": [
+                    [
+                        2005
+                    ]
+                ]
+            },
+            "language": "en",
+            "note": "DOI: 10.1007/0-387-28695-0",
+            "publisher": "Springer-Verlag",
+            "publisher-place": "New York",
+            "title": "The Grammar of Graphics",
+            "type": "book"
+        },
+        {
+            "DOI": "10.3386/w24003",
+            "URL": "http://www.nber.org/papers/w24003.pdf",
+            "author": [
+                {
+                    "family": "Abadie",
+                    "given": "Alberto"
+                },
+                {
+                    "family": "Athey",
+                    "given": "Susan"
+                },
+                {
+                    "family": "Imbens",
+                    "given": "Guido"
+                },
+                {
+                    "family": "Wooldridge",
+                    "given": "Jeffrey"
+                }
+            ],
+            "id": "abadie2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        11
+                    ]
+                ]
+            },
+            "language": "en",
+            "note": "DOI: 10.3386/w24003",
+            "page": "w24003",
+            "publisher-place": "Cambridge, MA",
+            "title": "When Should You Adjust Standard Errors for Clustering?",
+            "type": "report"
+        },
+        {
+            "DOI": "10.3982/ecta6135",
+            "author": [
+                {
+                    "family": "Bai",
+                    "given": "Jushan"
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "bai2009",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009,
+                        7,
+                        1
+                    ]
+                ]
+            },
+            "note": "DOI: 10.3982/ecta6135 MAG ID: 2128249713",
+            "page": "1229-1279",
+            "title": "Panel data models with interactive fixed effects",
+            "type": "article-journal",
+            "volume": "77"
+        },
+        {
+            "DOI": "10.18637/jss.v059.i10",
+            "ISSN": "1548-7660",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                }
+            ],
+            "container-title": "Journal of Statistical Software",
+            "id": "wickhamTidyData2014",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "title": "Tidy Data",
+            "type": "article-journal",
+            "volume": "59"
+        },
+        {
+            "DOI": "10.1038/533452a",
+            "URL": "https://www.nature.com/articles/533452a",
+            "author": [
+                {
+                    "family": "Baker",
+                    "given": "Monya"
+                }
+            ],
+            "container-title": "Nature",
+            "id": "baker500ScientistsLift2016",
+            "issue": "7604",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        5,
+                        26
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "452-454",
+            "title": "1,500 scientists lift the lid on reproducibility",
+            "type": "article-journal",
+            "volume": "533"
+        },
+        {
+            "URL": "https://books.google.com/books?id=Yq6xeupNStMC",
+            "author": [
+                {
+                    "family": "Popper",
+                    "given": "K. R."
+                }
+            ],
+            "collection-title": "ISSR library",
+            "id": "popper2002logic",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002
+                    ]
+                ]
+            },
+            "note": "Citation Key: popper2002logic tex.lccn: 92241375",
+            "publisher": "Routledge",
+            "title": "The logic of scientific discovery",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}

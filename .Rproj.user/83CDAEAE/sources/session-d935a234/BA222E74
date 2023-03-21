@@ -1,0 +1,28 @@
+{
+    "id": "BA222E74",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1679351624358.0,
+    "source_on_save": false,
+    "relative_order": 24,
+    "properties": {
+        "id": "836638008882432b958f5e7ed9c0dce7",
+        "name": "base_dist",
+        "title": "base_dist",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7070700229227539558,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1679351624358,
+    "read_only": false,
+    "read_only_alternatives": []
+}

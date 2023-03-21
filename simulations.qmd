@@ -1,0 +1,6 @@
+---
+title: "Power Analysis and Simulations"
+editor: visual
+---
+
+## Power Analysis and Simulations

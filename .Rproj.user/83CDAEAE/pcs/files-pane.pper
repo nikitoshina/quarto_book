@@ -1,0 +1,13 @@
+{
+    "sortOrder": [
+        {
+            "columnIndex": 4,
+            "ascending": true
+        },
+        {
+            "columnIndex": 2,
+            "ascending": false
+        }
+    ],
+    "path": "~/Documents/Teaching/quarto_book/output"
+}

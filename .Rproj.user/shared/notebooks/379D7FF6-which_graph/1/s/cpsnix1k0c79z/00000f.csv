@@ -1,0 +1,3 @@
+"0","gapminder %>% filter(year == 1997) %>% slice_max(gdpPercap, n = 5) %>% ggplot(aes(x = fct_reorder(country,gdpPercap,.desc = T), y = gdpPercap)) + geom_col(fill = ""steelblue"") + theme_minimal(base_size = 18) + labs(x = NULL, y = NULL, title = ""Top 5 countries by GDP per Capita in 1997"") + "
+"0","geom_text(aes(label = round(gdpPercap,0)), vjust = 10, color = ""white"", size = 5) + "
+"0","theme(panel.grid = element_blank(), axis.text.y = element_blank())"

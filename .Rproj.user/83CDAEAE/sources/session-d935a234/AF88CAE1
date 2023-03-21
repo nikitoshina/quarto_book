@@ -1,0 +1,32 @@
+{
+    "id": "AF88CAE1",
+    "path": "~/Documents/Teaching/quarto_book/data_viz.qmd",
+    "project_path": "data_viz.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1677354879129.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "82,1055",
+        "cursorPosition": "55,157",
+        "scrollLine": "0",
+        "rmdVisualModeLocation": "52:0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1679425357,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1679425357168,
+    "read_only": false,
+    "read_only_alternatives": []
+}
