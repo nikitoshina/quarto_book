@@ -35,7 +35,7 @@ While collaborating on .qmd documents, use Google Docs for narrative text and Gi
 
 The workflow is iterative, with the document being uploaded/updated on Google Drive for narrative text editing and downloaded locally for code writing with Git. Note that simultaneous collaboration on narrative text and code is not possible with `trackdown`, as changes in both versions cannot be automatically merged. Structuring the workflow sequentially ensures a smooth experience. When adopting such workflow, limit the use of R code in the R Markdown file and separate code into different files to prevent interference between code and narrative text. This way you will have to separate system for working on code and narrative avoiding the clash.
 
-For more information on the package have a look at the vignettes and visit its github page <https://quarto.org/>.
+For more information on the package have a look at the vignettes and visit its GitHub page <https://quarto.org/>.
 
 https://docs.google.com/document/d/1vieKJe0na6sDeIu2XWBfE38LlGFswUNRkX7arRSa4Is/edit?usp=sharing
 
