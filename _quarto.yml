@@ -55,8 +55,8 @@ format:
  # pdf:
   #  documentclass: book
 comments:
-  hypothesis: 
-    theme: clean
+  giscus: 
+    repo: nikitoshina/quarto_book
 
 reference-location: margin
 citation-location: margin

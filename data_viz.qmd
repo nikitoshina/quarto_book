@@ -47,7 +47,7 @@ ggplot(aes(x = x, y = y, colour = dataset)) +
 
 ```
 
-2.  Explanatory So, you got your results together and now you need to not only present them, but also convince non-techical audience. They don't care whether your model user cross-validation or how you optimized your gradient boosted forest, all they want is a convincing simple message. That is why you won't see fency overloaded graphs in forward facing presentation it all about the message. Look at the graph Apple used to show their M1 MacBooks are better. !["Apple MacBook Comparison](images/apple_graph.png)
+2.  Explanatory So, you got your results together and now you need to not only present them, but also convince non-techical audience. They don't care whether your model user cross-validation or how you optimized your gradient boosted forest, all they want is a convincing simple message. That is why you won't see fency overloaded graphs in forward facing presentation it all about the message. Look at the graph Apple used to show their M1 MacBooks are better. ![\"Apple MacBook Comparison](images/apple_graph.png)
 
 R offers a variety of packages for creating visually appealing and informative plots. One of the most popular and versatile packages for data visualization in R is `ggplot2`. We will explore the basics of using `ggplot2` to create different types of plots and customize them to suit your needs. We can load it separately `libary(ggplot2)` or with `libary(tidyverse)`.
 

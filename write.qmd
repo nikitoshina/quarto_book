@@ -191,13 +191,15 @@ Making tables in Markdown is not complicated. The most frequently used table is 
 
 ::: columns
 ::: column
-    | Default | Left | Middle | Right   | 
-    |---------|:-----|:------:|--------:|
-    | Hola    | Pitt | 3.141  | Nile    | 
-    | Bonjour | Li   | 2.718  | Amazon  | 
-    | Salut   | Roth | 4.123  | Yangtze | 
+```         
+| Default | Left | Middle | Right   | 
+|---------|:-----|:------:|--------:|
+| Hola    | Pitt | 3.141  | Nile    | 
+| Bonjour | Li   | 2.718  | Amazon  | 
+| Salut   | Roth | 4.123  | Yangtze | 
 
-    : Table Demonstration
+: Table Demonstration
+```
 :::
 
 ::: column
@@ -213,8 +215,10 @@ Making tables in Markdown is not complicated. The most frequently used table is 
 
 If you ever feel lost or struggle with formatting, consider using the visual editor. It provides a familiar interface and is particularly useful for creating and previewing tables. To adjust options, for example, the number of list options, simply click on the circle icon with an ellipsis next to it, and a selection menu will appear. In addition to this, the visual editor offers extensive customization options for other elements, such as images and tables.
 
-    ::: {.callout-note}
-    You can copy-paste (Ctrl + C; Ctrl + V) a picture in Visual Mode!
-    :::
+```         
+::: {.callout-note}
+You can copy-paste (Ctrl + C; Ctrl + V) a picture in Visual Mode!
+:::
+```
 
 You can learn more at [Quarto's website](https://quarto.org/).

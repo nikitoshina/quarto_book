@@ -1,4 +1,0 @@
-"0","inner_join_result <- employees %>%"
-"0","  inner_join(projects, by = ""employee_id"")"
-"2","Warning: Each row in `x` is expected to match at most 1 row in `y`."
-"0","print(inner_join_result)"
