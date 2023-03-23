@@ -91,11 +91,11 @@ What can it do?
 
 ### Installing
 
-To use quarto you don't need any special software, if you would like, you can even use a text editor to create your .qmd files and command line to render the document. However, working in IDE will make your life much easier. I prefer to use RStudio, after all, Quarto is a product of Posit (former RStudio), but Visual Studio Code also works well. If you have not installed RStudio nor Visual Studio Code yet, follow @setup.qmd.
+To use Quarto you don't need any special software, if you would like, you can even use a text editor to create your .qmd files and command line to render the document. However, working in IDE will make your life much easier. I prefer to use RStudio, after all, Quarto is a product of Posit (former RStudio), but Visual Studio Code also works well. If you have not installed RStudio nor Visual Studio Code yet, follow @setup.qmd.
 
 #### RStudio
 
-From within Rstudio you can install quarto as you install any other package. Additionally, you should install TinyTeX, a minimal set of packages required to compile LaTeX documents. You can get both by running the following command in R.
+From within Rstudio you can install Quarto as you install any other package. Additionally, you should install TinyTeX, a minimal set of packages required to compile LaTeX documents. You can get both by running the following command in R.
 
 ```{bash}
 install.packages(c("quarto", "tinytex"))
@@ -103,7 +103,7 @@ install.packages(c("quarto", "tinytex"))
 
 #### Visual Studio Code
 
-Install the quarto extension by going to Extensions -\> search for "Quarto" -\> install. Then run the following command in the terminal if you don't have TinyTeX installed:
+Install the Quarto extension by going to Extensions -\> search for "Quarto" -\> install. Then run the following command in the terminal if you don't have TinyTeX installed:
 
 ```{bash}
 quarto install tinytex
@@ -111,7 +111,7 @@ quarto install tinytex
 
 ### Your First Document
 
-Write Create a quarto project. Go to top panel -\> File -\> New Project -\> Directory -\> Quarto Project -\> Create
+Write Create a Quarto project. Go to top panel -\> File -\> New Project -\> Directory -\> Quarto Project -\> Create
 
 File -\> Quarto Document -\> Write the Title of your document -\> Select the format you want (HTML is the default) -\> Create
 
@@ -187,7 +187,7 @@ print(hi, friend)
 ```
 ````
 
-Making tables in Markdown is not complicated. The most frequently used table is the pipe table. It allows you to see alignment and captions with `:`. Tables can get complicated pretty quickly, if you ever get stuck, refer to [quarto's table documentation](https://quarto.org/docs/authoring/tables.html).
+Making tables in Markdown is not complicated. The most frequently used table is the pipe table. It allows you to see alignment and captions with `:`. Tables can get complicated pretty quickly, if you ever get stuck, refer to [Quarto's table documentation](https://quarto.org/docs/authoring/tables.html).
 
 ::: columns
 ::: column
