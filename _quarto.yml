@@ -7,7 +7,7 @@ book:
   author: "Nikita Tkachenko"
   date: today
   chapters:
-    - chapters/index.qmd
+    - index.qmd
     - chapters/intro.qmd
     - chapters/summary.qmd
     - chapters/setup.qmd
