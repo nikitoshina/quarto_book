@@ -1,24 +1,25 @@
 project:
   type: book
-  output-dir: "./output"
+  output-dir: "./docs"
 
 book:
   title: "Research Toolkit"
   author: "Nikita Tkachenko"
   date: today
   chapters:
-    - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - setup.qmd
-    - repres.qmd
+    - chapters/index.qmd
+    - chapters/intro.qmd
+    - chapters/summary.qmd
+    - chapters/setup.qmd
+    - chapters/repres.qmd
+    - chapters/version_control.qmd
     - part: "Lit Review and Writing"
       chapters:
-        - litreview.qmd
-        - write.qmd
-        - layout_refs.qmd
-        - template.qmd
-        - collaboration.qmd
+        - chapters/litreview.qmd
+        - chapters/write.qmd
+        - chapters/layout_refs.qmd
+        - chapters/template.qmd
+        - chapters/collaboration.qmd
     - part: "Collecting the Data"
       chapters:
       # Survey Standard Error
@@ -27,31 +28,36 @@ book:
       # Google APIs
       # Building a Data Base in Google Sheets
       # Creating Code Book and Documentation + Flow Charts
-        - qualtrics_api.qmd
+        - chapters/qualtrics_api.qmd
     - part: "Working with Data"
       chapters:
-        - data_manipulation.qmd
-        - tidy_data.qmd
-        - data_bases.qmd
+        - chapters/data_manipulation.qmd
+        - chapters/tidy_data.qmd
+        - chapters/data_bases.qmd
         # cleaning(dealing with NAs), validation, export
     - part: "Presenting the Data"
       chapters:
-        - data_viz.qmd
-        - color.qmd
-        - which_graph.qmd # add corelation matrix plots, and ggmargins
+        - chapters/data_viz.qmd
+        - chapters/color.qmd
+        - chapters/which_graph.qmd # add corelation matrix plots, and ggmargins
         # How to make good looking tables 
     - part: "Power Analysis and Simulations"
         # Power Analysis and Simulations
         # Modeling 
         # Vizualizing models and model assumptions
-    - references.qmd
-
+    - chapters/references.qmd
+ # repo-actions: [edit, issue]
+  repo-url: https://github.com/nikitoshina/quarto_book
+ # issue-url: https://github.com/nikitoshina/quarto_book/issues/new/choose
+ 
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    include-before-body: reading-time.html
+    
  # pdf:
   #  documentclass: book
 comments:

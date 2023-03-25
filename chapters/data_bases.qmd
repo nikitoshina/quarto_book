@@ -1,0 +1,320 @@
+---
+title: "Relational Databases"
+editor: visual
+---
+
+Database is a collection of information that is organized, so data can be easily stored, managed, updated, and accessed. One type of databases is a relational database. Relational databases store structured data in tables composed of rows and columns, where each row, or record, contains information about a single entity, while columns, or attributes, represent different aspects of that entity.
+
+relational database uses Tables and the Relationships between tables to store data. A row (record) represents a unique instance of the subject of a table, while a column (field) signifies a characteristic of that subject.
+
+| Student ID | Student Name | HW1 | HW2 | MidTerm |
+|------------|--------------|-----|-----|---------|
+| 20101002   | Nikita       | 88  | 100 | 76      |
+| 20101003   | Nelson       | 78  | 98  | 100     |
+| 20101004   | Parsa        | 98  | 99  | 95      |
+| 20101005   | Shivani      | 56  | 80  | 76      |
+
+If rows in a given table can be associated in some way with rows in another table, the tables are said to have a relationship between them.
+
+## Types of Relationships {#sec-relationships}
+
+One to One (1:1)
+
+A single row in the first table is related to only one row in the second table, and a single row in the second table is related to only one row in the first table.
+
+```{dot}
+digraph G {
+rankdir = "LR";
+node [shape=plaintext];
+splines=polyline;
+edge [minlen=1.5];
+
+subgraph cluster_0 {
+color=white;
+rank=same;
+Table1 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Country</b></td></tr>
+<tr><td PORT="row11">China</td></tr>
+<tr><td PORT="row12">France</td></tr>
+<tr><td PORT="row13">Italy</td></tr>
+</table>
+>];
+}
+ 
+
+
+
+subgraph cluster_1 {
+color=white;
+rank=same;
+Table2 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Capital</b></td></tr>
+<tr><td PORT="row21">Beijing</td></tr>
+<tr><td PORT="row22">Paris</td></tr>
+<tr><td PORT="row23">Rome</td></tr>
+</table>
+>];
+}
+
+Table1:row11:e -> Table2:row21:w;
+Table1:row12:e -> Table2:row22:w;
+Table1:row13:e -> Table2:row23:w;
+
+}
+```
+
+One to Many (1:M) A single row in the first table is related to many rows in the second table, and a single row in the second table is related to only one row in the first table.
+
+```{dot}
+digraph G {
+rankdir = "LR";
+node [shape=plaintext];
+splines=polyline;
+edge [minlen=1.5];
+
+subgraph cluster_0 {
+color=white;
+rank=same;
+Table1 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Professor</b></td></tr>
+<tr><td PORT="row11">Hobbs</td></tr>
+<tr><td PORT="row12">Doe</td></tr>
+</table>
+>];
+}
+ 
+
+
+
+subgraph cluster_1 {
+color=white;
+rank=same;
+Table2 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Class</b></td></tr>
+<tr><td PORT="row21">690-02</td></tr>
+<tr><td PORT="row22">692-01</td></tr>
+<tr><td PORT="row23">405-01</td></tr>
+</table>
+>];
+}
+
+Table1:row11:e -> Table2:row21:w;
+Table1:row12:e -> Table2:row22:w;
+Table1:row11:e -> Table2:row22:w;
+}
+```
+
+Many to Many (M:N) A single row in the first table is related to many rows in the second table, and a single row in the second table is related to many rows in the first table.
+
+```{dot}
+digraph G {
+rankdir = "LR";
+node [shape=plaintext];
+splines=polyline;
+edge [minlen=1.5];
+
+subgraph cluster_0 {
+color=white;
+rank=same;
+Table1 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Student</b></td></tr>
+<tr><td PORT="row11">John</td></tr>
+<tr><td PORT="row12">David</td></tr>
+<tr><td PORT="row13">Celeste</td></tr>
+</table>
+>];
+}
+
+
+subgraph cluster_1 {
+color=white;
+rank=same;
+Table2 [label=<
+<table border="1" cellborder="0" cellspacing="0">
+<tr><td bgcolor="lightblue"><b>Class</b></td></tr>
+<tr><td PORT="row21">690-02</td></tr>
+<tr><td PORT="row22">692-01</td></tr>
+<tr><td PORT="row23">405-01</td></tr>
+</table>
+>];
+}
+
+
+Table1:row11:e -> Table2:row21:w [color=red];
+Table1:row11:e -> Table2:row22:w [color=red];
+
+Table1:row12:e -> Table2:row21:w [color=blue];
+Table1:row12:e -> Table2:row22:w [color=blue];
+Table1:row12:e -> Table2:row23:w [color=blue];
+
+Table1:row13:e -> Table2:row22:w [color=orange];
+Table1:row13:e -> Table2:row23:w [color=orange];
+
+
+}
+```
+
+## Key -- Unique Identifier
+
+Primary key (PK) is a column that uniquely identifies each row within a table. Every table should have a primary key! In order to connect (relate) tables, we put PKs of a table into another table. A PK of a table in another table is called foreign key (FK).
+
+::: {#tbl-keys layout-ncol="2"}
+| ClassID (PK) | ProfessorID (FK) | Credits | Location |
+|--------------|------------------|---------|----------|
+| 620-01       | 1                | 4       | LM-340   |
+| 623-01       | 2                | 2       | UM-102   |
+| 663-01       | 2                | 2       | LO-234   |
+
+| ProfessorID (PK) | Professor  |
+|------------------|------------|
+| 1                | Arman      |
+| 2                | Alessandra |
+
+Keys
+:::
+
+## Types of Joins
+
+```{r include= FALSE}
+library(dplyr)
+
+employees <- data.frame(
+  employee_id = c(1, 2, 3, 4, 5),
+  name = c("John", "Jane", "Bob", "Alice", "Tom")
+)
+
+projects <- data.frame(
+  project_id = c(1, 2, 3, 4, 5, 6),
+  employee_id = c(1, 2, 3, 1, 4, 6)
+)
+
+```
+
+In relational databases, a join is used to combine two or more tables based on a related column between them. There are different types of joins. To illustrate how the joins work we will be using two tables `employees` and `projects`. The first table contains `employee_id` (PK) and `name`, and the second one contains `project_id` (PK) and `employee_id` (FK).
+
+```{r}
+# | layout-ncol: 2
+print(employees)
+
+print(projects)
+```
+
+### Outer Joins
+
+Outer join are used return matched data or unmatched data from one or both tables. You can see as making a more comprehensive table.
+
+#### Left Join
+
+Left join returns all the rows from the left table and only the matched rows from the right table. In an essence you are adding extra information to your left table.
+
+![Left Join](images/Left_Join.png)
+
+```{r}
+left_join_result <- employees %>%
+  left_join(projects, by = "employee_id")
+
+print(left_join_result)
+```
+
+#### Right Join
+
+Right join is very similar to left join, except it returns all the rows from the right table and only the matched rows from the left table.
+
+![Right Join](images/Right_Join.png)
+
+```{r}
+right_join_result <- employees %>%
+  right_join(projects, by = "employee_id")
+
+print(right_join_result)
+```
+
+#### Full Join
+
+Full join Returns all the rows from both tables and null values for non-matching rows. Here we are combining both tables
+
+![Full Join](images/Full_Join.png)
+
+```{r}
+full_join_result <- employees %>%
+  full_join(projects, by = "employee_id")
+
+print(full_join_result)
+
+```
+
+#### Inner Join
+
+Inner join returns only the matched rows between two table. So, only the rows that found a match from both tables will be kept.
+
+::: columns
+::: column
+![Inner Join](images/Inner_Join.png)
+:::
+
+::: column
+```{r}
+inner_join_result <- employees %>%
+  inner_join(projects, by = "employee_id")
+
+print(inner_join_result)
+
+```
+:::
+:::
+
+### Filtering Joins
+
+#### Anti Join
+
+An anti join returns the rows from the left table that do not have a corresponding match in the right table, without adding any new columns to the output. It is useful when you want to filter rows based on the absence of matching entries in the other table.
+
+::: columns
+::: column
+```{r}
+anti_join_result <- employees %>%
+  anti_join(projects, by = "employee_id")
+
+print(anti_join_result)
+```
+:::
+
+::: column
+Tom Does not have a project, assigned! May be he can take care of the project 6?
+:::
+:::
+
+#### Semi Join
+
+A semi join resembles an inner join in that it identifies matching rows between two tables. However, unlike an inner join, it does not add any new columns to the output. Instead, it filters the rows from the left table that have a corresponding match in the right table. You would use a semi join when you want to filter the left table based on the presence of matching entries in the right table.
+
+```{r}
+semi_join_result <- employees %>%
+  semi_join(projects, by = "employee_id")
+
+print(semi_join_result)
+
+```
+
+## Drawing Databases
+
+Remember we talked about UML? We are going to use it to draw out the Entity-Relationship Model to understand how tables in our database are related and how they are working together, which will simplify our later work. You can use UML code tools such as Mermaid and Graphviz, but in my opinion drag and drop web applications such as [LucidChart](https://www.lucidchart.com) and [Draw.io](https://app.diagrams.net/) are better for this task. To begin, let's introduce an entity, which is an object (place,person,thing) that we want to track in our database. In our case it will be a customer, order, and product. Each entity has attributes, for example, customer has `customer_id`, `name`, `email`, `address`, etc. and similarly other entities also have a list of attributes. In your table entities will be reflected as rows and attributes as columns. These tables can be related to each other, which we show by drawing a line between the tables. To describe such relationships in numeric terms we use cardinality. You can think of cardinality as minimum and maximum number of relationships, very much like in @sec-relationships .
+
+![Cardinality](images/cardinality.png)
+
+Let's for examine the relationship between customer and order. Let's first ask a question: what relationship does customer have with order? Using min, max framework, what is the minimum number of order a customer can have and what is the maximum number of order a customer can have? They can have no orders, so min = 0, and they can have many orders (2, 3, 4...), so max = many. We get customer to order relationship is 0 or many. Now let's look in the opposite directions: how many customer can an order have? An order can have only one customer, no more no less. So, the relationship is one and only one.
+
+![Customer-Order Relationship](images/customer_order.png)
+
+Now let's do the same for order and product. One order can have one or many products in it, and each product can be in none or many orders. The full diagram will look something like this:
+
+![Entity-Relationship Diagram](images/ERD.png)
+
+You should draw a diagram any time you are planning to start a project with complex design. It will make crystal clear what tables you need to build and how to relate them. You can also scetch out a diagram whenever you are confused about a data set. If you would like to learn more on this topic, check out [Lucid Software YouTube](https://www.youtube.com/@lucid_software) guides and [Neso Academy's Database Management Systems course](https://www.youtube.com/@lucid_software).
+
+

@@ -1,0 +1,277 @@
+---
+title: "Tidy Data"
+editor: visual
+---
+
+```{r include = F}
+library(tidyverse)
+knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
+
+data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% select(id, mean_temp_celsius,gender, pr_correct, tr_correct, ch_tournament, ch_correct) 
+```
+
+Tidy data is a standard way structuring a data set to make it easy to work with. Tidy data principles have been popularized by Hadley Wickham in @wickhamTidyData2014. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. 
+
+In Tidy Data:
+
+1.  Each variable forms a column.
+
+2.  Each observation forms a row.
+
+3.  Each type of observational unit forms a table.
+
+    > What changes put it in a column
+
+Wide data and long data are two common forms of data organization.
+
+Wide data, also known as unstacked data, is organized so that each row represents an individual unit of observation and each column represents a variable. This format is often used when the number of variables is relatively small and they are not related to one another in a hierarchical manner. You will see most of the wide data in reports, where this type can be easier to read. A prominent example of wide data is a panel where columns serve as years, @tbl-widepanel.
+
+On the other hand, long data, also known as stacked data, is organized so that each row represents a single observation of a variable, and each column represents the variable and an identifier of the unit of observation. This format is often used when the number of variables is large or they are related to one another in a hierarchical manner. You will often that working with long data is much easier when doing any sort of analysis.
+
+::: {#tbl-panel layout-ncol="2"}
+| **Country** | **2020** | **2021** |
+|-------------|----------|----------|
+| USA         | 329.5    | 331.9    |
+| Russia      | 144.1    | 143.4    |
+| Mexico      | 126      | 126.7    |
+
+: Wide Format {#tbl-widepanel}
+
+| **Country** | **Year** | **Population** |
+|-------------|----------|----------------|
+| USA         | 2020     | 329.5          |
+| Russia      | 2020     | 144.1          |
+| Mexico      | 2020     | 126            |
+| USA         | 2021     | 331.9          |
+| Russia      | 2021     | 143.4          |
+| Mexico      | 2021     | 126.7          |
+
+: Tidy Long Format {#tbl-longpanel}
+
+Panel Data
+:::
+
+From the first example, you might think that long and tidy are synonyms. Now lets look at an example when we want to make our data wider. In @tbl-across2 an observation is a country, population and birth rate, but each observation is spread across two rows. In this instance we want widen our data.
+
+::: {#tbl-widen layout-ncol="2"}
+| Country | Name       | Value |
+|---------|------------|-------|
+| USA     | Population | 329.5 |
+| Russia  | Population | 144.1 |
+| Mexico  | Population | 126   |
+| USA     | Birth Rate | 1.64  |
+| Russia  | Birth Rate | 1.5   |
+| Mexico  | Birth Rate | 1.9   |
+
+: Across Two Rows {#tbl-across2}
+
+| Country | Population | Birth Rate |
+|---------|------------|------------|
+| USA     | 329.5      | 1.64       |
+| Russia  | 144.1      | 1.5        |
+| Mexico  | 126        | 1.9        |
+
+: Tidy Wide {#tbl-tidywide}
+
+Messy Long
+:::
+
+Another common messy issue with data is when two column are united into one for example in @tbl-gathered Year/Population are in the same column. They need to be separated into two columns Year and Population.
+
+::: {#tbl-gathersplit layout-ncol="2"}
+| **Country** | **Year/Population** |
+|-------------|---------------------|
+| USA         | 2020/329.5          |
+| Russia      | 2020/144.1          |
+| Mexico      | 2020/126            |
+| USA         | 2021/331.9          |
+| Russia      | 2021/143.4          |
+| Mexico      | 2021/126.7          |
+
+: United Year/Population {#tbl-gathered}
+
+| Country | Year | Population |
+|---------|------|------------|
+| USA     | 2020 | 329.5      |
+| Russia  | 2020 | 144.1      |
+| Mexico  | 2020 | 126        |
+| USA     | 2021 | 331.9      |
+| Russia  | 2021 | 143.4      |
+| Mexico  | 2021 | 126.7      |
+
+: Tidy Split into Columns {#tbl-split}
+
+Separate Data
+:::
+
+## Example
+
+Tidy data is not simply a theoretical idea, it has a practical application to structuring data. For example, take the following method of storing data on payments during an experiment:\
+![](https://lh5.googleusercontent.com/-jiqGFe0IZ7aF-uZuBOtjJ0h1jo-eH8A1EZx2L1FUkn75IHZWGKm21ORwlu7q4IVvcJBFB9KTX6GsbYqV5OOLnh2Sx4aFum8pY51Om42eDmhCFb3MlCEN-lS6dX2YGDlbmSp7wK7s7OKlaVYOYhPCC9iIrYRD0LUufyWA1sFMmSiBfrPswF3-seDmBHQLE7S=s2048)
+
+When computer reads the data it does not understand what we are trying to say, so all column and will be read as is. If we have to enter multiple days, we will need to recreate similar tables, increasing chances of mistakes. What if we want to get a total for the entire experiment? We would have to manually and sum all cells. Compare this to:\
+![](https://lh3.googleusercontent.com/QMtTgnjVqzEU5eBFhmpdyc7KhTgYAM-_fr3NiusczaGi6Mf_pWV6PSjiyXL6vem_fFaJVeLZUfE3_cdCgk7F2yF2D46_Rmk94mcvmxLisJ4NBI-L1fb5OwQpEI5unpWC47BR6r2sI9nVCHwA6lA4PAMb65Bs_otyp2FfnPxJ2FnVZG1MvZ2pwlA5Pfpvra5X=s2048)
+
+Here data input is extremely easy, and if we want to get any summary tables it is as easy as making a pivot table. Tidy data approach from the start will help you create robust tables and save you time in analysis.
+
+## `pivot_longer()`
+
+A common problem is a dataset where column names are not names of variables, but *value* of a variable. This is true for `pr_correct`, `tr_correct`, `ch_correct` as the column names represent name of the `game` variable, the values in the columns represent number of correct answers, and each row represents two observations, not one.
+
+To tidy a dataset, we need to pivot the offending columns into a new pair of variables. To carry out the operation we need to supply:
+
+1.  The columns whose names are values, not variables -- columns we want to pivot. Here `pr_correct`, `tr_correct`, `ch_correct`.
+2.  The name of the variable to move the column names to. Here `game`. The default `name`.
+3.  The name of the variable to move the column values to. Here `n_correct`. The default `value`.
+
+```{r}
+data_raven %>% 
+  pivot_longer(c(pr_correct, tr_correct, ch_correct), names_to = "game", values_to = "n_correct") %>%
+  select(id,game,n_correct) %>% 
+  head(n = 5)
+```
+
+## `pivot_wider()`
+
+`pivot_wider()` is the opposite of `pivot_longer()`. You use it when an observation is scattered across multiple rows. For example, let's have a look at `data_raven_accident`, where gnomes stacked `mean_temp_celsius` and `ch_tournament`. Here an observation is spread across two rows.
+
+```{r echo=FALSE}
+data_raven_accident <- data_raven %>% select(id, mean_temp_celsius, ch_tournament) %>% pivot_longer(-id)
+```
+
+```{r}
+data_raven_accident %>% head(n=5)
+```
+
+To tidy this up, we need two parameters:
+
+1.  The column to take variable names from. Here, it's `name`.
+2.  The column to take values from. Here it's `value`.
+
+```{r}
+data_raven_accident %>% pivot_wider(names_from = name, values_from = value) %>% head(n = 5)
+```
+
+It is evident from their names that pivot_wider() and pivot_longer() are inverse functions. pivot_longer() converts wide tables to a longer and narrower format; pivot_wider() converts long tables to a shorter and wider format.
+
+## `separate()` and `unite()`
+
+Some times data comes with columns united, so we want to `separate()` them to make the data tidy.
+
+```{r include = F}
+data_raven_sep <- data_raven %>% select(id,gender,pr_correct) %>% unite("gender/pr_correct",c(gender,pr_correct),sep = "/")
+
+data_raven_uni <- data_raven %>% select(id,gender) %>% mutate(site_id = str_sub(id,start = 1, end = 3), session_n = str_sub(id,start = 4, end = 6), subject_n = str_sub(id,start = 7, end = 9)) %>% select(-id) %>% relocate(gender, .after = subject_n)
+```
+
+```{r}
+data_raven_sep %>% head(n=5)
+```
+
+```{r}
+data_raven_sep %>% separate(col = "gender/pr_correct", into = c("gender","pr_correct"), sep = "/") %>% head(n=5)
+```
+
+What if we have one column split across multiple columns? Our subject id code is made out of site_id, session_n, subject_n. But playful gnomes broke it down into three columns, so now we have to `unite()` them into one.
+
+```{r}
+data_raven_uni %>% head(n=5)
+```
+
+```{r}
+data_raven_uni %>% unite(c(site_id, session_n, subject_n),col = "id", sep = "") %>% head(n = 5)
+```
+
+## `tibble()` and `tribble()`
+
+A tibble is a special kind of data frame in R. Tibbles are a modern re-imagining of the data frame, designed to be more friendly and consistent than traditional data frames.
+
+-   Tibbles are similar to data frames in that they can hold tabular data, but they have some key differences:
+
+-   Tibbles display only the first 10 rows by default when printed, making them easier to work with large datasets.
+
+-   Tibbles use a consistent printing format, making it easier to work with multiple tibbles in the same session.
+
+-   Tibbles have a consistent subsetting behavior, making it easier to select columns by name. When printed, the data type of each column is specified.
+
+-   Subsetting a tibble will always return a tibble. You don't need to use drop = FALSE compared to traditional data.frames.
+
+-   And most importantly, you can have column consisting of lists.
+
+In summary, Tibbles are a more modern and consistent version of data frames, they are less prone to errors and more readable, making them a great choice for data manipulation and exploration tasks.
+
+To make a tibble we can use `tibble()` similar to data.frame()
+
+```{r}
+tibble(x = c(1,2,3),
+       y = c('one', 'two', 'three'))
+```
+
+You can also you `tribble()` for creating a row-wise, readable tibble in R. This is useful for creating small tables of data. **Syntax: tribble (\~column1, \~column2)** where, Row column --- represents the data in row by row layout.
+
+```{r}
+tribble(~x, ~y,
+        1, "one",
+        2, "two",
+        3, "three")
+```
+
+## `janitor` Clean Your Data
+
+`janitor` is designed to make the process of cleaning and tidying data as simple and efficient as possible. To learn more about the function check out [this vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)! If you are interested in making summary tables with `janitior` check [this vignette](https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html)!
+
+### `clean_names()`
+
+`clean_names()` is used to clean variable names, particularly those that are read in from Excel files using `readxl::read_excel()` and `readr::read_csv()`. It parses letter cases, separators, and special characters to a consistent format, converts certain characters like "%" to "percent" and "\#" to "number" to retain meaning, resolves duplicate names and empty names. It is recommended to call this function every time data is read.
+
+```{r}
+# Create a data.frame with dirty names
+test_df <- as.data.frame(matrix(ncol = 6))
+names(test_df) <- c("camelCase", "ábc@!*", "% of respondents (2009)",
+                    "Duplicate", "Duplicate", "")
+test_df %>% colnames()
+```
+
+```{r}
+library(janitor)
+test_df %>% clean_names() %>% colnames()
+```
+
+### `remove_empty()`
+
+`remove_empty()` removes empty row and columns, especially useful after reading Excel files.
+
+```{r}
+test_df2 <- data.frame(numbers = c(1, NA, 3),
+                       food = c(NA, NA, NA),
+                       letters = c("a", NA, "c"))
+test_df2
+test_df2 %>%
+  remove_empty(c("rows", "cols"))
+```
+
+### `remove_constant()`
+
+`remove_constant()` drops columns from a data.frame that contain only a single constant value (with an na.rm option to control whether NAs should be considered as different values from the constant).
+
+```{r}
+test_df3 <- data.frame(cool_numbers = 1:3, boring = "the same")
+test_df3
+test_df3 %>% remove_constant()
+```
+
+\###`convert_to_date()` and `convert_to_datetime()` Remember loading data from Excel and seeing `36922.75` instead of dates? Well, `convert_to_date()` and `convert_to_datetime()` will convert this format and other date-time formats to actual dates! If you need more customization check `excel_numeric_to_date()`.
+
+```{r}
+convert_to_date(36922.75)
+convert_to_datetime(36922.75)
+```
+
+\###`row_to_names()` `row_to_names()` is a function that takes the names of variables stored in a row of a data frame and makes them the column names of the data frame. It can also remove the row that contained the names, and any rows above it, if desired.
+
+```{r}
+test_df4 <- data.frame(X_1 = c(NA, "Names", 1:3),
+                   X_2 = c(NA, "Value", 4:6))
+test_df4
+row_to_names(test_df4, 2)
+```

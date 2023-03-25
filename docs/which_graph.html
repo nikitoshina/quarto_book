@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Research Toolkit - 16&nbsp; A Graph for The Job</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./color.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Research Toolkit</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nikitoshina/quarto_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./repres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducible Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lit Review and Writing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./litreview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Literature Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./write.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Write</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout_refs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Layout and References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./template.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Thesis Template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Collaboration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Collecting the Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qualtrics_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Qualtrics API</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Working with Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_manipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Manipulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidy_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_bases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Relational Databases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Presenting the Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./color.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./which_graph.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Power Analysis and Simulations</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#category-comparison" id="toc-category-comparison" class="nav-link active" data-scroll-target="#category-comparison"><span class="toc-section-number">16.1</span>  Category Comparison</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="toc-section-number">16.2</span>  Distribution</a>
+  <ul class="collapse">
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="toc-section-number">16.2.1</span>  Histogram</a></li>
+  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot"><span class="toc-section-number">16.2.2</span>  Density Plot</a></li>
+  <li><a href="#frequency-polygon" id="toc-frequency-polygon" class="nav-link" data-scroll-target="#frequency-polygon"><span class="toc-section-number">16.2.3</span>  Frequency Polygon</a></li>
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot"><span class="toc-section-number">16.2.4</span>  Box Plot</a></li>
+  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="toc-section-number">16.2.5</span>  Violin Plot</a></li>
+  <li><a href="#bee-hive-plot" id="toc-bee-hive-plot" class="nav-link" data-scroll-target="#bee-hive-plot"><span class="toc-section-number">16.2.6</span>  Bee Hive Plot</a></li>
+  <li><a href="#rain-cloud-plot" id="toc-rain-cloud-plot" class="nav-link" data-scroll-target="#rain-cloud-plot"><span class="toc-section-number">16.2.7</span>  Rain Cloud Plot</a></li>
+  </ul></li>
+  <li><a href="#proportions" id="toc-proportions" class="nav-link" data-scroll-target="#proportions"><span class="toc-section-number">16.3</span>  Proportions</a>
+  <ul class="collapse">
+  <li><a href="#stacked-bar-charts" id="toc-stacked-bar-charts" class="nav-link" data-scroll-target="#stacked-bar-charts"><span class="toc-section-number">16.3.1</span>  Stacked Bar Charts</a></li>
+  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="toc-section-number">16.3.2</span>  Pie Chart</a></li>
+  <li><a href="#waffle-chart" id="toc-waffle-chart" class="nav-link" data-scroll-target="#waffle-chart"><span class="toc-section-number">16.3.3</span>  Waffle Chart</a></li>
+  <li><a href="#tree-maps" id="toc-tree-maps" class="nav-link" data-scroll-target="#tree-maps"><span class="toc-section-number">16.3.4</span>  Tree Maps</a></li>
+  </ul></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">16.4</span>  Correlation</a>
+  <ul class="collapse">
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot"><span class="toc-section-number">16.4.1</span>  Scatter Plot</a></li>
+  </ul></li>
+  <li><a href="#change-over-time" id="toc-change-over-time" class="nav-link" data-scroll-target="#change-over-time"><span class="toc-section-number">16.5</span>  Change over Time</a>
+  <ul class="collapse">
+  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="toc-section-number">16.5.1</span>  Line Chart</a></li>
+  </ul></li>
+  <li><a href="#waterfall-graph" id="toc-waterfall-graph" class="nav-link" data-scroll-target="#waterfall-graph"><span class="toc-section-number">16.6</span>  Waterfall Graph</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!-- Container for reading time -->
+<div id="reading-time"></div>
+
+<!-- JavaScript code for calculating reading time -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wordsPerMinute = 200;
+  const content = document.querySelector("main");
+  const wordCount = content.innerText.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+  const readingTimeContainer = document.getElementById("reading-time");
+  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
+});
+</script>
+
+<!-- CSS code for styling the reading time container -->
+<style>
+#reading-time {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 1em;
+}
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>When working on graphs don’t think “what chart should I use?”, but “what am I trying to show?” In this section we will look at different types of chart, what they show and when to use them. We will not cover all the graphs, but you will definitely expand your kit!</p>
+<section id="category-comparison" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="category-comparison"><span class="header-section-number">16.1</span> Category Comparison</h2>
+<p>Graphs for category comparison are a type of data visualization that are used to compare and contrast different categories or groups. The most common of them is bar chart! The one below shows the top 5 countries by GDP per Capita in 1997. You can easily see that Norway is first and Switzerland is 5th!</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1997</span>) <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(gdpPercap, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(country,gdpPercap,<span class="at">.desc =</span> T), <span class="at">y =</span> gdpPercap)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Top 5 countries by GDP per Capita in 1997"</span>) <span class="sc">+</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(gdpPercap,<span class="dv">0</span>)), <span class="at">vjust =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Vertical bar charts are great to provide a quick comparison for a small number of categories (less than 7). But if need to show ranking of more things, flip the axis of the bar chart! Additional bonus, horizontal bar charts are great if you have long names to display. Below are the results of the 2021 London election. British YouTuber Niko Omilana finished 5th <em>for the memes</em>! Max Fosh, another YouTuber, also passed the cut off!</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>barh_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Candidate =</span> <span class="fu">c</span>(<span class="st">"Sadiq Khan"</span>, <span class="st">"Shaun Bailey"</span>, <span class="st">"Siân Berry"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Luisa Porritt"</span>, <span class="st">"Niko Omilana"</span>, <span class="st">"Laurence Fox"</span>, <span class="st">"Brian Rose"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Richard Hewison"</span>, <span class="st">"Count Binface"</span>, <span class="st">"Mandu Reid"</span>, <span class="st">"Piers Corbyn"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Vanessa Hudson"</span>, <span class="st">"Peter Gammons"</span>, <span class="st">"Farah London"</span>, <span class="st">"David Kurten"</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"Nims Obunge"</span>, <span class="st">"Steve Kelleher"</span>, <span class="st">"Kam Balayev"</span>, <span class="st">"Max Fosh"</span>, <span class="st">"Valerie Brown"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>), </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">Percentage =</span> <span class="fu">c</span>(<span class="fl">40.0</span>, <span class="fl">35.3</span>, <span class="fl">7.8</span>, <span class="fl">4.4</span>, <span class="fl">2.0</span>, <span class="fl">1.9</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fl">1.2</span>, <span class="fl">1.1</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="fl">0.5</span>, <span class="fl">0.4</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">is.youtuber =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  Candidate <span class="sc">==</span> <span class="st">"Niko Omilana"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  Candidate <span class="sc">==</span> <span class="st">"Max Fosh"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  T <span class="sc">~</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>barh_data <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Candidate, Percentage), <span class="at">y =</span> Percentage, <span class="at">fill =</span> <span class="fu">as.factor</span>(is.youtuber))) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"London Mayor Elections (2021) by % of Votes"</span>) <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>) <span class="sc">+</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Percentage), <span class="at">nudge_y =</span> <span class="fl">0.3</span>, <span class="at">hjust =</span> <span class="st">"left"</span>)  <span class="sc">+</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#c0bfff"</span>,<span class="st">"#f3e408"</span>,<span class="st">"#D96161"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="distribution" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="distribution"><span class="header-section-number">16.2</span> Distribution</h2>
+<section id="histogram" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">16.2.1</span> Histogram</h3>
+<p>What if you want to show the distribution of the data? We can use a variation of a bar chart – histogram! Histograms show the distribution of continuous data by grouping it into bins and displaying the frequency or proportion of observations that fall into each bin. They are great if you want to show the shape of the distribution, but they are very sensitive to the bins you choose. Notice how the shape of the distribution changes for each number of bins. It is important to strike a balance between too few and too many. 6 bins makes our distribution look pretty normal while 30 bins make it all over the place. 15 bins seems about right it preserves the bimodal feature of the distribution, while keeping the picture legible.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hist_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"6 bins"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hist_2 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"15 bins"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>hist_3 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"30 bins"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>(hist_1 <span class="sc">+</span> hist_2 <span class="sc">+</span> hist_3) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">"iris Sepal Length Distribution Histograms with Varying Bins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="density-plot" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="density-plot"><span class="header-section-number">16.2.2</span> Density Plot</h3>
+<p>Unlike histograms, density plots use a continuous line to represent the data instead of bars. This smooth curve provides a more detailed and nuanced representation of the distribution of the data, allowing for easier detection of patterns and trends. The density plot constructs this line by placing many small normal distributions at each point in the data, which are then used to weigh all points within their respective range and draw a curve connecting them. The width of these curves is controlled by the bandwidth of the density plot, which determines how wide the curves span. A larger bandwidth will consider more points, resulting in a smoother curve, while a smaller bandwidth will lead to a jagged line.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dens_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">bw =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Band Width 0.3"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dens_2 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">bw =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Band Width 0.1"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dens_3 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">bw =</span> <span class="fl">0.03</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Band Width 0.03"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>(dens_1 <span class="sc">+</span> dens_2 <span class="sc">+</span> dens_3) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">"iris Sepal Length Distribution Density Plots with Varying Band Widths"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="frequency-polygon" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="frequency-polygon"><span class="header-section-number">16.2.3</span> Frequency Polygon</h3>
+<p>It is similar to a histogram, but instead of bars, it uses a continuous line to connect the points representing the frequencies. Frequency polygons are particularly useful when comparing two or more data sets on the same plot. Just like histogram it relies on the selection of bins.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>freq_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">geom_freqpoly</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"15 bins"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>freq_2 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))   <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Species), <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(<span class="at">color =</span> Species), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"15 bins"</span>) <span class="sc">+</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">95</span>, .<span class="dv">95</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.just =</span> <span class="st">"right"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.margin =</span> <span class="fu">margin</span>(<span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>)) <span class="sc">+</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>freq_1 <span class="sc">+</span> freq_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="box-plot" class="level3" data-number="16.2.4">
+<h3 data-number="16.2.4" class="anchored" data-anchor-id="box-plot"><span class="header-section-number">16.2.4</span> Box Plot</h3>
+<p>This section was inspired by https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/</p>
+<p>Boxplots provide a summary of the distribution of a dataset, show the median, the lower and upper quartiles, and the minimum and maximum values of a dataset. The box in the middle represents the interquartile range (IQR), which is the range of the middle 50% of the data. The line in the box represents the median, which is the midpoint of the data. The whiskers on the top and bottom extend to the minimum and maximum values, excluding outliers. It is incredible how much information boxplots contain! With just one plot, you can quickly identify outliers and gain a visual understanding of the distribution of the data.</p>
+<p>In the context of the iris dataset, the boxplot of Sepal Length across different species provides a clear picture of the distribution of this variable. However, like real boxes, boxplots can also hide important information. To illustrate this point, we can use a dataset with the same summary statistics but different distributions. In the second graph, three identical boxplots are displayed. However, once we add data points to the plot, it becomes evident that the distributions are quite different.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1337</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Group 1"</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="st">"Group 2"</span>, <span class="dv">250</span>), <span class="fu">rep</span>(<span class="st">"Group 3"</span>, <span class="dv">25</span>))),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">100</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">2</span>, .<span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">90</span>, <span class="fl">5.4</span>, .<span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">90</span>, <span class="fl">14.6</span>, .<span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">18</span>, .<span class="dv">1</span>), <span class="fu">rep</span>(<span class="dv">20</span>, <span class="dv">5</span>)),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">5</span>), <span class="dv">5</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">if_else</span>(group <span class="sc">==</span> <span class="st">"Group 2"</span>, value <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, .<span class="dv">4</span>), value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>base2 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Sepal.Length, <span class="at">x =</span> Species))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major.x  =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor.x  =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>box_1 <span class="ot">&lt;-</span> base2 <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>base_dist <span class="ot">&lt;-</span> data_dist <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> value, <span class="at">x =</span> group))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major.x  =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor.x  =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>box_2 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>box_3 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>box_1 <span class="sc">+</span> box_2 <span class="sc">+</span> box_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="violin-plot" class="level3" data-number="16.2.5">
+<h3 data-number="16.2.5" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">16.2.5</span> Violin Plot</h3>
+<p>One solution is to use violin plots. In its essence it is a vertical density plot. Look how much more we know about out data distribution of iris species! We can see the density distribution, points and quantiles!</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>base2 <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">draw_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">bw =</span> <span class="fl">0.15</span>) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Going back to our new data set, notice how different the datasets look, clearly there are some patterns. Group 1, which has four times more observations, appears to be nearly identical to Group 3. This is because the default setting “scale =”area”” is a little misleading. We can fix that by changing it to “scale =”count””</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dist_1 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"area"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"scale = 'area'"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dist_2 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"scale = 'count'"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dist_1 <span class="sc">+</span> dist_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Do you remember how band width is extremely important when making density plots? Setting an apprpriate band width reveals the true distribution!</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"count"</span>, <span class="at">bw =</span> .<span class="dv">3</span>, <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="bee-hive-plot" class="level3" data-number="16.2.6">
+<h3 data-number="16.2.6" class="anchored" data-anchor-id="bee-hive-plot"><span class="header-section-number">16.2.6</span> Bee Hive Plot</h3>
+<p>The bee hive plot is a scatter plot that arranges data points as dots to minimize overlap. It’s ideal for visualizing small datasets because it creates patterns like a density plot without hiding individual data points.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bee_1 <span class="ot">&lt;-</span> base2 <span class="sc">+</span> <span class="fu">geom_beeswarm</span>() </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bee_2 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_beeswarm</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>bee_1 <span class="sc">+</span> bee_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>All of the plots we have covered so far have their advantages: 1. Box plot shows important statistics 2. Density plot provides high-level view of data shape 3. Bee hive plot “shows” the actual datapoints While combining these plots might make for a crowded visual, with some modifications, it’s possible to create a hybrid plot that captures the strengths of each.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">scale =</span> <span class="st">"count"</span>, <span class="at">bw =</span> .<span class="dv">4</span>) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_beeswarm</span>(<span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">cex =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="rain-cloud-plot" class="level3" data-number="16.2.7">
+<h3 data-number="16.2.7" class="anchored" data-anchor-id="rain-cloud-plot"><span class="header-section-number">16.2.7</span> Rain Cloud Plot</h3>
+<p>Rain Cloud Plot combines elements of box plots, violin plots, and density plots. It uses a density plot to show the distribution of the data, a box plot to display the statistics, and individual data points are represented as rain drops. The result is a visually appealing and informative way to visualize a large number of distributions side-by-side, allowing for easy comparisons and identification of patterns.</p>
+<p>Isn’t this beautiful? We have a box plot, density plot, and jittered points all in the same graph without looking cluttered.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>, <span class="co">#bw</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> .<span class="dv">6</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.width =</span> <span class="dv">0</span>, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">justification =</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">point_colour =</span> <span class="cn">NA</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> .<span class="dv">15</span>, </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.shape =</span> <span class="cn">NA</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add justified jitter from the {gghalves} package</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  gghalves<span class="sc">::</span><span class="fu">geom_half_point</span>(</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## draw jitter on the left</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">side =</span> <span class="st">"l"</span>, </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="do">## control range of jitter</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">range_scale =</span> .<span class="dv">4</span>, </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="do">## add some transparency</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">3</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="cn">NA</span>), <span class="at">clip =</span> <span class="st">"off"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One alternative option to the boxplot is to stack the data points and use a minimal boxplot representation. While this alternative can be visually appealing, it is important to ensure that your audience understands the visualization and the meaning behind the stacked data points. It may be necessary to provide additional context or include a note explaining the meaning of the stacked slabs to avoid confusion.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> .<span class="dv">6</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## set slab interval to show IQR and 95% data range</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.width =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">95</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_dots</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">side =</span> <span class="st">"left"</span>, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">dotsize =</span> .<span class="dv">8</span>, </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">justification =</span> <span class="fl">1.05</span>, </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> .<span class="dv">3</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="cn">NA</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>My personal favorite is the rain cloud plot, which combines vertical lines and a bar plot that is rotated horizontally to resemble actual rain clouds.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> .<span class="dv">6</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.width =</span> <span class="dv">0</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">justification =</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">point_colour =</span> <span class="cn">NA</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> .<span class="dv">15</span>, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.shape =</span> <span class="cn">NA</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_half_point</span>(</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="do">## draw horizontal lines instead of points</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"|"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">side =</span> <span class="st">"l"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">2</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">transformation =</span> <span class="fu">position_identity</span>()</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="cn">NA</span>), <span class="at">clip =</span> <span class="st">"off"</span>)<span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="proportions" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="proportions"><span class="header-section-number">16.3</span> Proportions</h2>
+<p>Another big collection of graphs is concerned with communicating proportions and composition.</p>
+<section id="stacked-bar-charts" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="stacked-bar-charts"><span class="header-section-number">16.3.1</span> Stacked Bar Charts</h3>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>us_spending <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/USFR_StmtNetCost_2017_2022.csv"</span>) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>((restatement_flag <span class="sc">==</span> <span class="st">"N"</span>) <span class="sc">&amp;</span> (agency_name <span class="sc">!=</span> <span class="st">"Total"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">year =</span> statement_fiscal_year, agency_name, net_cost_in_billions) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">net_cost_in_billions =</span> <span class="fu">as.numeric</span>(net_cost_in_billions)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">proportion =</span> <span class="fu">round</span>(net_cost_in_billions<span class="sc">/</span><span class="fu">sum</span>(net_cost_in_billions),<span class="dv">2</span>)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="ot">&lt;-</span> us_spending <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>net_cost_in_billions), <span class="at">agency =</span> <span class="fu">ifelse</span>(rank<span class="sc">&gt;=</span><span class="dv">5</span>, <span class="st">"Other"</span>, agency_name)) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year,agency,<span class="at">wt =</span> net_cost_in_billions) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">other =</span> agency <span class="sc">==</span> <span class="st">"Other"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(other) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n),<span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order =</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">recode</span>( agency,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">"Department of Veterans Affairs"</span> <span class="ot">=</span> <span class="st">"Veterans Affairs"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">"Department of Health and Human Services"</span> <span class="ot">=</span> <span class="st">"HHS"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="st">"Department of Defense"</span> <span class="ot">=</span> <span class="st">"Defense"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="st">"Social Security Administration"</span> <span class="ot">=</span> <span class="st">"SSA"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="st">"Department of the Treasury"</span> <span class="ot">=</span> <span class="st">"Treasury"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="st">"Interest on Treasury Securities Held by the Public"</span> <span class="ot">=</span> <span class="st">"i on Treasuries"</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">factor</span>(agency,<span class="fu">c</span>(<span class="st">"Other"</span>, <span class="st">"i on Treasuries"</span>, <span class="st">"Veterans Affairs"</span>, <span class="st">"Defense"</span>, <span class="st">"Treasury"</span>, <span class="st">"SSA"</span>, <span class="st">"HHS"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>A stacked bar chart is a type of graph used to visualize the distribution of a categorical variable. It is similar to a regular bar chart, but in a stacked bar chart, each bar is divided into sections, with each section representing a different category within the variable. The height of each section corresponds to the proportion or frequency of the category within that bar. Stacked bar charts are particularly useful when comparing the distribution of a variable across different subgroups or time periods, as they allow for easy visualization of both the overall distribution as well as the relative proportions of each subgroup or category within the variable.</p>
+<p>As an example we will use US Expernditures across departments. Only top four departments are shown, the rest are collected into “other”. The graph below shows absolute values and its components across years.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency, <span class="at">label =</span> agency)) <span class="sc">+</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#5E5E5E"</span>, <span class="st">"#EF3B2C"</span>, <span class="st">"#2CA25F"</span>, <span class="st">"#006837"</span>, <span class="st">"#F7DC6F"</span>, <span class="st">"#00FFFF"</span>, <span class="st">"#FFC0CB"</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millions Spent"</span>) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="fu">aes</span>(<span class="at">group =</span> agency), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What if we are not concerned with absolute values, but relative proportions? We can use percentage stacked chart.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency)) <span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">show.legend =</span> T) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>( </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#5E5E5E"</span>, <span class="st">"#EF3B2C"</span>, <span class="st">"#2CA25F"</span>, <span class="st">"#006837"</span>, <span class="st">"#F7DC6F"</span>, <span class="st">"#00FFFF"</span>, <span class="st">"#FFC0CB"</span>)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millions Spent"</span>, <span class="at">fill =</span> <span class="st">"Department"</span>) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">label =</span> agency, <span class="at">group =</span> agency), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Stacked charts are useful for visualizing the distribution of categorical variables, but they can be challenging to compare categories in the middle. Typically, the easiest categories to compare are the ones at the top and bottom of the stack. For example, suppose we want to compare the trend of the Department of Defense and the Social Security Administration (SSA) over time. In this case, we can move these categories to the top and bottom positions of the stacked chart to make it easier to compare their relative sizes and trends.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">factor</span>(agency,<span class="fu">c</span>(<span class="st">"Defense"</span>, <span class="st">"Other"</span>, <span class="st">"i on Treasuries"</span>, <span class="st">"Veterans Affairs"</span>, <span class="st">"Treasury"</span>, <span class="st">"HHS"</span>, <span class="st">"SSA"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">show.legend =</span> T) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>( </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#006837"</span>, <span class="st">"#5E5E5E"</span>, <span class="st">"#EF3B2C"</span>, <span class="st">"#2CA25F"</span>,  <span class="st">"#F7DC6F"</span>, <span class="st">"#FFC0CB"</span>, <span class="st">"#00FFFF"</span>)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millions Spent"</span>, <span class="at">fill =</span> <span class="st">"Department"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">label =</span> agency, <span class="at">group =</span> agency), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="pie-chart" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="pie-chart"><span class="header-section-number">16.3.2</span> Pie Chart</h3>
+<p>data used from: The Growth Lab at Harvard University. The Atlas of Economic Complexity. http://www.atlas.cid.harvard.edu.</p>
+<p>As an example dataset we will be used Japan’s export basket from 2020.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>japan_export <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/japan_export_2020.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"export"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Gross Export</span><span class="st">`</span>) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>japan_sectors <span class="ot">&lt;-</span> japan_export <span class="sc">%&gt;%</span> <span class="fu">count</span>(sector, <span class="at">wt =</span> share) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Pie charts are a variation of bar charts where each category is represented as a slice of a circle. While pie charts can effectively communicate when one category is significantly larger or smaller than the others, they become difficult to read and compare accurately when there are many categories or the differences between them are small. Comparing angles and areas of the slices can be confusing, leading to misinterpretation of the data.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pie_1 <span class="ot">&lt;-</span> japan_sectors <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span>n, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>()  <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>pie_2 <span class="ot">&lt;-</span> japan_sectors <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span>n, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>))</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>pie_1 <span class="sc">+</span> pie_2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>But if absolutely must use a pie chart here are some rules to keep in mind: 1. Limit the number of categories to 5-7 at most. 2. Consider grouping small categories into an “Other” category to avoid clutter. 3. Arrange the slices in decreasing order of size, starting at 12 o’clock to aid in comparing them. 4. Include the category labels directly on the chart instead of relying solely on a legend. 5. Add separators between slices to help with distinguishing between them. However, keep in mind that this can also add visual clutter, so use with discretion.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>japan_sectors <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sector =</span> <span class="fu">ifelse</span>(n<span class="sc">&lt;</span><span class="dv">11</span>,<span class="st">"Other"</span>,sector)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sector, <span class="at">wt =</span> n) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">other =</span> sector <span class="sc">==</span> <span class="st">"Other"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(other) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n),<span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(japan_sectors<span class="sc">$</span>n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ypos =</span> <span class="fu">cumsum</span>(prop)<span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>prop ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order =</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span>n, <span class="at">fill=</span> <span class="fu">fct_reorder</span>(sector, order))) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>, <span class="at">color =</span> </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>             <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> ypos, <span class="at">label =</span> sector), <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"white"</span>,<span class="st">"#333333"</span>, <span class="fu">rep</span>(<span class="st">"white"</span>,<span class="dv">4</span>)), <span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"grey"</span>, <span class="st">"#009E73"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#F0E442"</span>, <span class="st">"#56B4E9"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="waffle-chart" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="waffle-chart"><span class="header-section-number">16.3.3</span> Waffle Chart</h3>
+<p>One alternative to a pie chart could be a waffle chart (these food names make me hungry). It is a grid-like visualization that resembles a waffle or a checkerboard. Each square in the grid represents a proportion of the total data, making it a useful way to visualize proportions or percentages in a visually appealing way. However, they are also vulnerable to large numbers of categories. But what they are truly great at is giving the sense of proportions and sizes. Waffle chart will significantly benefit from interactivity.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># waffle_data &lt;- waffle_iron(iris, aes_d(group = Species))</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(waffle_data, aes(x, y, fill = group)) + </span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_waffle() + </span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   coord_equal() + </span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   scale_fill_viridis_d() + </span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme_waffle() +</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme(legend.position = "top", legend.title = element_blank()) +</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   labs(x = element_blank(), y = element_blank())</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>japan_sectors <span class="sc">%&gt;%</span> </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mutate(sector = ifelse(n&lt;11,"Other",sector)) %&gt;% </span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># count(sector, wt = n) %&gt;%</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mutate(other = sector == "Other") %&gt;%</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># group_by(other) %&gt;%</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># arrange(desc(n),.by_group = T) %&gt;%</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ungroup() %&gt;%</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">other =</span> sector <span class="sc">==</span> <span class="st">"Other"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">uncount</span>(<span class="at">weights =</span> <span class="fu">round</span>(n,<span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(other) <span class="sc">%&gt;%</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n),<span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">waffle_iron</span>(<span class="fu">aes_d</span>(<span class="at">group =</span> sector)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>( <span class="fu">aes</span>(x, y, <span class="at">fill =</span> group))<span class="sc">+</span> <span class="fu">geom_waffle</span>() <span class="sc">+</span> <span class="fu">coord_equal</span>() <span class="sc">+</span> </span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># scale_fill_viridis_d() + </span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_waffle</span>() <span class="sc">+</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">element_blank</span>(), <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#CF8F00"</span>, <span class="st">"#E52B50"</span>, <span class="st">"#003366"</span>, <span class="st">"#228B22"</span>, <span class="st">"#1E90FF"</span>, <span class="st">"#FFD700"</span>, <span class="st">"#666666"</span>, <span class="st">"#800000"</span>, <span class="st">"#9932CC"</span>, <span class="st">"#8B0000"</span>, <span class="st">"#FFA07A"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="tree-maps" class="level3" data-number="16.3.4">
+<h3 data-number="16.3.4" class="anchored" data-anchor-id="tree-maps"><span class="header-section-number">16.3.4</span> Tree Maps</h3>
+<p>What if we have a lot of data hierarchical data? Treemaps!</p>
+<p>Treemaps are a type of visualization that allows you to display hierarchical data in a way that is easy to understand. Each node in the hierarchy is represented by a rectangle, and the size of the rectangle corresponds to the proportion of the total data. The nodes are organized in a way that preserves the hierarchy, with parent nodes containing smaller child nodes. This allows you to quickly identify which nodes are the largest and which are the smallest, as well as the relationships between them. Tree maps are especially useful for displaying large amounts of data in a compact and intuitive way. Tree maps can become very cluttered and interactivity is almost always necessary for such detailed plots. Check out the same plot <a href="https://atlas.cid.harvard.edu/countries/114/export-basket">from the source website</a>.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemap)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">treemap</span>(japan_export,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"sector"</span>,<span class="st">"name"</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">vSize =</span> <span class="st">"export"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"index"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize.labels =</span> <span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">10</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontcolor.labels =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"white"</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontface.labels =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">bg.labels =</span> <span class="dv">0</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">align.labels =</span> <span class="fu">list</span>(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(<span class="st">"center"</span>,<span class="st">"center"</span>),</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(<span class="st">"left"</span>,<span class="st">"top"</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">border.col =</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"white"</span>),</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">border.lwds =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>),</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Japans Export in 2020"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize.title =</span> <span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="correlation" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">16.4</span> Correlation</h2>
+<p>In addition to understanding the distribution of individual variables, it is important to examine the relationship between pairs of variables. Correlation plots are a useful tool for visualizing many aspects of data: relationships between variables (or lack there of), clustering, outliers, etc.</p>
+<section id="scatter-plot" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="scatter-plot"><span class="header-section-number">16.4.1</span> Scatter Plot</h3>
+<p>The most common visualization is scatter plot! It is not a secret for anyone that scatter plots are amazing and perhaps the most persuasive types of plot. We can add a fitted lines to the plot to better show the relationships between the variables.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>scatter_1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">color =</span> Species)) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dl</span>(<span class="fu">aes</span>(<span class="at">label =</span> Species), <span class="at">method =</span> <span class="st">"smart.grid"</span>) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Length"</span>, <span class="at">y =</span> <span class="st">"Sepal Width"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>scatter_2 <span class="ot">&lt;-</span> scatter_1 <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">fullrange =</span> F, <span class="at">show.legend =</span> F, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>scatter_1 <span class="sc">+</span> scatter_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="change-over-time" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="change-over-time"><span class="header-section-number">16.5</span> Change over Time</h2>
+<p>We have already seen plots that incorporate time change. Time series plots typically have time on the x-axis and the variable being measured on the y-axis. They can show trends, patterns, and seasonal fluctuations in the data.</p>
+<section id="line-chart" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">16.5.1</span> Line Chart</h3>
+<p>Most common</p>
+<p>S&amp;P 500 stock market index since 1927. Historical data is inflation-adjusted using the headline CPI and each data point represents the month-end closing value.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Year, <span class="sc">~</span>Average_Closing_Price, <span class="sc">~</span>Year_Open, <span class="sc">~</span>Year_High, <span class="sc">~</span>Year_Low, <span class="sc">~</span>Year_Close, <span class="sc">~</span>Annual_Percent_Change,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2023</span>, <span class="fl">4020.94</span>, <span class="fl">3824.14</span>, <span class="fl">4179.76</span>, <span class="fl">3808.10</span>, <span class="fl">3970.04</span>, <span class="fl">3.40</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2022</span>, <span class="fl">4097.49</span>, <span class="fl">4796.56</span>, <span class="fl">4796.56</span>, <span class="fl">3577.03</span>, <span class="fl">3839.50</span>, <span class="sc">-</span><span class="fl">19.44</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2021</span>, <span class="fl">4273.41</span>, <span class="fl">3700.65</span>, <span class="fl">4793.06</span>, <span class="fl">3700.65</span>, <span class="fl">4766.18</span>, <span class="fl">26.89</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2020</span>, <span class="fl">3217.86</span>, <span class="fl">3257.85</span>, <span class="fl">3756.07</span>, <span class="fl">2237.40</span>, <span class="fl">3756.07</span>, <span class="fl">16.26</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2019</span>, <span class="fl">2913.36</span>, <span class="fl">2510.03</span>, <span class="fl">3240.02</span>, <span class="fl">2447.89</span>, <span class="fl">3230.78</span>, <span class="fl">28.88</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2018</span>, <span class="fl">2746.21</span>, <span class="fl">2695.81</span>, <span class="fl">2930.75</span>, <span class="fl">2351.10</span>, <span class="fl">2506.85</span>, <span class="sc">-</span><span class="fl">6.24</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2017</span>, <span class="fl">2449.08</span>, <span class="fl">2257.83</span>, <span class="fl">2690.16</span>, <span class="fl">2257.83</span>, <span class="fl">2673.61</span>, <span class="fl">19.42</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2016</span>, <span class="fl">2094.65</span>, <span class="fl">2012.66</span>, <span class="fl">2271.72</span>, <span class="fl">1829.08</span>, <span class="fl">2238.83</span>, <span class="fl">9.54</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2015</span>, <span class="fl">2061.07</span>, <span class="fl">2058.20</span>, <span class="fl">2130.82</span>, <span class="fl">1867.61</span>, <span class="fl">2043.94</span>, <span class="sc">-</span><span class="fl">0.73</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2014</span>, <span class="fl">1931.38</span>, <span class="fl">1831.98</span>, <span class="fl">2090.57</span>, <span class="fl">1741.89</span>, <span class="fl">2058.90</span>, <span class="fl">11.39</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2013</span>, <span class="fl">1643.80</span>, <span class="fl">1462.42</span>, <span class="fl">1848.36</span>, <span class="fl">1457.15</span>, <span class="fl">1848.36</span>, <span class="fl">29.60</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2012</span>, <span class="fl">1379.61</span>, <span class="fl">1277.06</span>, <span class="fl">1465.77</span>, <span class="fl">1277.06</span>, <span class="fl">1426.19</span>, <span class="fl">13.41</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2011</span>, <span class="fl">1267.64</span>, <span class="fl">1271.87</span>, <span class="fl">1363.61</span>, <span class="fl">1099.23</span>, <span class="fl">1257.60</span>, <span class="fl">0.00</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2010</span>, <span class="fl">1139.97</span>, <span class="fl">1132.99</span>, <span class="fl">1259.78</span>, <span class="fl">1022.58</span>, <span class="fl">1257.64</span>, <span class="fl">12.78</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2009</span>, <span class="fl">948.05</span>, <span class="fl">931.80</span>, <span class="fl">1127.78</span>, <span class="fl">676.53</span>, <span class="fl">1115.10</span>, <span class="fl">23.45</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2008</span>, <span class="fl">1220.04</span>, <span class="fl">1447.16</span>, <span class="fl">1447.16</span>, <span class="fl">752.44</span>, <span class="fl">903.25</span>, <span class="sc">-</span><span class="fl">38.49</span>,</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2007</span>, <span class="fl">1477.18</span>, <span class="fl">1416.60</span>, <span class="fl">1565.15</span>, <span class="fl">1374.12</span>, <span class="fl">1468.36</span>, <span class="fl">3.53</span>,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2006</span>, <span class="fl">1310.46</span>, <span class="fl">1268.80</span>, <span class="fl">1427.09</span>, <span class="fl">1223.69</span>, <span class="fl">1418.30</span>, <span class="fl">13.62</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sp500_scatter <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Average_Closing_Price,Year_Open,Annual_Percent_Change)) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>Year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year_close =</span> name <span class="sc">!=</span> <span class="st">"Year_Close"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> value, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dl</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">method =</span> <span class="st">"smart.grid"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">element_blank</span>(), <span class="at">y =</span> <span class="st">"S&amp;P 500"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>sp500_line <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Average_Closing_Price,Year_Open,Annual_Percent_Change)) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>Year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year_close =</span> name <span class="sc">!=</span> <span class="st">"Year_Close"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> value, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> year_close),<span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"grey"</span>, <span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dl</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">method =</span> <span class="st">"smart.grid"</span>) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">element_blank</span>(), <span class="at">y =</span> <span class="st">"S&amp;P 500"</span>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>sp500_scatter <span class="sc">+</span> sp500_line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="waterfall-graph" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="waterfall-graph"><span class="header-section-number">16.6</span> Waterfall Graph</h2>
+<p>Waterfall charts, also known as bridge charts, are a type of bar chart used to visualize the cumulative effect of sequentially introduced positive or negative values. The graph is named “waterfall” because it resembles a series of falling water droplets. Each bar in the chart represents a value and is color-coded to indicate whether it contributes to an increase or decrease in the cumulative total. They are useful for visualizing the relative contributions of positive and negative factors that affect the net change in the value being analyzed.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>waterfall_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>year, <span class="sc">~</span>bank, <span class="sc">~</span>change,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2017</span>, <span class="dv">2000</span>, <span class="dv">2000</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2018</span>, <span class="dv">1745</span>, <span class="sc">-</span><span class="dv">255</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2019</span>, <span class="dv">1930</span>, <span class="dv">185</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2020</span>, <span class="dv">2197</span>, <span class="dv">267</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2021</span>, <span class="dv">2453</span>, <span class="dv">256</span>,  </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2022</span>, <span class="dv">2300</span>, <span class="sc">-</span><span class="dv">153</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">transmute</span>(<span class="fu">as.character</span>(year), change)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(waterfalls)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">waterfall</span>(waterfall_data,  <span class="at">calc_total =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">total_rect_color =</span> <span class="st">"orange"</span>,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">total_rect_text_color =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Money in Bank"</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="which_graph_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="nikitoshina/quarto_book" data-repo-id="R_kgDOJMlNmA" data-category="General" data-category-id="DIC_kwDOJMlNmM4CVCYY" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./color.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Color</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

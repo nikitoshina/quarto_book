@@ -1,8 +1,0 @@
----
-title: "Version Control with Git and Github"
-editor: visual
----
-
-## Version Control
-
-## Git and Github
