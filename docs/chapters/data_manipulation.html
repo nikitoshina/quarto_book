@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Research Toolkit - 12&nbsp; Data Manipulation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/tidy_data.html" rel="next">
+<link href="../chapters/qualtrics_api.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Manipulation</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Research Toolkit</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/nikitoshina/quarto_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/repres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducible Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/version_control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Version Control with Git and Github</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lit Review and Writing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/litreview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Literature Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/write.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Write</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/layout_refs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout and References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/template.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Thesis Template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Collaboration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Collecting the Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/qualtrics_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Qualtrics API</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Working with Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_manipulation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Manipulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/tidy_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_bases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Relational Databases</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Presenting the Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Power Analysis and Simulations</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="toc-section-number">12.1</span>  Basics</a>
+  <ul class="collapse">
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">12.1.1</span>  Data Types</a></li>
+  </ul></li>
+  <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data"><span class="toc-section-number">12.2</span>  Downloading Data</a>
+  <ul class="collapse">
+  <li><a href="#example-data" id="toc-example-data" class="nav-link" data-scroll-target="#example-data"><span class="toc-section-number">12.2.1</span>  Example Data</a></li>
+  </ul></li>
+  <li><a href="#basic-data-management" id="toc-basic-data-management" class="nav-link" data-scroll-target="#basic-data-management"><span class="toc-section-number">12.3</span>  Basic Data Management</a>
+  <ul class="collapse">
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="toc-section-number">12.3.1</span>  <code>select()</code></a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="toc-section-number">12.3.2</span>  <code>filter()</code></a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="toc-section-number">12.3.3</span>  <code>arrange()</code></a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="toc-section-number">12.3.4</span>  <code>mutate()</code></a></li>
+  <li><a href="#recode" id="toc-recode" class="nav-link" data-scroll-target="#recode"><span class="toc-section-number">12.3.5</span>  <code>recode()</code></a></li>
+  </ul></li>
+  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><span class="toc-section-number">12.4</span>  <code>summarize()</code></a></li>
+  <li><a href="#group_by-and-ungroup" id="toc-group_by-and-ungroup" class="nav-link" data-scroll-target="#group_by-and-ungroup"><span class="toc-section-number">12.5</span>  <code>group_by()</code> and <code>ungroup()</code></a>
+  <ul class="collapse">
+  <li><a href="#group_by" id="toc-group_by" class="nav-link" data-scroll-target="#group_by"><span class="toc-section-number">12.5.1</span>  <code>group_by()</code></a></li>
+  <li><a href="#ungroup" id="toc-ungroup" class="nav-link" data-scroll-target="#ungroup"><span class="toc-section-number">12.5.2</span>  <code>ungroup()</code></a></li>
+  <li><a href="#rowwise" id="toc-rowwise" class="nav-link" data-scroll-target="#rowwise"><span class="toc-section-number">12.5.3</span>  <code>rowwise()</code></a></li>
+  </ul></li>
+  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><span class="toc-section-number">12.6</span>  <code>count()</code></a></li>
+  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"><span class="toc-section-number">12.7</span>  <code>rename()</code></a></li>
+  <li><a href="#row_number" id="toc-row_number" class="nav-link" data-scroll-target="#row_number"><span class="toc-section-number">12.8</span>  <code>row_number()</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!-- Container for reading time -->
+<div id="reading-time"></div>
+
+<!-- JavaScript code for calculating reading time -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wordsPerMinute = 200;
+  const content = document.querySelector("main");
+  const wordCount = content.innerText.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+  const readingTimeContainer = document.getElementById("reading-time");
+  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
+});
+</script>
+
+<!-- CSS code for styling the reading time container -->
+<style>
+#reading-time {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 1em;
+}
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Manipulation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Data visualization and manipulation are essential tools for understanding and communicating complex information in data analysis. R, a powerful programming language for data analysis, offers a variety of packages for creating visually appealing plots and manipulating data. One of the most popular and user-friendly collections of packages for data visualization and manipulation in R is Tidyverse created by Hadley Wickham, the Chief Scientist at RStudio. The Tidyverse is a collection of packages that covers all common tasks, it can be installed using <code>install.packages("tidyverse")</code> and activated with <code>library("tidyverse")</code>. In this introduction, we will explore the basics of using Tidyverse, we will use <code>readr</code> to read data, <code>tidyr</code> to tidy, <code>dplyr</code> to manipulate, and <code>ggplot2</code> to visualize. To learn more about the Tidyverse check out their website <a href="https://www.tidyverse.org/">https://www.tidyverse.org/</a>.</p>
+<section id="basics" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="basics"><span class="header-section-number">12.1</span> Basics</h2>
+<p>Let us start with some basic concepts! We can use R as a basic calculator</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment use "#" to comment something!</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">4</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 256</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">+</span><span class="dv">3</span>)<span class="sc">/</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># This takes a natural log of 10! </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+</div>
+<p>We can define variables and perform operations on them. R uses <code>=</code> or <code>&lt;-</code> to assign values to a variable name. It is stylistically preferred to use <code>&lt;-</code> to avoid confusion and some errors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># same as x = 2</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p><code>x &lt;- 2</code> stored <code>2</code> in <code>x</code>. Later when we wrote <code>x * 4</code> R substituted <code>x</code> for <code>2</code> evaluating <code>2 * 4</code> to get <code>8</code>. We can update value of <code>x</code> as much as we want using <code>=</code> or <code>&lt;-</code>. Keep in mind R is case sensitive so <code>X</code> and <code>x</code> are different.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-types" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="data-types"><span class="header-section-number">12.1.1</span> Data Types</h3>
+<p>R has a number of different data types and classes such as data.frames, which are similar to excel spreadsheets with columns and rows. We will first look at vectors. Vectors can hold multiple values of the same types. Most basic ones are numeric, character and logical.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(name <span class="ot">&lt;-</span> <span class="st">"Parsa Rahimi"</span>) <span class="co"># wrapping with (...) will print the variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Parsa Rahimi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(true_or_false <span class="ot">&lt;-</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(true_or_false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+<p>Note that <code>name</code> is stored as a single character string. What if we want store name and surname separately in the same object? We can use concatenate <code>c()</code> to combine objects of similar class into a vector!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(name_surname <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Parsa"</span>,<span class="st">"Rahimi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Parsa"  "Rahimi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(name) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(name_surname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>Notice how length of the <code>name</code> is 1 and length of the <code>name_surname</code> is 2! Let’s make a numeric vector and do some operations on it!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(i <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">+</span> <span class="dv">10</span> <span class="co"># add 10 to each elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 12 13 14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">*</span> <span class="dv">10</span> <span class="co"># multiply each element by 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 20 30 40</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>) <span class="co"># add elements together in matching positions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3  6  9 12</code></pre>
+</div>
+</div>
+<p>We haven’t modified <code>i</code> with any of those operations. The results are just printed and not stored. If we want to preserve the results we have to store them in a variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Parsa Rahimi"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6 6 5 5</code></pre>
+</div>
+</div>
+<p>Notice that <code>name</code> is no longer “Parsa Rahimi”. It has been overwritten by assigning a numeric vector instead of a character string. But be careful we can perform numeric operations only on numeric objects otherwise we will receive an error. You can use <code>str()</code> to get structure of the object such as type, length and other.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>name_surname <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in name_surname + 2: non-numeric argument to binary operator</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(name_surname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:2] "Parsa" "Rahimi"</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="downloading-data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="downloading-data"><span class="header-section-number">12.2</span> Downloading Data</h2>
+<p>If you are familiar with Base R (functions that come with the R on installation) you know about read.csv(). <code>readr</code> provides a number of function that solve common issues of base R read function. <code>read_csv</code> loads data 10 time faster and produces a tibble instead of a data frame while avoiding inconsistencies of the <code>read.csv</code>. ‘Wait what is tibble?’ you might ask. Tibbles is special type of data frame. There are superior to regular data frames as they load faster, maintain input types, permit columns as lists, allow non-standard variable names, and never create row names. Okay you have your data lets load it! First, you need to know the path to your data. You can go find you file and check its location and then copy paste it. If you are windows user your path might have “\”, which is an escape character. To fix that replace “\” with “/”. By copying the path you are getting absolute path “/Users/User/Documents/your_project/data/file.csv” alternatively you can use local a local path from the folder of the project “/data/file.csv”. Let’s read the data! <code>readr::</code> specifies which packages to use. Replace the text between “…” to your path.</p>
+<section id="example-data" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="example-data"><span class="header-section-number">12.2.1</span> Example Data</h3>
+<p>I will be using a sample of experiment’s results from Climate and Cooperation Experiment from Mexico. During the experiments, subjects were asked to complete three series of ravens matrices, four dictator games, and a single lottery game. Sessions below 30 Celsius are labeled as control, and sessions above 30 Celsius as treatment. We will be primarily using results from Raven’s matrices games: 3 sets of 12 matrices. First set, <code>pr_</code>, is piece-rate round where participants received points for each correctly solved matrix. Second set, <code>tr_</code>, is tournament round where participants competed againts a random opponent and the winner received double point and the loser received nothing. Third set, <code>ch_</code>, is choice round. Participants were asked to decide whether they want to play piece-rate or tournament againts a different opponent’s score from tournament round.</p>
+<p>You can find data in the <code>data</code> in GitHub repository. We will need <code>tidyverse</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA"</span>) <span class="co">#Download data from git hub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use <code>glimpse()</code> to get a glimpse at the data. It will give us a sample and type of the column. Another very common way is to use <code>head()</code> to get a slice of the top rows or <code>tail()</code> to get a slice of bottom rows. You can also view the entire data set with <code>View()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 114
+Columns: 70
+$ id                 &lt;chr&gt; "001018001", "001018002", "001018005", "001018009",…
+$ country_city       &lt;chr&gt; "mexico_chapingo", "mexico_chapingo", "mexico_chapi…
+$ start_time         &lt;chr&gt; "12H 16M 0S", "12H 16M 0S", "12H 16M 0S", "12H 16M …
+$ end_time           &lt;chr&gt; "13H 14M 0S", "13H 14M 0S", "13H 14M 0S", "13H 14M …
+$ date               &lt;date&gt; 2022-06-20, 2022-06-20, 2022-06-20, 2022-06-20, 20…
+$ mean_temp_celsius  &lt;dbl&gt; 28.58772, 28.58772, 28.58772, 28.58772, 28.58772, 2…
+$ incentive_local    &lt;dbl&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 1…
+$ exchange_usd_local &lt;dbl&gt; 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,…
+$ incentive_usd      &lt;dbl&gt; 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, …
+$ gender             &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", "Female",…
+$ point_value        &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,…
+$ site_id            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ session_n          &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19,…
+$ subject_n          &lt;dbl&gt; 1, 2, 5, 9, 10, 13, 14, 15, 1, 2, 3, 4, 5, 6, 7, 8,…
+$ tr_opponet_n       &lt;dbl&gt; 2, 1, 9, 5, 13, 10, 15, 14, 2, 1, 4, 3, 5, 4, 8, 7,…
+$ ch_opponent_n      &lt;dbl&gt; 9, NA, NA, 1, 9, NA, NA, NA, NA, 3, 2, NA, NA, 8, N…
+$ version            &lt;chr&gt; "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "…
+$ treatment          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ dc_cl_ps           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ dc_cl_envy         &lt;dbl&gt; 2, 2, 2, 2, 1, 1, 2, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, …
+$ dc_c_ps            &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2, 2, 2, 2, …
+$ dc_c_envy          &lt;dbl&gt; 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, …
+$ dc_cl_ps_points    &lt;dbl&gt; 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,…
+$ dc_cl_envy_points  &lt;dbl&gt; 20, 20, 20, 20, 16, 16, 16, 20, 20, 20, 16, 20, 16,…
+$ dc_c_ps_points     &lt;dbl&gt; 16, 16, 16, 16, 12, 20, 16, 16, 12, 20, 12, 20, 16,…
+$ dc_c_envy_points   &lt;dbl&gt; 23, 23, 23, 23, 21, 18, 23, 23, 23, 23, 18, 21, 23,…
+$ pr_correct         &lt;dbl&gt; 7, 5, 6, 1, 7, 2, 6, 7, 5, 6, 8, 2, 2, 5, 6, 5, 2, …
+$ pr_wrong           &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 1, 1, 0, 1, 0, …
+$ pr_not_attempted   &lt;dbl&gt; 5, 6, 6, 11, 5, 10, 6, 5, 7, 4, 4, 9, 9, 6, 6, 6, 1…
+$ tr_correct         &lt;dbl&gt; 3, 6, 7, 5, 9, 7, 6, 7, 4, 7, 6, 3, 6, 7, 8, 6, 6, …
+$ tr_wrong           &lt;dbl&gt; 1, 1, 1, 4, 0, 0, 2, 1, 2, 2, 2, 0, 3, 1, 1, 4, 1, …
+$ tr_not_attempted   &lt;dbl&gt; 8, 5, 4, 3, 3, 5, 4, 4, 6, 3, 4, 9, 3, 4, 3, 2, 5, …
+$ tr_die             &lt;dbl&gt; 2, 5, 2, 6, 6, 2, 2, 6, 2, 4, 5, 3, 6, 6, 3, 6, 1, …
+$ tr_total           &lt;dbl&gt; 5, 11, 9, 11, 15, 9, 8, 13, 6, 11, 11, 6, 12, 13, 1…
+$ tr_guess_correct   &lt;dbl&gt; 5, 7, 8, 6, 11, 5, 8, 5, 5, 6, 8, 5, 5, 8, 8, 7, 3,…
+$ tr_guess_die       &lt;dbl&gt; 3, 4, 1, 4, 2, 2, 5, 5, 4, 3, 4, 2, 4, 2, 3, 1, 2, …
+$ tr_guess_total     &lt;dbl&gt; 8, 11, 9, 10, 13, 7, 13, 10, 9, 9, 12, 7, 9, 10, 11…
+$ tr_other_correct   &lt;dbl&gt; 6, 3, 5, 7, 7, 9, 7, 6, 7, 4, 3, 6, 6, 3, 6, 8, 8, …
+$ tr_other_die       &lt;dbl&gt; 5, 2, 6, 2, 2, 6, 6, 2, 4, 2, 3, 5, 6, 3, 6, 3, 3, …
+$ tr_other_total     &lt;dbl&gt; 11, 5, 11, 9, 9, 15, 13, 8, 11, 6, 6, 11, 12, 6, 12…
+$ tr_result          &lt;dbl&gt; 0, 2, 0, 2, 2, 0, 0, 2, 0, 2, 2, 0, 1, 2, 0, 2, 0, …
+$ tr_points          &lt;dbl&gt; 0, 22, 0, 22, 30, 0, 0, 26, 0, 22, 22, 0, 12, 26, 0…
+$ f_happy            &lt;dbl&gt; 5, 9, 8, 4, 8, 8, 3, 7, 6, 10, 8, 9, 4, 5, 9, 8, 6,…
+$ f_energetic        &lt;dbl&gt; 7, 8, 7, 3, 10, 9, 3, 5, 7, 10, 9, 8, 5, 6, 9, 6, 8…
+$ f_frustrated       &lt;dbl&gt; 8, 3, 3, 0, 4, 8, 8, 2, 7, 0, 3, 0, 5, 0, 1, 2, 0, …
+$ f_last_meal_min    &lt;dbl&gt; 180, 240, 240, 90, 30, 120, 90, 120, 30, 120, 30, 3…
+$ ch_correct         &lt;dbl&gt; 9, 4, 7, 7, 10, 5, 7, 6, 4, 4, 8, 6, 5, 6, 6, 6, 5,…
+$ ch_wrong           &lt;dbl&gt; 0, 0, 0, 5, 0, 2, 1, 2, 4, 2, 3, 0, 1, 2, 2, 2, 0, …
+$ ch_not_attempted   &lt;dbl&gt; 3, 8, 5, 0, 2, 5, 4, 4, 4, 6, 1, 6, 6, 4, 4, 4, 7, …
+$ ch_die             &lt;dbl&gt; 3, 3, 5, 6, 2, 4, 1, 3, 6, 1, 5, 4, 3, 2, 4, 2, 6, …
+$ ch_total           &lt;dbl&gt; 12, 7, 12, 13, 12, 9, 8, 9, 10, 5, 13, 10, 8, 8, 10…
+$ ch_tournament      &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, …
+$ ch_other_correct   &lt;dbl&gt; 9, 4, 4, 7, 9, 4, 4, 4, 4, 4, 8, 4, 4, 6, 4, 6, 5, …
+$ ch_other_die       &lt;dbl&gt; 3, 3, 3, 6, 3, 3, 3, 3, 6, 1, 5, 6, 6, 2, 6, 2, 6, …
+$ ch_other_total     &lt;dbl&gt; 12, 7, 7, 13, 12, 7, 7, 7, 10, 5, 13, 10, 10, 8, 10…
+$ ch_result          &lt;dbl&gt; 1, NA, NA, 1, 1, NA, NA, NA, NA, 1, 1, NA, NA, 1, N…
+$ ch_points          &lt;dbl&gt; 12, 7, 12, 13, 12, 9, 8, 9, 10, 5, 13, 10, 8, 8, 10…
+$ ct_selected        &lt;dbl&gt; 2, 2, 3, 6, 6, 2, 1, 1, 1, 6, 2, 1, 1, 1, 6, 6, 6, …
+$ ct_tails           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ ct_points          &lt;dbl&gt; 9.5, 9.5, 8.0, 1.0, 1.0, 9.5, 11.0, 11.0, 11.0, 1.0…
+$ task_paid          &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 6, 6, 6, …
+$ complete           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ total_points       &lt;dbl&gt; 23, 23, 23, 23, 21, 18, 23, 23, 0, 22, 22, 0, 12, 2…
+$ total_local_paid   &lt;dbl&gt; 330, 330, 330, 330, 310, 280, 330, 330, 100, 320, 3…
+$ total_usd_paid     &lt;dbl&gt; 16.5, 16.5, 16.5, 16.5, 15.5, 14.0, 16.5, 16.5, 5.0…
+$ final_version      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ comment            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ f_last_meal_time   &lt;chr&gt; "3 0", "4 0", "4 0", "1 30", "0 30", "2 0", "1 30",…
+$ start_time_h       &lt;dbl&gt; 12, 12, 12, 12, 12, 12, 12, 12, 14, 14, 14, 14, 14,…
+$ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15, 15,…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="basic-data-management" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="basic-data-management"><span class="header-section-number">12.3</span> Basic Data Management</h2>
+<p>dplyr uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator <code>%&gt;%</code> from <code>magrittr</code> package. The way you use functions in base R is you wrap new function over the previous one, such as <code>k(g(f(x)))</code> this will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes <code>x %&gt;% f() %&gt;% g() %&gt;% k()</code>! Now you can clearly see that we take x and apply f(), then g(), then k(). Note: base R now also has its own pipe <code>|&gt;</code>, but we will stick to <code>%&gt;%</code> for compatibility across packages.</p>
+<section id="select" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="select"><span class="header-section-number">12.3.1</span> <code>select()</code></h3>
+<p><code>select()</code> selects only the columns that you want, removing all other columns. You can use column position (with numbers) or name. The columns will be displayed in the order you list them. We will select subject_id, temperature, gender and results of raven’s matrices games.</p>
+<ul>
+<li><code>id</code> is a unique subject identification number, where site_id.session_n.subject_n (001.001.001).</li>
+<li><code>mean_temp_celsius</code> is mean temperature through the session</li>
+<li><code>gender</code> is gender of the subject.</li>
+<li><code>pr_correct</code> is number of correct answers in <em>piece-rate</em> round.</li>
+<li><code>tr_correct</code> is number of correct answers in <em>tournament</em> round.</li>
+<li><code>ch_correct</code> is number of correct answers in <em>choice</em> round.</li>
+<li><code>ch_tournament</code> is 1 if participant decided to play tournament and 0 if choice.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, mean_temp_celsius,gender, pr_correct, tr_correct, ch_tournament, ch_correct) </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_raven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  id        mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001018001              28.6 Female          7          3             1       9
+2 001018002              28.6 Male            5          6             0       4
+3 001018005              28.6 Male            6          7             0       7
+4 001018009              28.6 Male            1          5             1       7
+5 001018010              28.6 Male            7          9             1      10
+6 001018013              28.6 Female          2          7             0       5
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+</div>
+<p>You can also exclude columns or select everything else with select using <code>-</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>gender) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  id        mean_temp_celsius pr_correct tr_correct ch_tournament ch_correct
+  &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+1 001018001              28.6          7          3             1          9
+2 001018002              28.6          5          6             0          4
+3 001018005              28.6          6          7             0          7
+4 001018009              28.6          1          5             1          7
+5 001018010              28.6          7          9             1         10
+6 001018013              28.6          2          7             0          5</code></pre>
+</div>
+</div>
+</section>
+<section id="filter" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="filter"><span class="header-section-number">12.3.2</span> <code>filter()</code></h3>
+<p><code>filter()</code> keeps only rows that meet the specified criteria. Let’s filter and make 2 data sets one for Males and, one for Females.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>data_male <span class="ot">&lt;-</span> data_raven <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>) <span class="co"># we use == for comparison</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>data_female <span class="ot">&lt;-</span> data_raven <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">"Female"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  id        mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001018002              28.6 Male            5          6             0       4
+2 001018005              28.6 Male            6          7             0       7
+3 001018009              28.6 Male            1          5             1       7
+4 001018010              28.6 Male            7          9             1      10
+5 001019002              30.7 Male            6          7             1       4
+6 001019008              30.7 Male            5          6             1       6
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  id        mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001018001              28.6 Female          7          3             1       9
+2 001018013              28.6 Female          2          7             0       5
+3 001018014              28.6 Female          6          6             0       7
+4 001018015              28.6 Female          7          7             0       6
+5 001019001              30.7 Female          5          4             0       4
+6 001019003              30.7 Female          8          6             1       8
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+</div>
+<p>We can chain multiple requirements. Here we will look at Males, temperature over 30 celsius or Females, temperature below 30. Notice that we use <code>&amp;</code> as “and”, <code>|</code> as “or, and wrap the two conditions into”()” to avoid confusion. It could read it as <code>mean_temp_celsius &gt; 30 | gender == "Female"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    (gender <span class="sc">==</span> <span class="st">"Male"</span> <span class="sc">&amp;</span> mean_temp_celsius <span class="sc">&gt;</span> <span class="dv">30</span>) <span class="sc">|</span> (gender <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> mean_temp_celsius <span class="sc">&lt;</span> <span class="dv">30</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 61 × 7
+   id        mean_temp_celsius gender pr_correct tr_correct ch_tournam…¹ ch_co…²
+   &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+ 1 001018001              28.6 Female          7          3            1       9
+ 2 001018013              28.6 Female          2          7            0       5
+ 3 001018014              28.6 Female          6          6            0       7
+ 4 001018015              28.6 Female          7          7            0       6
+ 5 001019002              30.7 Male            6          7            1       4
+ 6 001019008              30.7 Male            5          6            1       6
+ 7 001019009              30.7 Male            2          6            1       5
+ 8 001019010              30.7 Male            6          8            0       8
+ 9 001019011              30.7 Male            7          7            1       7
+10 001019012              30.7 Male            4          5            1       6
+# … with 51 more rows, and abbreviated variable names ¹​ch_tournament,
+#   ²​ch_correct</code></pre>
+</div>
+</div>
+</section>
+<section id="arrange" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="arrange"><span class="header-section-number">12.3.3</span> <code>arrange()</code></h3>
+<p><code>arrange()</code> allows you to order the table using a variable. Let’s see which subject scored the worst in <code>pr_correct</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(pr_correct) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  id        mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001018009              28.6 Male            1          5             1       7
+2 001018013              28.6 Female          2          7             0       5
+3 001019004              30.7 Female          2          3             0       6
+4 001019005              30.7 Female          2          6             0       5
+5 001019009              30.7 Male            2          6             1       5
+6 001021013              30.4 Male            2          3             1       2
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+</div>
+<p>We can also sort in descending order using <code>desc()</code> modifier. Let’s look at who scored the most!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(pr_correct)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  id        mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001019003              30.7 Female          8          6             1       8
+2 001020002              31.6 Male            8          6             1       5
+3 001020013              31.6 Male            8          7             0       7
+4 001021006              30.4 Male            8          4             0       7
+5 001025009              26.8 Male            8          9             1       9
+6 001027015              32.2 Female          8          7             0       8
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+</div>
+</section>
+<section id="mutate" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="mutate"><span class="header-section-number">12.3.4</span> <code>mutate()</code></h3>
+<p><code>mutate()</code> adds new columns and modifies current variables in the data set. Let’s create a dataset with 10 rows and make three new variable columns as an example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">One =</span> <span class="dv">1</span>,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Comment =</span> <span class="st">"Something"</span>,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Approved =</span> <span class="cn">TRUE</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+    rows   One Comment   Approved
+   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;lgl&gt;   
+ 1     1     1 Something TRUE    
+ 2     2     1 Something TRUE    
+ 3     3     1 Something TRUE    
+ 4     4     1 Something TRUE    
+ 5     5     1 Something TRUE    
+ 6     6     1 Something TRUE    
+ 7     7     1 Something TRUE    
+ 8     8     1 Something TRUE    
+ 9     9     1 Something TRUE    
+10    10     1 Something TRUE    </code></pre>
+</div>
+</div>
+<p><code>mutate()</code> can use existing variables from the data set to create new ones! Lets convert Celsius to Fahrenheit, see how many point more people scored in tournament over piece-rate round, and check how far from the mean they scored in piece-rate round!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">mean_temp_fahrenheit =</span> (mean_temp_celsius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span> <span class="dv">32</span>,</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">impovement =</span> tr_correct <span class="sc">-</span> pr_correct,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">pr_deviation =</span> pr_correct <span class="sc">-</span> <span class="fu">mean</span>(pr_correct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 114 × 10
+   id     mean_…¹ gender pr_co…² tr_co…³ ch_to…⁴ ch_co…⁵ mean_…⁶ impov…⁷ pr_de…⁸
+   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 00101…    28.6 Female       7       3       1       9    83.5      -4   1.66 
+ 2 00101…    28.6 Male         5       6       0       4    83.5       1  -0.342
+ 3 00101…    28.6 Male         6       7       0       7    83.5       1   0.658
+ 4 00101…    28.6 Male         1       5       1       7    83.5       4  -4.34 
+ 5 00101…    28.6 Male         7       9       1      10    83.5       2   1.66 
+ 6 00101…    28.6 Female       2       7       0       5    83.5       5  -3.34 
+ 7 00101…    28.6 Female       6       6       0       7    83.5       0   0.658
+ 8 00101…    28.6 Female       7       7       0       6    83.5       0   1.66 
+ 9 00101…    30.7 Female       5       4       0       4    87.2      -1  -0.342
+10 00101…    30.7 Male         6       7       1       4    87.2       1   0.658
+# … with 104 more rows, and abbreviated variable names ¹​mean_temp_celsius,
+#   ²​pr_correct, ³​tr_correct, ⁴​ch_tournament, ⁵​ch_correct,
+#   ⁶​mean_temp_fahrenheit, ⁷​impovement, ⁸​pr_deviation</code></pre>
+</div>
+</div>
+<p>Notice that we can nest functions within <code>mutate()</code>: first we took <code>mean()</code> of the entire column and then subtracted it from <code>pr_correct</code>.</p>
+</section>
+<section id="recode" class="level3" data-number="12.3.5">
+<h3 data-number="12.3.5" class="anchored" data-anchor-id="recode"><span class="header-section-number">12.3.5</span> <code>recode()</code></h3>
+<p><code>recode()</code> modifies the values within a variable. Here is a template:</p>
+<blockquote class="blockquote">
+<p>data %&gt;% mutate(Variable = recode(Variable, “old value” = “new value”))</p>
+</blockquote>
+<p>Let’s use <code>recode()</code> to change “Male” to “M” and “Female” to “F”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="ot">&lt;-</span> data_raven <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gender =</span> <span class="fu">recode</span>(gender, <span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"M"</span>, <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"F"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="summarize" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="summarize"><span class="header-section-number">12.4</span> <code>summarize()</code></h2>
+<p><code>summarize()</code> collapses all rows and returns a one-row summary. We will use summary to calculation what percentage of participant were male, median score in piece-rate round, max score in tournament, percentage of people choosing tournament in choice and mean score in choice round.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> </span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">perc_male =</span> <span class="fu">sum</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>, <span class="at">na.rm =</span> T) <span class="sc">/</span> <span class="fu">n</span>(),</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">pr_median =</span> <span class="fu">median</span>(pr_correct),</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">tr_max =</span> <span class="fu">max</span>(tr_correct),</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">ch_ratio =</span> <span class="fu">sum</span>(ch_tournament) <span class="sc">/</span> <span class="fu">n</span>(),</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ch_mean =</span> <span class="fu">mean</span>(ch_correct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  perc_male pr_median tr_max ch_ratio ch_mean
+      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1         0         5      9    0.456    6.01</code></pre>
+</div>
+</div>
+</section>
+<section id="group_by-and-ungroup" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="group_by-and-ungroup"><span class="header-section-number">12.5</span> <code>group_by()</code> and <code>ungroup()</code></h2>
+<section id="group_by" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="group_by"><span class="header-section-number">12.5.1</span> <code>group_by()</code></h3>
+<p><code>group_by()</code> groups data by specific variables for future operations. We can use <code>group_by()</code> and <code>summarize()</code> to calculate different summary statistics for genders!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gender) <span class="sc">%&gt;%</span>  <span class="co"># removes NA gender</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pr_mean =</span> <span class="fu">mean</span>(pr_correct),</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">tr_mean =</span> <span class="fu">mean</span>(tr_correct),</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ch_mean =</span> <span class="fu">mean</span>(ch_correct),</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">pr_sd =</span> <span class="fu">sd</span>(pr_correct),</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  gender pr_mean tr_mean ch_mean pr_sd     n
+  &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1 F         5.22    6.17    5.93  1.58    58
+2 M         5.47    6.4     6.09  1.59    55</code></pre>
+</div>
+</div>
+<p>Let’s group by gender and choice in choice round and look at points in choice round!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gender) <span class="sc">%&gt;%</span>  <span class="co"># removes NA gender</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender, ch_tournament) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ch_mean =</span> <span class="fu">mean</span>(ch_correct),</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">pr_sd =</span> <span class="fu">sd</span>(ch_correct),</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  gender ch_tournament ch_mean pr_sd     n
+  &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1 F                  0    5.73  1.70    33
+2 F                  1    6.2   1.73    25
+3 M                  0    6.07  1.69    29
+4 M                  1    6.12  2.25    26</code></pre>
+</div>
+</div>
+</section>
+<section id="ungroup" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="ungroup"><span class="header-section-number">12.5.2</span> <code>ungroup()</code></h3>
+<p><code>ungroup()</code> does exactly what you think – removes the grouping! Always ungroup your data after you are done with operation that required grouping, else it will get messy. Look at this example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gender) <span class="sc">%&gt;%</span>  <span class="co"># removes NA gender</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_male =</span> <span class="fu">mean</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, gender, n, mean_male) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  id        gender     n mean_male
+  &lt;chr&gt;     &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt;
+1 001018001 F         58         0
+2 001018002 M         55         0
+3 001018005 M         55         0
+4 001018009 M         55         0
+5 001018010 M         55         0</code></pre>
+</div>
+</div>
+<p>Notice how mean_male (ratio of male to total) is 0 for Female and 1 for Male. It is because the data was grouped and we performed operation on Males and Females separately.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gender) <span class="sc">%&gt;%</span>  <span class="co"># removes NA gender</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_male =</span> <span class="fu">mean</span>(gender <span class="sc">==</span> <span class="st">"Male"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, gender, n, mean_male) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  id        gender     n mean_male
+  &lt;chr&gt;     &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt;
+1 001018001 F         58         0
+2 001018002 M         55         0
+3 001018005 M         55         0
+4 001018009 M         55         0
+5 001018010 M         55         0</code></pre>
+</div>
+</div>
+<p>This time on the other hand we ungrouped the data, correctly calculating the ratio!</p>
+</section>
+<section id="rowwise" class="level3" data-number="12.5.3">
+<h3 data-number="12.5.3" class="anchored" data-anchor-id="rowwise"><span class="header-section-number">12.5.3</span> <code>rowwise()</code></h3>
+<p><code>rowwise()</code> produces a row-wise grouping. Later you might want to run a calculation row-wise instead of column-wise, but your column will be filled with an aggregate result. This is where <code>rowwise()</code> comes in to save the day! To demonstrate, we will make a dataframe with a column of lists and try to find the length of each list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">11</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  x         length
+  &lt;list&gt;     &lt;int&gt;
+1 &lt;dbl [1]&gt;      4
+2 &lt;int [2]&gt;      4
+3 &lt;int [3]&gt;      4
+4 &lt;int [5]&gt;      4</code></pre>
+</div>
+</div>
+<p>Hmmm… Instead of lists’ lengths we got the total number of rows in the data set (length of column <code>x</code>). Now let’s use <code>rowwise()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+# Rowwise: 
+  x         length
+  &lt;list&gt;     &lt;int&gt;
+1 &lt;dbl [1]&gt;      1
+2 &lt;int [2]&gt;      2
+3 &lt;int [3]&gt;      3
+4 &lt;int [5]&gt;      5</code></pre>
+</div>
+</div>
+<p>Yey! Here R runs <code>length()</code> on each list separately, giving us correct lengths! Alternatively you can use <code>lengths()</code>, which loops <code>length()</code> over each list.</p>
+</section>
+</section>
+<section id="count" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="count"><span class="header-section-number">12.6</span> <code>count()</code></h2>
+<p><code>count()</code> is similar to <code>group_by()</code> and <code>summarize()</code> combo – it collapses the rows and counts the number of observations per group of values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  gender     n
+  &lt;chr&gt;  &lt;int&gt;
+1 F         58
+2 M         55
+3 &lt;NA&gt;       1</code></pre>
+</div>
+</div>
+<p>Similar to <code>group_by()</code> you can select multiple columns to group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender, ch_tournament)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  gender ch_tournament     n
+  &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;
+1 F                  0    33
+2 F                  1    25
+3 M                  0    29
+4 M                  1    26
+5 &lt;NA&gt;               1     1</code></pre>
+</div>
+</div>
+</section>
+<section id="rename" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="rename"><span class="header-section-number">12.7</span> <code>rename()</code></h2>
+<p><code>rename()</code> renames a column. Notice that the “New Name” is on the left and “Old Name” is on the right. Let’s rename <code>id</code> to <code>subject_id</code> and <code>gender</code> to <code>sex</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"subject_id"</span> <span class="ot">=</span> <span class="st">"id"</span>, <span class="st">"sex"</span> <span class="ot">=</span> <span class="st">"gender"</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+  subject_id mean_temp_celsius sex   pr_correct tr_correct ch_tournament ch_co…¹
+  &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 001018001               28.6 F              7          3             1       9
+2 001018002               28.6 M              5          6             0       4
+3 001018005               28.6 M              6          7             0       7
+4 001018009               28.6 M              1          5             1       7
+5 001018010               28.6 M              7          9             1      10
+# … with abbreviated variable name ¹​ch_correct</code></pre>
+</div>
+</div>
+</section>
+<section id="row_number" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="row_number"><span class="header-section-number">12.8</span> <code>row_number()</code></h2>
+<p><code>row_number()</code> fills a column with consecutive numbers. It is especially useful if you need to create an id column. Let’s remove <code>id</code> column and make a new one with <code>row_number()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(id) <span class="sc">%&gt;%</span> <span class="co"># used to move id at the beginning</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 7
+     id mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_correct
+  &lt;int&gt;             &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+1     1              28.6 F               7          3             1          9
+2     2              28.6 M               5          6             0          4
+3     3              28.6 M               6          7             0          7
+4     4              28.6 M               1          5             1          7
+5     5              28.6 M               7          9             1         10</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="nikitoshina/quarto_book" data-repo-id="R_kgDOJMlNmA" data-category="General" data-category-id="DIC_kwDOJMlNmM4CVCYY" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/qualtrics_api.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Qualtrics API</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/tidy_data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tidy Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
