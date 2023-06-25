@@ -1,0 +1,233 @@
+---
+title: "Style and Lint your Code"
+eval: false
+---
+
+
+While immersing yourself in coding, you might neglect aesthetics like proper indentation or line breaks, which could make your code less readable and more error-prone. It's crucial to adopt certain coding practices to enhance readability and minimize errors. To help with this, we will explore R code conventions and introduce `styler` and `lintr`, packages that improve code aesthetics and detect potential errors.
+
+A good coding style, much like correct punctuation, significantly enhances readability. It's important to remember that while some guidelines improve usability, others may be subjective. However, their true value lies in fostering consistency, which simplifies the coding process.
+
+Two R packages, `styler` and `lintr`, support this style guide by offering interactive restyling of code and automated style checks, respectively.
+
+
+
+
+
+### White Spaces and Indentation
+
+Adhere to a two-space indentation to illustrate the structure and hierarchy in your code. Function contents should also follow this two-space rule. For functions with pipes, start a new line for each pipe and indent them accordingly, ensuring clarity and readability.
+
+::::: columns
+
+::: {.column width="40%"}
+
+Good
+```r
+for (i in 1:10) {
+  print(i)
+}
+
+iris %>%
+  group_by(Species) %>%
+  summarize_if(is.numeric, mean) %>%
+  ungroup() %>%
+  gather(measure, value, -Species) %>%
+  arrange(value)
+```
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
+Bad
+```r
+for (i in 1:10){
+print(i)}
+
+iris %>% group_by(Species) %>% summarize_all(mean) %>%
+ungroup %>% gather(measure, value, -Species) %>%
+arrange(value)
+```
+:::
+
+:::::
+
+### Naming Conventions
+
+R has a unique operation `<-` used for assigning variables. You should always use `<-` as an assignment operator over `=` (yes, Python enthusiasts, I'm looking at you). One of the hardest things in all of programming is naming your variables. In R, we use `snake_case` over `camelCase` (JavaScript enthusiasts, take note) or anything else. For variables, use nouns and don't hesitate to make the names a bit longer. Aim for the perfect balance where your code can be readable yet concise. For functions, always use verbs, since functions perform actions.
+
+::::: columns
+
+::: {.column width="40%"}
+
+Good:
+```
+average_height <- 1.70
+add_row()
+permute()
+```
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
+Bad:
+```
+averageHeight = 1.70
+AverageHeight = 1.70
+row_adder()
+permutation()
+```
+
+:::
+
+:::::
+
+
+### Use of Braces
+
+Utilize braces `{}` in your R code strategically to boost readability, grouping together commands that operate in tandem.
+
+For if-else statements, place the opening brace `{` on the same line as the condition, and position the closing brace `}` on a new line. Ensure that the `else` statement shares a line with the closing brace of the preceding `if` section. This configuration facilitates easy identification of distinct code blocks.
+
+
+::::: columns
+
+::: {.column width="40%"}
+
+
+
+Good
+```r
+if (condition) {
+  action1()
+} else {
+  action2()
+}
+```
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
+Bad
+```r
+if (condition) 
+{
+action1()
+}
+else 
+{
+action2()
+}
+```
+:::
+
+:::::
+
+### Comments
+
+Commenting your code is a critical practice that can save you time and prevent confusion later. Even though your code should aim to be self-explanatory, comments provide invaluable context about the reasoning behind your code and help document key findings and decisions in data analysis. 
+
+Use `#` and a space to write a comment. Stick to sentence case and only use a full stop at the end if your comment spans multiple sentences. Begin each line of the comment with `#` and a space.
+
+If you find you need many comments to explain your code, consider refining it for clarity. A code that requires an excess of comments may be better suited to a verbose platform, such as Quarto.
+
+::::: columns
+
+
+::: {.column width="40%"}
+
+Good: `# Calculate average height - this metric is used for normalization`
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+
+Bad: `# We are finding the average height`
+`#We will sum all of the heights and divide by the number of heights`
+:::
+
+:::::
+
+
+
+### Long Functions
+
+Aim to confine your code within 80 characters per line. This fits well on a standard printed page using a readable font size. If you find your code exceeding this limit, consider it a hint to encapsulate some of your code into a separate function.
+
+For function calls that extend beyond a single line, allocate separate lines for the function name, each of its arguments, and the closing parenthesis. This practice enhances readability and future edits.
+
+
+Good
+```r
+long_function_name <- function(argument1,
+                               argument2,
+                               argument3,
+                               argument4) {
+  # function body
+}
+```
+
+
+Bad
+```r
+long_function_name <- function(argument1, argument2, argument3, argument4) {
+  # function body
+}
+```
+
+
+The R packages `styler` and `lintr` can automatically enforce these guidelines, making them beneficial tools for learning these conventions.
+
+The whole style guide should take longer then 20 minutes to read, so please go through it: [tidyverse style guide](https://style.tidyverse.org/index.html)
+
+
+## Styler
+
+Styler, an R package, formats your code in line with the tidyverse style guide. It's straightforward to install using `install.packages("styler")`. After installation, you'll find a new function in the `Addins` menu at the top of your RStudio window. It's advisable to set a keyboard shortcut, such as "Command + Shift + a", for the "Style Selection" function for easy access.
+
+Before
+```r
+iris %>% select(Sepal.Length, Sepal.Width, Species) %>% ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + geom_point()
+```
+After
+```r
+iris %>%
+  select(Sepal.Length, Sepal.Width, Species) %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point()
+```
+
+## Linter
+
+Static code analysis is a method of debugging by examining the code without running it. In the context of R programming, linters are tools that perform static code analysis. The primary purpose of a linter is to catch potential errors, enforce coding standards, and to ensure consistent style across a project.
+
+R's `lintr` package is a static code analysis tool that flags style, coding and syntax issues. Here's a brief explanation of these three components:
+
+1. **Style Issues**: `lintr` checks if the code adheres to the styling guidelines, such as those defined in the Tidyverse Style Guide. It checks for correct indentation, line lengths, usage of spaces around operators, and more.
+
+2. **Coding Issues**: `lintr` looks for potential coding errors and suboptimal code, such as usage of undefined variables, usage of `=` instead of `<-` for assignments, or the presence of TODO comments, etc.
+
+3. **Syntax Issues**: `lintr` checks for any syntax errors in the code, like missing parentheses or incorrect usage of language keywords.
+
+Static code analysis with `lintr` can be performed automatically within certain development environments, such as RStudio, or it can be invoked manually from the R console. It greatly helps in improving code quality, readability, and maintainability.
+
+`install.packages("lintr")` 
+`lintr::lint(filename = "R/bad.R")`
+Read the documentation for more information: [linter](https://lintr.r-lib.org/index.html).
+
+> Styler and Linter might appear similar, but they have different functions. Styler is faster and tidies up your code for better readability, while Linter is a bit slower but essential for spotting and avoiding errors in your code. So, Styler makes your code look neat, and Linter keeps it bug-free.
