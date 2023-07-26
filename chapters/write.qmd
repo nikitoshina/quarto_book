@@ -1,6 +1,5 @@
 ---
 title: "Write"
-editor: visual
 ---
 
 ## WYSIWYG
@@ -9,7 +8,7 @@ WYSIWYG (What You See Is What You Get) editors are programs that allow you to ma
 
 I strongly recommend that you develop expertise in these tools, as the skills you acquire are highly transferable to other similar editors. Additionally, it's a valuable investment as your colleagues are likely to use them as well. To get started, I suggest checking out the MOS Certification Series on LinkedIn Learning. These tutorials are designed for those preparing to take MOS exams and cover a broad range of functionality in Word, Excel, and PowerPoint. Even if you don't plan on taking the exams, I highly encourage you to watch the tutorials. They're a great resource for building your skills and improving your proficiency with these essential tools!
 
-[here is the link](https://www.linkedin.com/learning-login/share?account=2204681&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcert-prep-word-associate-microsoft-office-specialist-for-office-2019%3Ftrk%3Dshare_ent_url%26shareId%3DSTM%252FLOpvQwOb0jWc9D%252FabQ%253D%253D)
+[Here is the link!](https://www.linkedin.com/learning-login/share?account=2204681&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcert-prep-word-associate-microsoft-office-specialist-for-office-2019%3Ftrk%3Dshare_ent_url%26shareId%3DSTM%252FLOpvQwOb0jWc9D%252FabQ%253D%253D)
 
 ## Markup Languages
 
@@ -17,13 +16,13 @@ Markup languages are sets of codes that provide structure and formatting to docu
 
 ### HTML
 
-When you hear markup language, you might think of Hypertext Markup Language (HTML), which is used everywhere on the web to build structure and content. HTML uses tags to describe how to display content in a browser. For instance, \<br\> will create a line break, \<img\> will add an image and so on. HTML is an essential component of web development, and learning how to use HTML is the first step towards customizing your own web pages and web applications. It is also often used in manipulating text in your graphs.
+When you hear markup language, you might think of Hypertext Markup Language (HTML), which is used everywhere on the web to build structure and content. HTML uses tags to describe how to display content in a browser. For instance, `<br>` will create a line break, `<img>` will add an image and so on. HTML is an essential component of web development, and learning how to use HTML is the first step towards customizing your own web pages and web applications. It is also often used in manipulating text in your graphs.
 
 ### LaTeX
 
 Have you ever wondered why academic papers look so beautiful or why every textbook looks the same? They are all written in LaTeX, a typesetting system used for academic and scientific publishing. It is a markup language that enables precise formatting of complex technical documents. It is also famous for beautiful mathematical equations. With LaTeX, users can create professional-looking documents with a high degree of customization and flexibility. It is easy to pick up, but hard to master. You can find many introductory tutorials online. Also, ChatGPT does a great job at helping with LaTeX questions. If you have an equation you want to transfer into LaTeX go to [MathPix](https://mathpix.com/image-to-latex). It lets you convert pictures or screenshots into code.
 
-Now you need to find an editor! The default is to use the online editor [Over Leaf](https://www.overleaf.com/). You can start writing without much headache, perfect! And if you have any questions, refer to their extensive collection of guides.
+Now you need to find an editor! The default is to use the online editor [OverLeaf](https://www.overleaf.com/). You can start writing without much headache, perfect! And if you have any questions, refer to their extensive collection of guides.
 
 ### Markdown
 
@@ -31,7 +30,7 @@ Markdown is perfect down to the last-minute detail. It was designed as a lightwe
 
 Markdown is popular among developers, writers, and bloggers due to its simplicity and flexibility. It can also include links, images, and other multimedia elements. Markdown is widely supported and can be used with a variety of tools and platforms, including text editors, note-taking apps, and content management systems. By learning Markdown, you can create well-formatted and easy-to-read content quickly and efficiently without the need for complex formatting tools or specialized software. This book is written entirely in Markdown!
 
-You can write Markdown in almost any text editor. Nonetheless, I recommend MacDown for Mac and Markdown Pad for Windows, or if you are willing to pay, try Typora.
+You can write Markdown in almost any text editor. Nonetheless, I recommend MacDown for Mac and Markdown Pad for Windows, StackEdit for Online, or if you are willing to pay, try Typora.
 
 ### Yet Another Markup Language (YAML)
 
@@ -129,51 +128,57 @@ If you prefer the WYSIWYG style, you can switch to the visual editor in the top 
 
 Now it is time to get writing! To start, H1 heading can be defined in yaml `title: "Title"` and as `# Title`.
 
-+--------------------------------------+---------------------------------------+------------+
-| Markdown Syntax                      | Output                                |            |
-+======================================+=======================================+============+
-| \# Header 1                          | \# Chapter {.heading-output}          |            |
-+--------------------------------------+---------------------------------------+------------+
-| \## Header 2                         | ## Section {.heading-output}          |            |
-+--------------------------------------+---------------------------------------+------------+
-| \### Header 3                        | ### Subsection {.heading-output}      |            |
-+--------------------------------------+---------------------------------------+------------+
-| \#### Header 4                       | #### Subsubsection {.heading-output}  |            |
-+--------------------------------------+---------------------------------------+------------+
-| \##### Header 5                      | ##### Paragraph {.heading-output}     |            |
-+--------------------------------------+---------------------------------------+------------+
-| \###### Header 6                     | ###### Subparagraph {.heading-output} |            |
-+--------------------------------------+---------------------------------------+------------+
-| \*italics\*                          | *italics*                             |            |
-+--------------------------------------+---------------------------------------+------------+
-| \*\*bold\*\*                         | **bold**                              |            |
-+--------------------------------------+---------------------------------------+------------+
-| superscript\^2\^                     | superscript^2^                        |            |
-+--------------------------------------+---------------------------------------+------------+
-| \<https://nber.org\>                 | <https://nber.org>                    |            |
-+--------------------------------------+---------------------------------------+------------+
-| \[NBER\](https://nber.org)           | [NBER](https://nber.org)              |            |
-+--------------------------------------+---------------------------------------+------------+
-| !\[caption\](monalisa.jpeg)          | ![Caption](images/monalisa.jpeg)      |            |
-+--------------------------------------+---------------------------------------+------------+
-| \* unordered list                    | -   unordered list                    |            |
-|                                      | -   item 1                            |            |
-| \* Item 2                            |     -   sub-item 1                    |            |
-|                                      |         -   sub-sub-item 1            |            |
-| -   sub-item 1                       |                                       |            |
-|                                      |                                       |            |
-| -   sub-sub item                     |                                       |            |
-+--------------------------------------+---------------------------------------+------------+
-| 1.  ordered list                     | 1.  ordered list                      |            |
-| 2.  item 2                           | 2.  item 2                            |            |
-|     i)  sub-item 1 A. sub-sub-item 1 |     i)  sub-item 1 A. sub-sub-item 1  |            |
-+--------------------------------------+---------------------------------------+------------+
-| inline math: \$E = mc\^{2}\$         | inline math: $E=mc^{2}$               |            |
-+--------------------------------------+---------------------------------------+------------+
-| display math:                        | display math:\                        |            |
-|                                      | $$E = mc^{2}$$                        |            |
-| \$\$E = mc\^{2}\$\$                  |                                       |            |
-+--------------------------------------+---------------------------------------+------------+
++------------------------------+-----------------------------------------------+
+| Markdown Syntax              | Output                                        |
++==============================+===============================================+
+| \# Header 1                  | # Chapter {.heading-output}                   |
++------------------------------+-----------------------------------------------+
+| \## Header 2                 | ## Section {.heading-output}                  |
++------------------------------+-----------------------------------------------+
+| \### Header 3                | ### Subsection {.heading-output}              |
++------------------------------+-----------------------------------------------+
+| \#### Header 4               | #### Subsubsection {.heading-output}          |
++------------------------------+-----------------------------------------------+
+| \##### Header 5              | ##### Paragraph {.heading-output}             |
++------------------------------+-----------------------------------------------+
+| \###### Header 6             | ###### Subparagraph {.heading-output}         |
++------------------------------+-----------------------------------------------+
+| \*italics\*                  | *italics*                                     |
++------------------------------+-----------------------------------------------+
+| \*\*bold\*\*                 | **bold**                                      |
++------------------------------+-----------------------------------------------+
+| superscript\^2\^             | superscript^2^                                |
++------------------------------+-----------------------------------------------+
+| \<https://nber.org\>         | <https://nber.org>                            |
++------------------------------+-----------------------------------------------+
+| \[NBER\](https://nber.org)   | [NBER](https://nber.org)                      |
++------------------------------+-----------------------------------------------+
+| \![caption\](monalisa.jpeg)  | ![Caption](images/monalisa.jpeg){width="134"} |
++------------------------------+-----------------------------------------------+
+| unordered list               | unordered list                                |
+|                              |                                               |
+| \+ item                      | -   item                                      |
+|                              |     -   sub-item                              |
+|  - sub-item                  |         -   sub-sub-item                      |
+|                              |                                               |
+|  - sub-sub-item              |                                               |
++------------------------------+-----------------------------------------------+
+| ordered list                 | ordered list[^write-1]                        |
+|                              |                                               |
+| 1\. item                     | 1.  item                                      |
+|                              |                                               |
+| I. sub-item                  |     I.  sub-item                              |
+|                              |                                               |
+| i. sub-sub-item              |         i.  sub-sub-item                      |
++------------------------------+-----------------------------------------------+
+| inline math: \$E = mc\^{2}\$ | inline math: $E = mc^{2}$                     |
++------------------------------+-----------------------------------------------+
+| display math:                | display math:\                                |
+|                              | $$E = mc^{2}$$                                |
+| \$\$E = mc\^{2}\$\$          |                                               |
++------------------------------+-----------------------------------------------+
+
+[^write-1]: Use Visual Mode to select your desired style!
 
 If you want to add a line break add an empty line between your paragraphs, otherwise it will continue as the same text.
 
@@ -215,10 +220,8 @@ Making tables in Markdown is not complicated. The most frequently used table is 
 
 If you ever feel lost or struggle with formatting, consider using the visual editor. It provides a familiar interface and is particularly useful for creating and previewing tables. To adjust options, for example, the number of list options, simply click on the circle icon with an ellipsis next to it, and a selection menu will appear. In addition to this, the visual editor offers extensive customization options for other elements, such as images and tables.
 
-```         
-::: {.callout-note}
+::: callout-note
 You can copy-paste (Ctrl + C; Ctrl + V) a picture in Visual Mode!
 :::
-```
 
 You can learn more at [Quarto's website](https://quarto.org/).

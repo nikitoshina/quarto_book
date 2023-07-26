@@ -15,40 +15,35 @@ To use this template, you will need to install Quarto and TinyTeX.
 
 Install Quarto and TinyTeX by running the following command in R:
 
-```
+```         
 
 install.packages(c("quarto", "tinytex"))
-
 ```
 
 ### Visual Studio Code
 
-Install the Quarto extension by going to Extensions -> search for "Quarto" -> install. Then run the following command in the terminal if you don't have TinyTeX installed:
+Install the Quarto extension by going to Extensions -\> search for "Quarto" -\> install. Then run the following command in the terminal if you don't have TinyTeX installed:
 
-```
-
+```{bash}      
 quarto install tinytex
-
 ```
 
 ## Adding the Quarto Template
 
 To add the template to your project, run the following command in your terminal:
 
-```
-
-quarto add template nikitoshina/USFCA-Thesis-Template
-
+```{bash}
+quarto use template nikitoshina/USFCA-Thesis-Template
 ```
 
 This will download all the necessary folders with the LaTeX files for your thesis. You can render your project from within your folder by running the following command in terminal:
 
-```
-
+```{bash}
 quarto render
-
 ```
 
 ## Usage
 
 Your first chapter should be written in index.qmd, and you can add additional chapters to the /Chapters folder. You can add information about the document such as abstract in the `_quarto.yml`.
+
+> If you want to create your own template, I recommend starting with a Word template from pandoc and customizing it to your preferences, rather than dealing with LaTeX and pandoc variables.

@@ -1,0 +1,17 @@
+# Acknowledgements
+
+I want to dedicate this book to my late grandfather, Vladimir Zamashikov.
+
+My immeasurable gratitude goes to Alessandra Cassar, whose invaluable support and patience allowed me to explore my passion for research. Michael Jonas inspired me with the intriguing world of econometrics. Jesse Antila Hughes, Shiva Shukla, Peter Lorentzon, Armin, and others at the University of San Francisco deserve a heartfelt thank you. I am particularly grateful for the library and writing center at USF.
+
+Gordon Getty has been an inspirational figure, enabling me to work on fantastic projects. I'm grateful to Ker Gibbs and CBSI for their support and mentorship and to Tom Wiley for his review and support.
+
+Thanks to the authors of "Causal Inference" and "Causal Mixtape" for sharing their superb materials and inspiring stories online.
+
+Mario, Steve Trettel, Parsa Rahimi, John Chetwynd, and Jake Consgrove, your support, curiosity, and confidence in my work are deeply appreciated. 
+
+I must acknowledge my parents, Anton Tkachenko and Ekaterina Tkachenko, for providing me access to these incredible opportunities. A special note of thanks to Anastasia Ternovskaya for her unwavering belief in me.
+
+I'm thankful to Nelson Kin, Renee Read, Dibyojoty Chowdhury, Daria Tkachenko, and others, including the Posit team, for their invaluable contributions and support. 
+
+Finally, my heartfelt appreciation goes to the open-source community and everyone who has generously shared their knowledge online. You made this possible, and I'm thrilled to contribute to the conversation. I hope that you find this book useful in your journey towards mastering research.

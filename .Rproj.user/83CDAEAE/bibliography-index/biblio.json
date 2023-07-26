@@ -400,6 +400,408 @@
             "publisher": "Routledge",
             "title": "The logic of scientific discovery",
             "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Groves",
+                    "given": "Robert M"
+                },
+                {
+                    "family": "Fowler Jr",
+                    "given": "Floyd J"
+                },
+                {
+                    "family": "Couper",
+                    "given": "Mick P"
+                },
+                {
+                    "family": "Lepkowski",
+                    "given": "James M"
+                },
+                {
+                    "family": "Singer",
+                    "given": "Eleanor"
+                },
+                {
+                    "family": "Tourangeau",
+                    "given": "Roger"
+                }
+            ],
+            "id": "grovesSurveyMethodology2011",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "publisher": "John Wiley & Sons",
+            "title": "Survey methodology",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Jarrett",
+                    "given": "Caroline"
+                }
+            ],
+            "id": "jarrettSurveysThatWork2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "publisher": "Rosenfeld Media",
+            "title": "Surveys that work: A practical guide for designing and running better surveys",
+            "title-short": "Surveys that work",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Jarrett",
+                    "given": "Caroline"
+                },
+                {
+                    "family": "Gaffney",
+                    "given": "Gerry"
+                }
+            ],
+            "id": "jarrettFormsThatWork2009",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "publisher": "Morgan Kaufmann",
+            "title": "Forms that work: Designing web forms for usability",
+            "title-short": "Forms that work",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "John",
+                    "given": "Leslie K"
+                },
+                {
+                    "family": "Acquisti",
+                    "given": "Alessandro"
+                },
+                {
+                    "family": "Loewenstein",
+                    "given": "George"
+                }
+            ],
+            "container-title": "Journal of consumer research",
+            "id": "johnStrangersPlaneContextdependent2011",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "note": "Publisher: University of Chicago Press Chicago, IL",
+            "page": "858-873",
+            "title": "Strangers on a plane: Context-dependent willingness to divulge sensitive information",
+            "title-short": "Strangers on a plane",
+            "type": "article-journal",
+            "volume": "37"
+        },
+        {
+            "author": [
+                {
+                    "family": "Tourangeau",
+                    "given": "Roger"
+                },
+                {
+                    "family": "Rips",
+                    "given": "Lance J"
+                },
+                {
+                    "family": "Rasinski",
+                    "given": "Kenneth"
+                }
+            ],
+            "id": "tourangeauPsychologySurveyResponse2000",
+            "issued": {
+                "date-parts": [
+                    [
+                        2000
+                    ]
+                ]
+            },
+            "note": "Publisher: Cambridge University Press",
+            "title": "The psychology of survey response",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Krosnick",
+                    "given": "Jon A"
+                }
+            ],
+            "container-title": "The Palgrave handbook of survey research",
+            "id": "krosnickQuestionnaireDesign2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "Publisher: Springer",
+            "page": "439-455",
+            "title": "Questionnaire design",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Vagias",
+                    "given": "Wade M"
+                }
+            ],
+            "container-title": "Clemson International Institute for Tourism & Research Development, Department of Parks, Recreation and Tourism Management. Clemson University",
+            "id": "vagiasLikerttypeScaleResponse2006",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006
+                    ]
+                ]
+            },
+            "title": "Likert-type scale response anchors",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Krosnick",
+                    "given": "Jon A"
+                },
+                {
+                    "family": "Holbrook",
+                    "given": "Allyson L"
+                },
+                {
+                    "family": "Berent",
+                    "given": "Matthew K"
+                },
+                {
+                    "family": "Carson",
+                    "given": "Richard T"
+                },
+                {
+                    "family": "Michael Hanemann",
+                    "given": "W"
+                },
+                {
+                    "family": "Kopp",
+                    "given": "Raymond J"
+                },
+                {
+                    "family": "Cameron Mitchell",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Presser",
+                    "given": "Stanley"
+                },
+                {
+                    "family": "Ruud",
+                    "given": "Paul A"
+                },
+                {
+                    "family": "Kerry Smith",
+                    "given": "V"
+                }
+            ],
+            "container-title": "Public Opinion Quarterly",
+            "id": "krosnickImpactNoOpinion2002",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002
+                    ]
+                ]
+            },
+            "note": "Publisher: Oxford University Press",
+            "page": "371-403",
+            "title": "The impact of\" no opinion\" response options on data quality: Non-attitude reduction or an invitation to satisfice?",
+            "title-short": "The impact of\" no opinion\" response options on data quality",
+            "type": "article-journal",
+            "volume": "66"
+        },
+        {
+            "author": [
+                {
+                    "family": "Hoerger",
+                    "given": "Michael"
+                }
+            ],
+            "container-title": "Cyberpsychology, behavior, and social networking",
+            "id": "hoergerParticipantDropoutFunction2010",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010
+                    ]
+                ]
+            },
+            "note": "Publisher: Mary Ann Liebert, Inc. 140 Huguenot Street, 3rd Floor New Rochelle, NY 10801 USA",
+            "page": "697-700",
+            "title": "Participant dropout as a function of survey length in internet-mediated university studies: Implications for study design and voluntary participation in psychological research",
+            "title-short": "Participant dropout as a function of survey length in internet-mediated university studies",
+            "type": "article-journal",
+            "volume": "13"
+        },
+        {
+            "author": [
+                {
+                    "family": "Vriesema",
+                    "given": "Christine Calderon"
+                },
+                {
+                    "family": "Gehlbach",
+                    "given": "Hunter"
+                }
+            ],
+            "container-title": "Educational Researcher",
+            "id": "vriesemaAssessingSurveySatisficing2021",
+            "issue": "9",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "note": "Publisher: SAGE Publications Sage CA: Los Angeles, CA",
+            "page": "618-627",
+            "title": "Assessing survey satisficing: The impact of unmotivated questionnaire responding on data quality",
+            "title-short": "Assessing survey satisficing",
+            "type": "article-journal",
+            "volume": "50"
+        },
+        {
+            "author": [
+                {
+                    "family": "Bansak",
+                    "given": "Kirk"
+                },
+                {
+                    "family": "Hainmueller",
+                    "given": "Jens"
+                },
+                {
+                    "family": "Hopkins",
+                    "given": "Daniel J"
+                },
+                {
+                    "family": "Yamamoto",
+                    "given": "Teppei"
+                }
+            ],
+            "container-title": "Political Science Research and Methods",
+            "id": "bansakBreakingPointSurvey2021",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "note": "Publisher: Cambridge University Press",
+            "page": "53-71",
+            "title": "Beyond the breaking point? Survey satisficing in conjoint experiments",
+            "type": "article-journal",
+            "volume": "9"
+        },
+        {
+            "DOI": "10.1186/s12874-017-0442-1",
+            "URL": "https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-017-0442-1",
+            "author": [
+                {
+                    "family": "Jakobsen",
+                    "given": "Janus Christian"
+                },
+                {
+                    "family": "Gluud",
+                    "given": "Christian"
+                },
+                {
+                    "family": "Wetterslev",
+                    "given": "Jørn"
+                },
+                {
+                    "family": "Winkel",
+                    "given": "Per"
+                }
+            ],
+            "container-title": "BMC Medical Research Methodology",
+            "id": "jakobsenWhenHowShould2017",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        12
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "162",
+            "title": "When and how should multiple imputation be used for handling missing data in randomised clinical trials  a practical guide with flowcharts",
+            "type": "article-journal",
+            "volume": "17"
+        },
+        {
+            "URL": "https://happygitwithr.com/",
+            "author": [
+                {
+                    "family": "Hester",
+                    "given": "Jenny Bryan",
+                    "suffix": "the STAT 545 TAs, Jim"
+                }
+            ],
+            "id": "hesterLetGitStarted",
+            "language": "en",
+            "title": "Let’s Git started | Happy Git and GitHub for the useR",
+            "type": "book"
+        },
+        {
+            "URL": "https://www.kantar.com/north-america/inspiration/research-services/what-is-a-good-survey-length-for-online-research-pf",
+            "author": [
+                {
+                    "family": "Wigmore",
+                    "given": "Steve"
+                }
+            ],
+            "id": "wigmoreWhatGoodSurvey2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022,
+                        1,
+                        26
+                    ]
+                ]
+            },
+            "title": "What is a good survey length for online research?",
+            "type": ""
         }
     ],
     "project_biblios": [

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research Toolkit - 14&nbsp; Relational Databases</title>
+<title>Research Toolkit - 5&nbsp; Relational Databases</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,7 +64,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/data_viz.html" rel="next">
+<link href="../chapters/data_validation.html" rel="next">
 <link href="../chapters/tidy_data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -129,13 +101,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar floating">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Relational Databases</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/data_manipulation.html">Working with Data</a></li><li class="breadcrumb-item"><a href="../chapters/data_bases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational Databases</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -143,179 +121,288 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Research Toolkit</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/nikitoshina/quarto_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/nikitoshina/quarto_book" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/repres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducible Research</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/version_control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Version Control with Git and Github</span></a>
+  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set up</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lit Review and Writing</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Working with Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/litreview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Literature Research</span></a>
+  <a href="../chapters/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/write.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Write</span></a>
+  <a href="../chapters/tidy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/layout_refs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout and References</span></a>
+  <a href="../chapters/data_bases.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational Databases</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/template.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Thesis Template</span></a>
+  <a href="../chapters/data_validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Optimizing Data Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Collaboration</span></a>
+  <a href="../chapters/imputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Imputation</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Collecting the Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Reproducible Research</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/qualtrics_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Qualtrics API</span></a>
+  <a href="../chapters/repres.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Reproducible Research</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/renv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reproducible Environment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/modular_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modular Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/linter_styler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Style and Lint your Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/version_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Version Control with Git and Github</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Working with Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Lit Review and Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_manipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Manipulation</span></a>
+  <a href="../chapters/litreview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Literature Research</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/tidy_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="../chapters/write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Write</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_bases.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Relational Databases</span></a>
+  <a href="../chapters/layout_refs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Layout and References</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Thesis Template</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaboration</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Presenting the Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Collecting the Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  <a href="../chapters/survey_se.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Survey Error</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/color.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Color</span></a>
+  <a href="../chapters/good_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Design Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></a>
+  <a href="../chapters/survey_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Survey Tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/api.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">APIs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/google.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Google Services in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/qualtrics_api.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Qualtrics API</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Document</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Power Analysis and Simulations</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Presenting the Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-relationships" id="toc-sec-relationships" class="nav-link active" data-scroll-target="#sec-relationships"><span class="toc-section-number">14.1</span>  Types of Relationships</a></li>
-  <li><a href="#key-unique-identifier" id="toc-key-unique-identifier" class="nav-link" data-scroll-target="#key-unique-identifier"><span class="toc-section-number">14.2</span>  Key – Unique Identifier</a></li>
-  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins"><span class="toc-section-number">14.3</span>  Types of Joins</a>
+  <li><a href="#relationship-types" id="toc-relationship-types" class="nav-link active" data-scroll-target="#relationship-types"><span class="header-section-number">5.1</span> Relationship Types</a>
   <ul class="collapse">
-  <li><a href="#outer-joins" id="toc-outer-joins" class="nav-link" data-scroll-target="#outer-joins"><span class="toc-section-number">14.3.1</span>  Outer Joins</a></li>
-  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"><span class="toc-section-number">14.3.2</span>  Filtering Joins</a></li>
+  <li><a href="#one-to-one-11" id="toc-one-to-one-11" class="nav-link" data-scroll-target="#one-to-one-11"><span class="header-section-number">5.1.1</span> One to One (1:1)</a></li>
+  <li><a href="#one-to-many-1m" id="toc-one-to-many-1m" class="nav-link" data-scroll-target="#one-to-many-1m"><span class="header-section-number">5.1.2</span> One to Many (1:M)</a></li>
+  <li><a href="#many-to-many-mn" id="toc-many-to-many-mn" class="nav-link" data-scroll-target="#many-to-many-mn"><span class="header-section-number">5.1.3</span> Many to Many (M:N)</a></li>
   </ul></li>
-  <li><a href="#drawing-databases" id="toc-drawing-databases" class="nav-link" data-scroll-target="#drawing-databases"><span class="toc-section-number">14.4</span>  Drawing Databases</a></li>
+  <li><a href="#the-concept-of-keys" id="toc-the-concept-of-keys" class="nav-link" data-scroll-target="#the-concept-of-keys"><span class="header-section-number">5.2</span> The Concept of Keys</a></li>
+  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins"><span class="header-section-number">5.3</span> Types of Joins</a>
+  <ul class="collapse">
+  <li><a href="#outer-joins" id="toc-outer-joins" class="nav-link" data-scroll-target="#outer-joins"><span class="header-section-number">5.3.1</span> Outer Joins</a></li>
+  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"><span class="header-section-number">5.3.2</span> Filtering Joins</a></li>
+  </ul></li>
+  <li><a href="#visualizing-databases" id="toc-visualizing-databases" class="nav-link" data-scroll-target="#visualizing-databases"><span class="header-section-number">5.4</span> Visualizing Databases</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/data_bases.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -346,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Relational Databases</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational Databases</span></h1>
 </div>
 
 
@@ -361,8 +448,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </header>
 
-<p>Database is a collection of information that is organized, so data can be easily stored, managed, updated, and accessed. One type of databases is a relational database. Relational databases store structured data in tables composed of rows and columns, where each row, or record, contains information about a single entity, while columns, or attributes, represent different aspects of that entity.</p>
-<p>relational database uses Tables and the Relationships between tables to store data. A row (record) represents a unique instance of the subject of a table, while a column (field) signifies a characteristic of that subject.</p>
+<p>A database is an organized collection of data that can be easily stored, managed, updated, and retrieved. One such type is the relational database, which structures data into tables consisting of rows and columns. Each row, also known as a record, encapsulates information about a single entity, while each column, or attribute, defines a specific aspect of that entity.</p>
+<p>Relational databases employ tables and relationships between these tables to store data. A row signifies a unique instance of a table’s subject, while a column represents a distinct characteristic of the subject.</p>
+<p>For example, consider the following table:</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -404,16 +492,17 @@ document.addEventListener("DOMContentLoaded", function () {
 </tr>
 </tbody>
 </table>
-<p>If rows in a given table can be associated in some way with rows in another table, the tables are said to have a relationship between them.</p>
-<section id="sec-relationships" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="sec-relationships"><span class="header-section-number">14.1</span> Types of Relationships</h2>
-<p>One to One (1:1)</p>
-<p>A single row in the first table is related to only one row in the second table, and a single row in the second table is related to only one row in the first table.</p>
+<p>When rows from one table can be associated with rows in another table, the tables are understood to share a relationship.</p>
+<section id="relationship-types" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="relationship-types"><span class="header-section-number">5.1</span> Relationship Types</h2>
+<section id="one-to-one-11" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="one-to-one-11"><span class="header-section-number">5.1.1</span> One to One (1:1)</h3>
+<p>In a one-to-one relationship, a single row in the first table corresponds to just one row in the second table, and vice versa. For example, the relationship between Countries and their respective Capitals:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 214.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 214.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126)">
 <title>
 G
@@ -448,16 +537,19 @@ Table1:e-&gt;Table2:w
 </title>
 <path fill="none" stroke="black" d="M80,-31C80,-31 106.86,-31 121.97,-31"></path> <polygon fill="black" stroke="black" points="122,-34.5 132,-31 122,-27.5 122,-34.5"></polygon> </g> </g>
 </svg>
-</p>
 </div>
 </div>
 </div>
-<p>One to Many (1:M) A single row in the first table is related to many rows in the second table, and a single row in the second table is related to only one row in the first table.</p>
+</div>
+</section>
+<section id="one-to-many-1m" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="one-to-many-1m"><span class="header-section-number">5.1.2</span> One to Many (1:M)</h3>
+<p>In a one-to-many relationship, a single row in the first table can be linked to multiple rows in the second table, but a row in the second table is related to only one row in the first table. For instance, one Professor can teach several Classes:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 215.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 215.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126)">
 <title>
 G
@@ -492,16 +584,19 @@ Table1:e-&gt;Table2:w
 </title>
 <path fill="none" stroke="black" d="M86,-71C86,-71 113.71,-60.44 128.87,-54.67"></path> <polygon fill="black" stroke="black" points="130.4,-57.83 138.5,-51 127.91,-51.29 130.4,-57.83"></polygon> </g> </g>
 </svg>
-</p>
 </div>
 </div>
 </div>
-<p>Many to Many (M:N) A single row in the first table is related to many rows in the second table, and a single row in the second table is related to many rows in the first table.</p>
+</div>
+</section>
+<section id="many-to-many-mn" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="many-to-many-mn"><span class="header-section-number">5.1.3</span> Many to Many (M:N)</h3>
+<p>In a many-to-many relationship, a single row in the first table can be associated with many rows in the second table, and similarly, a row in the second table can be associated with many rows in the first table. For example, multiple Students can be enrolled in multiple Classes:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 205.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 205.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126)">
 <title>
 G
@@ -552,14 +647,15 @@ Table1:e-&gt;Table2:w
 </title>
 <path fill="none" stroke="orange" d="M76,-31C76,-31 103.12,-31 118.38,-31"></path> <polygon fill="orange" stroke="orange" points="118.5,-34.5 128.5,-31 118.5,-27.5 118.5,-34.5"></polygon> </g> </g>
 </svg>
-</p>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="key-unique-identifier" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="key-unique-identifier"><span class="header-section-number">14.2</span> Key – Unique Identifier</h2>
-<p>Primary key (PK) is a column that uniquely identifies each row within a table. Every table should have a primary key! In order to connect (relate) tables, we put PKs of a table into another table. A PK of a table in another table is called foreign key (FK).</p>
+</section>
+<section id="the-concept-of-keys" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-concept-of-keys"><span class="header-section-number">5.2</span> The Concept of Keys</h2>
+<p>A Primary Key (PK) is a unique identifier for each row within a table; every table should possess a primary key. To establish relationships between tables, we integrate PKs from one table into another, where they become Foreign Keys (FKs). These FKs allow us to draw connections between related entities across different tables.</p>
 <div id="tbl-keys" class="tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
 <p>Keys</p>
@@ -620,225 +716,431 @@ Table1:e-&gt;Table2:w
 </div>
 </div>
 </section>
-<section id="types-of-joins" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">14.3</span> Types of Joins</h2>
-<p>In relational databases, a join is used to combine two or more tables based on a related column between them. There are different types of joins. To illustrate how the joins work we will be using two tables <code>employees</code> and <code>projects</code>. The first table contains <code>employee_id</code> (PK) and <code>name</code>, and the second one contains <code>project_id</code> (PK) and <code>employee_id</code> (FK).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># | layout-ncol: 2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(employees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name
-1           1  John
-2           2  Jane
-3           3   Bob
-4           4 Alice
-5           5   Tom</code></pre>
+<section id="types-of-joins" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="types-of-joins"><span class="header-section-number">5.3</span> Types of Joins</h2>
+<p>In relational databases, a join operation is employed to merge two or more tables based on a related column between them. There are several types of joins. To exemplify how joins operate, we will use two tables: <code>employees</code> and <code>projects</code>. The <code>employees</code> table includes <code>employee_id</code> (Primary Key) and <code>name</code>, while the <code>projects</code> table contains <code>project_id</code> (Primary Key) and <code>employee_id</code> (Foreign Key).</p>
+<div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(employees, <span class="at">caption =</span> <span class="st">"Employees Table"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(projects, <span class="at">caption =</span> <span class="st">"Projects Table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>Employees Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Tom</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(projects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  project_id employee_id
-1          1           1
-2          2           2
-3          3           3
-4          4           1
-5          5           4
-6          6           6</code></pre>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<table class="table table-sm table-striped small">
+<caption>Projects Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">project_id</th>
+<th style="text-align: right;">employee_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<section id="outer-joins" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="outer-joins"><span class="header-section-number">14.3.1</span> Outer Joins</h3>
-<p>Outer join are used return matched data or unmatched data from one or both tables. You can see as making a more comprehensive table.</p>
-<section id="left-join" class="level4" data-number="14.3.1.1">
-<h4 data-number="14.3.1.1" class="anchored" data-anchor-id="left-join"><span class="header-section-number">14.3.1.1</span> Left Join</h4>
-<p>Left join returns all the rows from the left table and only the matched rows from the right table. In an essence you are adding extra information to your left table.</p>
+</div>
+</div>
+<section id="outer-joins" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="outer-joins"><span class="header-section-number">5.3.1</span> Outer Joins</h3>
+<p>Outer joins are utilized to return matched data and unmatched data from one or both tables, effectively creating a more comprehensive table.</p>
+<section id="left-join" class="level4" data-number="5.3.1.1">
+<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="left-join"><span class="header-section-number">5.3.1.1</span> Left Join</h4>
+<p>A left join retrieves all the rows from the left table and only the matched rows from the right table. Essentially, it enriches the left table with additional information.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Left_Join.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Left Join</figcaption><p></p>
+<figcaption class="figure-caption">Left Join Illustration</figcaption>
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>left_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in left_join(., projects, by = "employee_id"): Each row in `x` is expected to match at most 1 row in `y`.
-ℹ Row 1 of `x` matches multiple rows.
-ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-  warning.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(left_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name project_id
-1           1  John          1
-2           1  John          4
-3           2  Jane          2
-4           3   Bob          3
-5           4 Alice          5
-6           5   Tom         NA</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>left_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(left_join_result, <span class="at">caption =</span> <span class="st">"Result of Left Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Left Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">project_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Tom</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
-<section id="right-join" class="level4" data-number="14.3.1.2">
-<h4 data-number="14.3.1.2" class="anchored" data-anchor-id="right-join"><span class="header-section-number">14.3.1.2</span> Right Join</h4>
-<p>Right join is very similar to left join, except it returns all the rows from the right table and only the matched rows from the left table.</p>
+<section id="right-join" class="level4" data-number="5.3.1.2">
+<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="right-join"><span class="header-section-number">5.3.1.2</span> Right Join</h4>
+<p>A right join operates similarly to a left join, but it retrieves all the rows from the right table and only the matched rows from the left table.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Right_Join.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Right Join</figcaption><p></p>
+<figcaption class="figure-caption">Right Join Illustration</figcaption>
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>right_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in right_join(., projects, by = "employee_id"): Each row in `x` is expected to match at most 1 row in `y`.
-ℹ Row 1 of `x` matches multiple rows.
-ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-  warning.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(right_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name project_id
-1           1  John          1
-2           1  John          4
-3           2  Jane          2
-4           3   Bob          3
-5           4 Alice          5
-6           6  &lt;NA&gt;          6</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>right_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(right_join_result, <span class="at">caption =</span> <span class="st">"Result of Right Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Right Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">project_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">6</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
-<section id="full-join" class="level4" data-number="14.3.1.3">
-<h4 data-number="14.3.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">14.3.1.3</span> Full Join</h4>
-<p>Full join Returns all the rows from both tables and null values for non-matching rows. Here we are combining both tables</p>
+<section id="full-join" class="level4" data-number="5.3.1.3">
+<h4 data-number="5.3.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">5.3.1.3</span> Full Join</h4>
+<p>A full join returns all the rows from both tables, filling non-matching rows with null values. It essentially merges both tables.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Full_Join.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Full Join</figcaption><p></p>
+<figcaption class="figure-caption">Full Join Illustration</figcaption>
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>full_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in full_join(., projects, by = "employee_id"): Each row in `x` is expected to match at most 1 row in `y`.
-ℹ Row 1 of `x` matches multiple rows.
-ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-  warning.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name project_id
-1           1  John          1
-2           1  John          4
-3           2  Jane          2
-4           3   Bob          3
-5           4 Alice          5
-6           5   Tom         NA
-7           6  &lt;NA&gt;          6</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>full_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(full_join_result, <span class="at">caption =</span> <span class="st">"Result of Full Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Full Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">project_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Tom</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">6</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
-<section id="inner-join" class="level4" data-number="14.3.1.4">
-<h4 data-number="14.3.1.4" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">14.3.1.4</span> Inner Join</h4>
-<p>Inner join returns only the matched rows between two table. So, only the rows that found a match from both tables will be kept.</p>
-<div class="columns">
-<div class="column">
+<section id="inner-join" class="level4" data-number="5.3.1.4">
+<h4 data-number="5.3.1.4" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">5.3.1.4</span> Inner Join</h4>
+<p>An inner join only returns the matched rows between two tables. Thus, only the rows that found a match in both tables will be retained.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Inner_Join.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Inner Join</figcaption><p></p>
+<figcaption class="figure-caption">Inner Join Illustration</figcaption>
 </figure>
 </div>
-</div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>inner_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in inner_join(., projects, by = "employee_id"): Each row in `x` is expected to match at most 1 row in `y`.
-ℹ Row 1 of `x` matches multiple rows.
-ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-  warning.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(inner_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name project_id
-1           1  John          1
-2           1  John          4
-3           2  Jane          2
-4           3   Bob          3
-5           4 Alice          5</code></pre>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>inner_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(inner_join_result, <span class="at">caption =</span> <span class="st">"Result of Inner Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Inner Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">project_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
 </section>
-<section id="filtering-joins" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">14.3.2</span> Filtering Joins</h3>
-<section id="anti-join" class="level4" data-number="14.3.2.1">
-<h4 data-number="14.3.2.1" class="anchored" data-anchor-id="anti-join"><span class="header-section-number">14.3.2.1</span> Anti Join</h4>
-<p>An anti join returns the rows from the left table that do not have a corresponding match in the right table, without adding any new columns to the output. It is useful when you want to filter rows based on the absence of matching entries in the other table.</p>
+<section id="filtering-joins" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">5.3.2</span> Filtering Joins</h3>
+<section id="anti-join" class="level4" data-number="5.3.2.1">
+<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="anti-join"><span class="header-section-number">5.3.2.1</span> Anti Join</h4>
+<p>An anti join returns the rows from the left table that do not find a corresponding match in the right table, without adding any new columns to the output. It’s useful when you want to filter rows based on the absence of matching entries in the other table.</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>anti_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anti_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id name
-1           5  Tom</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>anti_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(anti_join_result, <span class="at">caption =</span> <span class="st">"Result of Anti Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Anti Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Tom</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div><div class="column">
-<p>Tom Does not have a project, assigned! May be he can take care of the project 6?</p>
+<p>Tom does not have a project assigned! Perhaps he could take on project 6?</p>
 </div>
 </div>
 </section>
-<section id="semi-join" class="level4" data-number="14.3.2.2">
-<h4 data-number="14.3.2.2" class="anchored" data-anchor-id="semi-join"><span class="header-section-number">14.3.2.2</span> Semi Join</h4>
-<p>A semi join resembles an inner join in that it identifies matching rows between two tables. However, unlike an inner join, it does not add any new columns to the output. Instead, it filters the rows from the left table that have a corresponding match in the right table. You would use a semi join when you want to filter the left table based on the presence of matching entries in the right table.</p>
+<section id="semi-join" class="level4" data-number="5.3.2.2">
+<h4 data-number="5.3.2.2" class="anchored" data-anchor-id="semi-join"><span class="header-section-number">5.3.2.2</span> Semi Join</h4>
+<p>A semi join is akin to an inner join in identifying matching rows between two tables. However, unlike an inner join, it does not add any new columns to the output. Instead, it filters the rows from the left table that have a corresponding match in the right table. You’d use a semi join when you want to filter the left table based on the presence of matching entries in the right table.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>semi_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(semi_join_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  employee_id  name
-1           1  John
-2           2  Jane
-3           3   Bob
-4           4 Alice</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>semi_join_result <span class="ot">&lt;-</span> employees <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(projects, <span class="at">by =</span> <span class="st">"employee_id"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(semi_join_result, <span class="at">caption =</span> <span class="st">"Result of Semi Join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Result of Semi Join</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">employee_id</th>
+<th style="text-align: left;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">John</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Jane</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bob</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Alice</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
 </section>
 </section>
-<section id="drawing-databases" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="drawing-databases"><span class="header-section-number">14.4</span> Drawing Databases</h2>
-<p>Remember we talked about UML? We are going to use it to draw out the Entity-Relationship Model to understand how tables in our database are related and how they are working together, which will simplify our later work. You can use UML code tools such as Mermaid and Graphviz, but in my opinion drag and drop web applications such as <a href="https://www.lucidchart.com">LucidChart</a> and <a href="https://app.diagrams.net/">Draw.io</a> are better for this task. To begin, let’s introduce an entity, which is an object (place,person,thing) that we want to track in our database. In our case it will be a customer, order, and product. Each entity has attributes, for example, customer has <code>customer_id</code>, <code>name</code>, <code>email</code>, <code>address</code>, etc. and similarly other entities also have a list of attributes. In your table entities will be reflected as rows and attributes as columns. These tables can be related to each other, which we show by drawing a line between the tables. To describe such relationships in numeric terms we use cardinality. You can think of cardinality as minimum and maximum number of relationships, very much like in <a href="#sec-relationships"><span>Section&nbsp;14.1</span></a> .</p>
+<section id="visualizing-databases" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="visualizing-databases"><span class="header-section-number">5.4</span> Visualizing Databases</h2>
+<p>Remember our discussion on UML? We’re going to use it to construct an Entity-Relationship Model to understand how tables in our database are related and how they interact, simplifying our later work. UML coding tools like Mermaid and Graphviz are options, but I find that drag-and-drop web applications such as <a href="https://www.lucidchart.com">LucidChart</a> and <a href="https://app.diagrams.net/">Draw.io</a> are more user-friendly. First, let’s introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, order, and product. Each entity possesses attributes, for example, a customer has <code>customer_id</code>, <code>name</code>, <code>email</code>, <code>address</code>, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing a line between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in <span class="quarto-unresolved-ref">?sec-relationships</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/cardinality.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Cardinality</figcaption><p></p>
+<figcaption class="figure-caption">Cardinality</figcaption>
 </figure>
 </div>
-<p>Let’s for examine the relationship between customer and order. Let’s first ask a question: what relationship does customer have with order? Using min, max framework, what is the minimum number of order a customer can have and what is the maximum number of order a customer can have? They can have no orders, so min = 0, and they can have many orders (2, 3, 4…), so max = many. We get customer to order relationship is 0 or many. Now let’s look in the opposite directions: how many customer can an order have? An order can have only one customer, no more no less. So, the relationship is one and only one.</p>
+<p>For instance, let’s examine the relationship between a customer and an order. We ask: what is the relationship between a customer and an order? Using the min, max framework, what is the minimum and maximum number of orders a customer can have? A customer can have zero orders (min = 0) and an indefinite amount of orders (max = many). So, the relationship from customer to order is 0 or many. Now, let’s look in the opposite direction: how many customers can an order have? An order can have only one customer (min = 1, max = 1).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/customer_order.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Customer-Order Relationship</figcaption><p></p>
+<figcaption class="figure-caption">Customer-Order Relationship</figcaption>
 </figure>
 </div>
-<p>Now let’s do the same for order and product. One order can have one or many products in it, and each product can be in none or many orders. The full diagram will look something like this:</p>
+<p>Next, let’s examine the relationship between an order and a product. An order can include one or many products, and each product can be in zero or many orders. The complete diagram would resemble the following:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ERD.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Entity-Relationship Diagram</figcaption><p></p>
+<figcaption class="figure-caption">Entity-Relationship Diagram</figcaption>
 </figure>
 </div>
-<p>You should draw a diagram any time you are planning to start a project with complex design. It will make crystal clear what tables you need to build and how to relate them. You can also scetch out a diagram whenever you are confused about a data set. If you would like to learn more on this topic, check out <a href="https://www.youtube.com/@lucid_software">Lucid Software YouTube</a> guides and <a href="https://www.youtube.com/@lucid_software">Neso Academy’s Database Management Systems course</a>.</p>
+<p>Creating such a diagram is recommended whenever you’re planning a project with a complex design. It clarifies the necessary tables and their relationships. You could also sketch a diagram whenever you’re unsure about a data set. If you’d like to delve deeper into this topic, check out the <a href="https://www.youtube.com/@lucid_software">Lucid Software YouTube</a> guides and <a href="https://www.youtube.com/watch?v=6Iu45VZGQDke">Neso Academy’s Database Management Systems course</a>.</p>
 
 
 </section>
@@ -871,9 +1173,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -938,6 +1254,157 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Handle positioning of the toggle
+      window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -977,17 +1444,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="nikitoshina/quarto_book" data-repo-id="R_kgDOJMlNmA" data-category="General" data-category-id="DIC_kwDOJMlNmM4CVCYY" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
-</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/tidy_data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tidy Data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tidy Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/data_viz.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/data_validation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Optimizing Data Validation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -3,16 +3,11 @@ title: "Style and Lint your Code"
 eval: false
 ---
 
-
 While immersing yourself in coding, you might neglect aesthetics like proper indentation or line breaks, which could make your code less readable and more error-prone. It's crucial to adopt certain coding practices to enhance readability and minimize errors. To help with this, we will explore R code conventions and introduce `styler` and `lintr`, packages that improve code aesthetics and detect potential errors.
 
 A good coding style, much like correct punctuation, significantly enhances readability. It's important to remember that while some guidelines improve usability, others may be subjective. However, their true value lies in fostering consistency, which simplifies the coding process.
 
 Two R packages, `styler` and `lintr`, support this style guide by offering interactive restyling of code and automated style checks, respectively.
-
-
-
-
 
 ### White Spaces and Indentation
 
@@ -20,10 +15,10 @@ Adhere to a two-space indentation to illustrate the structure and hierarchy in y
 
 ::::: columns
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
 Good
-```r
+```{r}
 for (i in 1:10) {
   print(i)
 }
@@ -37,14 +32,14 @@ iris %>%
 ```
 :::
 
-::: {.column width="10%"}
+::: {.column width="4%"}
 <!-- empty column to create gap -->
 :::
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
 Bad
-```r
+```{r}
 for (i in 1:10){
 print(i)}
 
@@ -62,24 +57,24 @@ R has a unique operation `<-` used for assigning variables. You should always us
 
 ::::: columns
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
 Good:
-```
+```{r}
 average_height <- 1.70
 add_row()
 permute()
 ```
 :::
 
-::: {.column width="10%"}
+::: {.column width="4%"}
 <!-- empty column to create gap -->
 :::
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
 Bad:
-```
+```{r}
 averageHeight = 1.70
 AverageHeight = 1.70
 row_adder()
@@ -100,12 +95,12 @@ For if-else statements, place the opening brace `{` on the same line as the cond
 
 ::::: columns
 
-::: {.column width="40%"}
+::: {.column width="43%"}
 
 
 
 Good
-```r
+```{r}
 if (condition) {
   action1()
 } else {
@@ -114,14 +109,14 @@ if (condition) {
 ```
 :::
 
-::: {.column width="10%"}
+::: {.column width="4%"}
 <!-- empty column to create gap -->
 :::
 
-::: {.column width="40%"}
+::: {.column width="43%"}
 
 Bad
-```r
+```{r}
 if (condition) 
 {
 action1()
@@ -146,19 +141,26 @@ If you find you need many comments to explain your code, consider refining it fo
 ::::: columns
 
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
-Good: `# Calculate average height - this metric is used for normalization`
+Good: 
+```
+# Calculate average height - this metric is used for normalization
+```
 :::
 
-::: {.column width="10%"}
+::: {.column width="4%"}
 <!-- empty column to create gap -->
 :::
 
-::: {.column width="40%"}
+::: {.column width="48%"}
 
-Bad: `# We are finding the average height`
-`#We will sum all of the heights and divide by the number of heights`
+Bad: 
+```
+# We are finding the average height
+
+#We will sum all of the heights and divide by the number of heights
+```
 :::
 
 :::::
@@ -173,7 +175,7 @@ For function calls that extend beyond a single line, allocate separate lines for
 
 
 Good
-```r
+```{r}
 long_function_name <- function(argument1,
                                argument2,
                                argument3,
@@ -184,7 +186,7 @@ long_function_name <- function(argument1,
 
 
 Bad
-```r
+```{r}
 long_function_name <- function(argument1, argument2, argument3, argument4) {
   # function body
 }
@@ -201,11 +203,11 @@ The whole style guide should take longer then 20 minutes to read, so please go t
 Styler, an R package, formats your code in line with the tidyverse style guide. It's straightforward to install using `install.packages("styler")`. After installation, you'll find a new function in the `Addins` menu at the top of your RStudio window. It's advisable to set a keyboard shortcut, such as "Command + Shift + a", for the "Style Selection" function for easy access.
 
 Before
-```r
+```{r}
 iris %>% select(Sepal.Length, Sepal.Width, Species) %>% ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + geom_point()
 ```
 After
-```r
+```{r}
 iris %>%
   select(Sepal.Length, Sepal.Width, Species) %>%
   ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
@@ -228,6 +230,16 @@ Static code analysis with `lintr` can be performed automatically within certain 
 
 `install.packages("lintr")` 
 `lintr::lint(filename = "R/bad.R")`
-Read the documentation for more information: [linter](https://lintr.r-lib.org/index.html).
+Read the documentation for more information: [lintr](https://lintr.r-lib.org/index.html).
 
 > Styler and Linter might appear similar, but they have different functions. Styler is faster and tidies up your code for better readability, while Linter is a bit slower but essential for spotting and avoiding errors in your code. So, Styler makes your code look neat, and Linter keeps it bug-free.
+
+## Why do we care?
+
+You may wonder, if you're comfortable with your coding style, why use these tools?
+While there are subjective benefits, the primary reason is that they enhance your code's accessibility,
+eliminate irrelevant stylistic changes from git commits, and ensure cross-OS functionality.
+
+> Mac and Windows represent tabs with different symbols. If your code contains tabs,
+it may fail on a different OS. To ensure compatibility, use spaces (your editor can convert tabs into spaces).
+

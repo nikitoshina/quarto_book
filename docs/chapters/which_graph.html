@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research Toolkit - 17&nbsp; A Graph for The Job</title>
+<title>Research Toolkit - 28&nbsp; A Graph for The Job</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,7 +64,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/references.html" rel="next">
+<link href="../chapters/tables.html" rel="next">
 <link href="../chapters/color.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +91,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -129,13 +101,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar floating">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/data_viz.html">Presenting the Data</a></li><li class="breadcrumb-item"><a href="../chapters/which_graph.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -143,198 +121,302 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Research Toolkit</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/nikitoshina/quarto_book" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/nikitoshina/quarto_book" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Set up</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/repres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducible Research</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/version_control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Version Control with Git and Github</span></a>
+  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set up</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lit Review and Writing</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Working with Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/litreview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Literature Research</span></a>
+  <a href="../chapters/data_manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/write.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Write</span></a>
+  <a href="../chapters/tidy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/layout_refs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout and References</span></a>
+  <a href="../chapters/data_bases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational Databases</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/template.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Thesis Template</span></a>
+  <a href="../chapters/data_validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Optimizing Data Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Collaboration</span></a>
+  <a href="../chapters/imputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Imputation</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Collecting the Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Reproducible Research</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/qualtrics_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Qualtrics API</span></a>
+  <a href="../chapters/repres.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Reproducible Research</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/renv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reproducible Environment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/modular_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modular Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/linter_styler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Style and Lint your Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introduction to Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/version_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Version Control with Git and Github</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Working with Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Lit Review and Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_manipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Manipulation</span></a>
+  <a href="../chapters/litreview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Literature Research</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/tidy_data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tidy Data</span></a>
+  <a href="../chapters/write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Write</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_bases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Relational Databases</span></a>
+  <a href="../chapters/layout_refs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Layout and References</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Thesis Template</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaboration</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Presenting the Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Collecting the Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  <a href="../chapters/survey_se.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Survey Error</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/color.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Color</span></a>
+  <a href="../chapters/good_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Design Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></a>
+  <a href="../chapters/survey_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Survey Tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/api.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">APIs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/google.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Google Services in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/qualtrics_api.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Qualtrics API</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Document</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Power Analysis and Simulations</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Presenting the Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#category-comparison" id="toc-category-comparison" class="nav-link active" data-scroll-target="#category-comparison"><span class="toc-section-number">17.1</span>  Category Comparison</a></li>
-  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="toc-section-number">17.2</span>  Distribution</a>
+  <li><a href="#category-comparison" id="toc-category-comparison" class="nav-link active" data-scroll-target="#category-comparison"><span class="header-section-number">28.1</span> Category Comparison</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">28.2</span> Distribution</a>
   <ul class="collapse">
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="toc-section-number">17.2.1</span>  Histogram</a></li>
-  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot"><span class="toc-section-number">17.2.2</span>  Density Plot</a></li>
-  <li><a href="#frequency-polygon" id="toc-frequency-polygon" class="nav-link" data-scroll-target="#frequency-polygon"><span class="toc-section-number">17.2.3</span>  Frequency Polygon</a></li>
-  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot"><span class="toc-section-number">17.2.4</span>  Box Plot</a></li>
-  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="toc-section-number">17.2.5</span>  Violin Plot</a></li>
-  <li><a href="#bee-hive-plot" id="toc-bee-hive-plot" class="nav-link" data-scroll-target="#bee-hive-plot"><span class="toc-section-number">17.2.6</span>  Bee Hive Plot</a></li>
-  <li><a href="#rain-cloud-plot" id="toc-rain-cloud-plot" class="nav-link" data-scroll-target="#rain-cloud-plot"><span class="toc-section-number">17.2.7</span>  Rain Cloud Plot</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">28.2.1</span> Histogram</a></li>
+  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot"><span class="header-section-number">28.2.2</span> Density Plot</a></li>
+  <li><a href="#frequency-polygon" id="toc-frequency-polygon" class="nav-link" data-scroll-target="#frequency-polygon"><span class="header-section-number">28.2.3</span> Frequency Polygon</a></li>
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot"><span class="header-section-number">28.2.4</span> Box Plot</a></li>
+  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="header-section-number">28.2.5</span> Violin Plot</a></li>
+  <li><a href="#bee-hive-plot" id="toc-bee-hive-plot" class="nav-link" data-scroll-target="#bee-hive-plot"><span class="header-section-number">28.2.6</span> Bee Hive Plot</a></li>
+  <li><a href="#rain-cloud-plot" id="toc-rain-cloud-plot" class="nav-link" data-scroll-target="#rain-cloud-plot"><span class="header-section-number">28.2.7</span> Rain Cloud Plot</a></li>
   </ul></li>
-  <li><a href="#proportions" id="toc-proportions" class="nav-link" data-scroll-target="#proportions"><span class="toc-section-number">17.3</span>  Proportions</a>
+  <li><a href="#proportions" id="toc-proportions" class="nav-link" data-scroll-target="#proportions"><span class="header-section-number">28.3</span> Proportions</a>
   <ul class="collapse">
-  <li><a href="#stacked-bar-charts" id="toc-stacked-bar-charts" class="nav-link" data-scroll-target="#stacked-bar-charts"><span class="toc-section-number">17.3.1</span>  Stacked Bar Charts</a></li>
-  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="toc-section-number">17.3.2</span>  Pie Chart</a></li>
-  <li><a href="#waffle-chart" id="toc-waffle-chart" class="nav-link" data-scroll-target="#waffle-chart"><span class="toc-section-number">17.3.3</span>  Waffle Chart</a></li>
-  <li><a href="#tree-maps" id="toc-tree-maps" class="nav-link" data-scroll-target="#tree-maps"><span class="toc-section-number">17.3.4</span>  Tree Maps</a></li>
+  <li><a href="#stacked-bar-charts" id="toc-stacked-bar-charts" class="nav-link" data-scroll-target="#stacked-bar-charts"><span class="header-section-number">28.3.1</span> Stacked Bar Charts</a></li>
+  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="header-section-number">28.3.2</span> Pie Chart</a></li>
+  <li><a href="#waffle-chart" id="toc-waffle-chart" class="nav-link" data-scroll-target="#waffle-chart"><span class="header-section-number">28.3.3</span> Waffle Chart</a></li>
+  <li><a href="#tree-maps" id="toc-tree-maps" class="nav-link" data-scroll-target="#tree-maps"><span class="header-section-number">28.3.4</span> Tree Maps</a></li>
   </ul></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">17.4</span>  Correlation</a>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">28.4</span> Correlation</a>
   <ul class="collapse">
-  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot"><span class="toc-section-number">17.4.1</span>  Scatter Plot</a></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot"><span class="header-section-number">28.4.1</span> Scatter Plot</a></li>
   </ul></li>
-  <li><a href="#change-over-time" id="toc-change-over-time" class="nav-link" data-scroll-target="#change-over-time"><span class="toc-section-number">17.5</span>  Change over Time</a>
+  <li><a href="#change-over-time" id="toc-change-over-time" class="nav-link" data-scroll-target="#change-over-time"><span class="header-section-number">28.5</span> Change over Time</a>
   <ul class="collapse">
-  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="toc-section-number">17.5.1</span>  Line Chart</a></li>
+  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="header-section-number">28.5.1</span> Line Chart</a></li>
   </ul></li>
-  <li><a href="#waterfall-graph" id="toc-waterfall-graph" class="nav-link" data-scroll-target="#waterfall-graph"><span class="toc-section-number">17.6</span>  Waterfall Graph</a></li>
+  <li><a href="#waterfall-graph" id="toc-waterfall-graph" class="nav-link" data-scroll-target="#waterfall-graph"><span class="header-section-number">28.6</span> Waterfall Graph</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/which_graph.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -365,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></h1>
 </div>
 
 
@@ -381,12 +463,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </header>
 
 <p>When working on graphs don’t think “what chart should I use?”, but “what am I trying to show?” In this section we will look at different types of chart, what they show and when to use them. We will not cover all the graphs, but you will definitely expand your kit!</p>
-<section id="category-comparison" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="category-comparison"><span class="header-section-number">17.1</span> Category Comparison</h2>
+<section id="category-comparison" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="category-comparison"><span class="header-section-number">28.1</span> Category Comparison</h2>
 <p>Graphs for category comparison are a type of data visualization that are used to compare and contrast different categories or groups. The most common of them is bar chart! The one below shows the top 5 countries by GDP per Capita in 1997. You can easily see that Norway is first and Switzerland is 5th!</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1997</span>) <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(gdpPercap, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(country,gdpPercap,<span class="at">.desc =</span> T), <span class="at">y =</span> gdpPercap)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Top 5 countries by GDP per Capita in 1997"</span>) <span class="sc">+</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(gdpPercap,<span class="dv">0</span>)), <span class="at">vjust =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -398,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Vertical bar charts are great to provide a quick comparison for a small number of categories (less than 7). But if need to show ranking of more things, flip the axis of the bar chart! Additional bonus, horizontal bar charts are great if you have long names to display. Below are the results of the 2021 London election. British YouTuber Niko Omilana finished 5th <em>for the memes</em>! Max Fosh, another YouTuber, also passed the cut off!</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>barh_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Candidate =</span> <span class="fu">c</span>(<span class="st">"Sadiq Khan"</span>, <span class="st">"Shaun Bailey"</span>, <span class="st">"Siân Berry"</span>, </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Luisa Porritt"</span>, <span class="st">"Niko Omilana"</span>, <span class="st">"Laurence Fox"</span>, <span class="st">"Brian Rose"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Richard Hewison"</span>, <span class="st">"Count Binface"</span>, <span class="st">"Mandu Reid"</span>, <span class="st">"Piers Corbyn"</span>, </span>
@@ -415,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>barh_data <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Candidate, Percentage), <span class="at">y =</span> Percentage, <span class="at">fill =</span> <span class="fu">as.factor</span>(is.youtuber))) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>() <span class="sc">+</span> </span>
@@ -432,14 +514,14 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="distribution" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="distribution"><span class="header-section-number">17.2</span> Distribution</h2>
-<section id="histogram" class="level3" data-number="17.2.1">
-<h3 data-number="17.2.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">17.2.1</span> Histogram</h3>
+<section id="distribution" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="distribution"><span class="header-section-number">28.2</span> Distribution</h2>
+<section id="histogram" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">28.2.1</span> Histogram</h3>
 <p>What if you want to show the distribution of the data? We can use a variation of a bar chart – histogram! Histograms show the distribution of continuous data by grouping it into bins and displaying the frequency or proportion of observations that fall into each bin. They are great if you want to show the shape of the distribution, but they are very sensitive to the bins you choose. Notice how the shape of the distribution changes for each number of bins. It is important to strike a balance between too few and too many. 6 bins makes our distribution look pretty normal while 30 bins make it all over the place. 15 bins seems about right it preserves the bimodal feature of the distribution, while keeping the picture legible.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hist_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"6 bins"</span>)</span>
@@ -453,12 +535,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="density-plot" class="level3" data-number="17.2.2">
-<h3 data-number="17.2.2" class="anchored" data-anchor-id="density-plot"><span class="header-section-number">17.2.2</span> Density Plot</h3>
+<section id="density-plot" class="level3" data-number="28.2.2">
+<h3 data-number="28.2.2" class="anchored" data-anchor-id="density-plot"><span class="header-section-number">28.2.2</span> Density Plot</h3>
 <p>Unlike histograms, density plots use a continuous line to represent the data instead of bars. This smooth curve provides a more detailed and nuanced representation of the distribution of the data, allowing for easier detection of patterns and trends. The density plot constructs this line by placing many small normal distributions at each point in the data, which are then used to weigh all points within their respective range and draw a curve connecting them. The width of these curves is controlled by the bandwidth of the density plot, which determines how wide the curves span. A larger bandwidth will consider more points, resulting in a smoother curve, while a smaller bandwidth will lead to a jagged line.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dens_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>, <span class="at">bw =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Band Width 0.3"</span>)</span>
@@ -472,12 +554,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="frequency-polygon" class="level3" data-number="17.2.3">
-<h3 data-number="17.2.3" class="anchored" data-anchor-id="frequency-polygon"><span class="header-section-number">17.2.3</span> Frequency Polygon</h3>
+<section id="frequency-polygon" class="level3" data-number="28.2.3">
+<h3 data-number="28.2.3" class="anchored" data-anchor-id="frequency-polygon"><span class="header-section-number">28.2.3</span> Frequency Polygon</h3>
 <p>It is similar to a histogram, but instead of bars, it uses a continuous line to connect the points representing the frequencies. Frequency polygons are particularly useful when comparing two or more data sets on the same plot. Just like histogram it relies on the selection of bins.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>freq_1 <span class="ot">&lt;-</span> base <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">geom_freqpoly</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"15 bins"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>freq_2 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length))   <span class="sc">+</span> </span>
@@ -499,14 +581,14 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="box-plot" class="level3" data-number="17.2.4">
-<h3 data-number="17.2.4" class="anchored" data-anchor-id="box-plot"><span class="header-section-number">17.2.4</span> Box Plot</h3>
+<section id="box-plot" class="level3" data-number="28.2.4">
+<h3 data-number="28.2.4" class="anchored" data-anchor-id="box-plot"><span class="header-section-number">28.2.4</span> Box Plot</h3>
 <p>This section was inspired by https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/</p>
 <p>Boxplots provide a summary of the distribution of a dataset, show the median, the lower and upper quartiles, and the minimum and maximum values of a dataset. The box in the middle represents the interquartile range (IQR), which is the range of the middle 50% of the data. The line in the box represents the median, which is the midpoint of the data. The whiskers on the top and bottom extend to the minimum and maximum values, excluding outliers. It is incredible how much information boxplots contain! With just one plot, you can quickly identify outliers and gain a visual understanding of the distribution of the data.</p>
 <p>In the context of the iris dataset, the boxplot of Sepal Length across different species provides a clear picture of the distribution of this variable. However, like real boxes, boxplots can also hide important information. To illustrate this point, we can use a dataset with the same summary statistics but different distributions. In the second graph, three identical boxplots are displayed. However, once we add data points to the plot, it becomes evident that the distributions are quite different.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1337</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -521,7 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>base2 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> Sepal.Length, <span class="at">x =</span> Species))  <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major.x  =</span> <span class="fu">element_blank</span>(),<span class="at">panel.grid.minor.x  =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>box_1 <span class="ot">&lt;-</span> base2 <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
@@ -538,12 +620,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="violin-plot" class="level3" data-number="17.2.5">
-<h3 data-number="17.2.5" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">17.2.5</span> Violin Plot</h3>
+<section id="violin-plot" class="level3" data-number="28.2.5">
+<h3 data-number="28.2.5" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">28.2.5</span> Violin Plot</h3>
 <p>One solution is to use violin plots. In its essence it is a vertical density plot. Look how much more we know about out data distribution of iris species! We can see the density distribution, points and quantiles!</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>base2 <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">draw_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">bw =</span> <span class="fl">0.15</span>) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -553,7 +635,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Going back to our new data set, notice how different the datasets look, clearly there are some patterns. Group 1, which has four times more observations, appears to be nearly identical to Group 3. This is because the default setting “scale =”area”” is a little misleading. We can fix that by changing it to “scale =”count””</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dist_1 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"area"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"scale = 'area'"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dist_2 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"scale = 'count'"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dist_1 <span class="sc">+</span> dist_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -565,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Do you remember how band width is extremely important when making density plots? Setting an apprpriate band width reveals the true distribution!</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"count"</span>, <span class="at">bw =</span> .<span class="dv">3</span>, <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -573,12 +655,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="bee-hive-plot" class="level3" data-number="17.2.6">
-<h3 data-number="17.2.6" class="anchored" data-anchor-id="bee-hive-plot"><span class="header-section-number">17.2.6</span> Bee Hive Plot</h3>
+<section id="bee-hive-plot" class="level3" data-number="28.2.6">
+<h3 data-number="28.2.6" class="anchored" data-anchor-id="bee-hive-plot"><span class="header-section-number">28.2.6</span> Bee Hive Plot</h3>
 <p>The bee hive plot is a scatter plot that arranges data points as dots to minimize overlap. It’s ideal for visualizing small datasets because it creates patterns like a density plot without hiding individual data points.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bee_1 <span class="ot">&lt;-</span> base2 <span class="sc">+</span> <span class="fu">geom_beeswarm</span>() </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bee_2 <span class="ot">&lt;-</span> base_dist <span class="sc">+</span> <span class="fu">geom_beeswarm</span>()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>bee_1 <span class="sc">+</span> bee_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -590,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>All of the plots we have covered so far have their advantages: 1. Box plot shows important statistics 2. Density plot provides high-level view of data shape 3. Bee hive plot “shows” the actual datapoints While combining these plots might make for a crowded visual, with some modifications, it’s possible to create a hybrid plot that captures the strengths of each.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">scale =</span> <span class="st">"count"</span>, <span class="at">bw =</span> .<span class="dv">4</span>) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_beeswarm</span>(<span class="at">color =</span> <span class="st">"orange"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">cex =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -598,13 +680,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="rain-cloud-plot" class="level3" data-number="17.2.7">
-<h3 data-number="17.2.7" class="anchored" data-anchor-id="rain-cloud-plot"><span class="header-section-number">17.2.7</span> Rain Cloud Plot</h3>
+<section id="rain-cloud-plot" class="level3" data-number="28.2.7">
+<h3 data-number="28.2.7" class="anchored" data-anchor-id="rain-cloud-plot"><span class="header-section-number">28.2.7</span> Rain Cloud Plot</h3>
 <p>Rain Cloud Plot combines elements of box plots, violin plots, and density plots. It uses a density plot to show the distribution of the data, a box plot to display the statistics, and individual data points are represented as rain drops. The result is a visually appealing and informative way to visualize a large number of distributions side-by-side, allowing for easy comparisons and identification of patterns.</p>
 <p>Isn’t this beautiful? We have a box plot, density plot, and jittered points all in the same graph without looking cluttered.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>, <span class="co">#bw</span></span>
@@ -635,7 +717,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>One alternative option to the boxplot is to stack the data points and use a minimal boxplot representation. While this alternative can be visually appealing, it is important to ensure that your audience understands the visualization and the meaning behind the stacked data points. It may be necessary to provide additional context or include a note explaining the meaning of the stacked slabs to avoid confusion.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>,</span>
@@ -658,7 +740,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>My personal favorite is the rain cloud plot, which combines vertical lines and a bar plot that is rotated horizontally to resemble actual rain clouds.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>base_dist <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust =</span> .<span class="dv">3</span>, </span>
@@ -687,14 +769,14 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </section>
 </section>
-<section id="proportions" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="proportions"><span class="header-section-number">17.3</span> Proportions</h2>
+<section id="proportions" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="proportions"><span class="header-section-number">28.3</span> Proportions</h2>
 <p>Another big collection of graphs is concerned with communicating proportions and composition.</p>
-<section id="stacked-bar-charts" class="level3" data-number="17.3.1">
-<h3 data-number="17.3.1" class="anchored" data-anchor-id="stacked-bar-charts"><span class="header-section-number">17.3.1</span> Stacked Bar Charts</h3>
+<section id="stacked-bar-charts" class="level3" data-number="28.3.1">
+<h3 data-number="28.3.1" class="anchored" data-anchor-id="stacked-bar-charts"><span class="header-section-number">28.3.1</span> Stacked Bar Charts</h3>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>us_spending <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/USFR_StmtNetCost_2017_2022.csv"</span>) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>((restatement_flag <span class="sc">==</span> <span class="st">"N"</span>) <span class="sc">&amp;</span> (agency_name <span class="sc">!=</span> <span class="st">"Total"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">year =</span> statement_fiscal_year, agency_name, net_cost_in_billions) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">net_cost_in_billions =</span> <span class="fu">as.numeric</span>(net_cost_in_billions)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">proportion =</span> <span class="fu">round</span>(net_cost_in_billions<span class="sc">/</span><span class="fu">sum</span>(net_cost_in_billions),<span class="dv">2</span>)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="ot">&lt;-</span> us_spending <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>net_cost_in_billions), <span class="at">agency =</span> <span class="fu">ifelse</span>(rank<span class="sc">&gt;=</span><span class="dv">5</span>, <span class="st">"Other"</span>, agency_name)) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year,agency,<span class="at">wt =</span> net_cost_in_billions) <span class="sc">%&gt;%</span></span>
@@ -717,7 +799,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>As an example we will use US Expernditures across departments. Only top four departments are shown, the rest are collected into “other”. The graph below shows absolute values and its components across years.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency, <span class="at">label =</span> agency)) <span class="sc">+</span> </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
@@ -731,7 +813,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>What if we are not concerned with absolute values, but relative proportions? We can use percentage stacked chart.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency)) <span class="sc">+</span> </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">show.legend =</span> T) <span class="sc">+</span></span>
@@ -749,7 +831,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Stacked charts are useful for visualizing the distribution of categorical variables, but they can be challenging to compare categories in the middle. Typically, the easiest categories to compare are the ones at the top and bottom of the stack. For example, suppose we want to compare the trend of the Department of Defense and the Social Security Administration (SSA) over time. In this case, we can move these categories to the top and bottom positions of the stacked chart to make it easier to compare their relative sizes and trends.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>spending_plot_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">factor</span>(agency,<span class="fu">c</span>(<span class="st">"Defense"</span>, <span class="st">"Other"</span>, <span class="st">"i on Treasuries"</span>, <span class="st">"Veterans Affairs"</span>, <span class="st">"Treasury"</span>, <span class="st">"HHS"</span>, <span class="st">"SSA"</span>))) <span class="sc">%&gt;%</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> agency)) <span class="sc">+</span> </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">show.legend =</span> T) <span class="sc">+</span></span>
@@ -765,13 +847,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="pie-chart" class="level3" data-number="17.3.2">
-<h3 data-number="17.3.2" class="anchored" data-anchor-id="pie-chart"><span class="header-section-number">17.3.2</span> Pie Chart</h3>
+<section id="pie-chart" class="level3" data-number="28.3.2">
+<h3 data-number="28.3.2" class="anchored" data-anchor-id="pie-chart"><span class="header-section-number">28.3.2</span> Pie Chart</h3>
 <p>data used from: The Growth Lab at Harvard University. The Atlas of Economic Complexity. http://www.atlas.cid.harvard.edu.</p>
 <p>As an example dataset we will be used Japan’s export basket from 2020.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>japan_export <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/japan_export_2020.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"export"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Gross Export</span><span class="st">`</span>) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>japan_sectors <span class="ot">&lt;-</span> japan_export <span class="sc">%&gt;%</span> <span class="fu">count</span>(sector, <span class="at">wt =</span> share) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -780,7 +862,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>Pie charts are a variation of bar charts where each category is represented as a slice of a circle. While pie charts can effectively communicate when one category is significantly larger or smaller than the others, they become difficult to read and compare accurately when there are many categories or the differences between them are small. Comparing angles and areas of the slices can be confusing, leading to misinterpretation of the data.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pie_1 <span class="ot">&lt;-</span> japan_sectors <span class="sc">%&gt;%</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span>n, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
@@ -802,7 +884,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>But if absolutely must use a pie chart here are some rules to keep in mind: 1. Limit the number of categories to 5-7 at most. 2. Consider grouping small categories into an “Other” category to avoid clutter. 3. Arrange the slices in decreasing order of size, starting at 12 o’clock to aid in comparing them. 4. Include the category labels directly on the chart instead of relying solely on a legend. 5. Add separators between slices to help with distinguishing between them. However, keep in mind that this can also add visual clutter, so use with discretion.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>japan_sectors <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sector =</span> <span class="fu">ifelse</span>(n<span class="sc">&lt;</span><span class="dv">11</span>,<span class="st">"Other"</span>,sector)) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sector, <span class="at">wt =</span> n) <span class="sc">%&gt;%</span></span>
@@ -827,12 +909,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="waffle-chart" class="level3" data-number="17.3.3">
-<h3 data-number="17.3.3" class="anchored" data-anchor-id="waffle-chart"><span class="header-section-number">17.3.3</span> Waffle Chart</h3>
+<section id="waffle-chart" class="level3" data-number="28.3.3">
+<h3 data-number="28.3.3" class="anchored" data-anchor-id="waffle-chart"><span class="header-section-number">28.3.3</span> Waffle Chart</h3>
 <p>One alternative to a pie chart could be a waffle chart (these food names make me hungry). It is a grid-like visualization that resembles a waffle or a checkerboard. Each square in the grid represents a proportion of the total data, making it a useful way to visualize proportions or percentages in a visually appealing way. However, they are also vulnerable to large numbers of categories. But what they are truly great at is giving the sense of proportions and sizes. Waffle chart will significantly benefit from interactivity.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># waffle_data &lt;- waffle_iron(iris, aes_d(group = Species))</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(waffle_data, aes(x, y, fill = group)) + </span></span>
@@ -868,13 +950,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="tree-maps" class="level3" data-number="17.3.4">
-<h3 data-number="17.3.4" class="anchored" data-anchor-id="tree-maps"><span class="header-section-number">17.3.4</span> Tree Maps</h3>
+<section id="tree-maps" class="level3" data-number="28.3.4">
+<h3 data-number="28.3.4" class="anchored" data-anchor-id="tree-maps"><span class="header-section-number">28.3.4</span> Tree Maps</h3>
 <p>What if we have a lot of data hierarchical data? Treemaps!</p>
 <p>Treemaps are a type of visualization that allows you to display hierarchical data in a way that is easy to understand. Each node in the hierarchy is represented by a rectangle, and the size of the rectangle corresponds to the proportion of the total data. The nodes are organized in a way that preserves the hierarchy, with parent nodes containing smaller child nodes. This allows you to quickly identify which nodes are the largest and which are the smallest, as well as the relationships between them. Tree maps are especially useful for displaying large amounts of data in a compact and intuitive way. Tree maps can become very cluttered and interactivity is almost always necessary for such detailed plots. Check out the same plot <a href="https://atlas.cid.harvard.edu/countries/114/export-basket">from the source website</a>.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemap)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">treemap</span>(japan_export,</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"sector"</span>,<span class="st">"name"</span>),</span>
@@ -899,15 +981,15 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </section>
 </section>
-<section id="correlation" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">17.4</span> Correlation</h2>
+<section id="correlation" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">28.4</span> Correlation</h2>
 <p>In addition to understanding the distribution of individual variables, it is important to examine the relationship between pairs of variables. Correlation plots are a useful tool for visualizing many aspects of data: relationships between variables (or lack there of), clustering, outliers, etc.</p>
-<section id="scatter-plot" class="level3" data-number="17.4.1">
-<h3 data-number="17.4.1" class="anchored" data-anchor-id="scatter-plot"><span class="header-section-number">17.4.1</span> Scatter Plot</h3>
+<section id="scatter-plot" class="level3" data-number="28.4.1">
+<h3 data-number="28.4.1" class="anchored" data-anchor-id="scatter-plot"><span class="header-section-number">28.4.1</span> Scatter Plot</h3>
 <p>The most common visualization is scatter plot! It is not a secret for anyone that scatter plots are amazing and perhaps the most persuasive types of plot. We can add a fitted lines to the plot to better show the relationships between the variables.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>scatter_1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">color =</span> Species)) <span class="sc">+</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> F) <span class="sc">+</span> </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dl</span>(<span class="fu">aes</span>(<span class="at">label =</span> Species), <span class="at">method =</span> <span class="st">"smart.grid"</span>) <span class="sc">+</span> </span>
@@ -926,16 +1008,16 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </section>
 </section>
-<section id="change-over-time" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="change-over-time"><span class="header-section-number">17.5</span> Change over Time</h2>
+<section id="change-over-time" class="level2" data-number="28.5">
+<h2 data-number="28.5" class="anchored" data-anchor-id="change-over-time"><span class="header-section-number">28.5</span> Change over Time</h2>
 <p>We have already seen plots that incorporate time change. Time series plots typically have time on the x-axis and the variable being measured on the y-axis. They can show trends, patterns, and seasonal fluctuations in the data.</p>
-<section id="line-chart" class="level3" data-number="17.5.1">
-<h3 data-number="17.5.1" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">17.5.1</span> Line Chart</h3>
+<section id="line-chart" class="level3" data-number="28.5.1">
+<h3 data-number="28.5.1" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">28.5.1</span> Line Chart</h3>
 <p>Most common</p>
 <p>S&amp;P 500 stock market index since 1927. Historical data is inflation-adjusted using the headline CPI and each data point represents the month-end closing value.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Year, <span class="sc">~</span>Average_Closing_Price, <span class="sc">~</span>Year_Open, <span class="sc">~</span>Year_High, <span class="sc">~</span>Year_Low, <span class="sc">~</span>Year_Close, <span class="sc">~</span>Annual_Percent_Change,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2023</span>, <span class="fl">4020.94</span>, <span class="fl">3824.14</span>, <span class="fl">4179.76</span>, <span class="fl">3808.10</span>, <span class="fl">3970.04</span>, <span class="fl">3.40</span>,</span>
@@ -960,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sp500_scatter <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Average_Closing_Price,Year_Open,Annual_Percent_Change)) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>Year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year_close =</span> name <span class="sc">!=</span> <span class="st">"Year_Close"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> value, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
@@ -988,12 +1070,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </section>
 </section>
-<section id="waterfall-graph" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="waterfall-graph"><span class="header-section-number">17.6</span> Waterfall Graph</h2>
+<section id="waterfall-graph" class="level2" data-number="28.6">
+<h2 data-number="28.6" class="anchored" data-anchor-id="waterfall-graph"><span class="header-section-number">28.6</span> Waterfall Graph</h2>
 <p>Waterfall charts, also known as bridge charts, are a type of bar chart used to visualize the cumulative effect of sequentially introduced positive or negative values. The graph is named “waterfall” because it resembles a series of falling water droplets. Each bar in the chart represents a value and is color-coded to indicate whether it contributes to an increase or decrease in the cumulative total. They are useful for visualizing the relative contributions of positive and negative factors that affect the net change in the value being analyzed.</p>
 <div class="cell">
 <details>
-<summary>Show the code</summary>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>waterfall_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>year, <span class="sc">~</span>bank, <span class="sc">~</span>change,</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2017</span>, <span class="dv">2000</span>, <span class="dv">2000</span>,</span>
@@ -1049,9 +1131,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1116,6 +1212,157 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Handle positioning of the toggle
+      window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1155,17 +1402,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="nikitoshina/quarto_book" data-repo-id="R_kgDOJMlNmA" data-category="General" data-category-id="DIC_kwDOJMlNmM4CVCYY" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
-</script>
+
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/color.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Color</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/tables.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

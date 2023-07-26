@@ -1,0 +1,87 @@
+---
+title: "Introduction to Command Line"
+---
+
+The Command Line Interface (CLI), also known as the terminal or shell, is a powerful tool used by developers and system administrators for manipulating files, executing programs, and managing system settings. Unlike graphical user interfaces (GUI) where users interact with visual elements, in a CLI, you interact with the computer by typing text commands. Despite its seemingly daunting appearance, understanding the command line can unlock powerful methods for performing tasks more efficiently.
+
+In the command line, your workspace is a `current directory` or `working directory`. You navigate between directories using `cd` (change directory). For example, `cd Documents` moves you into the Documents directory inside your current directory.
+
+Directories in the command line have both local and global references. The local reference to a directory is its name. For instance, `cd Documents` uses the local reference `Documents`. Global references specify the complete path from the root directory to the directory in question. For instance, `cd /home/username/Documents` uses the global reference `/home/username/Documents`.
+
+## Learning Basic Commands
+
+Commands form the core of CLI interactions, serving as instructions we type into the terminal to perform certain tasks, like file manipulation and directory navigation.
+
+### Navigation
+
+- `pwd`: "Print Working Directory" shows your current directory.
+- `cd`: "Change Directory" allows you to navigate between directories. The usage of `cd` with different arguments lets you navigate more efficiently:
+   - `cd ..` takes you one directory up.
+   - `cd /` takes you to the root directory.
+   - `cd ~` takes you to your home directory.
+   - `cd .` refers to the current directory.
+- `ls`: "List" displays files and directories in the current directory.
+
+### File Manipulation
+
+- `touch`: Creates a new file.
+- `cat`: Displays file content.
+- `cp`: "Copy" duplicates files or directories.
+- `mv`: "Move" renames or relocates files.
+- `rm`: "Remove" deletes files.
+
+### Directory Management
+
+- `mkdir`: "Make Directory" creates a new directory.
+- `rmdir`: "Remove Directory" deletes an empty directory.
+
+You can chain directory names together with a forward slash `/` for navigating. This applies to both absolute and relative paths. For instance, `cd /home/username/projects/my_project` navigates to `my_project` by providing an absolute path. On the other hand, `cd projects/my_project` navigates to the same location using a relative path. If you want to move up to the parent directory and then into a sibling directory, you could use `cd ../sibling_directory`. This command means "go up one level, then down into `sibling_directory`".
+
+These basic commands are the starting point for interacting with a command-line interface. As you gain familiarity, you'll learn more complex commands and combinations for powerful functionalities. Remember, don't hesitate to explore and experiment. The command line is a tool for you to harness to your advantage!
+
+## Terminal
+
+### Getting Started with Nano
+
+Nano is a simple and user-friendly text editor commonly used in Unix-like operating systems. It`s an excellent choice for beginners due to its straightforward interface and commands.
+
+#### Starting Nano
+
+To open a file in nano, type `nano` followed by the filename:
+
+```bash
+nano filename.txt
+```
+
+If the file doesn`t exist, nano will create a new file with that name.
+
+### Basic Navigation
+
+Once you`ve opened a file, you can move around it using the arrow keys. Here are some additional navigation commands:
+
+- `Ctrl + A`: Move to the beginning of the line.
+- `Ctrl + E`: Move to the end of the line.
+- `Ctrl + Y`: Move to the previous page.
+- `Ctrl + V`: Move to the next page.
+
+#### Editing Text
+
+Editing text in nano is as straightforward as typing. Here are some additional commands:
+
+- `Ctrl + K`: Cut the current line of text.
+- `Ctrl + U`: Paste the cut text.
+
+#### Saving and Exiting
+
+When you`re done editing, you can save your changes and exit nano:
+
+- `Ctrl + O`: Write out. This command will save your changes. Nano will ask you to confirm or change the filename.
+- `Ctrl + X`: Exit. If you`ve made changes, nano will ask if you want to save them.
+
+#### Getting Help
+
+If you're stuck or need to know more commands, you can access nano's help:
+
+- `Ctrl + G`: Display the help screen.
+
+That's it! You`re now equipped with the basics of comand line.

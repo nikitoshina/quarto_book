@@ -5,9 +5,9 @@ editor: visual
 
 ## Knitr
 
-Knitr is a package that takes care of the middle step between evaluating code and producing pdf/html. The package runs your code and places its output into a final markdown file, which is later converted by pandoc.
+`knitr` is a package that takes care of the middle step between evaluating code and producing pdf/html. The package runs your code and places its output into a final markdown file, which is later converted by pandoc.
 
-Knitr lets you sen cell options that influence code blocks' execution and output. They are put at the top of a block within comments. For example:
+`knitr` lets you set cell options that influence code blocks' execution and output. They are put at the top of a block within comments. For example:
 
 ```{r, echo = T}
 #| label: fig-plots
@@ -57,15 +57,7 @@ If you are familiar with HTML you will recognize \<div\> blocks. You can add div
 
 It must be separated from the preceding and following blocks by blank lines. Divs can be nested inside other Divs. For example, here we put a note and some text onto the margin.
 
-    :::: column-margin
-
-    ::: callout-note
-    Here is a Note!
-    :::
-
-    More content.
-    ::::
-
+```         
 :::: column-margin
 
 ::: callout-note
@@ -74,6 +66,15 @@ Here is a Note!
 
 More content.
 ::::
+```
+
+::: column-margin
+::: callout-note
+Here is a Note!
+:::
+
+More content.
+:::
 
 The `{{< pagebreak >}}` short code enables you to insert a native page break into a document that will be compatible with all the other formats:
 
@@ -107,12 +108,11 @@ bibliography: references.bib
 
 You can easily cite your article using `@yourcitation9999`. Visual mode also provides suggestions, and entering the article's DOI will help locate and insert it even if it is not in your bibliography. For more information on citation methods, see [Quarto Citation](https://quarto.org/docs/authoring/footnotes-and-citations.html) and [Pandoc Citations](https://pandoc.org/MANUAL.html#citations).
 
-| Markdown Format                           | Output (author-date format)               |
+| Markdown Format                               | Output (author-date format)               |
 |----------------------------|--------------------------------------------|
-| \@abadie2017 says cluster you SE.          | @abadie2017 says cluster you SE.          |
-| Some thing smart [\@abadie2017; \@bai2009]. | Some thing smart [@abadie2017; @bai2009]. |
-| Abadie says cluster [-\@abadie2017].        | Abadie says cluster [-@abadie2017].        |
-
+| \@abadie2017 says cluster you SE.             | @abadie2017 says cluster you SE.          |
+| Some thing smart \[\@abadie2017; \@bai2009\]. | Some thing smart [@abadie2017; @bai2009]. |
+| Abadie says cluster \[-\@abadie2017\].        | Abadie says cluster [-@abadie2017].       |
 
 If you've successfully created your bibliography in Zotero, adding citations to your document will be a breeze. Simply start typing and Zotero will suggest citations to add to your bibliography file. For a paper with more than 10 citations, I recommend using Better Bibtex, which allows you to connect citation keys to the paper as you write, just make sure Zotero is open.
 
