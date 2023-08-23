@@ -63,6 +63,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -354,15 +355,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rstudio-set-up" id="toc-rstudio-set-up" class="nav-link active" data-scroll-target="#rstudio-set-up"><span class="header-section-number">2.1</span> RStudio Set Up</a></li>
-  <li><a href="#download-r" id="toc-download-r" class="nav-link" data-scroll-target="#download-r"><span class="header-section-number">2.2</span> Download R</a>
+  <li><a href="#r-and-rstudio-set-up" id="toc-r-and-rstudio-set-up" class="nav-link active" data-scroll-target="#r-and-rstudio-set-up"><span class="header-section-number">2.1</span> R and RStudio Set Up</a>
   <ul class="collapse">
-  <li><a href="#for-macos" id="toc-for-macos" class="nav-link" data-scroll-target="#for-macos"><span class="header-section-number">2.2.1</span> For macOS</a></li>
-  <li><a href="#for-windows" id="toc-for-windows" class="nav-link" data-scroll-target="#for-windows"><span class="header-section-number">2.2.2</span> For Windows</a></li>
+  <li><a href="#for-macos" id="toc-for-macos" class="nav-link" data-scroll-target="#for-macos"><span class="header-section-number">2.1.1</span> For macOS</a></li>
+  <li><a href="#for-windows" id="toc-for-windows" class="nav-link" data-scroll-target="#for-windows"><span class="header-section-number">2.1.2</span> For Windows</a></li>
   </ul></li>
-  <li><a href="#download-rstudio" id="toc-download-rstudio" class="nav-link" data-scroll-target="#download-rstudio"><span class="header-section-number">2.3</span> Download RStudio</a></li>
-  <li><a href="#configure-rstudio" id="toc-configure-rstudio" class="nav-link" data-scroll-target="#configure-rstudio"><span class="header-section-number">2.4</span> Configure RStudio</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">2.5</span> Install Packages</a></li>
+  <li><a href="#download-rstudio" id="toc-download-rstudio" class="nav-link" data-scroll-target="#download-rstudio"><span class="header-section-number">2.2</span> Download RStudio</a></li>
+  <li><a href="#configure-rstudio" id="toc-configure-rstudio" class="nav-link" data-scroll-target="#configure-rstudio"><span class="header-section-number">2.3</span> Configure RStudio</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">2.4</span> Install Packages</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -410,17 +410,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </header>
 
-<section id="rstudio-set-up" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="rstudio-set-up"><span class="header-section-number">2.1</span> RStudio Set Up</h2>
-<p>We will be using R and RStudio IDE to download, clean, explore, and model our data. R language was developed by statisticians for statisticians and had intuitive syntax and workflow for creating readable and <strong>reproducible</strong> code.</p>
-</section>
-<section id="download-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="download-r"><span class="header-section-number">2.2</span> Download R</h2>
+<section id="r-and-rstudio-set-up" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="r-and-rstudio-set-up"><span class="header-section-number">2.1</span> R and RStudio Set Up</h2>
+<p>To begin our data analysis journey, we will utilize the R language, which was specifically designed by statisticians for statisticians. R boasts an intuitive syntax and workflow, enabling us to create readable and <strong>reproducible</strong> code, making it ideal for data analysis tasks.</p>
+<p>Before we dive into the exciting world of data exploration and modeling, it’s essential to understand the distinction between R and RStudio IDE. R is the actual programming language itself, while RStudio is an Integrated Development Environment (IDE) that provides a user-friendly interface to work with R efficiently. In other words, RStudio serves as a helpful tool to interact with R and enhances the overall coding experience.</p>
+<p>To get started, you’ll need to download both R and RStudio. R acts as the backbone, and RStudio complements it, making the coding process smoother and more accessible, especially for beginners. So, make sure to install both R and RStudio on your computer to embark on your data analysis journey seamlessly. Let’s dive in and explore the incredible possibilities that R and RStudio have to offer! ## Download R</p>
 <p>R is maintained through <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>.</p>
-<section id="for-macos" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="for-macos"><span class="header-section-number">2.2.1</span> For macOS</h3>
+<section id="for-macos" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="for-macos"><span class="header-section-number">2.1.1</span> For macOS</h3>
 <ol type="1">
-<li>Go to <a href="https://cran.r-project.org/">https://cran.r-project.org/</a></li>
+<li>Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
 <li>Select “Download R for macOS”</li>
 <li>If you have Apple Silicon mac (M1,M2…) download the latest version that has -arm64 in its name (R-4.2.2-arm64.pkg)</li>
 <li>If you have Intel Max Download one without -arm64 (R-4.2.2.pkg)</li>
@@ -429,10 +428,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <li>Your computer might ask for your password before installing new programs</li>
 </ol>
 </section>
-<section id="for-windows" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="for-windows"><span class="header-section-number">2.2.2</span> For Windows</h3>
+<section id="for-windows" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="for-windows"><span class="header-section-number">2.1.2</span> For Windows</h3>
 <ol type="1">
-<li>Go to <a href="https://cran.r-project.org/">https://cran.r-project.org/</a></li>
+<li>Go to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
 <li>Select “Download R for Windows”</li>
 <li>Click on “base”</li>
 <li>Click the first link at the top of the new page (Download R-4.2.2 for Windows)</li>
@@ -443,13 +442,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </ol>
 </section>
 </section>
-<section id="download-rstudio" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="download-rstudio"><span class="header-section-number">2.3</span> Download RStudio</h2>
+<section id="download-rstudio" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="download-rstudio"><span class="header-section-number">2.2</span> Download RStudio</h2>
 <p>Rstudio is like a Microsoft Word for writing text, but instead of text RStudio helps you write in R. RStudio is also free and easy to install! Go to <a href="https://posit.co/download/rstudio-desktop/">RStudio Website</a>, click on DOWNLOAD RSTUDIO or select your operation system below, and follow the isntallation instructions.</p>
 </section>
-<section id="configure-rstudio" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="configure-rstudio"><span class="header-section-number">2.4</span> Configure RStudio</h2>
-<p>First watch an introduction to RStudio: <a href="https://www.youtube.com/watch?v=FIrsOBy5k58">https://www.youtube.com/watch?v=FIrsOBy5k58</a> and introduction to projects: <a href="https://www.youtube.com/watch?v=MdTtTN8PUqU">https://www.youtube.com/watch?v=MdTtTN8PUqU</a></p>
+<section id="configure-rstudio" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="configure-rstudio"><span class="header-section-number">2.3</span> Configure RStudio</h2>
+<p>First watch an introduction to RStudio: <a href="https://www.youtube.com/watch?v=FIrsOBy5k58" class="uri">https://www.youtube.com/watch?v=FIrsOBy5k58</a> and introduction to projects: <a href="https://www.youtube.com/watch?v=MdTtTN8PUqU" class="uri">https://www.youtube.com/watch?v=MdTtTN8PUqU</a></p>
 <p>Now the most crucial part!!! Change the default theme of RStudio from light to dark! To do this</p>
 <ol type="1">
 <li>Go to the top panel</li>
@@ -459,10 +458,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <li>In Editor Theme, select “Dracula”</li>
 <li>Click Apply</li>
 </ol>
-<p>Now let’s install a cooler font with ligatures! Install fira-code: <a href="https://github.com/tonsky/FiraCode/wiki/Installing">https://github.com/tonsky/FiraCode/wiki/Installing</a>. <strong>Restart</strong> RStudio for the font to load. Then go back to Appearance, choose FiraCode, and hit apply.</p>
+<p>Now let’s install a cooler font with ligatures! Install fira-code: <a href="https://github.com/tonsky/FiraCode/wiki/Installing" class="uri">https://github.com/tonsky/FiraCode/wiki/Installing</a>. <strong>Restart</strong> RStudio for the font to load. Then go back to Appearance, choose FiraCode, and hit apply.</p>
 </section>
-<section id="install-packages" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">2.5</span> Install Packages</h2>
+<section id="install-packages" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">2.4</span> Install Packages</h2>
 <p>An R package is a collection of useful functions, documentation, and data sets that can be used in your own R code after it is loaded. These packages typically focus on a specific task and make use of pre-written routines for various data science tasks.</p>
 <p>You can install packages with a single line of code:</p>
 <pre><code>install.packages("tidyverse")</code></pre>
@@ -471,8 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <p>You can load packages using the library() function:</p>
 <pre><code>library("tidyverse")</code></pre>
 <p>Run the following command to install packages we will use in class</p>
-<pre><code>install.packages(c("tidyverse", "janitor", "esquisse", "modelsummary", "styler"))
-</code></pre>
+<pre><code>install.packages(c("tidyverse", "janitor", "esquisse", "modelsummary", "styler"))</code></pre>
 
 
 </section>

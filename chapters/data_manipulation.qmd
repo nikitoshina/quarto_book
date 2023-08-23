@@ -14,7 +14,7 @@ max-height: 300px;
 overflow-y: scroll;
 }
 ```
-In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages, has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using `install.packages("tidyverse")` and `library("tidyverse")` respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing `readr` for data reading, `tidyr` for tidying, `dplyr` for manipulation, and `ggplot2` for visualization. To explore more about Tidyverse, visit their website <https://www.tidyverse.org/>.
+In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages^[A package is a collection of pre-written functions, data, and documentation that enhances the capabilities of the R programming language for specific tasks.], has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using `install.packages("tidyverse")` and `library("tidyverse")` respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing `readr` for data reading, `tidyr` for tidying, `dplyr` for manipulation, and `ggplot2` for visualization. To explore more about Tidyverse, visit their website <https://www.tidyverse.org/>.
 
 ## Basics
 
@@ -126,7 +126,7 @@ To get a glimpse of the data, we can use the `glimpse()` function, which will pr
 data %>% glimpse()
 ```
 
-## Basic Data Management
+## Basic Data Management With `dplyr`
 
 `dplyr` uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator `%>%` from `magrittr` package. The way you use functions in base R is you wrap new function over the previous one, such as `k(g(f(x)))` this will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes `x %>% f() %>% g() %>% k()`! Now you can clearly see that we take `x` and apply `f()`, then `g()`, then `k()`. Note: base R now also has its own pipe `|>`, but we will stick to `%>%` for compatibility across packages.
 
@@ -307,6 +307,19 @@ data_raven %>%
 ```
 
 This time, we ungrouped the data before calculating the ratio, which gives us the correct result!
+
+#### `.by`
+
+Grouping is a commonly performed operation. Having to repeatedly group and ungroup for individual operations can lead to verbosity. To address this, `dplyr` introduced a convenient feature with version 1.0.0 — the `.by` argument within `dplyr` functions. This enhancement streamlines the process and reduces the need for excessive grouping and ungrouping.
+
+```{r}
+#| echo: false
+data_raven %>%
+  drop_na(gender) %>%
+  mutate(n = n(), .by = gender) # <1>
+```
+1. same as `group_by %>% mutate %>% ungroup`
+
 
 ### `rowwise()`
 

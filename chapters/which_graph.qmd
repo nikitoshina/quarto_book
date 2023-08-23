@@ -27,39 +27,51 @@ When working on graphs don't think "what chart should I use?", but "what am I tr
 Graphs for category comparison are a type of data visualization that are used to compare and contrast different categories or groups. The most common of them is bar chart! The one below shows the top 5 countries by GDP per Capita in 1997. You can easily see that Norway is first and Switzerland is 5th!
 
 ```{r}
-gapminder %>% filter(year == 1997) %>% slice_max(gdpPercap, n = 5) %>% ggplot(aes(x = fct_reorder(country,gdpPercap,.desc = T), y = gdpPercap)) + geom_col(fill = "steelblue") + theme_minimal(base_size = 18) + labs(x = NULL, y = NULL, title = "Top 5 countries by GDP per Capita in 1997") + 
-geom_text(aes(label = round(gdpPercap,0)), vjust = 10, color = "white", size = 5) + 
-theme(panel.grid = element_blank(), axis.text.y = element_blank())
+gapminder %>%
+  filter(year == 1997) %>%
+  slice_max(gdpPercap, n = 5) %>%
+  ggplot(aes(x = fct_reorder(country, gdpPercap, .desc = T), y = gdpPercap)) +
+  geom_col(fill = "steelblue") +
+  theme_minimal(base_size = 18) +
+  labs(x = NULL, y = NULL, title = "Top 5 countries by GDP per Capita in 1997") +
+  geom_text(aes(label = round(gdpPercap, 0)), vjust = 10, color = "white", size = 5) +
+  theme(panel.grid = element_blank(), axis.text.y = element_blank())
 ```
 
 Vertical bar charts are great to provide a quick comparison for a small number of categories (less than 7). But if need to show ranking of more things, flip the axis of the bar chart! Additional bonus, horizontal bar charts are great if you have long names to display. Below are the results of the 2021 London election. British YouTuber Niko Omilana finished 5th *for the memes*! Max Fosh, another YouTuber, also passed the cut off!
 
 ```{r barh_data}
-barh_data <- tibble(Candidate = c("Sadiq Khan", "Shaun Bailey", "Siân Berry", 
-"Luisa Porritt", "Niko Omilana", "Laurence Fox", "Brian Rose", 
-"Richard Hewison", "Count Binface", "Mandu Reid", "Piers Corbyn", 
-"Vanessa Hudson", "Peter Gammons", "Farah London", "David Kurten", 
-"Nims Obunge", "Steve Kelleher", "Kam Balayev", "Max Fosh", "Valerie Brown"
-), 
-Percentage = c(40.0, 35.3, 7.8, 4.4, 2.0, 1.9, 
-1.2, 1.1, 1.0, 0.8, 0.8, 0.7, 0.6, 0.5, 0.4, 
-0.4, 0.3, 0.3, 0.2, 0.2)) %>% mutate(is.youtuber = case_when(
+barh_data <- tibble(
+  Candidate = c(
+    "Sadiq Khan", "Shaun Bailey", "Siân Berry",
+    "Luisa Porritt", "Niko Omilana", "Laurence Fox", "Brian Rose",
+    "Richard Hewison", "Count Binface", "Mandu Reid", "Piers Corbyn",
+    "Vanessa Hudson", "Peter Gammons", "Farah London", "David Kurten",
+    "Nims Obunge", "Steve Kelleher", "Kam Balayev", "Max Fosh", "Valerie Brown"
+  ),
+  Percentage = c(
+    40.0, 35.3, 7.8, 4.4, 2.0, 1.9,
+    1.2, 1.1, 1.0, 0.8, 0.8, 0.7, 0.6, 0.5, 0.4,
+    0.4, 0.3, 0.3, 0.2, 0.2
+  )
+) %>% mutate(is.youtuber = case_when(
   Candidate == "Niko Omilana" ~ 1,
   Candidate == "Max Fosh" ~ 2,
-  T ~ 0))
+  T ~ 0
+))
 ```
 
 ```{r}
 barh_data %>%
-ggplot(aes(x = fct_reorder(Candidate, Percentage), y = Percentage, fill = as.factor(is.youtuber))) +
-geom_col() + 
-theme_minimal(base_size = 16) + 
-coord_flip() + 
-labs(x = NULL, y = NULL, title = "London Mayor Elections (2021) by % of Votes") + 
-theme(panel.grid = element_blank(), legend.position = "none", plot.caption.position = "plot") + 
-scale_y_discrete(expand = c(0,0,0,3)) + 
-geom_text(aes(label = Percentage), nudge_y = 0.3, hjust = "left")  + 
-scale_fill_manual(values = c("#c0bfff","#f3e408","#D96161")) 
+  ggplot(aes(x = fct_reorder(Candidate, Percentage), y = Percentage, fill = as.factor(is.youtuber))) +
+  geom_col() +
+  theme_minimal(base_size = 16) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, title = "London Mayor Elections (2021) by % of Votes") +
+  theme(panel.grid = element_blank(), legend.position = "none", plot.caption.position = "plot") +
+  scale_y_discrete(expand = c(0, 0, 0, 3)) +
+  geom_text(aes(label = Percentage), nudge_y = 0.3, hjust = "left") +
+  scale_fill_manual(values = c("#c0bfff", "#f3e408", "#D96161"))
 ```
 
 ## Distribution
@@ -69,8 +81,11 @@ scale_fill_manual(values = c("#c0bfff","#f3e408","#D96161"))
 What if you want to show the distribution of the data? We can use a variation of a bar chart -- histogram! Histograms show the distribution of continuous data by grouping it into bins and displaying the frequency or proportion of observations that fall into each bin. They are great if you want to show the shape of the distribution, but they are very sensitive to the bins you choose. Notice how the shape of the distribution changes for each number of bins. It is important to strike a balance between too few and too many. 6 bins makes our distribution look pretty normal while 30 bins make it all over the place. 15 bins seems about right it preserves the bimodal feature of the distribution, while keeping the picture legible.
 
 ```{r}
-base <- iris %>% ggplot(aes(x = Sepal.Length))  + theme_minimal() + theme(panel.grid = element_blank(), axis.text.y = element_blank()) + 
-  coord_cartesian(expand = FALSE, clip = "off") + labs(y = NULL, x = NULL)
+base <- iris %>% ggplot(aes(x = Sepal.Length)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), axis.text.y = element_blank()) +
+  coord_cartesian(expand = FALSE, clip = "off") +
+  labs(y = NULL, x = NULL)
 hist_1 <- base + geom_histogram(fill = "steelblue", color = "white", bins = 6) + labs(subtitle = "6 bins")
 hist_2 <- base + geom_histogram(fill = "steelblue", color = "white", bins = 15) + labs(subtitle = "15 bins")
 hist_3 <- base + geom_histogram(fill = "steelblue", color = "white", bins = 30) + labs(subtitle = "30 bins")
@@ -83,15 +98,16 @@ hist_3 <- base + geom_histogram(fill = "steelblue", color = "white", bins = 30) 
 Unlike histograms, density plots use a continuous line to represent the data instead of bars. This smooth curve provides a more detailed and nuanced representation of the distribution of the data, allowing for easier detection of patterns and trends. The density plot constructs this line by placing many small normal distributions at each point in the data, which are then used to weigh all points within their respective range and draw a curve connecting them. The width of these curves is controlled by the bandwidth of the density plot, which determines how wide the curves span. A larger bandwidth will consider more points, resulting in a smoother curve, while a smaller bandwidth will lead to a jagged line.
 
 ```{r}
-
-base <- iris %>% ggplot(aes(x = Sepal.Length))  + theme_minimal() + theme(panel.grid = element_blank(), axis.text.y = element_blank()) + 
-  coord_cartesian(expand = FALSE, clip = "off") + labs(y = NULL, x = NULL)
+base <- iris %>% ggplot(aes(x = Sepal.Length)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), axis.text.y = element_blank()) +
+  coord_cartesian(expand = FALSE, clip = "off") +
+  labs(y = NULL, x = NULL)
 dens_1 <- base + geom_density(color = "steelblue", linewidth = 2, bw = 0.3) + labs(subtitle = "Band Width 0.3")
 dens_2 <- base + geom_density(color = "steelblue", linewidth = 2, bw = 0.1) + labs(subtitle = "Band Width 0.1")
 dens_3 <- base + geom_density(color = "steelblue", linewidth = 1, bw = 0.03) + labs(subtitle = "Band Width 0.03")
 
 (dens_1 + dens_2 + dens_3) + plot_annotation(title = "iris Sepal Length Distribution Density Plots with Varying Band Widths")
-
 ```
 
 ### Frequency Polygon
@@ -101,17 +117,20 @@ It is similar to a histogram, but instead of bars, it uses a continuous line to 
 ```{r}
 freq_1 <- base + geom_histogram(fill = "grey", color = "white", bins = 15, alpha = 0.5) + geom_freqpoly(color = "steelblue", bins = 15, linewidth = 1.5) + labs(subtitle = "15 bins")
 
-freq_2 <- iris %>% ggplot(aes(x = Sepal.Length))   + 
-  geom_histogram(aes(fill = Species), position = "dodge", color = "white", bins = 15, alpha = 0.3) + 
-  geom_freqpoly(aes(color = Species), bins = 15, linewidth = 1.5) + labs(subtitle = "15 bins") + 
-  theme_minimal() + 
-  theme(panel.grid = element_blank(), axis.text.y = element_blank(),
-         legend.position = c(.95, .95),
+freq_2 <- iris %>% ggplot(aes(x = Sepal.Length)) +
+  geom_histogram(aes(fill = Species), position = "dodge", color = "white", bins = 15, alpha = 0.3) +
+  geom_freqpoly(aes(color = Species), bins = 15, linewidth = 1.5) +
+  labs(subtitle = "15 bins") +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(), axis.text.y = element_blank(),
+    legend.position = c(.95, .95),
     legend.justification = c("right", "top"),
     legend.box.just = "right",
-    legend.margin = margin(6, 6, 6, 6)) + 
-  coord_cartesian(expand = FALSE, clip = "off") + 
-  labs(y = NULL, x = NULL)  
+    legend.margin = margin(6, 6, 6, 6)
+  ) +
+  coord_cartesian(expand = FALSE, clip = "off") +
+  labs(y = NULL, x = NULL)
 
 freq_1 + freq_2
 ```
@@ -129,21 +148,29 @@ set.seed(1337)
 
 data_dist <- tibble(
   group = factor(c(rep("Group 1", 100), rep("Group 2", 250), rep("Group 3", 25))),
-  value = c(seq(0, 20, length.out = 100),
-            c(rep(0, 5), rnorm(30, 2, .1), rnorm(90, 5.4, .1), rnorm(90, 14.6, .1), rnorm(30, 18, .1), rep(20, 5)),
-            rep(seq(0, 20, length.out = 5), 5))
-  ) %>% 
+  value = c(
+    seq(0, 20, length.out = 100),
+    c(rep(0, 5), rnorm(30, 2, .1), rnorm(90, 5.4, .1), rnorm(90, 14.6, .1), rnorm(30, 18, .1), rep(20, 5)),
+    rep(seq(0, 20, length.out = 5), 5)
+  )
+) %>%
   rowwise() %>%
   mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
 ```
 
 ```{r}
-base2 <- iris %>% ggplot(aes(y = Sepal.Length, x = Species))  + theme_minimal() + theme(panel.grid.major.x  = element_blank(),panel.grid.minor.x  = element_blank()) + 
-  coord_cartesian(expand = FALSE, clip = "off") + labs(y = NULL, x = NULL)
+base2 <- iris %>% ggplot(aes(y = Sepal.Length, x = Species)) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank()) +
+  coord_cartesian(expand = FALSE, clip = "off") +
+  labs(y = NULL, x = NULL)
 box_1 <- base2 + geom_boxplot()
 
-base_dist <- data_dist %>% ggplot(aes(y = value, x = group))  + theme_minimal() + theme(panel.grid.major.x  = element_blank(),panel.grid.minor.x  = element_blank()) + 
-  coord_cartesian(expand = FALSE, clip = "off") + labs(y = NULL, x = NULL)
+base_dist <- data_dist %>% ggplot(aes(y = value, x = group)) +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank()) +
+  coord_cartesian(expand = FALSE, clip = "off") +
+  labs(y = NULL, x = NULL)
 box_2 <- base_dist + geom_boxplot()
 box_3 <- base_dist + geom_boxplot() + geom_point(color = "orange", size = 1.5, alpha = 0.25, position = position_jitter(width = 0.1))
 
@@ -177,7 +204,7 @@ base_dist + geom_violin(scale = "count", bw = .3, color = NA, fill = "steelblue"
 The bee hive plot is a scatter plot that arranges data points as dots to minimize overlap. It's ideal for visualizing small datasets because it creates patterns like a density plot without hiding individual data points.
 
 ```{r}
-bee_1 <- base2 + geom_beeswarm() 
+bee_1 <- base2 + geom_beeswarm()
 bee_2 <- base_dist + geom_beeswarm()
 bee_1 + bee_2
 ```
@@ -185,8 +212,34 @@ bee_1 + bee_2
 All of the plots we have covered so far have their advantages: 1. Box plot shows important statistics 2. Density plot provides high-level view of data shape 3. Bee hive plot "shows" the actual datapoints While combining these plots might make for a crowded visual, with some modifications, it's possible to create a hybrid plot that captures the strengths of each.
 
 ```{r}
-base_dist + geom_violin(fill = "steelblue", alpha = .4, scale = "count", bw = .4) + geom_boxplot(fill = NA, width = .1) + geom_beeswarm(color = "orange", alpha = .8, cex = 1) 
+base_dist + geom_violin(fill = "steelblue", alpha = .4, scale = "count", bw = .4) + geom_boxplot(fill = NA, width = .1) + geom_beeswarm(color = "orange", alpha = .8, cex = 1)
 ```
+
+### Margins
+
+Marginal histograms are a method for visualizing data distributions in relation to two variables. In this visualization, a histogram for each variable is positioned on the scatterplot's edges. This allows us to examine both the individual distributions of each variable and the relationship between the two.
+
+```{r}
+library(ggExtra) # <1>
+
+p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +  # <2>
+  geom_point(aes(color = Species)) + # <3>
+  theme_minimal()+ # <4>
+  theme(legend.position = "bottom", legend.title = element_blank()) # <5>
+
+p_marginal <- ggMarginal(p, type = "density", groupFill = TRUE) # <6>
+
+p_marginal # <7>
+```
+
+1. Load the `ggExtra` package, which provides functions to enhance `ggplot2` plots, such as adding marginal histograms.
+2. Create a base scatter plot of Sepal Length against Sepal Width using the `ggplot` function from the `ggplot2` package. The `aes` function is used to specify the x and y variables.
+3. Add points to the scatter plot using the `geom_point` function, with color representing different Species.
+4. Apply a minimal theme to the plot using the `theme_minimal` function, which removes most non-data ink from the plot.
+5. Adjust the legend position to the bottom and remove the legend title using the `theme` function.
+6. Add marginal histograms to the scatter plot using the `ggMarginal` function, and set the `type` argument to `"density"` to create density plots instead of histograms. The `groupFill` argument is set to TRUE to fill the densities with different colors based on group (Species).
+7. Display the plot.
+
 
 ### Rain Cloud Plot
 
@@ -197,26 +250,26 @@ Isn't this beautiful? We have a box plot, density plot, and jittered points all 
 ```{r}
 base_dist +
   ggdist::stat_halfeye(
-    adjust = .3, #bw
-    width = .6, 
-    .width = 0, 
-    justification = -.2, 
+    adjust = .3, # bw
+    width = .6,
+    .width = 0,
+    justification = -.2,
     point_colour = NA
-  ) + 
+  ) +
   geom_boxplot(
-    width = .15, 
+    width = .15,
     outlier.shape = NA
   ) +
   ## add justified jitter from the {gghalves} package
   gghalves::geom_half_point(
     ## draw jitter on the left
-    side = "l", 
+    side = "l",
     ## control range of jitter
-    range_scale = .4, 
+    range_scale = .4,
     ## add some transparency
     alpha = .3
   ) +
-  coord_cartesian(xlim = c(1.2, NA), clip = "off") 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off")
 ```
 
 One alternative option to the boxplot is to stack the data points and use a minimal boxplot representation. While this alternative can be visually appealing, it is important to ensure that your audience understands the visualization and the meaning behind the stacked data points. It may be necessary to provide additional context or include a note explaining the meaning of the stacked slabs to avoid confusion.
@@ -225,18 +278,17 @@ One alternative option to the boxplot is to stack the data points and use a mini
 base_dist +
   ggdist::stat_halfeye(
     adjust = .3,
-    width = .6, 
+    width = .6,
     ## set slab interval to show IQR and 95% data range
     .width = c(.5, .95)
-  ) + 
+  ) +
   ggdist::stat_dots(
-    side = "left", 
-    dotsize = .8, 
-    justification = 1.05, 
+    side = "left",
+    dotsize = .8,
+    justification = 1.05,
     binwidth = .3
   ) +
-  coord_cartesian(xlim = c(1.2, NA)) 
-
+  coord_cartesian(xlim = c(1.2, NA))
 ```
 
 My personal favorite is the rain cloud plot, which combines vertical lines and a bar plot that is rotated horizontally to resemble actual rain clouds.
@@ -244,14 +296,14 @@ My personal favorite is the rain cloud plot, which combines vertical lines and a
 ```{r}
 base_dist +
   ggdist::stat_halfeye(
-    adjust = .3, 
-    width = .6, 
-    .width = 0, 
-    justification = -.2, 
+    adjust = .3,
+    width = .6,
+    .width = 0,
+    justification = -.2,
     point_colour = NA
-  ) + 
+  ) +
   geom_boxplot(
-    width = .15, 
+    width = .15,
     outlier.shape = NA
   ) +
   geom_half_point(
@@ -262,7 +314,7 @@ base_dist +
     alpha = .2,
     transformation = position_identity()
   ) +
-  coord_cartesian(xlim = c(1.2, NA), clip = "off")+ coord_flip()
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") + coord_flip()
 ```
 
 ## Proportions
@@ -272,22 +324,33 @@ Another big collection of graphs is concerned with communicating proportions and
 ### Stacked Bar Charts
 
 ```{r}
-us_spending <- read_csv("data/USFR_StmtNetCost_2017_2022.csv") %>% janitor::clean_names() %>% filter((restatement_flag == "N") & (agency_name != "Total")) %>% select(year = statement_fiscal_year, agency_name, net_cost_in_billions) %>% mutate(net_cost_in_billions = as.numeric(net_cost_in_billions)) %>% group_by(year) %>% mutate(proportion = round(net_cost_in_billions/sum(net_cost_in_billions),2)) %>% ungroup()
+us_spending <- read_csv("data/USFR_StmtNetCost_2017_2022.csv") %>%
+  janitor::clean_names() %>%
+  filter((restatement_flag == "N") & (agency_name != "Total")) %>%
+  select(year = statement_fiscal_year, agency_name, net_cost_in_billions) %>%
+  mutate(net_cost_in_billions = as.numeric(net_cost_in_billions)) %>%
+  group_by(year) %>%
+  mutate(proportion = round(net_cost_in_billions / sum(net_cost_in_billions), 2)) %>%
+  ungroup()
 
-spending_plot_data <- us_spending %>% group_by(year) %>% mutate(rank = rank(-1*net_cost_in_billions), agency = ifelse(rank>=5, "Other", agency_name)) %>% count(year,agency,wt = net_cost_in_billions) %>%
+spending_plot_data <- us_spending %>%
+  group_by(year) %>%
+  mutate(rank = rank(-1 * net_cost_in_billions), agency = ifelse(rank >= 5, "Other", agency_name)) %>%
+  count(year, agency, wt = net_cost_in_billions) %>%
   mutate(other = agency == "Other") %>%
   group_by(other) %>%
-  arrange(desc(n),.by_group = T) %>%
+  arrange(desc(n), .by_group = T) %>%
   ungroup() %>%
-  mutate(order = -1*row_number()) %>%
-  mutate(agency = recode( agency,
-"Department of Veterans Affairs" = "Veterans Affairs",
-"Department of Health and Human Services" = "HHS",
-"Department of Defense" = "Defense",
-"Social Security Administration" = "SSA",
-"Department of the Treasury" = "Treasury",
-"Interest on Treasury Securities Held by the Public" = "i on Treasuries"
-)) %>% mutate(agency = factor(agency,c("Other", "i on Treasuries", "Veterans Affairs", "Defense", "Treasury", "SSA", "HHS")))
+  mutate(order = -1 * row_number()) %>%
+  mutate(agency = recode(agency,
+    "Department of Veterans Affairs" = "Veterans Affairs",
+    "Department of Health and Human Services" = "HHS",
+    "Department of Defense" = "Defense",
+    "Social Security Administration" = "SSA",
+    "Department of the Treasury" = "Treasury",
+    "Interest on Treasury Securities Held by the Public" = "i on Treasuries"
+  )) %>%
+  mutate(agency = factor(agency, c("Other", "i on Treasuries", "Veterans Affairs", "Defense", "Treasury", "SSA", "HHS")))
 ```
 
 A stacked bar chart is a type of graph used to visualize the distribution of a categorical variable. It is similar to a regular bar chart, but in a stacked bar chart, each bar is divided into sections, with each section representing a different category within the variable. The height of each section corresponds to the proportion or frequency of the category within that bar. Stacked bar charts are particularly useful when comparing the distribution of a variable across different subgroups or time periods, as they allow for easy visualization of both the overall distribution as well as the relative proportions of each subgroup or category within the variable.
@@ -295,23 +358,27 @@ A stacked bar chart is a type of graph used to visualize the distribution of a c
 As an example we will use US Expernditures across departments. Only top four departments are shown, the rest are collected into "other". The graph below shows absolute values and its components across years.
 
 ```{r}
-spending_plot_data %>% 
-  ggplot(aes(x = year, y = n, fill = agency, label = agency)) + 
-  geom_col(position="stack", show.legend = F) +
-  scale_fill_manual(values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")) + theme_minimal() + theme(legend.position = "right") + labs(y = "Millions Spent") + 
+spending_plot_data %>%
+  ggplot(aes(x = year, y = n, fill = agency, label = agency)) +
+  geom_col(position = "stack", show.legend = F) +
+  scale_fill_manual(values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")) +
+  theme_minimal() +
+  theme(legend.position = "right") +
+  labs(y = "Millions Spent") +
   geom_label(size = 3, aes(group = agency), position = position_stack(vjust = 0.5), fill = "white", alpha = 0.5)
 ```
 
 What if we are not concerned with absolute values, but relative proportions? We can use percentage stacked chart.
 
 ```{r}
-spending_plot_data %>% 
-  ggplot(aes(x = year, y = n, fill = agency)) + 
-  geom_col(position="fill", show.legend = T) +
-  scale_fill_manual( 
-    values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")) +
-  theme_minimal() + 
-  theme(legend.position = "none") + 
+spending_plot_data %>%
+  ggplot(aes(x = year, y = n, fill = agency)) +
+  geom_col(position = "fill", show.legend = T) +
+  scale_fill_manual(
+    values = c("#5E5E5E", "#EF3B2C", "#2CA25F", "#006837", "#F7DC6F", "#00FFFF", "#FFC0CB")
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
   labs(y = "Millions Spent", fill = "Department") +
   geom_label(aes(x = year, y = n, label = agency, group = agency), size = 3, position = position_fill(vjust = 0.5), fill = "white", alpha = 0.5)
 ```
@@ -319,13 +386,15 @@ spending_plot_data %>%
 Stacked charts are useful for visualizing the distribution of categorical variables, but they can be challenging to compare categories in the middle. Typically, the easiest categories to compare are the ones at the top and bottom of the stack. For example, suppose we want to compare the trend of the Department of Defense and the Social Security Administration (SSA) over time. In this case, we can move these categories to the top and bottom positions of the stacked chart to make it easier to compare their relative sizes and trends.
 
 ```{r}
-spending_plot_data %>% mutate(agency = factor(agency,c("Defense", "Other", "i on Treasuries", "Veterans Affairs", "Treasury", "HHS", "SSA"))) %>% 
-  ggplot(aes(x = year, y = n, fill = agency)) + 
-  geom_col(position="fill", show.legend = T) +
-  scale_fill_manual( 
-    values = c("#006837", "#5E5E5E", "#EF3B2C", "#2CA25F",  "#F7DC6F", "#FFC0CB", "#00FFFF")) +
-  theme_minimal() + 
-  theme(legend.position = "none") + 
+spending_plot_data %>%
+  mutate(agency = factor(agency, c("Defense", "Other", "i on Treasuries", "Veterans Affairs", "Treasury", "HHS", "SSA"))) %>%
+  ggplot(aes(x = year, y = n, fill = agency)) +
+  geom_col(position = "fill", show.legend = T) +
+  scale_fill_manual(
+    values = c("#006837", "#5E5E5E", "#EF3B2C", "#2CA25F", "#F7DC6F", "#FFC0CB", "#00FFFF")
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
   labs(y = "Millions Spent", fill = "Department") +
   geom_label(aes(x = year, y = n, label = agency, group = agency), size = 3, position = position_fill(vjust = 0.5), fill = "white", alpha = 0.5)
 ```
@@ -337,51 +406,54 @@ data used from: The Growth Lab at Harvard University. The Atlas of Economic Comp
 As an example dataset we will be used Japan's export basket from 2020.
 
 ```{r}
-japan_export <- read_csv("data/japan_export_2020.csv") %>% rename("export" = `Gross Export`) %>% janitor::clean_names()
+japan_export <- read_csv("data/japan_export_2020.csv") %>%
+  rename("export" = `Gross Export`) %>%
+  janitor::clean_names()
 
-japan_sectors <- japan_export %>% count(sector, wt = share) 
+japan_sectors <- japan_export %>% count(sector, wt = share)
 ```
 
 Pie charts are a variation of bar charts where each category is represented as a slice of a circle. While pie charts can effectively communicate when one category is significantly larger or smaller than the others, they become difficult to read and compare accurately when there are many categories or the differences between them are small. Comparing angles and areas of the slices can be confusing, leading to misinterpretation of the data.
 
 ```{r}
 pie_1 <- japan_sectors %>%
-  ggplot(aes(x="", y=n, fill = sector)) +
-  geom_bar(stat="identity", width=1) +
-    theme_void()  +
+  ggplot(aes(x = "", y = n, fill = sector)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_void() +
   theme(legend.position = "none")
 
 pie_2 <- japan_sectors %>%
-  ggplot(aes(x="", y=n, fill = sector)) +
-  geom_bar(stat="identity", width=1) +
-  coord_polar("y", start=0) +
+  ggplot(aes(x = "", y = n, fill = sector)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
   theme(panel.background = element_rect(fill = "white"))
 
-pie_1 + pie_2 
+pie_1 + pie_2
 ```
 
 But if absolutely must use a pie chart here are some rules to keep in mind: 1. Limit the number of categories to 5-7 at most. 2. Consider grouping small categories into an "Other" category to avoid clutter. 3. Arrange the slices in decreasing order of size, starting at 12 o'clock to aid in comparing them. 4. Include the category labels directly on the chart instead of relying solely on a legend. 5. Add separators between slices to help with distinguishing between them. However, keep in mind that this can also add visual clutter, so use with discretion.
 
 ```{r}
-japan_sectors %>% 
-  mutate(sector = ifelse(n<11,"Other",sector)) %>% 
+japan_sectors %>%
+  mutate(sector = ifelse(n < 11, "Other", sector)) %>%
   count(sector, wt = n) %>%
   mutate(other = sector == "Other") %>%
   group_by(other) %>%
-  arrange(desc(n),.by_group = T) %>%
+  arrange(desc(n), .by_group = T) %>%
   ungroup() %>%
   mutate(prop = n / sum(japan_sectors$n) * 100) %>%
-  mutate(ypos = cumsum(prop)- 0.5*prop ) %>%
-  mutate(order = -1*row_number()) %>%
-ggplot(aes(x="", y=n, fill= fct_reorder(sector, order))) +
-  geom_bar(stat="identity", width=1, color = 
-             "white") +
-  coord_polar("y", start=0) +
-    theme_void() + 
-  theme(legend.position="none") +
-  geom_text(aes(y = ypos, label = sector), color = c("white","#333333", rep("white",4)), size=6) +
+  mutate(ypos = cumsum(prop) - 0.5 * prop) %>%
+  mutate(order = -1 * row_number()) %>%
+  ggplot(aes(x = "", y = n, fill = fct_reorder(sector, order))) +
+  geom_bar(
+    stat = "identity", width = 1, color =
+      "white"
+  ) +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  theme(legend.position = "none") +
+  geom_text(aes(y = ypos, label = sector), color = c("white", "#333333", rep("white", 4)), size = 6) +
   scale_fill_manual(values = c("grey", "#009E73", "#D55E00", "#CC79A7", "#F0E442", "#56B4E9"))
-  
 ```
 
 ### Waffle Chart
@@ -390,34 +462,36 @@ One alternative to a pie chart could be a waffle chart (these food names make me
 
 ```{r}
 # waffle_data <- waffle_iron(iris, aes_d(group = Species))
-# 
-# ggplot(waffle_data, aes(x, y, fill = group)) + 
-#   geom_waffle() + 
-#   coord_equal() + 
-#   scale_fill_viridis_d() + 
+#
+# ggplot(waffle_data, aes(x, y, fill = group)) +
+#   geom_waffle() +
+#   coord_equal() +
+#   scale_fill_viridis_d() +
 #   theme_waffle() +
 #   theme(legend.position = "top", legend.title = element_blank()) +
 #   labs(x = element_blank(), y = element_blank())
 
-japan_sectors %>% 
-    # mutate(sector = ifelse(n<11,"Other",sector)) %>% 
-    # count(sector, wt = n) %>%
-    # mutate(other = sector == "Other") %>%
-    # group_by(other) %>%
-    # arrange(desc(n),.by_group = T) %>%
-    # ungroup() %>%
-    mutate(other = sector == "Other") %>%
-    uncount(weights = round(n,0)) %>% 
-    group_by(other) %>%
-    arrange(desc(n),.by_group = T) %>%
-    ungroup() %>%
-    waffle_iron(aes_d(group = sector)) %>%
-    ggplot( aes(x, y, fill = group))+ geom_waffle() + coord_equal() + 
-    # scale_fill_viridis_d() + 
-    theme_waffle() +
-    theme(legend.position = "top", legend.title = element_blank()) +
-    labs(x = element_blank(), y = element_blank()) +
-    scale_fill_manual(values = c("#CF8F00", "#E52B50", "#003366", "#228B22", "#1E90FF", "#FFD700", "#666666", "#800000", "#9932CC", "#8B0000", "#FFA07A"))
+japan_sectors %>%
+  # mutate(sector = ifelse(n<11,"Other",sector)) %>%
+  # count(sector, wt = n) %>%
+  # mutate(other = sector == "Other") %>%
+  # group_by(other) %>%
+  # arrange(desc(n),.by_group = T) %>%
+  # ungroup() %>%
+  mutate(other = sector == "Other") %>%
+  uncount(weights = round(n, 0)) %>%
+  group_by(other) %>%
+  arrange(desc(n), .by_group = T) %>%
+  ungroup() %>%
+  waffle_iron(aes_d(group = sector)) %>%
+  ggplot(aes(x, y, fill = group)) +
+  geom_waffle() +
+  coord_equal() +
+  # scale_fill_viridis_d() +
+  theme_waffle() +
+  theme(legend.position = "top", legend.title = element_blank()) +
+  labs(x = element_blank(), y = element_blank()) +
+  scale_fill_manual(values = c("#CF8F00", "#E52B50", "#003366", "#228B22", "#1E90FF", "#FFD700", "#666666", "#800000", "#9932CC", "#8B0000", "#FFA07A"))
 ```
 
 ### Tree Maps
@@ -429,21 +503,22 @@ Treemaps are a type of visualization that allows you to display hierarchical dat
 ```{r}
 library(treemap)
 treemap(japan_export,
-        index = c("sector","name"),
-        vSize = "export",
-        type = "index",
-        fontsize.labels = c(14,10),
-        fontcolor.labels = c("black","white"),
-        fontface.labels = c(2,1),
-        bg.labels = 0,
-        align.labels = list(
-          c("center","center"),
-          c("left","top")
-        ),
-        border.col = c("black","white"),
-        border.lwds = c(3,1),
-        title = "Japans Export in 2020",
-        fontsize.title = 14)
+  index = c("sector", "name"),
+  vSize = "export",
+  type = "index",
+  fontsize.labels = c(14, 10),
+  fontcolor.labels = c("black", "white"),
+  fontface.labels = c(2, 1),
+  bg.labels = 0,
+  align.labels = list(
+    c("center", "center"),
+    c("left", "top")
+  ),
+  border.col = c("black", "white"),
+  border.lwds = c(3, 1),
+  title = "Japans Export in 2020",
+  fontsize.title = 14
+)
 ```
 
 ## Correlation
@@ -455,19 +530,40 @@ In addition to understanding the distribution of individual variables, it is imp
 The most common visualization is scatter plot! It is not a secret for anyone that scatter plots are amazing and perhaps the most persuasive types of plot. We can add a fitted lines to the plot to better show the relationships between the variables.
 
 ```{r}
-scatter_1 <- iris %>% drop_na() %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
-  geom_point(show.legend = F) + 
-  geom_dl(aes(label = Species), method = "smart.grid") + 
-  theme_minimal() + 
+scatter_1 <- iris %>%
+  drop_na() %>%
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(show.legend = F) +
+  geom_dl(aes(label = Species), method = "smart.grid") +
+  theme_minimal() +
   labs(x = "Sepal Length", y = "Sepal Width")
 
-scatter_2 <- scatter_1 + geom_smooth(se = F, fullrange = F, show.legend = F, method = "lm", linewidth = 2) + theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
+scatter_2 <- scatter_1 + geom_smooth(se = F, fullrange = F, show.legend = F, method = "lm", linewidth = 2) + theme(
+  axis.title.y = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks.y = element_blank()
+)
 
 scatter_1 + scatter_2
-
 ```
+
+### Correlograms
+
+Correlograms serve as efficient tools to visualize the relationships within a dataset swiftly. They allow us to visualize correlations between all pairs of variables, offering valuable insights into the data. Understanding these correlations is critical during the analysis and exploration of multidimensional data. Several ways exist to structure correlograms, but we will present the most common one below.
+
+```{r}
+library(GGally)
+
+GGally::ggpairs(
+  iris, # <1>
+  mapping = ggplot2::aes(color = Species), # <2>
+  progress = FALSE # <3>
+)
+```
+1. Select the dataset for which to create a correlogram, in this case, the iris dataset.
+2. Map the color of points to the Species variable.
+3. Disable the display of a progress bar during the plot's creation.
+
 
 ## Change over Time
 
@@ -499,26 +595,31 @@ sp500 <- tribble(
   2009, 948.05, 931.80, 1127.78, 676.53, 1115.10, 23.45,
   2008, 1220.04, 1447.16, 1447.16, 752.44, 903.25, -38.49,
   2007, 1477.18, 1416.60, 1565.15, 1374.12, 1468.36, 3.53,
-  2006, 1310.46, 1268.80, 1427.09, 1223.69, 1418.30, 13.62)
+  2006, 1310.46, 1268.80, 1427.09, 1223.69, 1418.30, 13.62
+)
 ```
 
 ```{r}
 sp500_scatter <- sp500 %>%
-select(-c(Average_Closing_Price,Year_Open,Annual_Percent_Change)) %>% pivot_longer(-Year) %>% mutate(year_close = name != "Year_Close") %>%
-ggplot(aes(x = Year, y = value, color = name)) + 
-  geom_point(size = 2) + 
+  select(-c(Average_Closing_Price, Year_Open, Annual_Percent_Change)) %>%
+  pivot_longer(-Year) %>%
+  mutate(year_close = name != "Year_Close") %>%
+  ggplot(aes(x = Year, y = value, color = name)) +
+  geom_point(size = 2) +
   geom_dl(aes(label = name), method = "smart.grid") +
-  theme_minimal() + 
+  theme_minimal() +
   theme(legend.position = "none") +
   labs(x = element_blank(), y = "S&P 500")
 
 sp500_line <- sp500 %>%
-select(-c(Average_Closing_Price,Year_Open,Annual_Percent_Change)) %>% pivot_longer(-Year) %>% mutate(year_close = name != "Year_Close") %>%
-ggplot(aes(x = Year, y = value, color = name)) + 
-  geom_line(aes(linetype = year_close),linewidth = 1.5) + 
+  select(-c(Average_Closing_Price, Year_Open, Annual_Percent_Change)) %>%
+  pivot_longer(-Year) %>%
+  mutate(year_close = name != "Year_Close") %>%
+  ggplot(aes(x = Year, y = value, color = name)) +
+  geom_line(aes(linetype = year_close), linewidth = 1.5) +
   scale_color_manual(values = c("steelblue", "grey", "grey")) +
   geom_dl(aes(label = name), method = "smart.grid") +
-  theme_minimal() + 
+  theme_minimal() +
   theme(legend.position = "none") +
   labs(x = element_blank(), y = "S&P 500")
 
@@ -536,15 +637,17 @@ waterfall_data <- tribble(
   2018, 1745, -255,
   2019, 1930, 185,
   2020, 2197, 267,
-  2021, 2453, 256,  
+  2021, 2453, 256,
   2022, 2300, -153,
 ) %>% transmute(as.character(year), change)
+
 library(waterfalls)
 
-
-waterfall(waterfall_data,  calc_total = TRUE,
-          total_rect_color = "orange",
-          total_rect_text_color = "white") + 
+waterfall(waterfall_data,
+  calc_total = TRUE,
+  total_rect_color = "orange",
+  total_rect_text_color = "white"
+) +
   theme_minimal() +
   theme(panel.grid = element_blank()) +
   labs(y = "Money in Bank", x = NULL)

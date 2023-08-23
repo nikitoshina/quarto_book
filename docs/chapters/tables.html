@@ -96,7 +96,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.26/datatables.js"></script>
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="../site_libs/jszip-1.12.1/jszip.min.js"></script>
+<script src="../site_libs/pdfmake-1.12.1/pdfmake.js"></script>
+<script src="../site_libs/pdfmake-1.12.1/vfs_fonts.js"></script>
+<link href="../site_libs/dt-ext-buttons-1.12.1/css/buttons.dataTables.min.css" rel="stylesheet">
+<script src="../site_libs/dt-ext-buttons-1.12.1/js/dataTables.buttons.min.js"></script>
+<script src="../site_libs/dt-ext-buttons-1.12.1/js/buttons.html5.min.js"></script>
+<script src="../site_libs/dt-ext-buttons-1.12.1/js/buttons.colVis.min.js"></script>
+<script src="../site_libs/dt-ext-buttons-1.12.1/js/buttons.print.min.js"></script>
+<link href="../site_libs/dt-plugin-searchhighlight-1.12.1/source.css" rel="stylesheet">
+<script src="../site_libs/dt-plugin-searchhighlight-1.12.1/jquery.highlight.js"></script>
+<script src="../site_libs/dt-plugin-searchhighlight-1.12.1/source.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -388,7 +410,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prepare-your-data" id="toc-prepare-your-data" class="nav-link active" data-scroll-target="#prepare-your-data"><span class="header-section-number">29.0.1</span> Prepare your data</a></li>
+  <li><a href="#gt-tables" id="toc-gt-tables" class="nav-link active" data-scroll-target="#gt-tables"><span class="header-section-number">29.1</span> <code>gt</code> Tables</a>
+  <ul class="collapse">
+  <li><a href="#installing-and-loading-the-gt-package" id="toc-installing-and-loading-the-gt-package" class="nav-link" data-scroll-target="#installing-and-loading-the-gt-package"><span class="header-section-number">29.1.1</span> Installing and Loading the <code>gt</code> Package</a></li>
+  <li><a href="#prepare-your-data" id="toc-prepare-your-data" class="nav-link" data-scroll-target="#prepare-your-data"><span class="header-section-number">29.1.2</span> Prepare your data</a></li>
+  </ul></li>
+  <li><a href="#dt-tables" id="toc-dt-tables" class="nav-link" data-scroll-target="#dt-tables"><span class="header-section-number">29.2</span> DT Tables</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/tables.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -436,50 +463,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </header>
 
-<p>Honestly, I hate making tables. I do not know why, but they never turn out right. However, the <code>gt</code> (Grammar of Tables) package makes it easy and actually enjoyable. So, in this section we’ll cover how to make simple tables and summary tables using <code>gt</code>. There are many other packages for making tables besides <code>gt</code> such as <code>kableExtra</code> for more complicated tables, <code>DT</code> tables for HTML interactive tables, <code>reactablefmtr</code> for fancy reactive tables, <code>flextable</code>, and many other. While it is almost universal agreement to use ggplot and plotly for making visualizations, dplyr and data.table for data wrangling there is no such thing as a default package for making tables. For this reason we will be using <code>gt</code> and <code>gtsummary</code> as they are the easiest, in my opinion, to use and cover all the simple tasks. gt package in R makes it simple to produce elegant and customizable tables that can be used in various contexts, such as reports, presentations, and web applications.</p>
+<p>Honestly, I hate making tables. I do not know why, but they never turn out right. However, the <code>gt</code> (Grammar of Tables) package makes it easy and actually enjoyable. Therefore, this section will focus on creating simple summary tables using <code>gt</code>. It’s essential to note that <code>gt</code> is just one of many available packages for table creation - others include <code>kableExtra</code> for more complex tables, <code>DT</code> tables for HTML interactive tables, <code>reactablefmtr</code> for reactive tables, and <code>flextable</code>, among others. Unlike visualization and data wrangling where the use of <code>ggplot</code>, <code>plotly</code>, <code>dplyr</code>, and <code>data.table</code> is nearly universal, there is no default package for table creation. Hence, we’ve chosen <code>gt</code> and <code>gtsummary</code> due to their ease of use and their ability to handle a range of basic tasks. The <code>gt</code> package simplifies the creation of elegant, customizable tables, making it a versatile tool for reports, presentations, and web applications.</p>
 <blockquote class="blockquote">
-<p>You can ask 10 R users what is their go to table package and get 20 different options.</p>
+<p>Ask ten R users about their preferred table package, and you’ll likely receive twenty different answers.</p>
 </blockquote>
-<p><img src="images/gt_table_parts.png" class="img-fluid" alt="GT Table Parts"> ## <code>gt</code> Tables ### Install and load the <code>gt</code> package First, make sure you have the gt package installed. We will also use <code>gtExtras</code> package to extend the capabilities of the <code>gt</code> package with custom themes, conditional formatting, and more. Also we will use <code>emojifont</code> package to access emojis and <code>dplyr</code> from <code>tidyverse</code> for data manipulation.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c("gt","gtExtras","emojifont"))</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.1     ✔ purrr   1.0.1
-✔ tibble  3.2.1     ✔ dplyr   1.1.1
-✔ tidyr   1.3.0     ✔ stringr 1.5.0
-✔ readr   2.1.3     ✔ forcats 1.0.0
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gt_table_parts.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">GT Table Parts</figcaption>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emojifont)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="gt-tables" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="gt-tables"><span class="header-section-number">29.1</span> <code>gt</code> Tables</h2>
+<section id="installing-and-loading-the-gt-package" class="level3" data-number="29.1.1">
+<h3 data-number="29.1.1" class="anchored" data-anchor-id="installing-and-loading-the-gt-package"><span class="header-section-number">29.1.1</span> Installing and Loading the <code>gt</code> Package</h3>
+<p>To start, ensure you have the <code>gt</code> package installed. We’ll also use the <code>gtExtras</code> package to expand the <code>gt</code> package’s capabilities with custom themes, conditional formatting, and more. In addition, we’ll use the <code>emojifont</code> package for accessing emojis and <code>dplyr</code> from <code>tidyverse</code> for data manipulation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("gt","gtExtras","emojifont"))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emojifont)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As an example we will use built-in <code>gtcars</code> dataset which contains information on various automobiles. Let’s look at it using <code>gt()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">sample_n</span>(gt<span class="sc">::</span>gtcars, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">sample_n</span>(gt<span class="sc">::</span>gtcars, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="zjvoqteyvp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zjvoqteyvp table {
+<div id="xnoacmctzb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xnoacmctzb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zjvoqteyvp thead, #zjvoqteyvp tbody, #zjvoqteyvp tfoot, #zjvoqteyvp tr, #zjvoqteyvp td, #zjvoqteyvp th {
+#xnoacmctzb thead, #xnoacmctzb tbody, #xnoacmctzb tfoot, #xnoacmctzb tr, #xnoacmctzb td, #xnoacmctzb th {
   border-style: none;
 }
 
-#zjvoqteyvp p {
+#xnoacmctzb p {
   margin: 0;
   padding: 0;
 }
 
-#zjvoqteyvp .gt_table {
+#xnoacmctzb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -505,12 +532,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_caption {
+#xnoacmctzb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zjvoqteyvp .gt_title {
+#xnoacmctzb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -522,7 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#zjvoqteyvp .gt_subtitle {
+#xnoacmctzb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -534,7 +561,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#zjvoqteyvp .gt_heading {
+#xnoacmctzb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -546,13 +573,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_bottom_border {
+#xnoacmctzb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_col_headings {
+#xnoacmctzb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -567,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_col_heading {
+#xnoacmctzb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -587,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#zjvoqteyvp .gt_column_spanner_outer {
+#xnoacmctzb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,15 +626,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#zjvoqteyvp .gt_column_spanner_outer:first-child {
+#xnoacmctzb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zjvoqteyvp .gt_column_spanner_outer:last-child {
+#xnoacmctzb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zjvoqteyvp .gt_column_spanner {
+#xnoacmctzb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -619,11 +646,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#zjvoqteyvp .gt_spanner_row {
+#xnoacmctzb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zjvoqteyvp .gt_group_heading {
+#xnoacmctzb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -649,7 +676,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#zjvoqteyvp .gt_empty_group_heading {
+#xnoacmctzb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -664,15 +691,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#zjvoqteyvp .gt_from_md > :first-child {
+#xnoacmctzb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zjvoqteyvp .gt_from_md > :last-child {
+#xnoacmctzb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zjvoqteyvp .gt_row {
+#xnoacmctzb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -691,7 +718,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#zjvoqteyvp .gt_stub {
+#xnoacmctzb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -704,7 +731,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#zjvoqteyvp .gt_stub_row_group {
+#xnoacmctzb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -718,15 +745,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#zjvoqteyvp .gt_row_group_first td {
+#xnoacmctzb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zjvoqteyvp .gt_row_group_first th {
+#xnoacmctzb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zjvoqteyvp .gt_summary_row {
+#xnoacmctzb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -736,16 +763,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#zjvoqteyvp .gt_first_summary_row {
+#xnoacmctzb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_first_summary_row.thick {
+#xnoacmctzb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zjvoqteyvp .gt_last_summary_row {
+#xnoacmctzb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -755,7 +782,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_grand_summary_row {
+#xnoacmctzb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -765,7 +792,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#zjvoqteyvp .gt_first_grand_summary_row {
+#xnoacmctzb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -775,7 +802,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_last_grand_summary_row_top {
+#xnoacmctzb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -785,11 +812,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_striped {
+#xnoacmctzb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zjvoqteyvp .gt_table_body {
+#xnoacmctzb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -798,7 +825,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_footnotes {
+#xnoacmctzb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -812,7 +839,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_footnote {
+#xnoacmctzb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -821,7 +848,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#zjvoqteyvp .gt_sourcenotes {
+#xnoacmctzb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -835,7 +862,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#zjvoqteyvp .gt_sourcenote {
+#xnoacmctzb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -843,63 +870,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#zjvoqteyvp .gt_left {
+#xnoacmctzb .gt_left {
   text-align: left;
 }
 
-#zjvoqteyvp .gt_center {
+#xnoacmctzb .gt_center {
   text-align: center;
 }
 
-#zjvoqteyvp .gt_right {
+#xnoacmctzb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zjvoqteyvp .gt_font_normal {
+#xnoacmctzb .gt_font_normal {
   font-weight: normal;
 }
 
-#zjvoqteyvp .gt_font_bold {
+#xnoacmctzb .gt_font_bold {
   font-weight: bold;
 }
 
-#zjvoqteyvp .gt_font_italic {
+#xnoacmctzb .gt_font_italic {
   font-style: italic;
 }
 
-#zjvoqteyvp .gt_super {
+#xnoacmctzb .gt_super {
   font-size: 65%;
 }
 
-#zjvoqteyvp .gt_footnote_marks {
+#xnoacmctzb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zjvoqteyvp .gt_asterisk {
+#xnoacmctzb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zjvoqteyvp .gt_indent_1 {
+#xnoacmctzb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zjvoqteyvp .gt_indent_2 {
+#xnoacmctzb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zjvoqteyvp .gt_indent_3 {
+#xnoacmctzb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zjvoqteyvp .gt_indent_4 {
+#xnoacmctzb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zjvoqteyvp .gt_indent_5 {
+#xnoacmctzb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -925,21 +952,21 @@ document.addEventListener("DOMContentLoaded", function () {
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="mfr" class="gt_row gt_left">Rolls-Royce</td>
-<td headers="model" class="gt_row gt_left">Wraith</td>
+    <tr><td headers="mfr" class="gt_row gt_left">Audi</td>
+<td headers="model" class="gt_row gt_left">RS 7</td>
 <td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">Base Coupe</td>
-<td headers="bdy_style" class="gt_row gt_left">coupe</td>
-<td headers="hp" class="gt_row gt_right">624</td>
-<td headers="hp_rpm" class="gt_row gt_right">5600</td>
-<td headers="trq" class="gt_row gt_right">590</td>
-<td headers="trq_rpm" class="gt_row gt_right">1500</td>
-<td headers="mpg_c" class="gt_row gt_right">13</td>
-<td headers="mpg_h" class="gt_row gt_right">21</td>
-<td headers="drivetrain" class="gt_row gt_left">rwd</td>
-<td headers="trsmn" class="gt_row gt_left">8a</td>
-<td headers="ctry_origin" class="gt_row gt_left">United Kingdom</td>
-<td headers="msrp" class="gt_row gt_right">304350</td></tr>
+<td headers="trim" class="gt_row gt_left">Quattro Hatchback</td>
+<td headers="bdy_style" class="gt_row gt_left">hatchback</td>
+<td headers="hp" class="gt_row gt_right">560</td>
+<td headers="hp_rpm" class="gt_row gt_right">5700</td>
+<td headers="trq" class="gt_row gt_right">516</td>
+<td headers="trq_rpm" class="gt_row gt_right">1750</td>
+<td headers="mpg_c" class="gt_row gt_right">15</td>
+<td headers="mpg_h" class="gt_row gt_right">25</td>
+<td headers="drivetrain" class="gt_row gt_left">awd</td>
+<td headers="trsmn" class="gt_row gt_left">8am</td>
+<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
+<td headers="msrp" class="gt_row gt_right">108900</td></tr>
     <tr><td headers="mfr" class="gt_row gt_left">Mercedes-Benz</td>
 <td headers="model" class="gt_row gt_left">AMG GT</td>
 <td headers="year" class="gt_row gt_right">2016</td>
@@ -955,36 +982,36 @@ document.addEventListener("DOMContentLoaded", function () {
 <td headers="trsmn" class="gt_row gt_left">7a</td>
 <td headers="ctry_origin" class="gt_row gt_left">Germany</td>
 <td headers="msrp" class="gt_row gt_right">129900</td></tr>
-    <tr><td headers="mfr" class="gt_row gt_left">Ferrari</td>
-<td headers="model" class="gt_row gt_left">458 Speciale</td>
-<td headers="year" class="gt_row gt_right">2015</td>
-<td headers="trim" class="gt_row gt_left">Base Coupe</td>
-<td headers="bdy_style" class="gt_row gt_left">coupe</td>
-<td headers="hp" class="gt_row gt_right">597</td>
-<td headers="hp_rpm" class="gt_row gt_right">9000</td>
-<td headers="trq" class="gt_row gt_right">398</td>
-<td headers="trq_rpm" class="gt_row gt_right">6000</td>
-<td headers="mpg_c" class="gt_row gt_right">13</td>
-<td headers="mpg_h" class="gt_row gt_right">17</td>
+    <tr><td headers="mfr" class="gt_row gt_left">Porsche</td>
+<td headers="model" class="gt_row gt_left">Panamera</td>
+<td headers="year" class="gt_row gt_right">2016</td>
+<td headers="trim" class="gt_row gt_left">Base Sedan</td>
+<td headers="bdy_style" class="gt_row gt_left">sedan</td>
+<td headers="hp" class="gt_row gt_right">310</td>
+<td headers="hp_rpm" class="gt_row gt_right">6200</td>
+<td headers="trq" class="gt_row gt_right">295</td>
+<td headers="trq_rpm" class="gt_row gt_right">3750</td>
+<td headers="mpg_c" class="gt_row gt_right">18</td>
+<td headers="mpg_h" class="gt_row gt_right">28</td>
 <td headers="drivetrain" class="gt_row gt_left">rwd</td>
 <td headers="trsmn" class="gt_row gt_left">7a</td>
-<td headers="ctry_origin" class="gt_row gt_left">Italy</td>
-<td headers="msrp" class="gt_row gt_right">291744</td></tr>
-    <tr><td headers="mfr" class="gt_row gt_left">Jaguar</td>
-<td headers="model" class="gt_row gt_left">F-Type</td>
+<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
+<td headers="msrp" class="gt_row gt_right">78100</td></tr>
+    <tr><td headers="mfr" class="gt_row gt_left">Aston Martin</td>
+<td headers="model" class="gt_row gt_left">Vanquish</td>
 <td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">Base (Manual) Coupe</td>
+<td headers="trim" class="gt_row gt_left">Base Coupe</td>
 <td headers="bdy_style" class="gt_row gt_left">coupe</td>
-<td headers="hp" class="gt_row gt_right">340</td>
-<td headers="hp_rpm" class="gt_row gt_right">6500</td>
-<td headers="trq" class="gt_row gt_right">332</td>
-<td headers="trq_rpm" class="gt_row gt_right">3500</td>
-<td headers="mpg_c" class="gt_row gt_right">16</td>
-<td headers="mpg_h" class="gt_row gt_right">24</td>
+<td headers="hp" class="gt_row gt_right">568</td>
+<td headers="hp_rpm" class="gt_row gt_right">6650</td>
+<td headers="trq" class="gt_row gt_right">465</td>
+<td headers="trq_rpm" class="gt_row gt_right">5500</td>
+<td headers="mpg_c" class="gt_row gt_right">13</td>
+<td headers="mpg_h" class="gt_row gt_right">21</td>
 <td headers="drivetrain" class="gt_row gt_left">rwd</td>
-<td headers="trsmn" class="gt_row gt_left">6m</td>
+<td headers="trsmn" class="gt_row gt_left">8am</td>
 <td headers="ctry_origin" class="gt_row gt_left">United Kingdom</td>
-<td headers="msrp" class="gt_row gt_right">65000</td></tr>
+<td headers="msrp" class="gt_row gt_right">287250</td></tr>
   </tbody>
   
   
@@ -992,41 +1019,69 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-<section id="prepare-your-data" class="level3" data-number="29.0.1">
-<h3 data-number="29.0.1" class="anchored" data-anchor-id="prepare-your-data"><span class="header-section-number">29.0.1</span> Prepare your data</h3>
-<p><code>gt</code> works seamlessly with <code>dplyr</code>, allowing us to utilize familiar verbs for table formatting. To begin, let’s focus on the top auto industry country, Germany. With multiple manufacturers present, we can group cars by their manufacturer (mfr) and sort them based on their price (msrp). When creating a table, we can designate a column as row names using the <code>rowname_col</code> parameter. In this case, we’ll use the ‘model’ column.</p>
+</section>
+<section id="prepare-your-data" class="level3" data-number="29.1.2">
+<h3 data-number="29.1.2" class="anchored" data-anchor-id="prepare-your-data"><span class="header-section-number">29.1.2</span> Prepare your data</h3>
+<p>The <code>gt</code> package works seamlessly with <code>dplyr</code>, allowing us to utilize familiar verbs for table formatting. Let’s start by focusing on the top auto industry country, Germany. We’ll group cars by their manufacturer (mfr) and sort them based on their price (msrp). During table creation, the <code>rowname_col</code> parameter allows us to designate a column as row names - for this example, we’ll use the ‘model’ column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(table_grouped <span class="ot">&lt;-</span> gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter to include only cars with origin country as Germany</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ctry_origin <span class="sc">==</span> <span class="st">"Germany"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group the data by manufacturer</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mfr) <span class="sc">%&gt;%</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrange the data in descending order based on MSRP</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(msrp)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To save space we will look only at 2 models from 2 manufacturers</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mfr <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Audi"</span>,<span class="st">"BMW"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start a gt table, setting rownames to be the model column</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"model"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>(table_grouped <span class="ot">&lt;-</span> gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ctry_origin <span class="sc">==</span> <span class="st">"Germany"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3">3</button><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(mfr) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4">4</button><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(msrp)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="5">5</button><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="6">6</button><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(mfr <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Audi"</span>, <span class="st">"BMW"</span>)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="7">7</button><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"model"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="1">Start with the <code>gtcars</code> dataset from the <code>gt</code> package.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="2">Filter the data to include only cars that originated from Germany.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-3" data-code-lines="3">Group the data by the manufacturer.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-3" data-code-lines="4">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-annotation="5" data-code-cell="annotated-cell-3" data-code-lines="5">Select only the top two cars (based on the previous sorting).</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-annotation="6" data-code-cell="annotated-cell-3" data-code-lines="6">Filter to include only cars from Audi and BMW.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-annotation="7" data-code-cell="annotated-cell-3" data-code-lines="7">Start a new <code>gt</code> table using the car models as row names.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="kfuocgyvbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kfuocgyvbu table {
+<div id="ebwslvoyud" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ebwslvoyud table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kfuocgyvbu thead, #kfuocgyvbu tbody, #kfuocgyvbu tfoot, #kfuocgyvbu tr, #kfuocgyvbu td, #kfuocgyvbu th {
+#ebwslvoyud thead, #ebwslvoyud tbody, #ebwslvoyud tfoot, #ebwslvoyud tr, #ebwslvoyud td, #ebwslvoyud th {
   border-style: none;
 }
 
-#kfuocgyvbu p {
+#ebwslvoyud p {
   margin: 0;
   padding: 0;
 }
 
-#kfuocgyvbu .gt_table {
+#ebwslvoyud .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1052,12 +1107,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_caption {
+#ebwslvoyud .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kfuocgyvbu .gt_title {
+#ebwslvoyud .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1069,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#kfuocgyvbu .gt_subtitle {
+#ebwslvoyud .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1081,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#kfuocgyvbu .gt_heading {
+#ebwslvoyud .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1093,13 +1148,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_bottom_border {
+#ebwslvoyud .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_col_headings {
+#ebwslvoyud .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1114,7 +1169,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_col_heading {
+#ebwslvoyud .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1134,7 +1189,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#kfuocgyvbu .gt_column_spanner_outer {
+#ebwslvoyud .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1146,15 +1201,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#kfuocgyvbu .gt_column_spanner_outer:first-child {
+#ebwslvoyud .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kfuocgyvbu .gt_column_spanner_outer:last-child {
+#ebwslvoyud .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kfuocgyvbu .gt_column_spanner {
+#ebwslvoyud .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1166,11 +1221,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#kfuocgyvbu .gt_spanner_row {
+#ebwslvoyud .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kfuocgyvbu .gt_group_heading {
+#ebwslvoyud .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1196,7 +1251,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#kfuocgyvbu .gt_empty_group_heading {
+#ebwslvoyud .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1211,15 +1266,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#kfuocgyvbu .gt_from_md > :first-child {
+#ebwslvoyud .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kfuocgyvbu .gt_from_md > :last-child {
+#ebwslvoyud .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kfuocgyvbu .gt_row {
+#ebwslvoyud .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1238,7 +1293,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#kfuocgyvbu .gt_stub {
+#ebwslvoyud .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1251,7 +1306,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#kfuocgyvbu .gt_stub_row_group {
+#ebwslvoyud .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1265,15 +1320,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#kfuocgyvbu .gt_row_group_first td {
+#ebwslvoyud .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kfuocgyvbu .gt_row_group_first th {
+#ebwslvoyud .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kfuocgyvbu .gt_summary_row {
+#ebwslvoyud .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1283,16 +1338,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#kfuocgyvbu .gt_first_summary_row {
+#ebwslvoyud .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_first_summary_row.thick {
+#ebwslvoyud .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kfuocgyvbu .gt_last_summary_row {
+#ebwslvoyud .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1302,7 +1357,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_grand_summary_row {
+#ebwslvoyud .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1312,7 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#kfuocgyvbu .gt_first_grand_summary_row {
+#ebwslvoyud .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1322,7 +1377,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_last_grand_summary_row_top {
+#ebwslvoyud .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1332,11 +1387,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_striped {
+#ebwslvoyud .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kfuocgyvbu .gt_table_body {
+#ebwslvoyud .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1345,7 +1400,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_footnotes {
+#ebwslvoyud .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1359,7 +1414,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_footnote {
+#ebwslvoyud .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1368,7 +1423,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#kfuocgyvbu .gt_sourcenotes {
+#ebwslvoyud .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1382,7 +1437,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#kfuocgyvbu .gt_sourcenote {
+#ebwslvoyud .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1390,63 +1445,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#kfuocgyvbu .gt_left {
+#ebwslvoyud .gt_left {
   text-align: left;
 }
 
-#kfuocgyvbu .gt_center {
+#ebwslvoyud .gt_center {
   text-align: center;
 }
 
-#kfuocgyvbu .gt_right {
+#ebwslvoyud .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kfuocgyvbu .gt_font_normal {
+#ebwslvoyud .gt_font_normal {
   font-weight: normal;
 }
 
-#kfuocgyvbu .gt_font_bold {
+#ebwslvoyud .gt_font_bold {
   font-weight: bold;
 }
 
-#kfuocgyvbu .gt_font_italic {
+#ebwslvoyud .gt_font_italic {
   font-style: italic;
 }
 
-#kfuocgyvbu .gt_super {
+#ebwslvoyud .gt_super {
   font-size: 65%;
 }
 
-#kfuocgyvbu .gt_footnote_marks {
+#ebwslvoyud .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kfuocgyvbu .gt_asterisk {
+#ebwslvoyud .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kfuocgyvbu .gt_indent_1 {
+#ebwslvoyud .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kfuocgyvbu .gt_indent_2 {
+#ebwslvoyud .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kfuocgyvbu .gt_indent_3 {
+#ebwslvoyud .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kfuocgyvbu .gt_indent_4 {
+#ebwslvoyud .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kfuocgyvbu .gt_indent_5 {
+#ebwslvoyud .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1540,34 +1595,51 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-<p>The table contains many columns, so we can streamline it by hiding some using <code>cols_hide</code>. Why use <code>cols_hide</code> instead of dropping them in <code>dplyr</code>? Sometimes we want to use a column just to use in conditional statements, but don’t want to show them. To group performance-related columns together, we’ll employ <code>cols_move</code>, this could be done with <code>dplyr</code>, but it is nice to do it in our table-making flow. We can then distinguish these columns by adding a header spanner with <code>tab_spanner</code>, where we choose <code>columns</code> and set <code>label</code>.</p>
+<p>The table contains many columns, and to make it more readable, we can hide some columns using <code>cols_hide</code>. Why use <code>cols_hide</code> instead of dropping the columns with <code>dplyr</code>? Sometimes, we may need to utilize a column in conditional statements but we do not want to display it. To group performance-related columns together, we can use <code>cols_move</code>. Though this could be done with <code>dplyr</code>, integrating it into our table-creation process makes the workflow more streamlined. We can distinguish these grouped columns by adding a header spanner with <code>tab_spanner</code>, specifying the <code>columns</code> and setting the <code>label</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(table_span <span class="ot">&lt;-</span> table_grouped <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hide specific columns</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(trim, bdy_style, drivetrain, ctry_origin, trsmn)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move specific columns after the year column</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move</span>(<span class="at">columns =</span> <span class="fu">c</span>(msrp, trsmn, mpg_c, mpg_h), <span class="at">after =</span> year) <span class="sc">%&gt;%</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a spanner header for performance-related columns</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), <span class="at">label =</span> <span class="st">"Performance"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>(table_span <span class="ot">&lt;-</span> table_grouped <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(trim, bdy_style, drivetrain, ctry_origin, trsmn)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3">3</button><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_move</span>(<span class="at">columns =</span> <span class="fu">c</span>(msrp, trsmn, mpg_c, mpg_h), <span class="at">after =</span> year) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4">4</button><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), <span class="at">label =</span> <span class="st">"Performance"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-4" data-code-lines="1">Start with the previously created <code>table_grouped</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-4" data-code-lines="2">Hide certain columns that aren’t needed in the final table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-4" data-code-lines="3">Move specific columns to appear after the <code>year</code> column.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-4" data-code-lines="4">Create a spanner header for performance-related columns.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="erixfkzdab" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#erixfkzdab table {
+<div id="lurdlagwcn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lurdlagwcn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#erixfkzdab thead, #erixfkzdab tbody, #erixfkzdab tfoot, #erixfkzdab tr, #erixfkzdab td, #erixfkzdab th {
+#lurdlagwcn thead, #lurdlagwcn tbody, #lurdlagwcn tfoot, #lurdlagwcn tr, #lurdlagwcn td, #lurdlagwcn th {
   border-style: none;
 }
 
-#erixfkzdab p {
+#lurdlagwcn p {
   margin: 0;
   padding: 0;
 }
 
-#erixfkzdab .gt_table {
+#lurdlagwcn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1593,12 +1665,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_caption {
+#lurdlagwcn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#erixfkzdab .gt_title {
+#lurdlagwcn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1610,7 +1682,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#erixfkzdab .gt_subtitle {
+#lurdlagwcn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1622,7 +1694,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#erixfkzdab .gt_heading {
+#lurdlagwcn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1634,13 +1706,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_bottom_border {
+#lurdlagwcn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_col_headings {
+#lurdlagwcn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1655,7 +1727,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_col_heading {
+#lurdlagwcn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1675,7 +1747,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#erixfkzdab .gt_column_spanner_outer {
+#lurdlagwcn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1687,15 +1759,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#erixfkzdab .gt_column_spanner_outer:first-child {
+#lurdlagwcn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#erixfkzdab .gt_column_spanner_outer:last-child {
+#lurdlagwcn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#erixfkzdab .gt_column_spanner {
+#lurdlagwcn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1707,11 +1779,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#erixfkzdab .gt_spanner_row {
+#lurdlagwcn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#erixfkzdab .gt_group_heading {
+#lurdlagwcn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1737,7 +1809,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#erixfkzdab .gt_empty_group_heading {
+#lurdlagwcn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1752,15 +1824,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#erixfkzdab .gt_from_md > :first-child {
+#lurdlagwcn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#erixfkzdab .gt_from_md > :last-child {
+#lurdlagwcn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#erixfkzdab .gt_row {
+#lurdlagwcn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1779,7 +1851,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#erixfkzdab .gt_stub {
+#lurdlagwcn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1792,7 +1864,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#erixfkzdab .gt_stub_row_group {
+#lurdlagwcn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1806,15 +1878,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#erixfkzdab .gt_row_group_first td {
+#lurdlagwcn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#erixfkzdab .gt_row_group_first th {
+#lurdlagwcn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#erixfkzdab .gt_summary_row {
+#lurdlagwcn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1824,16 +1896,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#erixfkzdab .gt_first_summary_row {
+#lurdlagwcn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_first_summary_row.thick {
+#lurdlagwcn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#erixfkzdab .gt_last_summary_row {
+#lurdlagwcn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1843,7 +1915,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_grand_summary_row {
+#lurdlagwcn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1853,7 +1925,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#erixfkzdab .gt_first_grand_summary_row {
+#lurdlagwcn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1863,7 +1935,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_last_grand_summary_row_top {
+#lurdlagwcn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1873,11 +1945,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_striped {
+#lurdlagwcn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#erixfkzdab .gt_table_body {
+#lurdlagwcn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1886,7 +1958,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_footnotes {
+#lurdlagwcn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1900,7 +1972,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_footnote {
+#lurdlagwcn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1909,7 +1981,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#erixfkzdab .gt_sourcenotes {
+#lurdlagwcn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1923,7 +1995,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#erixfkzdab .gt_sourcenote {
+#lurdlagwcn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1931,63 +2003,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#erixfkzdab .gt_left {
+#lurdlagwcn .gt_left {
   text-align: left;
 }
 
-#erixfkzdab .gt_center {
+#lurdlagwcn .gt_center {
   text-align: center;
 }
 
-#erixfkzdab .gt_right {
+#lurdlagwcn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#erixfkzdab .gt_font_normal {
+#lurdlagwcn .gt_font_normal {
   font-weight: normal;
 }
 
-#erixfkzdab .gt_font_bold {
+#lurdlagwcn .gt_font_bold {
   font-weight: bold;
 }
 
-#erixfkzdab .gt_font_italic {
+#lurdlagwcn .gt_font_italic {
   font-style: italic;
 }
 
-#erixfkzdab .gt_super {
+#lurdlagwcn .gt_super {
   font-size: 65%;
 }
 
-#erixfkzdab .gt_footnote_marks {
+#lurdlagwcn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#erixfkzdab .gt_asterisk {
+#lurdlagwcn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#erixfkzdab .gt_indent_1 {
+#lurdlagwcn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#erixfkzdab .gt_indent_2 {
+#lurdlagwcn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#erixfkzdab .gt_indent_3 {
+#lurdlagwcn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#erixfkzdab .gt_indent_4 {
+#lurdlagwcn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#erixfkzdab .gt_indent_5 {
+#lurdlagwcn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2061,39 +2133,62 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-<p>Sometime we want to combine pairs of related columns into a single column for that we can use the <code>cols_merge()</code> function. We merge horsepower (hp) and associated rpm (hp_rpm), torque (trq) and associated rpm (trq_rpm), and miles per gallon in city (mpg_c) and highway (mpg_h). The function takes columns, which can be referenced in text with <code>{#}</code> of column. Because we are working with HTML tables we can use tags, in particularly &lt;br&gt; to add a break. Note that the joined column will use first column’s name and the labels are purely cosmetical and can’t be used as reference. Now let’s give some better names to the columns with <code>cols_label()</code> function to assign custom labels to the columns, where <code>column_name = "column_label"</code>.</p>
+<p>At times, we may want to combine pairs of related columns into a single column. For that, we can use the <code>cols_merge()</code> function. We’ll merge horsepower (hp) with associated rpm (hp_rpm), torque (trq) with associated rpm (trq_rpm), and city miles per gallon (mpg_c) with highway miles per gallon (mpg_h). The function takes <code>columns</code>, which can be referenced in <code>text</code> with <code>{#}</code> of column. Since we are working with HTML tables, we can use HTML tags, specifically <code>&lt;br&gt;</code>, to add a line break. Note that the joined column will use the first column’s name, and the labels are purely cosmetic and can’t be used as reference. We’ll then use the <code>cols_label()</code> function to assign custom labels to the columns, using the <code>column_name = "column_label"</code> syntax.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(table_merge <span class="ot">&lt;-</span> table_span <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(hp, hp_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Merge trq and trq_rpm columns</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(trq, trq_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Merge mpg_c and mpg_h columns</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h), <span class="at">pattern =</span> <span class="st">"{1}c&lt;br&gt;{2}h"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set custom labels for specific columns</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">year =</span> <span class="st">"Year"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">msrp =</span> <span class="st">"MSRP"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">mpg_c =</span> <span class="st">"MPG"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">hp =</span> <span class="st">"Horse Power"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">trq =</span> <span class="st">"Torque"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>(table_merge <span class="ot">&lt;-</span> table_span <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(hp, hp_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(trq, trq_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4">4</button><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h), <span class="at">pattern =</span> <span class="st">"{1}c&lt;br&gt;{2}h"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5">5</button><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">"Year"</span>,</span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">msrp =</span> <span class="st">"MSRP"</span>,</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mpg_c =</span> <span class="st">"MPG"</span>,</span>
+<span id="annotated-cell-5-9"><a href="#annotated-cell-5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hp =</span> <span class="st">"Horse Power"</span>,</span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">trq =</span> <span class="st">"Torque"</span></span>
+<span id="annotated-cell-5-11"><a href="#annotated-cell-5-11" aria-hidden="true" tabindex="-1"></a>  ))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-5" data-code-lines="1">Start with the previously created <code>table_span</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-5" data-code-lines="2">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-5" data-code-lines="3">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-5" data-code-lines="4">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-annotation="5" data-code-cell="annotated-cell-5" data-code-lines="5">Set custom labels for specific columns.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="ujazgswuyc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ujazgswuyc table {
+<div id="wgxblowkxy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wgxblowkxy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ujazgswuyc thead, #ujazgswuyc tbody, #ujazgswuyc tfoot, #ujazgswuyc tr, #ujazgswuyc td, #ujazgswuyc th {
+#wgxblowkxy thead, #wgxblowkxy tbody, #wgxblowkxy tfoot, #wgxblowkxy tr, #wgxblowkxy td, #wgxblowkxy th {
   border-style: none;
 }
 
-#ujazgswuyc p {
+#wgxblowkxy p {
   margin: 0;
   padding: 0;
 }
 
-#ujazgswuyc .gt_table {
+#wgxblowkxy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2119,12 +2214,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_caption {
+#wgxblowkxy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ujazgswuyc .gt_title {
+#wgxblowkxy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2136,7 +2231,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#ujazgswuyc .gt_subtitle {
+#wgxblowkxy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2148,7 +2243,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#ujazgswuyc .gt_heading {
+#wgxblowkxy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2160,13 +2255,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_bottom_border {
+#wgxblowkxy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_col_headings {
+#wgxblowkxy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2181,7 +2276,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_col_heading {
+#wgxblowkxy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2201,7 +2296,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ujazgswuyc .gt_column_spanner_outer {
+#wgxblowkxy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2213,15 +2308,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#ujazgswuyc .gt_column_spanner_outer:first-child {
+#wgxblowkxy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ujazgswuyc .gt_column_spanner_outer:last-child {
+#wgxblowkxy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ujazgswuyc .gt_column_spanner {
+#wgxblowkxy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2233,11 +2328,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#ujazgswuyc .gt_spanner_row {
+#wgxblowkxy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ujazgswuyc .gt_group_heading {
+#wgxblowkxy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2263,7 +2358,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#ujazgswuyc .gt_empty_group_heading {
+#wgxblowkxy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2278,15 +2373,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#ujazgswuyc .gt_from_md > :first-child {
+#wgxblowkxy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ujazgswuyc .gt_from_md > :last-child {
+#wgxblowkxy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ujazgswuyc .gt_row {
+#wgxblowkxy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2305,7 +2400,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ujazgswuyc .gt_stub {
+#wgxblowkxy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2318,7 +2413,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ujazgswuyc .gt_stub_row_group {
+#wgxblowkxy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2332,15 +2427,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#ujazgswuyc .gt_row_group_first td {
+#wgxblowkxy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ujazgswuyc .gt_row_group_first th {
+#wgxblowkxy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ujazgswuyc .gt_summary_row {
+#wgxblowkxy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2350,16 +2445,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ujazgswuyc .gt_first_summary_row {
+#wgxblowkxy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_first_summary_row.thick {
+#wgxblowkxy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ujazgswuyc .gt_last_summary_row {
+#wgxblowkxy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2369,7 +2464,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_grand_summary_row {
+#wgxblowkxy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2379,7 +2474,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ujazgswuyc .gt_first_grand_summary_row {
+#wgxblowkxy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2389,7 +2484,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_last_grand_summary_row_top {
+#wgxblowkxy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2399,11 +2494,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_striped {
+#wgxblowkxy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ujazgswuyc .gt_table_body {
+#wgxblowkxy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2412,7 +2507,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_footnotes {
+#wgxblowkxy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2426,7 +2521,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_footnote {
+#wgxblowkxy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2435,7 +2530,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ujazgswuyc .gt_sourcenotes {
+#wgxblowkxy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2449,7 +2544,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ujazgswuyc .gt_sourcenote {
+#wgxblowkxy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2457,63 +2552,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ujazgswuyc .gt_left {
+#wgxblowkxy .gt_left {
   text-align: left;
 }
 
-#ujazgswuyc .gt_center {
+#wgxblowkxy .gt_center {
   text-align: center;
 }
 
-#ujazgswuyc .gt_right {
+#wgxblowkxy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ujazgswuyc .gt_font_normal {
+#wgxblowkxy .gt_font_normal {
   font-weight: normal;
 }
 
-#ujazgswuyc .gt_font_bold {
+#wgxblowkxy .gt_font_bold {
   font-weight: bold;
 }
 
-#ujazgswuyc .gt_font_italic {
+#wgxblowkxy .gt_font_italic {
   font-style: italic;
 }
 
-#ujazgswuyc .gt_super {
+#wgxblowkxy .gt_super {
   font-size: 65%;
 }
 
-#ujazgswuyc .gt_footnote_marks {
+#wgxblowkxy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ujazgswuyc .gt_asterisk {
+#wgxblowkxy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ujazgswuyc .gt_indent_1 {
+#wgxblowkxy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ujazgswuyc .gt_indent_2 {
+#wgxblowkxy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ujazgswuyc .gt_indent_3 {
+#wgxblowkxy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ujazgswuyc .gt_indent_4 {
+#wgxblowkxy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ujazgswuyc .gt_indent_5 {
+#wgxblowkxy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2572,44 +2667,55 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-<p><code>gt</code> offers a variety of formatting functions that begin with <code>fmt_*</code>. These functions are useful for formatting numeric and text columns, such as setting the <code>msrp</code> column to display currency in USD without decimals. Column alignments can be adjusted using <code>cols_align</code>, allowing you to choose columns and set alignments to “right”, “left”, or “center”. Since the merged columns appear bulky with two lines, we can reduce the text size using <code>tab_style</code>. This function takes a <code>style</code> definition provided by helper functions such as <code>cell_styles</code>, which includes supported style information. In this case, we utilize <code>cell_text</code> to set the text size to “12px”. The second argument is <code>location</code>, which uses another helper function <code>cells_*()</code>. To target cells in the body, we apply <code>cells_body</code> for the columns <code>mpg_c</code>, <code>hp</code>, and <code>trq</code>. Occasionally, we might want to enhance our tables by adding color. This can be achieved using the <code>data_color</code> function, which allows us to create a simple gradient or apply a solid color to the data. This function is a lot more complex you can use specify <code>domain</code> and use prebuilt palettes. You can also consider using similar function <code>gt_color_rows()</code> from <code>gtExtras</code>. For more information refer to the documentation.</p>
+<p>The <code>gt</code> package provides a variety of <code>fmt_*</code> formatting functions that are useful for adjusting the display of numeric and text columns. For example, we can set the <code>msrp</code> column to display currency in USD without decimals. We can adjust the alignment of columns using <code>cols_align</code>, allowing us to select columns and set alignments to “right”, “left”, or “center”. Since the merged columns appear bulky with two lines, we can decrease the text size using <code>tab_style</code>. This function utilizes a <code>style</code> definition, provided by helper functions such as <code>cell_styles</code> that include supported style information. In this example, we use <code>cell_text</code> to set the text size to “12px”. The second argument, <code>locations</code>, uses another helper function <code>cells_*()</code>. To target cells in the body, we apply <code>cells_body</code> to the columns <code>mpg_c</code>, <code>hp</code>, and <code>trq</code>. To enhance our tables with color, we can use the <code>data_color</code> function, which supports the creation of a simple gradient or the application of a solid color to the data. The function can specify a <code>domain</code> and use prebuilt palettes. For more functionality, consider <code>gt_color_rows()</code> from <code>gtExtras</code>. For more information, refer to the package’s documentation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(table_format <span class="ot">&lt;-</span> table_merge <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format the msrp column as currency</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> msrp, <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Center align specific columns</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq), <span class="at">align =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply cell text style to specific columns</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">size =</span> <span class="st">"12px"</span>),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq))</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a data-driven color scale to the msrp column</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> msrp, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"aquamarine"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Since gt v0.9.0, the `colors` argument has been deprecated.
-• Please use the `palette` argument to define a color palette.
-This warning is displayed once every 8 hours.</code></pre>
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>(table_format <span class="ot">&lt;-</span> table_merge <span class="sc">%&gt;%</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> msrp, <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq), <span class="at">align =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">size =</span> <span class="st">"12px"</span>),</span>
+<span id="annotated-cell-6-6"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq))</span>
+<span id="annotated-cell-6-7"><a href="#annotated-cell-6-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4">4</button><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> msrp, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"aquamarine"</span>)))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-6" data-code-lines="2">Format the msrp column as currency</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-6" data-code-lines="3">Center align specific columns</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-6" data-code-lines="4,5,6,7">Apply cell text style to specific columns</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-6" data-code-lines="8">Apply a data-driven color scale to the msrp column</span>
+</dd>
+</dl>
 </div>
 <div class="cell-output-display">
 
-<div id="sboaehzhgv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sboaehzhgv table {
+<div id="ldswkskdsr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ldswkskdsr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sboaehzhgv thead, #sboaehzhgv tbody, #sboaehzhgv tfoot, #sboaehzhgv tr, #sboaehzhgv td, #sboaehzhgv th {
+#ldswkskdsr thead, #ldswkskdsr tbody, #ldswkskdsr tfoot, #ldswkskdsr tr, #ldswkskdsr td, #ldswkskdsr th {
   border-style: none;
 }
 
-#sboaehzhgv p {
+#ldswkskdsr p {
   margin: 0;
   padding: 0;
 }
 
-#sboaehzhgv .gt_table {
+#ldswkskdsr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2635,12 +2741,12 @@ This warning is displayed once every 8 hours.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_caption {
+#ldswkskdsr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sboaehzhgv .gt_title {
+#ldswkskdsr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2652,7 +2758,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-width: 0;
 }
 
-#sboaehzhgv .gt_subtitle {
+#ldswkskdsr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2664,7 +2770,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-width: 0;
 }
 
-#sboaehzhgv .gt_heading {
+#ldswkskdsr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2676,13 +2782,13 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_bottom_border {
+#ldswkskdsr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_col_headings {
+#ldswkskdsr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2697,7 +2803,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_col_heading {
+#ldswkskdsr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2717,7 +2823,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#sboaehzhgv .gt_column_spanner_outer {
+#ldswkskdsr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2729,15 +2835,15 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 4px;
 }
 
-#sboaehzhgv .gt_column_spanner_outer:first-child {
+#ldswkskdsr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sboaehzhgv .gt_column_spanner_outer:last-child {
+#ldswkskdsr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sboaehzhgv .gt_column_spanner {
+#ldswkskdsr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2749,11 +2855,11 @@ This warning is displayed once every 8 hours.</code></pre>
   width: 100%;
 }
 
-#sboaehzhgv .gt_spanner_row {
+#ldswkskdsr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sboaehzhgv .gt_group_heading {
+#ldswkskdsr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,7 +2885,7 @@ This warning is displayed once every 8 hours.</code></pre>
   text-align: left;
 }
 
-#sboaehzhgv .gt_empty_group_heading {
+#ldswkskdsr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2794,15 +2900,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: middle;
 }
 
-#sboaehzhgv .gt_from_md > :first-child {
+#ldswkskdsr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sboaehzhgv .gt_from_md > :last-child {
+#ldswkskdsr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sboaehzhgv .gt_row {
+#ldswkskdsr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2821,7 +2927,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#sboaehzhgv .gt_stub {
+#ldswkskdsr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2834,7 +2940,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#sboaehzhgv .gt_stub_row_group {
+#ldswkskdsr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2848,15 +2954,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: top;
 }
 
-#sboaehzhgv .gt_row_group_first td {
+#ldswkskdsr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sboaehzhgv .gt_row_group_first th {
+#ldswkskdsr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sboaehzhgv .gt_summary_row {
+#ldswkskdsr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2866,16 +2972,16 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#sboaehzhgv .gt_first_summary_row {
+#ldswkskdsr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_first_summary_row.thick {
+#ldswkskdsr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sboaehzhgv .gt_last_summary_row {
+#ldswkskdsr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2885,7 +2991,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_grand_summary_row {
+#ldswkskdsr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2895,7 +3001,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#sboaehzhgv .gt_first_grand_summary_row {
+#ldswkskdsr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2905,7 +3011,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_last_grand_summary_row_top {
+#ldswkskdsr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2915,11 +3021,11 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_striped {
+#ldswkskdsr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sboaehzhgv .gt_table_body {
+#ldswkskdsr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2928,7 +3034,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_footnotes {
+#ldswkskdsr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2942,7 +3048,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_footnote {
+#ldswkskdsr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2951,7 +3057,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#sboaehzhgv .gt_sourcenotes {
+#ldswkskdsr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2965,7 +3071,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sboaehzhgv .gt_sourcenote {
+#ldswkskdsr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2973,63 +3079,63 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#sboaehzhgv .gt_left {
+#ldswkskdsr .gt_left {
   text-align: left;
 }
 
-#sboaehzhgv .gt_center {
+#ldswkskdsr .gt_center {
   text-align: center;
 }
 
-#sboaehzhgv .gt_right {
+#ldswkskdsr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sboaehzhgv .gt_font_normal {
+#ldswkskdsr .gt_font_normal {
   font-weight: normal;
 }
 
-#sboaehzhgv .gt_font_bold {
+#ldswkskdsr .gt_font_bold {
   font-weight: bold;
 }
 
-#sboaehzhgv .gt_font_italic {
+#ldswkskdsr .gt_font_italic {
   font-style: italic;
 }
 
-#sboaehzhgv .gt_super {
+#ldswkskdsr .gt_super {
   font-size: 65%;
 }
 
-#sboaehzhgv .gt_footnote_marks {
+#ldswkskdsr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sboaehzhgv .gt_asterisk {
+#ldswkskdsr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sboaehzhgv .gt_indent_1 {
+#ldswkskdsr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sboaehzhgv .gt_indent_2 {
+#ldswkskdsr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sboaehzhgv .gt_indent_3 {
+#ldswkskdsr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sboaehzhgv .gt_indent_4 {
+#ldswkskdsr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sboaehzhgv .gt_indent_5 {
+#ldswkskdsr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3088,35 +3194,56 @@ This warning is displayed once every 8 hours.</code></pre>
 </div>
 </div>
 </div>
-<p>The table looks great! To set a title and subtitle, use the <code>tab_header()</code> function. In this example, we add a title “German Automobiles” and an emoji-inclusive subtitle using the <code>emojifont</code> package. Since some readers may be unfamiliar with the term “MSRP,” let’s clarify it using a footnote. Footnotes can be added to individual cells using expressions or by specifying the row number, here the most expensive car is <strong>BMW i8</strong>, which is also electric! Like <code>tab_style</code>, you need to provide the location and <code>footnote</code> text. Don’t forget to include your data source with the <code>tab_source_note</code> function. By wrapping text in <code>md()</code>, you can utilize Markdown syntax for formatting, including adding links.</p>
+<p>The table is now quite good looking! We can set a title and subtitle using the <code>tab_header()</code> function. In this example, we add a title “German Automobiles” and an emoji-inclusive subtitle using the <code>emojifont</code> package. To clarify the term “MSRP” for unfamiliar readers, we can use a footnote. Footnotes can be added to individual cells either by specifying the row number or using expressions - here, the most expensive car is the <strong>BMW i8</strong>, which is also electric! Like <code>tab_style</code>, you need to provide the <code>location</code> and <code>footnote</code> text. Don’t forget to add your data source with the <code>tab_source_note</code> function. Wrapping text in <code>md()</code> allows us to utilize Markdown syntax for formatting, including adding links.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(table_header <span class="ot">&lt;-</span> table_format <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a title and subtitle to the table</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"German Automobiles"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"These are some nice "</span>, emojifont<span class="sc">::</span><span class="fu">emoji</span>(<span class="st">"car"</span>), <span class="st">"s"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add footnotes to specific cells</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> msrp), <span class="at">footnote =</span> <span class="st">"Manufacturer's Suggested Retail Price in USD"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_body</span>(msrp, msrp <span class="sc">==</span> <span class="fu">max</span>(msrp)), <span class="at">footnote =</span> <span class="st">"Electric cars used to be expensive"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a source note to the table</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>(table_header <span class="ot">&lt;-</span> table_format <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"German Automobiles"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"These are some nice "</span>, emojifont<span class="sc">::</span><span class="fu">emoji</span>(<span class="st">"car"</span>), <span class="st">"s"</span>)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> msrp), <span class="at">footnote =</span> <span class="st">"Manufacturer's Suggested Retail Price in USD"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_body</span>(msrp, msrp <span class="sc">==</span> <span class="fu">max</span>(msrp)), <span class="at">footnote =</span> <span class="st">"Electric cars used to be expensive"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5">5</button><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)"</span>)))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-7" data-code-lines="1">Start with the previously formatted table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-7" data-code-lines="2">Add a title and a subtitle to the table with an emoji.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-7" data-code-lines="3">Add a footnote to clarify what MSRP stands for.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-7" data-code-lines="4">Add a specific footnote to the most expensive car, noting that electric cars used to be expensive.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-annotation="5" data-code-cell="annotated-cell-7" data-code-lines="5">Add a source note to cite the source of the data.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="xaehrvxwmg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xaehrvxwmg table {
+<div id="svfvqsxxvw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#svfvqsxxvw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xaehrvxwmg thead, #xaehrvxwmg tbody, #xaehrvxwmg tfoot, #xaehrvxwmg tr, #xaehrvxwmg td, #xaehrvxwmg th {
+#svfvqsxxvw thead, #svfvqsxxvw tbody, #svfvqsxxvw tfoot, #svfvqsxxvw tr, #svfvqsxxvw td, #svfvqsxxvw th {
   border-style: none;
 }
 
-#xaehrvxwmg p {
+#svfvqsxxvw p {
   margin: 0;
   padding: 0;
 }
 
-#xaehrvxwmg .gt_table {
+#svfvqsxxvw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3142,12 +3269,12 @@ This warning is displayed once every 8 hours.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_caption {
+#svfvqsxxvw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xaehrvxwmg .gt_title {
+#svfvqsxxvw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3159,7 +3286,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-width: 0;
 }
 
-#xaehrvxwmg .gt_subtitle {
+#svfvqsxxvw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3171,7 +3298,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-width: 0;
 }
 
-#xaehrvxwmg .gt_heading {
+#svfvqsxxvw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3183,13 +3310,13 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_bottom_border {
+#svfvqsxxvw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_col_headings {
+#svfvqsxxvw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3204,7 +3331,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_col_heading {
+#svfvqsxxvw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3224,7 +3351,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#xaehrvxwmg .gt_column_spanner_outer {
+#svfvqsxxvw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3236,15 +3363,15 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 4px;
 }
 
-#xaehrvxwmg .gt_column_spanner_outer:first-child {
+#svfvqsxxvw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xaehrvxwmg .gt_column_spanner_outer:last-child {
+#svfvqsxxvw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xaehrvxwmg .gt_column_spanner {
+#svfvqsxxvw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3256,11 +3383,11 @@ This warning is displayed once every 8 hours.</code></pre>
   width: 100%;
 }
 
-#xaehrvxwmg .gt_spanner_row {
+#svfvqsxxvw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xaehrvxwmg .gt_group_heading {
+#svfvqsxxvw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3286,7 +3413,7 @@ This warning is displayed once every 8 hours.</code></pre>
   text-align: left;
 }
 
-#xaehrvxwmg .gt_empty_group_heading {
+#svfvqsxxvw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3301,15 +3428,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: middle;
 }
 
-#xaehrvxwmg .gt_from_md > :first-child {
+#svfvqsxxvw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xaehrvxwmg .gt_from_md > :last-child {
+#svfvqsxxvw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xaehrvxwmg .gt_row {
+#svfvqsxxvw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3328,7 +3455,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#xaehrvxwmg .gt_stub {
+#svfvqsxxvw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3341,7 +3468,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#xaehrvxwmg .gt_stub_row_group {
+#svfvqsxxvw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3355,15 +3482,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: top;
 }
 
-#xaehrvxwmg .gt_row_group_first td {
+#svfvqsxxvw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xaehrvxwmg .gt_row_group_first th {
+#svfvqsxxvw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xaehrvxwmg .gt_summary_row {
+#svfvqsxxvw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3373,16 +3500,16 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#xaehrvxwmg .gt_first_summary_row {
+#svfvqsxxvw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_first_summary_row.thick {
+#svfvqsxxvw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xaehrvxwmg .gt_last_summary_row {
+#svfvqsxxvw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3392,7 +3519,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_grand_summary_row {
+#svfvqsxxvw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3402,7 +3529,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#xaehrvxwmg .gt_first_grand_summary_row {
+#svfvqsxxvw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3412,7 +3539,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_last_grand_summary_row_top {
+#svfvqsxxvw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3422,11 +3549,11 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_striped {
+#svfvqsxxvw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xaehrvxwmg .gt_table_body {
+#svfvqsxxvw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3435,7 +3562,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_footnotes {
+#svfvqsxxvw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3449,7 +3576,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_footnote {
+#svfvqsxxvw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3458,7 +3585,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#xaehrvxwmg .gt_sourcenotes {
+#svfvqsxxvw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3472,7 +3599,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#xaehrvxwmg .gt_sourcenote {
+#svfvqsxxvw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3480,63 +3607,63 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#xaehrvxwmg .gt_left {
+#svfvqsxxvw .gt_left {
   text-align: left;
 }
 
-#xaehrvxwmg .gt_center {
+#svfvqsxxvw .gt_center {
   text-align: center;
 }
 
-#xaehrvxwmg .gt_right {
+#svfvqsxxvw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xaehrvxwmg .gt_font_normal {
+#svfvqsxxvw .gt_font_normal {
   font-weight: normal;
 }
 
-#xaehrvxwmg .gt_font_bold {
+#svfvqsxxvw .gt_font_bold {
   font-weight: bold;
 }
 
-#xaehrvxwmg .gt_font_italic {
+#svfvqsxxvw .gt_font_italic {
   font-style: italic;
 }
 
-#xaehrvxwmg .gt_super {
+#svfvqsxxvw .gt_super {
   font-size: 65%;
 }
 
-#xaehrvxwmg .gt_footnote_marks {
+#svfvqsxxvw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xaehrvxwmg .gt_asterisk {
+#svfvqsxxvw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xaehrvxwmg .gt_indent_1 {
+#svfvqsxxvw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xaehrvxwmg .gt_indent_2 {
+#svfvqsxxvw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xaehrvxwmg .gt_indent_3 {
+#svfvqsxxvw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xaehrvxwmg .gt_indent_4 {
+#svfvqsxxvw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xaehrvxwmg .gt_indent_5 {
+#svfvqsxxvw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3611,31 +3738,38 @@ This warning is displayed once every 8 hours.</code></pre>
 </div>
 </div>
 </div>
-<p>To further enhance your gt tables, you can apply themes using the <code>gtExtras</code> package. This package offers various pre-built themes that you can easily add to your tables, giving them a consistent and polished appearance. Simply install and load the <code>gtExtras</code> package and use one of its theme functions to apply a specific style to your table. This makes it easy to create visually appealing tables with minimal effort. Let’s add a theme similar to Five Three Eight website.</p>
+<p>To take your <code>gt</code> tables a step further, you can apply themes using the <code>gtExtras</code> package. This package offers a variety of pre-built themes that can be easily added to your tables, providing them with a consistent and polished look. After installing and loading the <code>gtExtras</code> package, you can use one of its theme functions to apply a specific style to your table. This approach makes it simple to create visually appealing tables with minimal effort. Let’s add a theme similar to the Five Thirty Eight website.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(table_themed <span class="ot">&lt;-</span> table_header <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add Five Three Eight theme to the table</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>(table_themed <span class="ot">&lt;-</span> table_header <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-8" data-code-lines="2">Add Five Thirty Eight theme to the table</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="lcjwrvgkqr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vmznocuvjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#lcjwrvgkqr table {
+#vmznocuvjo table {
   font-family: Chivo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lcjwrvgkqr thead, #lcjwrvgkqr tbody, #lcjwrvgkqr tfoot, #lcjwrvgkqr tr, #lcjwrvgkqr td, #lcjwrvgkqr th {
+#vmznocuvjo thead, #vmznocuvjo tbody, #vmznocuvjo tfoot, #vmznocuvjo tr, #vmznocuvjo td, #vmznocuvjo th {
   border-style: none;
 }
 
-#lcjwrvgkqr p {
+#vmznocuvjo p {
   margin: 0;
   padding: 0;
 }
 
-#lcjwrvgkqr .gt_table {
+#vmznocuvjo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3661,12 +3795,12 @@ This warning is displayed once every 8 hours.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_caption {
+#vmznocuvjo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lcjwrvgkqr .gt_title {
+#vmznocuvjo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3678,7 +3812,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-width: 0;
 }
 
-#lcjwrvgkqr .gt_subtitle {
+#vmznocuvjo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3690,7 +3824,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-width: 0;
 }
 
-#lcjwrvgkqr .gt_heading {
+#vmznocuvjo .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3702,13 +3836,13 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_bottom_border {
+#vmznocuvjo .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_col_headings {
+#vmznocuvjo .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3723,7 +3857,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_col_heading {
+#vmznocuvjo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3743,7 +3877,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#lcjwrvgkqr .gt_column_spanner_outer {
+#vmznocuvjo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3755,15 +3889,15 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 4px;
 }
 
-#lcjwrvgkqr .gt_column_spanner_outer:first-child {
+#vmznocuvjo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lcjwrvgkqr .gt_column_spanner_outer:last-child {
+#vmznocuvjo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lcjwrvgkqr .gt_column_spanner {
+#vmznocuvjo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -3775,11 +3909,11 @@ This warning is displayed once every 8 hours.</code></pre>
   width: 100%;
 }
 
-#lcjwrvgkqr .gt_spanner_row {
+#vmznocuvjo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lcjwrvgkqr .gt_group_heading {
+#vmznocuvjo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3805,7 +3939,7 @@ This warning is displayed once every 8 hours.</code></pre>
   text-align: left;
 }
 
-#lcjwrvgkqr .gt_empty_group_heading {
+#vmznocuvjo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3820,15 +3954,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: middle;
 }
 
-#lcjwrvgkqr .gt_from_md > :first-child {
+#vmznocuvjo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lcjwrvgkqr .gt_from_md > :last-child {
+#vmznocuvjo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lcjwrvgkqr .gt_row {
+#vmznocuvjo .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -3847,7 +3981,7 @@ This warning is displayed once every 8 hours.</code></pre>
   overflow-x: hidden;
 }
 
-#lcjwrvgkqr .gt_stub {
+#vmznocuvjo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3860,7 +3994,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#lcjwrvgkqr .gt_stub_row_group {
+#vmznocuvjo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3874,15 +4008,15 @@ This warning is displayed once every 8 hours.</code></pre>
   vertical-align: top;
 }
 
-#lcjwrvgkqr .gt_row_group_first td {
+#vmznocuvjo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lcjwrvgkqr .gt_row_group_first th {
+#vmznocuvjo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lcjwrvgkqr .gt_summary_row {
+#vmznocuvjo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3892,16 +4026,16 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#lcjwrvgkqr .gt_first_summary_row {
+#vmznocuvjo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_first_summary_row.thick {
+#vmznocuvjo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lcjwrvgkqr .gt_last_summary_row {
+#vmznocuvjo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3911,7 +4045,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_grand_summary_row {
+#vmznocuvjo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3921,7 +4055,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#lcjwrvgkqr .gt_first_grand_summary_row {
+#vmznocuvjo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3931,7 +4065,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_last_grand_summary_row_top {
+#vmznocuvjo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3941,11 +4075,11 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_striped {
+#vmznocuvjo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lcjwrvgkqr .gt_table_body {
+#vmznocuvjo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3954,7 +4088,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_footnotes {
+#vmznocuvjo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3968,7 +4102,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_footnote {
+#vmznocuvjo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3977,7 +4111,7 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#lcjwrvgkqr .gt_sourcenotes {
+#vmznocuvjo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3991,7 +4125,7 @@ This warning is displayed once every 8 hours.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lcjwrvgkqr .gt_sourcenote {
+#vmznocuvjo .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3999,63 +4133,63 @@ This warning is displayed once every 8 hours.</code></pre>
   padding-right: 5px;
 }
 
-#lcjwrvgkqr .gt_left {
+#vmznocuvjo .gt_left {
   text-align: left;
 }
 
-#lcjwrvgkqr .gt_center {
+#vmznocuvjo .gt_center {
   text-align: center;
 }
 
-#lcjwrvgkqr .gt_right {
+#vmznocuvjo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lcjwrvgkqr .gt_font_normal {
+#vmznocuvjo .gt_font_normal {
   font-weight: normal;
 }
 
-#lcjwrvgkqr .gt_font_bold {
+#vmznocuvjo .gt_font_bold {
   font-weight: bold;
 }
 
-#lcjwrvgkqr .gt_font_italic {
+#vmznocuvjo .gt_font_italic {
   font-style: italic;
 }
 
-#lcjwrvgkqr .gt_super {
+#vmznocuvjo .gt_super {
   font-size: 65%;
 }
 
-#lcjwrvgkqr .gt_footnote_marks {
+#vmznocuvjo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lcjwrvgkqr .gt_asterisk {
+#vmznocuvjo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lcjwrvgkqr .gt_indent_1 {
+#vmznocuvjo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lcjwrvgkqr .gt_indent_2 {
+#vmznocuvjo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lcjwrvgkqr .gt_indent_3 {
+#vmznocuvjo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lcjwrvgkqr .gt_indent_4 {
+#vmznocuvjo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lcjwrvgkqr .gt_indent_5 {
+#vmznocuvjo .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -4134,99 +4268,174 @@ tbody tr:last-child {
 </div>
 </div>
 </div>
-<p>After creating a visually appealing table, you’ll want to save it. While there isn’t a direct method for saving to Excel, you can save the table in various formats such as <code>.html</code> for embedding in websites or emails, <code>.png</code> for images, <code>.tex</code> for LaTeX documents, <code>.pdf</code> for PDFs, <code>.rtf</code> for RTF files, and <code>.docx</code> for Microsoft Word documents.</p>
+<p>After creating a visually appealing table, you’ll likely want to save it. Although there isn’t a direct method for saving to Excel, the <code>gt</code> package supports saving the table in various formats such as <code>.html</code> for embedding in websites or emails, <code>.png</code> for images, <code>.tex</code> for LaTeX documents, <code>.pdf</code> for PDF files, <code>.rtf</code> for RTF files, and <code>.docx</code> for Microsoft Word documents.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save the `gt` table as an HTML file using `gtsave()`. Use the `inline_css = TRUE` option for inlining CSS, which is useful when embedding the table in an HTML email. Without the `inline_css` option, the HTML file will have embedded CSS styles instead.</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="at">filename =</span> <span class="st">"tab_1.html"</span>, <span class="at">inline_css =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="at">filename =</span> <span class="st">"tab_1.html"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saving a table as a PNG file creates a cropped image of the HTML table, and you can adjust the whitespace around it using the expand option. You also need to install.package("webshot2").</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.png"</span>, <span class="at">expand =</span> <span class="dv">10</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># LaTeX</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.tex"</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># RTF</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.rtf"</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Microsoft Word</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.doc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the `gt` table as an HTML file using `gtsave()`. Use the `inline_css = TRUE` option for inlining CSS, which is useful when embedding the table in an HTML email. Without the `inline_css` option, the HTML file will have embedded CSS styles instead.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="at">filename =</span> <span class="st">"tab_1.html"</span>, <span class="at">inline_css =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="at">filename =</span> <span class="st">"tab_1.html"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Saving a table as a PNG file creates a cropped image of the HTML table, and you can adjust the whitespace around it using the expand option. You also need to install.package("webshot2").</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.png"</span>, <span class="at">expand =</span> <span class="dv">10</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># LaTeX</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.tex"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># RTF</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.rtf"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Microsoft Word</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>table_themed <span class="sc">%&gt;%</span> <span class="fu">gtsave</span>(<span class="st">"tab_1.doc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And the final output will look something like this:</p>
+<p>Here’s how your code can be transferred into an annotated version:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emojifont)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a formatted table of German automobiles</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter to include only cars with origin country as Germany</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ctry_origin <span class="sc">==</span> <span class="st">"Germany"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group the data by manufacturer</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mfr) <span class="sc">%&gt;%</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrange the data in descending order based on MSRP</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(msrp)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start a gt table, setting rownames to be the model column</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"model"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hide specific columns</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(trim, bdy_style, drivetrain, ctry_origin, trsmn)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Move specific columns after the trim column</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move</span>(<span class="at">columns =</span> <span class="fu">c</span>(msrp, trsmn, mpg_c, mpg_h), <span class="at">after =</span> trim) <span class="sc">%&gt;%</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a spanner header for performance-related columns</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), <span class="at">label =</span> <span class="st">"Performance"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Merge hp and hp_rpm columns</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(hp, hp_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Merge trq and trq_rpm columns</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(trq, trq_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Merge mpg_c and mpg_h columns</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h), <span class="at">pattern =</span> <span class="st">"{1}c&lt;br&gt;{2}h"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set custom labels for specific columns</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">year =</span> <span class="st">"Year"</span>,</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>             <span class="at">msrp =</span> <span class="st">"MSRP"</span>,</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">mpg_c =</span> <span class="st">"MPG"</span>,</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">hp =</span> <span class="st">"Horse Power"</span>,</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">trq =</span> <span class="st">"Torque"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format the msrp column as currency</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> msrp, <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Center align specific columns</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq), <span class="at">align =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply cell text style to specific columns</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">size =</span> <span class="st">"12px"</span>),</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq))</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a data-driven color scale to the msrp column</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> msrp, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"aquamarine"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a title and subtitle to the table</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"German Automobiles"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"These are some nice "</span>, emojifont<span class="sc">::</span><span class="fu">emoji</span>(<span class="st">"car"</span>), <span class="st">"s"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add footnotes to specific cells</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> msrp), <span class="at">footnote =</span> <span class="st">"Manufacturer's Suggested Retail Price in USD"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_body</span>(msrp, msrp <span class="sc">==</span> <span class="fu">max</span>(msrp)), <span class="at">footnote =</span> <span class="st">"Electric cars used to be expensive"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a source note to the table</span></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add Five Three Eight theme to the table</span></span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="annotated-cell-10-2"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emojifont)</span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a formatted table of German automobiles </span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-7" class="code-annotation-target"><a href="#annotated-cell-10-7" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3">3</button><span id="annotated-cell-10-8" class="code-annotation-target"><a href="#annotated-cell-10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ctry_origin <span class="sc">==</span> <span class="st">"Germany"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="4">4</button><span id="annotated-cell-10-9" class="code-annotation-target"><a href="#annotated-cell-10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mfr) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="5">5</button><span id="annotated-cell-10-10" class="code-annotation-target"><a href="#annotated-cell-10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(msrp)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="6">6</button><span id="annotated-cell-10-11" class="code-annotation-target"><a href="#annotated-cell-10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"model"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="7">7</button><span id="annotated-cell-10-12" class="code-annotation-target"><a href="#annotated-cell-10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_hide</span>(<span class="at">columns =</span> <span class="fu">c</span>(trim, bdy_style, drivetrain, ctry_origin, trsmn)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="8">8</button><span id="annotated-cell-10-13" class="code-annotation-target"><a href="#annotated-cell-10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_move</span>(<span class="at">columns =</span> <span class="fu">c</span>(msrp, trsmn, mpg_c, mpg_h), <span class="at">after =</span> trim) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="9">9</button><span id="annotated-cell-10-14" class="code-annotation-target"><a href="#annotated-cell-10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), <span class="at">label =</span> <span class="st">"Performance"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="10">10</button><span id="annotated-cell-10-15" class="code-annotation-target"><a href="#annotated-cell-10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(hp, hp_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="11">11</button><span id="annotated-cell-10-16" class="code-annotation-target"><a href="#annotated-cell-10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(trq, trq_rpm), <span class="at">pattern =</span> <span class="st">"{1}&lt;br&gt;@{2}rpm"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="12">12</button><span id="annotated-cell-10-17" class="code-annotation-target"><a href="#annotated-cell-10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_merge</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, mpg_h), <span class="at">pattern =</span> <span class="st">"{1}c&lt;br&gt;{2}h"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="13">13</button><span id="annotated-cell-10-18" class="code-annotation-target"><a href="#annotated-cell-10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="annotated-cell-10-19"><a href="#annotated-cell-10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">"Year"</span>,</span>
+<span id="annotated-cell-10-20"><a href="#annotated-cell-10-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">msrp =</span> <span class="st">"MSRP"</span>,</span>
+<span id="annotated-cell-10-21"><a href="#annotated-cell-10-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">mpg_c =</span> <span class="st">"MPG"</span>,</span>
+<span id="annotated-cell-10-22"><a href="#annotated-cell-10-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">hp =</span> <span class="st">"Horse Power"</span>,</span>
+<span id="annotated-cell-10-23"><a href="#annotated-cell-10-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">trq =</span> <span class="st">"Torque"</span></span>
+<span id="annotated-cell-10-24"><a href="#annotated-cell-10-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="14">14</button><span id="annotated-cell-10-25" class="code-annotation-target"><a href="#annotated-cell-10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> msrp, <span class="at">decimals =</span> <span class="dv">0</span>, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="15">15</button><span id="annotated-cell-10-26" class="code-annotation-target"><a href="#annotated-cell-10-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq), <span class="at">align =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="16">16</button><span id="annotated-cell-10-27" class="code-annotation-target"><a href="#annotated-cell-10-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="annotated-cell-10-28"><a href="#annotated-cell-10-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">size =</span> <span class="st">"12px"</span>),</span>
+<span id="annotated-cell-10-29"><a href="#annotated-cell-10-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(mpg_c, hp, trq))</span>
+<span id="annotated-cell-10-30"><a href="#annotated-cell-10-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="17">17</button><span id="annotated-cell-10-31" class="code-annotation-target"><a href="#annotated-cell-10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(<span class="at">columns =</span> msrp, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"aquamarine"</span>)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="18">18</button><span id="annotated-cell-10-32" class="code-annotation-target"><a href="#annotated-cell-10-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"German Automobiles"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"These are some nice "</span>, emojifont<span class="sc">::</span><span class="fu">emoji</span>(<span class="st">"car"</span>), <span class="st">"s"</span>)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="19">19</button><span id="annotated-cell-10-33" class="code-annotation-target"><a href="#annotated-cell-10-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> msrp), <span class="at">footnote =</span> <span class="st">"Manufacturer's Suggested Retail Price in USD"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="20">20</button><span id="annotated-cell-10-34" class="code-annotation-target"><a href="#annotated-cell-10-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">locations =</span> <span class="fu">cells_body</span>(msrp, msrp <span class="sc">==</span> <span class="fu">max</span>(msrp)), <span class="at">footnote =</span> <span class="st">"Electric cars used to be expensive"</span>) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="21">21</button><span id="annotated-cell-10-35" class="code-annotation-target"><a href="#annotated-cell-10-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)"</span>)) <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="22">22</button><span id="annotated-cell-10-36" class="code-annotation-target"><a href="#annotated-cell-10-36" aria-hidden="true" tabindex="-1"></a>  gtExtras<span class="sc">::</span><span class="fu">gt_theme_538</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-10" data-code-lines="1,2,3,4">Load the necessary libraries for data manipulation and visualization.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-10" data-code-lines="7">Load the data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-10" data-code-lines="8">Filter the data to include only cars that originated from Germany.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-10" data-code-lines="9">Group the data by the manufacturer.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-annotation="5" data-code-cell="annotated-cell-10" data-code-lines="10">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-annotation="6" data-code-cell="annotated-cell-10" data-code-lines="11">Start a new gt table using the car models as row names.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-annotation="7" data-code-cell="annotated-cell-10" data-code-lines="12">Hide certain columns that aren’t needed in the final table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-annotation="8" data-code-cell="annotated-cell-10" data-code-lines="13">Move specific columns to appear after the trim column.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="9">9</dt>
+<dd>
+<span data-code-annotation="9" data-code-cell="annotated-cell-10" data-code-lines="14">Create a spanner header for performance-related columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="10">10</dt>
+<dd>
+<span data-code-annotation="10" data-code-cell="annotated-cell-10" data-code-lines="15">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="11">11</dt>
+<dd>
+<span data-code-annotation="11" data-code-cell="annotated-cell-10" data-code-lines="16">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="12">12</dt>
+<dd>
+<span data-code-annotation="12" data-code-cell="annotated-cell-10" data-code-lines="17">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="13">13</dt>
+<dd>
+<span data-code-annotation="13" data-code-cell="annotated-cell-10" data-code-lines="18">Set custom labels for specific columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="14">14</dt>
+<dd>
+<span data-code-annotation="14" data-code-cell="annotated-cell-10" data-code-lines="25">Format the MSRP column as currency in USD.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="15">15</dt>
+<dd>
+<span data-code-annotation="15" data-code-cell="annotated-cell-10" data-code-lines="26">Center align specific columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="16">16</dt>
+<dd>
+<span data-code-annotation="16" data-code-cell="annotated-cell-10" data-code-lines="27">Apply a specific text style to certain columns.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="17">17</dt>
+<dd>
+<span data-code-annotation="17" data-code-cell="annotated-cell-10" data-code-lines="31">Apply a data-driven color scale to the MSRP column.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="18">18</dt>
+<dd>
+<span data-code-annotation="18" data-code-cell="annotated-cell-10" data-code-lines="32">Add a title and subtitle to the table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="19">19</dt>
+<dd>
+<span data-code-annotation="19" data-code-cell="annotated-cell-10" data-code-lines="33">Add a footnote to clarify what MSRP stands for.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="20">20</dt>
+<dd>
+<span data-code-annotation="20" data-code-cell="annotated-cell-10" data-code-lines="34">Add a footnote to the most expensive car, noting that electric cars used to be expensive.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="21">21</dt>
+<dd>
+<span data-code-annotation="21" data-code-cell="annotated-cell-10" data-code-lines="35">Add a source note to cite the source of the data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="22">22</dt>
+<dd>
+<span data-code-annotation="22" data-code-cell="annotated-cell-10" data-code-lines="36">Apply a theme to the table for a more polished look.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 
-<div id="bnmlvjoqxw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ofentaiinx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#bnmlvjoqxw table {
+#ofentaiinx table {
   font-family: Chivo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bnmlvjoqxw thead, #bnmlvjoqxw tbody, #bnmlvjoqxw tfoot, #bnmlvjoqxw tr, #bnmlvjoqxw td, #bnmlvjoqxw th {
+#ofentaiinx thead, #ofentaiinx tbody, #ofentaiinx tfoot, #ofentaiinx tr, #ofentaiinx td, #ofentaiinx th {
   border-style: none;
 }
 
-#bnmlvjoqxw p {
+#ofentaiinx p {
   margin: 0;
   padding: 0;
 }
 
-#bnmlvjoqxw .gt_table {
+#ofentaiinx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4252,12 +4461,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_caption {
+#ofentaiinx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bnmlvjoqxw .gt_title {
+#ofentaiinx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4269,7 +4478,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#bnmlvjoqxw .gt_subtitle {
+#ofentaiinx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4281,7 +4490,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#bnmlvjoqxw .gt_heading {
+#ofentaiinx .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -4293,13 +4502,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_bottom_border {
+#ofentaiinx .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_col_headings {
+#ofentaiinx .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4314,7 +4523,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_col_heading {
+#ofentaiinx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4334,7 +4543,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#bnmlvjoqxw .gt_column_spanner_outer {
+#ofentaiinx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4346,15 +4555,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#bnmlvjoqxw .gt_column_spanner_outer:first-child {
+#ofentaiinx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bnmlvjoqxw .gt_column_spanner_outer:last-child {
+#ofentaiinx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bnmlvjoqxw .gt_column_spanner {
+#ofentaiinx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -4366,11 +4575,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#bnmlvjoqxw .gt_spanner_row {
+#ofentaiinx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bnmlvjoqxw .gt_group_heading {
+#ofentaiinx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4396,7 +4605,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#bnmlvjoqxw .gt_empty_group_heading {
+#ofentaiinx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4411,15 +4620,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#bnmlvjoqxw .gt_from_md > :first-child {
+#ofentaiinx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bnmlvjoqxw .gt_from_md > :last-child {
+#ofentaiinx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bnmlvjoqxw .gt_row {
+#ofentaiinx .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -4438,7 +4647,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#bnmlvjoqxw .gt_stub {
+#ofentaiinx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4451,7 +4660,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#bnmlvjoqxw .gt_stub_row_group {
+#ofentaiinx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4465,15 +4674,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#bnmlvjoqxw .gt_row_group_first td {
+#ofentaiinx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bnmlvjoqxw .gt_row_group_first th {
+#ofentaiinx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bnmlvjoqxw .gt_summary_row {
+#ofentaiinx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4483,16 +4692,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#bnmlvjoqxw .gt_first_summary_row {
+#ofentaiinx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_first_summary_row.thick {
+#ofentaiinx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bnmlvjoqxw .gt_last_summary_row {
+#ofentaiinx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4502,7 +4711,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_grand_summary_row {
+#ofentaiinx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4512,7 +4721,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#bnmlvjoqxw .gt_first_grand_summary_row {
+#ofentaiinx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4522,7 +4731,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_last_grand_summary_row_top {
+#ofentaiinx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4532,11 +4741,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_striped {
+#ofentaiinx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bnmlvjoqxw .gt_table_body {
+#ofentaiinx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4545,7 +4754,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_footnotes {
+#ofentaiinx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4559,7 +4768,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_footnote {
+#ofentaiinx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4568,7 +4777,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#bnmlvjoqxw .gt_sourcenotes {
+#ofentaiinx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4582,7 +4791,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#bnmlvjoqxw .gt_sourcenote {
+#ofentaiinx .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4590,63 +4799,63 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#bnmlvjoqxw .gt_left {
+#ofentaiinx .gt_left {
   text-align: left;
 }
 
-#bnmlvjoqxw .gt_center {
+#ofentaiinx .gt_center {
   text-align: center;
 }
 
-#bnmlvjoqxw .gt_right {
+#ofentaiinx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bnmlvjoqxw .gt_font_normal {
+#ofentaiinx .gt_font_normal {
   font-weight: normal;
 }
 
-#bnmlvjoqxw .gt_font_bold {
+#ofentaiinx .gt_font_bold {
   font-weight: bold;
 }
 
-#bnmlvjoqxw .gt_font_italic {
+#ofentaiinx .gt_font_italic {
   font-style: italic;
 }
 
-#bnmlvjoqxw .gt_super {
+#ofentaiinx .gt_super {
   font-size: 65%;
 }
 
-#bnmlvjoqxw .gt_footnote_marks {
+#ofentaiinx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bnmlvjoqxw .gt_asterisk {
+#ofentaiinx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bnmlvjoqxw .gt_indent_1 {
+#ofentaiinx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bnmlvjoqxw .gt_indent_2 {
+#ofentaiinx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bnmlvjoqxw .gt_indent_3 {
+#ofentaiinx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bnmlvjoqxw .gt_indent_4 {
+#ofentaiinx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bnmlvjoqxw .gt_indent_5 {
+#ofentaiinx .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -4803,6 +5012,106 @@ tbody tr:last-child {
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="dt-tables" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="dt-tables"><span class="header-section-number">29.2</span> DT Tables</h2>
+<p>When you need to present data to important stakeholders, static HTML tables can sometimes fall short. The <code>DT</code> package in R can be a great solution for this, as it lets you include interactive tables in your reports or analyses. <code>DT</code> is an interface to the JavaScript library DataTables, which is a plug-in for the jQuery JavaScript library. It’s a flexible tool for displaying data in tables, with lots of customization options. Unlike the <code>gt</code> package, which is designed more for creating tables ready for publication, <code>DT</code> is really about making tables interactive for better data exploration.</p>
+<p>The <code>DT</code> package lets you sort, filter, and paginate tables, which is really useful when you’re dealing with larger datasets. It also has features like filters for individual columns, and the ability to hide or rearrange columns. Plus, there are several options for how you present your data. We’ll show you how to use the <code>DT</code> package to create a table with a dataset of German automobiles in the next section.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary libraries</span></span>
+<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the gtcars dataset for German cars only </span></span>
+<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>german_cars <span class="ot">&lt;-</span> gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-7" class="code-annotation-target"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ctry_origin <span class="sc">==</span> <span class="st">"Germany"</span>)</span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data as a DT table</span></span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-11" class="code-annotation-target"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>  german_cars,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-12" class="code-annotation-target"><a href="#annotated-cell-11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">extensions =</span> <span class="st">'Buttons'</span>,</span>
+<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="4">4</button><span id="annotated-cell-11-14" class="code-annotation-target"><a href="#annotated-cell-11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'Bfrtip'</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="5">5</button><span id="annotated-cell-11-15" class="code-annotation-target"><a href="#annotated-cell-11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">'copy'</span>, <span class="st">'csv'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>, <span class="st">'print'</span>),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="6">6</button><span id="annotated-cell-11-16" class="code-annotation-target"><a href="#annotated-cell-11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">5</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="7">7</button><span id="annotated-cell-11-17" class="code-annotation-target"><a href="#annotated-cell-11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">autoWidth =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="8">8</button><span id="annotated-cell-11-18" class="code-annotation-target"><a href="#annotated-cell-11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">order =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="dv">1</span>, <span class="st">'asc'</span>)),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="9">9</button><span id="annotated-cell-11-19" class="code-annotation-target"><a href="#annotated-cell-11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">lengthMenu =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="fu">c</span>(<span class="st">'5 rows'</span>, <span class="st">'10 rows'</span>, <span class="st">'15 rows'</span>, <span class="st">'Show all'</span>)),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="10">10</button><span id="annotated-cell-11-20" class="code-annotation-target"><a href="#annotated-cell-11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">searchHighlight =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="11">11</button><span id="annotated-cell-11-21" class="code-annotation-target"><a href="#annotated-cell-11-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">searching =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="12">12</button><span id="annotated-cell-11-22" class="code-annotation-target"><a href="#annotated-cell-11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">lengthChange =</span> <span class="cn">TRUE</span></span>
+<span id="annotated-cell-11-23"><a href="#annotated-cell-11-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="annotated-cell-11-24"><a href="#annotated-cell-11-24" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-11" data-code-lines="7">Filter the <code>gtcars</code> dataset to include only cars that originate from Germany.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-cell="annotated-cell-11" data-code-lines="11">Pass the <code>german_cars</code> dataframe to the <code>datatable</code> function to display it as a DT table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-cell="annotated-cell-11" data-code-lines="12">Enable the <code>Buttons</code> extension, which adds various functionalities to the table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-annotation="4" data-code-cell="annotated-cell-11" data-code-lines="14">The <code>dom</code> option is used to define the table control elements to be displayed on the page and their order.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-annotation="5" data-code-cell="annotated-cell-11" data-code-lines="15">Add buttons to the table that allow for various actions, such as copying the table data and exporting it in different formats.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-annotation="6" data-code-cell="annotated-cell-11" data-code-lines="16">Set the number of rows to be displayed per page.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-annotation="7" data-code-cell="annotated-cell-11" data-code-lines="17">Automatically adjust the column width to the content.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-annotation="8" data-code-cell="annotated-cell-11" data-code-lines="18">Set the initial sorting order for the table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="9">9</dt>
+<dd>
+<span data-code-annotation="9" data-code-cell="annotated-cell-11" data-code-lines="19">Specify the options for the “entries per page” dropdown and their display text.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="10">10</dt>
+<dd>
+<span data-code-annotation="10" data-code-cell="annotated-cell-11" data-code-lines="20">Highlight any text in the table that matches the filter.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="11">11</dt>
+<dd>
+<span data-code-annotation="11" data-code-cell="annotated-cell-11" data-code-lines="21">Enable the ability to filter data in the table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="12">12</dt>
+<dd>
+<span data-code-annotation="12" data-code-cell="annotated-cell-11" data-code-lines="22">Allow the user to change the number of entries shown per page.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-329619ca636ebc981f7d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-329619ca636ebc981f7d">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["BMW","BMW","BMW","BMW","BMW","Audi","Audi","Audi","Audi","Audi","Mercedes-Benz","Mercedes-Benz","Porsche","Porsche","Porsche","Porsche"],["6-Series","i8","M4","M5","M6","R8","RS 7","S6","S7","S8","AMG GT","SL-Class","718 Boxster","718 Cayman","911","Panamera"],[2016,2016,2016,2016,2016,2015,2016,2016,2016,2016,2016,2016,2017,2017,2016,2016],["640 I Coupe","Mega World Coupe","Base Coupe","Base Sedan","Base Coupe","4.2 (Manual) Coupe","Quattro Hatchback","Premium Plus quattro Sedan","Prestige quattro Hatchback","Base Sedan","S Coupe","SL400 Convertible","Base Convertible","Base Coupe","Carrera Coupe","Base Sedan"],["coupe","coupe","coupe","sedan","coupe","coupe","hatchback","sedan","hatchback","sedan","coupe","convertible","convertible","coupe","coupe","sedan"],[315,357,425,560,560,430,560,450,450,520,503,329,300,300,350,310],[5800,5800,5500,6000,6000,7900,5700,5800,5800,5800,6250,5250,6500,6500,7400,6200],[330,420,406,500,500,317,516,406,406,481,479,354,280,280,287,295],[1400,3700,1850,1500,1500,4500,1750,1400,1400,1700,1750,1600,1950,1950,5600,3750],[20,28,17,15,15,11,15,18,17,15,16,20,21,20,20,18],[30,29,24,22,22,20,25,27,27,25,22,27,28,29,28,28],["rwd","awd","rwd","rwd","rwd","awd","awd","awd","awd","awd","rwd","rwd","rwd","rwd","rwd","rwd"],["8am","6am","6m","7am","7a","6m","8am","7a","7a","8am","7a","7am","6m","6m","7m","7a"],["Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany"],[77300,140700,65700,94100,113400,115900,108900,70900,82900,114900,129900,85050,56000,53900,84300,78100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mfr<\/th>\n      <th>model<\/th>\n      <th>year<\/th>\n      <th>trim<\/th>\n      <th>bdy_style<\/th>\n      <th>hp<\/th>\n      <th>hp_rpm<\/th>\n      <th>trq<\/th>\n      <th>trq_rpm<\/th>\n      <th>mpg_c<\/th>\n      <th>mpg_h<\/th>\n      <th>drivetrain<\/th>\n      <th>trsmn<\/th>\n      <th>ctry_origin<\/th>\n      <th>msrp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":5,"autoWidth":true,"order":[[1,"asc"]],"lengthMenu":[[5,10,15,-1],["5 rows","10 rows","15 rows","Show all"]],"searchHighlight":true,"searching":true,"lengthChange":true,"columnDefs":[{"className":"dt-right","targets":[3,6,7,8,9,10,11,15]},{"orderable":false,"targets":0}],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ul>
+<li><strong>Extensions</strong>: The <code>Buttons</code> extension has been enabled which adds buttons to the table for various actions, such as copy, csv, excel, pdf, and print.</li>
+<li><strong>dom</strong>: The <code>dom</code> option defines the table control elements to appear on the page and in what order. The value <code>'Bfrtip'</code> means Buttons, filtering input, information summary, table, and pagination controls respectively.</li>
+<li><strong>autoWidth</strong>: This option will adjust the column widths automatically to the content.</li>
+<li><strong>order</strong>: This option sets the initial sorting order for the table. It takes a list where each element is a list containing a column index and a sort direction (‘asc’ for ascending and ‘desc’ for descending).</li>
+<li><strong>lengthMenu</strong>: This option specifies the options for entries per page dropdown and their display text.</li>
+<li><strong>searchHighlight</strong>: When this option is set to <code>TRUE</code>, any text in the table that matches the filter will be highlighted.</li>
+<li><strong>searching</strong>: This option enables or disables the ability to filter data in the table.</li>
+<li><strong>lengthChange</strong>: This option allows or disallows the user from changing the number of entries shown per page.</li>
+</ul>
+<p>With these options, you can customize your <code>DT</code> tables to fit your exact needs.</p>
 
 
 </section>

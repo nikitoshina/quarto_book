@@ -159,9 +159,9 @@ Now it is time to get writing! To start, H1 heading can be defined in yaml `titl
 |                              |                                               |
 | \+ item                      | -   item                                      |
 |                              |     -   sub-item                              |
-|  - sub-item                  |         -   sub-sub-item                      |
+| -   sub-item                 |         -   sub-sub-item                      |
 |                              |                                               |
-|  - sub-sub-item              |                                               |
+| -   sub-sub-item             |                                               |
 +------------------------------+-----------------------------------------------+
 | ordered list                 | ordered list[^write-1]                        |
 |                              |                                               |
@@ -169,7 +169,7 @@ Now it is time to get writing! To start, H1 heading can be defined in yaml `titl
 |                              |                                               |
 | I. sub-item                  |     I.  sub-item                              |
 |                              |                                               |
-| i. sub-sub-item              |         i.  sub-sub-item                      |
+| i.  sub-sub-item             |         i.  sub-sub-item                      |
 +------------------------------+-----------------------------------------------+
 | inline math: \$E = mc\^{2}\$ | inline math: $E = mc^{2}$                     |
 +------------------------------+-----------------------------------------------+

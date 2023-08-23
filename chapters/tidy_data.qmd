@@ -7,9 +7,11 @@ editor: visual
 library(tidyverse)
 knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
 ```
+
 ```{r}
 data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct)
 ```
+
 ```{css, echo = FALSE}
 .output {
 max-height: 300px;
@@ -112,11 +114,11 @@ Separate Data
 
 Tidy data is more than a theoretical concept; it has practical implications for data structuring. Consider this example of storing data on experiment payments:
 
-![](https://lh5.googleusercontent.com/-jiqGFe0IZ7aF-uZuBOtjJ0h1jo-eH8A1EZx2L1FUkn75IHZWGKm21ORwlu7q4IVvcJBFB9KTX6GsbYqV5OOLnh2Sx4aFum8pY51Om42eDmhCFb3MlCEN-lS6dX2YGDlbmSp7wK7s7OKlaVYOYhPCC9iIrYRD0LUufyWA1sFMmSiBfrPswF3-seDmBHQLE7S=s2048)
+![](images/tidy_example1.png)
 
 When a computer reads this data, it can't understand our intent, so all columns are read as-is. Adding multiple days necessitates creating similar tables, increasing the chances of errors. Want a total for the entire experiment? We'd have to manually sum all cells. Now, compare this to:
 
-![](https://lh3.googleusercontent.com/QMtTgnjVqzEU5eBFhmpdyc7KhTgYAM-_fr3NiusczaGi6Mf_pWV6PSjiyXL6vem_fFaJVeLZUfE3_cdCgk7F2yF2D46_Rmk94mcvmxLisJ4NBI-L1fb5OwQpEI5unpWC47BR6r2sI9nVCHwA6lA4PAMb65Bs_otyp2FfnPxJ2FnVZG1MvZ2pwlA5Pfpvra5X=s2048)
+![](images/tidy_example2.png)
 
 In this format, data input is straightforward, and generating summary tables is as simple as creating a pivot table. A tidy data approach from the outset aids in creating robust tables and saves time during analysis.
 

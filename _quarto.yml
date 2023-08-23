@@ -47,10 +47,10 @@ book:
         - chapters/documentation.qmd
     - part: "Presenting the Data"
       chapters:
-        - chapters/data_viz.qmd # Talk about echarts and maybe plotly andd ggiraph.
+        - chapters/data_viz.qmd 
         - chapters/color.qmd
-        - chapters/which_graph.qmd # add corelation matrix plots, and ggmargins
-        - chapters/tables.qmd # Add DT, and maybe kable
+        - chapters/which_graph.qmd # add annotations
+        - chapters/tables.qmd # Add maybe kable
     # - part: "Run Your Models"
         # Power Analysis and Simulations
         # Modeling
@@ -66,6 +66,9 @@ format:
   html:
     theme: cosmo
     include-before-body: reading-time.html
+    css: styles.css
+    
+code-link: true
 
   # pdf:
   #  documentclass: book

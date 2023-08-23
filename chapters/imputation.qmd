@@ -3,6 +3,7 @@ title: Imputation
 message: false
 warning: false
 ---
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -11,21 +12,19 @@ library(tidyverse)
   options(qurto.max_rows = 5)
 ```
 
-Imputation is a controversial topic, and for good reason. When we impute data, we are essentially introducing something that was not originally there, and in doing so, we unavoidably give our completed data more weight.
+Imputation is a statistical technique that fills in missing or incomplete data by estimating values from existing information, but its controversial nature arises from the introduction of artificial data, potentially impacting analysis outcomes as completed data is assigned more weight.
 
 ## Types of Missing Data
 
 Understanding the type of missing data is crucial as it can guide the appropriate choice of imputation methods or handling strategies to minimize potential biases in the analysis.
 
-1.  Missing Completely at Random (MCAR): The missingness in the data is entirely random, and the probability of missing data is the same for all observations, regardless of observed or unobserved values. MCAR is an ideal scenario, as missing data does not depend on any other variables in the dataset.
+1.  **Missing Completely at Random (MCAR)**: The missingness in the data is entirely random, and the probability of missing data is the same for all observations, regardless of observed or unobserved values. MCAR is an ideal scenario, as missing data does not depend on any other variables in the dataset.
 
-2.  Missing at Random (MAR): As mentioned earlier, MAR occurs when the missingness is related to observed variables in the dataset, but not to the unobserved values themselves. The probability of missing data depends on other observed variables but not on the unobserved values.
+2.  **Missing at Random (MAR)**: As mentioned earlier, MAR occurs when the missingness is related to observed variables in the dataset, but not to the unobserved values themselves. The probability of missing data depends on other observed variables but not on the unobserved values.
 
-3.  Missing Not at Random (MNAR): In MNAR, the missingness is related to the unobserved values themselves. The probability of missing data depends on the values that are missing, leading to potential bias in the analysis.
+3.  **Missing Not at Random (MNAR)**: In MNAR, the missingness is related to the unobserved values themselves. The probability of missing data depends on the values that are missing, leading to potential bias in the analysis.
 
-4.  Missing by Design: Missing by design occurs when specific data points are intentionally missing, often as part of the study design or data collection process. In such cases, the missing data is systematic and has a purpose.
-
-> Make your Data Explicitly Missing
+4.  **Missing by Design**: Missing by design occurs when specific data points are intentionally missing, often as part of the study design or data collection process. In such cases, the missing data is systematic and has a purpose.
 
 Before addressing missing data, it is often essential to distinguish between different types of missingness. Explicitly marking missing data as NA in R helps in identifying the patterns and dealing with the missing values appropriately.
 
@@ -35,7 +34,7 @@ There are several ways to handle missing data:
 
 1.  **Keep it**: In some cases, it might be appropriate to retain the missing data if the missingness does not significantly affect the analysis.
 
-2.  **Drop it (Listwise Deletion or Complete Case Analysis)**: This approach involves removing rows with missing data. It's simple and can be suitable if missing data is minimal and random. However, it can lead to information loss, potential bias, and reduced sample size. Despite these drawbacks, it's a common method in quantitative research due to its simplicity. 
+2.  **Drop it (Listwise Deletion or Complete Case Analysis)**: This approach involves removing rows with missing data. It's simple and can be suitable if missing data is minimal and random. However, it can lead to information loss, potential bias, and reduced sample size. Despite these drawbacks, it's a common method in quantitative research due to its simplicity.
 
 3.  **Impute it**: Imputation involves estimating missing values based on observed data, which allows for a complete dataset and ensures that all cases are retained for analysis. However, if not done correctly will introduce bias.
 
@@ -43,9 +42,72 @@ There are several ways to handle missing data:
 
 Imputation, while a powerful tool, must be applied judiciously as it modifies the original dataset and can substantially influence analysis outcomes. It's essential to comprehend the reasons behind the missing data, the assumptions involved, and the justification for using imputation in the specific context of your analysis. Imputation should never be a default choice, but a well-considered strategy.
 
+### Explicitly Handling Missing Data with `complete()`
+
+When working with datasets, it's crucial to understand that missing values aren't always explicitly identifiable. These implicit absences can misleadingly suggest data completeness, emphasizing the necessity for appropriate identification and handling. The `tidyr` package's `complete()` function offers a robust solution.
+
+The `complete()` function generates a new dataframe featuring all potential combinations of specified columns, thereby assuring data comprehensiveness. This process, complemented by filling absent combinations with default values, facilitates precise analysis and mitigates the risk of implicit missing data.
+
+Take, for instance, a dataset tracking four students attending various classes over three days. Initially, this dataset might seem comprehensive. However, only the attending students were recorded, leaving a data gap for absentees.
+
+In this case, we employ `complete()` to create `complete_df`, a new dataframe that encapsulates all conceivable combinations of `student_id`, `day`, and `class.` This method ensures accurate recording of each student's attendance for every class on each day, irrespective of the initial data's shortcomings. The "present" column's missing values default to `FALSE`, clearly denoting unrecorded attendance.
+
+```{r}
+#| code-fold: true
+df <- tribble( # <1> 
+  ~day, ~class, ~student_id, ~present,
+  1, "English", 1, T,
+  1, "English", 2, T,
+  1, "English", 4, T,
+  1, "Science", 2, T,
+  2, "Math", 1, T,
+  2, "Math", 2, T,
+  2, "Math", 4, T,
+  2, "English", 4, T,
+  2, "English", 1, T,
+  3, "Math", 1, T,
+  3, "Math", 2, T,
+  3, "Math", 1, T
+)
+```
+
+1.  `tribble()` is a function to create a data frame in a readable format
+
+```{r}
+#| classes: output
+#| echo: false
+df
+```
+
+```{r}
+complete_df <- df %>% # <1> 
+  complete(
+    student_id = full_seq(student_id, 1), # <2> 
+    nesting(day, class), # <3> 
+    fill = list(present = FALSE), # <4> 
+    explicit = FALSE # <5> 
+  ) %>%
+  arrange(day, class, student_id, present) # <6> 
+```
+
+1.  Creating a complete dataframe with all possible combinations of `student_id` and nested combinations of `day` and `class`
+2.  `full_seq()` generates a sequence of student IDs, using the number of unique student IDs as the maximum value
+3.  `nesting()` creates only combinations that already exist in the data
+4.  Fills missing attendance data with `FALSE`
+5.  Limit the `fill` to only the newly created (i.e. previously implicit)
+6.  Orders the resulting data frame by `day`, `class`, `student_id`, and `present`
+
+```{r}
+#| classes: output
+#| echo: false
+print(complete_df, n =100)
+```
+
+By using `nesting()` within `complete()`, we explicitly handle missing data, creating a comprehensive nested dataset suitable for further analysis. This approach guarantees that our analysis is based on a more complete and reliable dataset, providing accurate insights into student attendance across different classes and days.
+
 ### Simple Imputations
 
-To explore different imputations we will use "airquality" dataset that contains daily measurements of air pollutants and weather conditions in New York City during a five-month period in 1973. It includes data on ozone concentration, solar radiation, temperature, wind speed, and relative humidity. 
+To explore different imputations we will use "airquality" dataset that contains daily measurements of air pollutants and weather conditions in New York City during a five-month period in 1973. It includes data on ozone concentration, solar radiation, temperature, wind speed, and relative humidity.
 
 ```{r}
 head(airquality)
@@ -54,12 +116,14 @@ invisible(mice::md.pattern(airquality)) # <1>
 head_na <- function(data, n = 5) {
   data %>%
     filter(is.na(Ozone)) %>%
+    select(-Ozone) %>%
     head(n)
 }
 ```
-1. `md.pattern` makes a matrix of missing values. `invisible` to only show plot, without matrix output.
 
-#### Fixed Value Imputation 
+1.  `md.pattern` makes a matrix of missing values. `invisible` to only show plot, without matrix output.
+
+#### Fixed Value Imputation
 
 Missing values are replaced with a predetermined constant value. This method is simple and useful when you believe the fixed value reasonably represents the missing data.
 
@@ -67,18 +131,29 @@ Missing values are replaced with a predetermined constant value. This method is 
 
 Missing values are replaced with the mean or median of the non-missing data in the same column. Using the mean is effective when data follow a normal distribution, but it can be affected by outliers, leading to biased imputations. In contrast, using the median is more robust to outliers and suitable for skewed or extreme data.
 
+#### Fill
+
+In some scenarios, it's rational to replace missing data with either preceding or succeeding values. This approach is particularly effective with datasets where the next available value logically substitutes the missing ones, such as in time-series or ordered data.
 
 ```{r}
 airquality %>%
+  arrange(Month, Day) %>%
   mutate(
-    Ozone = Ozone,
-    imp_fixed = replace(Ozone, is.na(Ozone), 0),  # Impute with a fixed value (0 in this case)
-    imp_mean = replace(Ozone, is.na(Ozone), round(mean(Ozone, na.rm = TRUE), 2)),  # Impute with the mean
-    imp_median = replace(Ozone, is.na(Ozone), median(Ozone, na.rm = TRUE)),  # Impute with the median
-    .keep = "used"  # Keep only "used" columns
+    imp_fixed = replace(Ozone, is.na(Ozone), 0),  # <1> 
+    imp_mean = replace(Ozone, is.na(Ozone), round(mean(Ozone, na.rm = TRUE), 2)), # <2> 
+    imp_median = replace(Ozone, is.na(Ozone), median(Ozone, na.rm = TRUE)), # <3> 
+    imp_fill = Ozone,
+    .keep = "used"  # <4> 
   ) %>%
+  fill(imp_fill, .direction = "down") %>% # <5>
   head_na()
 ```
+
+1.  Impute with a fixed value (0 in this case).
+2.  Impute with the mean.
+3.  Impute with the median.
+4.  Keep only "used" columns.
+5.  Fills missing values with the most recent non-missing value above.
 
 Remember that the choice of imputation method can significantly impact the results of your analysis. Always consider the nature of your data, the distribution of missingness, and the potential implications of each method before making a decision.
 
@@ -181,13 +256,13 @@ library(mice)
 
 TODO: write about doing simple imputations
 
-MICE stands for *Multivariate Imputation via Chained Equations*, and it\'s one of the most common packages for R users. It assumes the missing values are missing at random (MAR).
+MICE stands for *Multivariate Imputation via Chained Equations*, and it's one of the most common packages for R users. It assumes the missing values are missing at random (MAR).
 
 The basic idea behind the algorithm is to treat each variable that has missing values as a dependent variable in regression and treat the others as independent (predictors). You can learn more about MICE in [this paper](https://www.researchgate.net/publication/44203418_MICE_Multivariate_Imputation_by_Chained_Equations_in_R).
 
-The R `mice` packages provide many [univariate imputation methods](https://www.rdocumentation.org/packages/mice/versions/3.14.0/topics/mice), but we\'ll use only a handful. First, let\'s import the package and subset only the numerical columns to keep things simple. Only the `Age` attribute contains missing values:
+The R `mice` packages provide many [univariate imputation methods](https://www.rdocumentation.org/packages/mice/versions/3.14.0/topics/mice), but we'll use only a handful. First, let's import the package and subset only the numerical columns to keep things simple. Only the `Age` attribute contains missing values:
 
-Onto the imputation now. We\'ll use the following MICE imputation methods:
+Onto the imputation now. We'll use the following MICE imputation methods:
 
 -   **pmm**: Predictive mean matching.
 
@@ -260,9 +335,9 @@ Imputation is a valuable tool for handling missing data, but it should be used j
 #| eval: true
 airquality %>%
   mutate(
-    Ozone = Ozone,
     imp_fixed = replace(Ozone, is.na(Ozone), 0), # Impute with a fixed value (0 in this case)
     imp_mean = replace(Ozone, is.na(Ozone), round(mean(Ozone, na.rm = TRUE), 2)), # Impute with the mean
+    imp_fill = Ozone,
     imp_median = replace(Ozone, is.na(Ozone), median(Ozone, na.rm = TRUE)), # Impute with the median
     imp_forest = missForest(.)$ximp$Ozone,
     imp_lm = ifelse(is.na(Ozone), predicted_values, Ozone),
@@ -271,17 +346,17 @@ airquality %>%
     imp_pmm = complete(mice(., method = "pmm", printFlag = FALSE))$Ozone,
     imp_cart = complete(mice(., method = "cart", printFlag = FALSE))$Ozone,
     imp_lasso = complete(mice(., method = "lasso.norm", printFlag = FALSE))$Ozone,
-    .keep = "used" # Keep only "used" columns
-  ) %>% filter(is.na(Ozone)) %>%
+    .keep = "used" 
+  ) %>%
+  fill(imp_fill, .direction = "down") %>% 
+  filter(is.na(Ozone)) %>%
   select(-Ozone) %>%
   mutate(across(everything(), ~round(.,1))) %>%
   DT::datatable(
-  .,
-  options = list(pageLength = 10, scrollX = TRUE), # Customize display options as needed
-  rownames = FALSE, # Remove row names
-  class = 'cell-border stripe' # Apply CSS classes for styling
+  options = list(pageLength = 10, scrollX = TRUE), 
+  rownames = FALSE, 
+  class = 'cell-border stripe' 
 )
 
 
 ```
-

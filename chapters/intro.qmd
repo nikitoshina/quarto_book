@@ -2,17 +2,22 @@
 
 # Introduction
 
-Optimizing Research Toolkit: A Guide for What School Forgot to Teach.
+> Optimizing Research Toolkit: A Guide for What School Forgot to Teach.
 
-This book was borne out of my frustration with higher education. Students typically learn about models, experiments, and theories during their classes and frequently return to that knowledge. However, executing high-quality research and analysis necessitates a deeper understanding of the tools and the "How" rather than just the "What" and "Why". The knowledge required often transcends what is taught within the constraints of a standard curriculum. In this book, I aim to bridge that gap between knowing what you want to do and understanding how to do it. I've distilled hundreds of hours of frustrations into these chapters, so you won't have to traverse that path yourself.
+## Preface
 
-This book is not a comprehensive guide; if that's what you're seeking, you may want to look elsewhere. Instead, this book serves as a map that outlines the necessary tools and topics for your research journey. We'll delve into the basics of data collection, cleaning, validation, and presentation, all while underpinning these concepts with relevant theory. The goal is to build your intuition and provide pointers for where to find more detailed information. The chapters are deliberately concise and to the point, as my objective isn't to bore you, but to enlighten.
+This book was born from my frustrations and experiences in higher education. Students typically learn about models, experiments, and theories during their classes and frequently return to that knowledge. However, executing high-quality research and analysis necessitates a deeper understanding of the tools and the "How" rather than just the "What" and "Why". The knowledge required often transcends what is taught within the constraints of a standard curriculum. In this book, I aim to bridge that gap between knowing what you want to do and understanding how to do it. I've distilled hundreds of hours of frustrations into these chapters, so you won't have to traverse that path yourself.
 
-This book is intended primarily for Economics grad students, which is why there's a specific chapter on thesis writing and literature reviews. However, nearly anyone involved in humanities or data-related fields will find value in this book. Whether you're an experienced professional looking to refresh your knowledge or a beginner, I promise you'll discover something new and intriguing.
-
-Some of the more theoretical chapters do not require knowledge of R programming language. Indeed, you don't need to use R to derive benefit from this book, as the focus is more on the underlying concepts behind the tools, which are generally framework-agnostic. Numerous teams from diverse domains, such as web development, mathematics, data analytics, and economics, have utilized the book's content in their work.
-
-The book does not need to be read sequentially, but the chapters are ordered and build upon each other for those who prefer a more structured approach. Initially, the data manipulation part was positioned in the middle, but it was moved to the beginning to aid those who need to understand R code earlier.
+## About the book
 
 This book's genesis was a collection of notes and reading materials for a class I taught on Survey Design in Spring 2023. The positive reception and plethora of insightful questions from the students spurred me to systematize and weave these resources into this book.
 
+This book is not a comprehensive guide; if that's what you're seeking, you may want to look elsewhere. Instead, this book serves as a map that outlines the necessary tools and topics for your research journey. We'll delve into the basics of data collection, cleaning, validation, and presentation, all while underpinning these concepts with relevant theory. The goal is to build your intuition and provide pointers for where to find more detailed information. The chapters are deliberately concise and to the point, as my objective isn't to bore you, but to enlighten.
+
+## Who Should Read This Book
+
+While my experiences in Economics graduate school served as the primary motivation for writing this book, I've aimed to make it universally applicable for anyone working with data. That's why you'll find dedicated chapters on topics like thesis writing and literature reviews. If your work involves humanities, data analytics, or anything in-between, I'm confident that you'll find this book valuable. Whether you're a seasoned professional brushing up on some skills or a beginner hoping to learn something new, I promise you'll discover something useful here.
+
+Although the examples in this book are written in R, which I believe to be one of the most powerful statistical languages, you don't need prior knowledge of it to benefit from the content. The book focuses on the underlying concepts behind the tools, making it framework-agnostic. Some of the more theoretical chapters do not even require any programming knowledge. Over time, individuals and teams from diverse domains, such as web development, mathematics, data analytics, and economics, have found the content valuable for their work. So regardless of your coding skills or professional background, there's something in here for you.
+
+The book does not need to be read sequentially, but the chapters are ordered and build upon each other for those who prefer a more structured approach. Initially, the data manipulation part was positioned in the middle, but it was moved to the beginning to aid those who need to understand R code earlier.

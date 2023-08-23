@@ -97,9 +97,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
@@ -396,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#example-data" id="toc-example-data" class="nav-link" data-scroll-target="#example-data"><span class="header-section-number">3.2.1</span> Example Data</a></li>
   </ul></li>
-  <li><a href="#basic-data-management" id="toc-basic-data-management" class="nav-link" data-scroll-target="#basic-data-management"><span class="header-section-number">3.3</span> Basic Data Management</a>
+  <li><a href="#basic-data-management-with-dplyr" id="toc-basic-data-management-with-dplyr" class="nav-link" data-scroll-target="#basic-data-management-with-dplyr"><span class="header-section-number">3.3</span> Basic Data Management With <code>dplyr</code></a>
   <ul class="collapse">
   <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">3.3.1</span> <code>select()</code></a></li>
   <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.3.2</span> <code>filter()</code></a></li>
@@ -415,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/data_manipulation.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 <!-- Container for reading time -->
 <div id="reading-time"></div>
 
@@ -466,7 +467,7 @@ overflow-y: scroll;
 }
 </style>
 </div>
-<p>In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages, has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using <code>install.packages("tidyverse")</code> and <code>library("tidyverse")</code> respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing <code>readr</code> for data reading, <code>tidyr</code> for tidying, <code>dplyr</code> for manipulation, and <code>ggplot2</code> for visualization. To explore more about Tidyverse, visit their website <a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>.</p>
+<div class="page-columns page-full"><p>In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using <code>install.packages("tidyverse")</code> and <code>library("tidyverse")</code> respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing <code>readr</code> for data reading, <code>tidyr</code> for tidying, <code>dplyr</code> for manipulation, and <code>ggplot2</code> for visualization. To explore more about Tidyverse, visit their website <a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;A package is a collection of pre-written functions, data, and documentation that enhances the capabilities of the R programming language for specific tasks.</p></li></div></div>
 <section id="basics" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="basics"><span class="header-section-number">3.1</span> Basics</h2>
 <p>Let’s kick off with some fundamental concepts! R can be employed as a simple calculator.</p>
@@ -529,7 +530,7 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="1" data-code-annotation="1">Wrapping with (…) prints the variable</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-11">Wrapping with (…) prints the variable</span>
 </dd>
 </dl>
 </div>
@@ -573,15 +574,15 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-17" data-code-lines="2" data-code-annotation="1">Adds 10 to each element</span>
+<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-17">Adds 10 to each element</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-17" data-code-lines="3" data-code-annotation="2">Multiplies each element by 10</span>
+<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-17">Multiplies each element by 10</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-17" data-code-lines="4" data-code-annotation="3">Adds together elements in corresponding positions</span>
+<span data-code-annotation="3" data-code-lines="4" data-code-cell="annotated-cell-17">Adds together elements in corresponding positions</span>
 </dd>
 </dl>
 </div>
@@ -634,7 +635,7 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-23" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-23" data-code-lines="1" data-code-annotation="1">Download data from GitHub</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-23">Download data from GitHub</span>
 </dd>
 </dl>
 </div>
@@ -719,8 +720,8 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 </div>
 </section>
 </section>
-<section id="basic-data-management" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="basic-data-management"><span class="header-section-number">3.3</span> Basic Data Management</h2>
+<section id="basic-data-management-with-dplyr" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="basic-data-management-with-dplyr"><span class="header-section-number">3.3</span> Basic Data Management With <code>dplyr</code></h2>
 <p><code>dplyr</code> uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator <code>%&gt;%</code> from <code>magrittr</code> package. The way you use functions in base R is you wrap new function over the previous one, such as <code>k(g(f(x)))</code> this will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes <code>x %&gt;% f() %&gt;% g() %&gt;% k()</code>! Now you can clearly see that we take <code>x</code> and apply <code>f()</code>, then <code>g()</code>, then <code>k()</code>. Note: base R now also has its own pipe <code>|&gt;</code>, but we will stick to <code>%&gt;%</code> for compatibility across packages.</p>
 <section id="select" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="select"><span class="header-section-number">3.3.1</span> <code>select()</code></h3>
@@ -1034,16 +1035,42 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 </div>
 <p>This time, we ungrouped the data before calculating the ratio, which gives us the correct result!</p>
 </section>
+<section id="by" class="level4" data-number="3.3.7.3">
+<h4 data-number="3.3.7.3" class="anchored" data-anchor-id="by"><span class="header-section-number">3.3.7.3</span> <code>.by</code></h4>
+<p>Grouping is a commonly performed operation. Having to repeatedly group and ungroup for individual operations can lead to verbosity. To address this, <code>dplyr</code> introduced a convenient feature with version 1.0.0 — the <code>.by</code> argument within <code>dplyr</code> functions. This enhancement streamlines the process and reduces the need for excessive grouping and ungrouping.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 113 × 8
+   id    mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_correct
+   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+ 1 0010…              28.6 F               7          3             1          9
+ 2 0010…              28.6 M               5          6             0          4
+ 3 0010…              28.6 M               6          7             0          7
+ 4 0010…              28.6 M               1          5             1          7
+ 5 0010…              28.6 M               7          9             1         10
+ 6 0010…              28.6 F               2          7             0          5
+ 7 0010…              28.6 F               6          6             0          7
+ 8 0010…              28.6 F               7          7             0          6
+ 9 0010…              30.7 F               5          4             0          4
+10 0010…              30.7 M               6          7             1          4
+# ℹ 103 more rows
+# ℹ 1 more variable: n &lt;int&gt;</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>same as <code>group_by %&gt;% mutate %&gt;% ungroup</code></li>
+</ol>
+</section>
 </section>
 <section id="rowwise" class="level3" data-number="3.3.8">
 <h3 data-number="3.3.8" class="anchored" data-anchor-id="rowwise"><span class="header-section-number">3.3.8</span> <code>rowwise()</code></h3>
 <p>The <code>rowwise()</code> function allows for row-wise grouping. There may be situations where you want to perform a calculation row-wise instead of column-wise. However, when you try to perform the operation, you get an aggregate result. <code>rowwise()</code> comes to your rescue in such situations. Let’s create a dataframe with a column of lists and try to find the length of each list:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">11</span>)</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">11</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   x         length
@@ -1056,9 +1083,9 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 </div>
 <p>In the example above, instead of obtaining the lengths of the lists, we got the total number of rows in the dataset (the length of column <code>x</code>). Now, let’s use <code>rowwise()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> <span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
 # Rowwise: 
@@ -1076,7 +1103,7 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 <h3 data-number="3.3.9" class="anchored" data-anchor-id="count"><span class="header-section-number">3.3.9</span> <code>count()</code></h3>
 <p><code>count()</code> function in R is used for counting the number of rows within each group of values, similar to a combination of <code>group_by()</code> and <code>summarize()</code> functions. It can be used with a single column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   gender     n
@@ -1088,7 +1115,7 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 </div>
 <p>Or with multiple columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender, ch_tournament)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender, ch_tournament)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   gender ch_tournament     n
@@ -1105,9 +1132,9 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 <h3 data-number="3.3.10" class="anchored" data-anchor-id="rename"><span class="header-section-number">3.3.10</span> <code>rename()</code></h3>
 <p>The <code>rename()</code> function allows you to change column names, with the new name on the left and the old name on the right:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">subject_id =</span> id, <span class="at">sex =</span> gender) <span class="sc">%&gt;%</span></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">subject_id =</span> id, <span class="at">sex =</span> gender) <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   subject_id mean_temp_celsius sex   pr_correct tr_correct ch_tournament
@@ -1125,11 +1152,11 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 <h3 data-number="3.3.11" class="anchored" data-anchor-id="row_number"><span class="header-section-number">3.3.11</span> <code>row_number()</code></h3>
 <p><code>row_number()</code> generates a column with consecutive numbers, which can be useful for creating a new id column. The following example first removes the <code>id</code> column, then creates a new one using <code>row_number()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(id) <span class="sc">%&gt;%</span></span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>data_raven <span class="sc">%&gt;%</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(id) <span class="sc">%&gt;%</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
      id mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_correct
@@ -1146,8 +1173,8 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 <h3 data-number="3.3.12" class="anchored" data-anchor-id="skim"><span class="header-section-number">3.3.12</span> <code>skim()</code></h3>
 <p><code>skim()</code> from the <code>skimr</code> package provides an extensive summary of a dataframe. It offers more than <code>summary()</code>, detailing quartiles, missing values, and histograms. Use it during exploratory data analysis to understand your data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(data_raven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(data_raven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -1342,6 +1369,7 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 
 </section>
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
