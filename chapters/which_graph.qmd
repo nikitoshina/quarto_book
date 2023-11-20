@@ -74,6 +74,97 @@ barh_data %>%
   scale_fill_manual(values = c("#c0bfff", "#f3e408", "#D96161"))
 ```
 
+### Lolipop Chart
+
+The lollipop chart is a personal favorite, particularly when compared to traditional bar plots. Its distinct advantage lies in its ability to effectively convey the position of the final data point in a two-dimensional space. 
+
+```{r}
+barh_data %>%
+  ggplot(aes(x = fct_reorder(Candidate, Percentage), y = Percentage, color = as.factor(is.youtuber))) +
+  geom_segment(aes(x = fct_reorder(Candidate, Percentage),
+                   xend= fct_reorder(Candidate, Percentage),
+                   y = 0,
+                   yend = Percentage
+                   )) +
+  geom_point() +
+  theme_minimal(base_size = 16) +
+  coord_flip(clip = "off") +
+  labs(x = NULL, y = NULL, title = "London Mayor Elections (2021) by % of Votes") +
+  theme(panel.grid = element_blank(), legend.position = "none", plot.caption.position = "plot") +
+  scale_y_discrete(expand = c(0, 0, 0, 3)) +
+  geom_text(aes(label = Percentage), color = 'black', nudge_y = 0.4, hjust = "left") +
+  scale_color_manual(values = c("#c0bfff", "#f3e408", "#D96161"))
+```
+
+
+### Bullet Graph
+
+The bullet graph is a powerful tool designed for comparing performance against a predefined target zone. Let's test it with visualizing Net Promoter Score (NPS). The bullet graph clearly shows the target, various performance levels, and where our results stand in relation to the goal.
+
+```{r}
+ggplot() +
+  geom_col(
+    aes(x = "NPS", y = 200),
+    fill = "#A9A9A9",
+    width = 0.6,
+    alpha = 0.9
+  )  +
+  geom_col(
+    aes(x = "NPS", y = 170),
+    fill = "#808080",
+    width = 0.6,
+    alpha = 0.9
+  ) +
+  geom_col(
+    aes(x = "NPS", y = 130),
+    fill = "#696969",
+    width = 0.6,
+    alpha = 0.9
+  ) +
+  geom_col(
+    aes(x = "NPS", y = 180),
+    fill = "black",
+    color = NA,
+    width = 0.2
+  ) +
+  geom_errorbar(
+    aes(x = "NPS", ymin = 160, ymax = 160),
+    color = "red",
+    width = 0.45,
+    size = 2
+  ) +
+  coord_flip() +
+  theme_minimal() +
+  labs(
+    x = element_blank(),
+    y = element_blank(),
+    title = "Net Promoter Score for 2023",
+    subtitle = "We beat the Target!"
+  ) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_text(face = "bold")
+  ) +
+  annotate(
+    "text",
+    x = c(rep((1 + .45), 3),0.55),
+    y = c(
+      130 * 0.5,
+      130 + (170 - 130) * 0.5,
+      170+(200-170)*0.5 ,
+      160
+    ),
+    label = c("Poor", "Good", "Great", "Target"),
+    color = c(rep("black", 3), "red")
+  ) +
+  ylim(c(-100,100)) +
+  scale_y_continuous(breaks = seq(0, 200, 10), labels = seq(-100,100,10)) +
+  
+  NULL
+```
+
+
+
 ## Distribution
 
 ### Histogram
@@ -137,7 +228,7 @@ freq_1 + freq_2
 
 ### Box Plot
 
-This section was inspired by https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/
+<!-- This section was inspired by https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/ -->
 
 Boxplots provide a summary of the distribution of a dataset, show the median, the lower and upper quartiles, and the minimum and maximum values of a dataset. The box in the middle represents the interquartile range (IQR), which is the range of the middle 50% of the data. The line in the box represents the median, which is the midpoint of the data. The whiskers on the top and bottom extend to the minimum and maximum values, excluding outliers. It is incredible how much information boxplots contain! With just one plot, you can quickly identify outliers and gain a visual understanding of the distribution of the data.
 

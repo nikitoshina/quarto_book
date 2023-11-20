@@ -294,7 +294,7 @@ p # <4>
 ECharts4r is an R wrapper for the ECharts JavaScript library, which is used for interactive data visualization. ECharts provides a rich set of chart types, including bar, line, scatter, pie, radar, and more.
 
 ```{r}
-library(echarts4r)
+library(echarts4r) # <1>
 
 e_chart <- iris %>%
   group_by(Species) %>% # <1>
@@ -306,38 +306,26 @@ e_chart <- iris %>%
     x = "Sepal Width",
     y = "Sepal Length"
   ) %>% # <6>
-  e_tooltip(
-    trigger = "item",
+  e_tooltip( # <7>
+    trigger = "item", 
     formatter = htmlwidgets::JS("
       function(params){
         return('Sepal Length: ' + params.value[0] + '<br />Sepal Width: ' + params.value[1])
-      }
-    ")
-  ) # <7>
+      } 
+    ") 
+  ) 
 
-# Display the plot
-e_chart
+e_chart # <10>
 ```
-
-1.  Group the data by the Species variable.
-
-2.  Initialize an Echarts plot with Sepal.Length as the x-axis.
-
-3.  Add a scatter plot to the existing Echarts plot with Sepal.Width as the y-axis.
-
-4.  Set the range for the y-axis (Sepal.Length) from 1.5 to 5.
-
-5.  Set the range for the x-axis (Sepal.Width) from 4 to 8.
-
-6.  Label the x-axis as "Sepal Width" and the y-axis as "Sepal Length".
-
-7.  Add a tooltip to the plot that appears when hovering over data points and displays both the Sepal Length and Sepal Width.
-
-8.  Load the `echarts4r` library.
-
-9.  Create a scatter plot with ECharts using the `e_charts` function. Here, the size of the points (symbols) is determined by the number of cylinders, and additional information is provided in the tooltip when you hover over a point.
-
-10. Display the plot.
+1.  Load the `echarts4r` library.
+2.  Group the data by the Species variable.
+3.  Initialize an Echarts plot with Sepal.Length as the x-axis.
+4.  Add a scatter plot to the existing Echarts plot with Sepal.Width as the y-axis.
+5.  Set the range for the y-axis (Sepal.Length) from 1.5 to 5.
+6.  Set the range for the x-axis (Sepal.Width) from 4 to 8.
+7.  Label the x-axis as "Sepal Width" and the y-axis as "Sepal Length".
+8.  Add a tooltip to the plot that appears when hovering over data points and displays both the Sepal Length and Sepal Width.
+9. Display the plot.
 
 ECharts is particularly powerful for creating complex, multi-series, interactive charts and supports a broad range of customization options.
 

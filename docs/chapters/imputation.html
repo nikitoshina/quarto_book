@@ -126,7 +126,6 @@ div.csl-indent {
 <script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
-<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating slimcontent">
@@ -378,30 +377,48 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/visualization_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Color Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color_scheme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Color Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/epilogue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epilogue</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
@@ -430,30 +447,6 @@ div.csl-indent {
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<!-- Container for reading time -->
-<div id="reading-time"></div>
-
-<!-- JavaScript code for calculating reading time -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const wordsPerMinute = 200;
-  const content = document.querySelector("main");
-  const wordCount = content.innerText.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
-  const readingTimeContainer = document.getElementById("reading-time");
-  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
-});
-</script>
-
-<!-- CSS code for styling the reading time container -->
-<style>
-#reading-time {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1em;
-}
-</style>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -523,7 +516,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="1"><code>tribble()</code> is a function to create a data frame in a readable format</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="1"><code>tribble()</code> is a function to create a data frame in a readable format</span>
 </dd>
 </dl>
 </div>
@@ -560,27 +553,27 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="1">Creating a complete dataframe with all possible combinations of <code>student_id</code> and nested combinations of <code>day</code> and <code>class</code></span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Creating a complete dataframe with all possible combinations of <code>student_id</code> and nested combinations of <code>day</code> and <code>class</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="3"><code>full_seq()</code> generates a sequence of student IDs, using the number of unique student IDs as the maximum value</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="3"><code>full_seq()</code> generates a sequence of student IDs, using the number of unique student IDs as the maximum value</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="4"><code>nesting()</code> creates only combinations that already exist in the data</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-2" data-code-lines="4"><code>nesting()</code> creates only combinations that already exist in the data</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="4" data-code-lines="5">Fills missing attendance data with <code>FALSE</code></span>
+<span data-code-annotation="4" data-code-cell="annotated-cell-2" data-code-lines="5">Fills missing attendance data with <code>FALSE</code></span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="5" data-code-lines="6">Limit the <code>fill</code> to only the newly created (i.e.&nbsp;previously implicit)</span>
+<span data-code-annotation="5" data-code-cell="annotated-cell-2" data-code-lines="6">Limit the <code>fill</code> to only the newly created (i.e.&nbsp;previously implicit)</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="6" data-code-lines="8">Orders the resulting data frame by <code>day</code>, <code>class</code>, <code>student_id</code>, and <code>present</code></span>
+<span data-code-annotation="6" data-code-cell="annotated-cell-2" data-code-lines="8">Orders the resulting data frame by <code>day</code>, <code>class</code>, <code>student_id</code>, and <code>present</code></span>
 </dd>
 </dl>
 </div>
@@ -626,7 +619,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="3"><code>md.pattern</code> makes a matrix of missing values. <code>invisible</code> to only show plot, without matrix output.</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="3"><code>md.pattern</code> makes a matrix of missing values. <code>invisible</code> to only show plot, without matrix output.</span>
 </dd>
 </dl>
 </div>
@@ -676,23 +669,23 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="1" data-code-lines="4">Impute with a fixed value (0 in this case).</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-5" data-code-lines="4">Impute with a fixed value (0 in this case).</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="2" data-code-lines="5">Impute with the mean.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-5" data-code-lines="5">Impute with the mean.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="3" data-code-lines="6">Impute with the median.</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-5" data-code-lines="6">Impute with the median.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="4" data-code-lines="8">Keep only “used” columns.</span>
+<span data-code-annotation="4" data-code-cell="annotated-cell-5" data-code-lines="8">Keep only “used” columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-annotation="5" data-code-lines="10">Fills missing values with the most recent non-missing value above.</span>
+<span data-code-annotation="5" data-code-cell="annotated-cell-5" data-code-lines="10">Fills missing values with the most recent non-missing value above.</span>
 </dd>
 </dl>
 </div>
@@ -782,11 +775,11 @@ document.addEventListener("DOMContentLoaded", function () {
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  imp_forest
-1     25.390
-2     17.120
-3     25.945
-4     34.320
-5     26.050</code></pre>
+1      24.60
+2      13.59
+3      25.12
+4      31.94
+5      25.63</code></pre>
 </div>
 </div>
 <p>Tree-based methods like Random Forests can handle complex data structures and can be a good choice when relationships between variables are non-linear or involve interactions. However, they can be computationally intensive and may not perform well with small sample sizes or sparse data.</p>
@@ -839,11 +832,11 @@ Jakobsen, Janus Christian, Christian Gluud, Jørn Wetterslev, and Per Winkel. 20
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  imp_pmm imp_cart imp_lasso
-1      36       14  57.86347
-2      18        1 -11.84231
-3      18       18 -21.74155
-4      23       45  52.94927
-5      29       21  51.63966</code></pre>
+1      30       19  27.62436
+2       8        4  -7.71994
+3      32       34 -30.32390
+4      52       44  37.07999
+5      36       21  45.27953</code></pre>
 </div>
 </div>
 <p>Assuming you have a dataset <code>data</code> with missing values, you can use <code>mice()</code> function to perform multiple imputation:</p>

@@ -89,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="../styles.css">
+}</script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -334,29 +334,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/visualization_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Color Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color_scheme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Color Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
   </div>
 </li>
       </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/epilogue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epilogue</span></a>
+  </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -372,38 +390,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#white-spaces-and-indentation" id="toc-white-spaces-and-indentation" class="nav-link active" data-scroll-target="#white-spaces-and-indentation"><span class="header-section-number">11.0.1</span> White Spaces and Indentation</a></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">11.0.2</span> Naming Conventions</a></li>
-  <li><a href="#use-of-braces" id="toc-use-of-braces" class="nav-link" data-scroll-target="#use-of-braces"><span class="header-section-number">11.0.3</span> Use of Braces</a></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="header-section-number">11.0.4</span> Comments</a></li>
-  <li><a href="#long-functions" id="toc-long-functions" class="nav-link" data-scroll-target="#long-functions"><span class="header-section-number">11.0.5</span> Long Functions</a></li>
-  <li><a href="#styler" id="toc-styler" class="nav-link" data-scroll-target="#styler"><span class="header-section-number">11.1</span> Styler</a></li>
-  <li><a href="#linter" id="toc-linter" class="nav-link" data-scroll-target="#linter"><span class="header-section-number">11.2</span> Linter</a></li>
-  <li><a href="#why-do-we-care" id="toc-why-do-we-care" class="nav-link" data-scroll-target="#why-do-we-care"><span class="header-section-number">11.3</span> Why do we care?</a></li>
+<li>
+<a href="#tidyverse-style" id="toc-tidyverse-style" class="nav-link active" data-scroll-target="#tidyverse-style"><span class="header-section-number">11.1</span> Tidyverse Style</a>
+  <ul class="collapse">
+<li><a href="#white-spaces-and-indentation" id="toc-white-spaces-and-indentation" class="nav-link" data-scroll-target="#white-spaces-and-indentation"><span class="header-section-number">11.1.1</span> White Spaces and Indentation</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">11.1.2</span> Naming Conventions</a></li>
+  <li><a href="#use-of-braces" id="toc-use-of-braces" class="nav-link" data-scroll-target="#use-of-braces"><span class="header-section-number">11.1.3</span> Use of Braces</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="header-section-number">11.1.4</span> Comments</a></li>
+  <li><a href="#long-functions" id="toc-long-functions" class="nav-link" data-scroll-target="#long-functions"><span class="header-section-number">11.1.5</span> Long Functions</a></li>
+  </ul>
+</li>
+  <li><a href="#styler" id="toc-styler" class="nav-link" data-scroll-target="#styler"><span class="header-section-number">11.2</span> Styler</a></li>
+  <li><a href="#linter" id="toc-linter" class="nav-link" data-scroll-target="#linter"><span class="header-section-number">11.3</span> Linter</a></li>
+  <li><a href="#why-care" id="toc-why-care" class="nav-link" data-scroll-target="#why-care"><span class="header-section-number">11.4</span> Why Care?</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/linter_styler.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><!-- Container for reading time --><div id="reading-time"></div>
-
-<!-- JavaScript code for calculating reading time -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const wordsPerMinute = 200;
-  const content = document.querySelector("main");
-  const wordCount = content.innerText.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
-  const readingTimeContainer = document.getElementById("reading-time");
-  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
-});
-</script><!-- CSS code for styling the reading time container --><style>
-#reading-time {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1em;
-}
-</style>
-<header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
 <span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Style and Lint your Code</span>
 </h1>
@@ -419,11 +422,13 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
   
 
-</header><p>While immersing yourself in coding, you might neglect aesthetics like proper indentation or line breaks, which could make your code less readable and more error-prone. It’s crucial to adopt certain coding practices to enhance readability and minimize errors. To help with this, we will explore R code conventions and introduce <code>styler</code> and <code>lintr</code>, packages that improve code aesthetics and detect potential errors.</p>
+</header><section id="tidyverse-style" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="tidyverse-style">
+<span class="header-section-number">11.1</span> Tidyverse Style</h2>
+<p>While immersing yourself in coding, you might neglect aesthetics like proper indentation or line breaks, which could make your code less readable and more error-prone. It’s crucial to adopt certain coding practices to enhance readability and minimize errors. To help with this, we will explore R code conventions and introduce <code>styler</code> and <code>lintr</code>, packages that improve code aesthetics and detect potential errors.</p>
 <p>A good coding style, much like correct punctuation, significantly enhances readability. It’s important to remember that while some guidelines improve usability, others may be subjective. However, their true value lies in fostering consistency, which simplifies the coding process.</p>
 <p>Two R packages, <code>styler</code> and <code>lintr</code>, support this style guide by offering interactive restyling of code and automated style checks, respectively.</p>
-<section id="white-spaces-and-indentation" class="level3" data-number="11.0.1"><h3 data-number="11.0.1" class="anchored" data-anchor-id="white-spaces-and-indentation">
-<span class="header-section-number">11.0.1</span> White Spaces and Indentation</h3>
+<section id="white-spaces-and-indentation" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="white-spaces-and-indentation">
+<span class="header-section-number">11.1.1</span> White Spaces and Indentation</h3>
 <p>Adhere to a two-space indentation to illustrate the structure and hierarchy in your code. Function contents should also follow this two-space rule. For functions with pipes, start a new line for each pipe and indent them accordingly, ensuring clarity and readability.</p>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -454,8 +459,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-</section><section id="naming-conventions" class="level3" data-number="11.0.2"><h3 data-number="11.0.2" class="anchored" data-anchor-id="naming-conventions">
-<span class="header-section-number">11.0.2</span> Naming Conventions</h3>
+</section><section id="naming-conventions" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="naming-conventions">
+<span class="header-section-number">11.1.2</span> Naming Conventions</h3>
 <p>R has a unique operation <code>&lt;-</code> used for assigning variables. You should always use <code>&lt;-</code> as an assignment operator over <code>=</code> (yes, Python enthusiasts, I’m looking at you). One of the hardest things in all of programming is naming your variables. In R, we use <code>snake_case</code> over <code>camelCase</code> (JavaScript enthusiasts, take note) or anything else. For variables, use nouns and don’t hesitate to make the names a bit longer. Aim for the perfect balance where your code can be readable yet concise. For functions, always use verbs, since functions perform actions.</p>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -477,8 +482,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-</section><section id="use-of-braces" class="level3" data-number="11.0.3"><h3 data-number="11.0.3" class="anchored" data-anchor-id="use-of-braces">
-<span class="header-section-number">11.0.3</span> Use of Braces</h3>
+</section><section id="use-of-braces" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="use-of-braces">
+<span class="header-section-number">11.1.3</span> Use of Braces</h3>
 <p>Utilize braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> in your R code strategically to boost readability, grouping together commands that operate in tandem.</p>
 <p>For if-else statements, place the opening brace <code>{</code> on the same line as the condition, and position the closing brace <code>}</code> on a new line. Ensure that the <code>else</code> statement shares a line with the closing brace of the preceding <code>if</code> section. This configuration facilitates easy identification of distinct code blocks.</p>
 <div class="columns">
@@ -507,8 +512,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
-</section><section id="comments" class="level3" data-number="11.0.4"><h3 data-number="11.0.4" class="anchored" data-anchor-id="comments">
-<span class="header-section-number">11.0.4</span> Comments</h3>
+</section><section id="comments" class="level3" data-number="11.1.4"><h3 data-number="11.1.4" class="anchored" data-anchor-id="comments">
+<span class="header-section-number">11.1.4</span> Comments</h3>
 <p>Commenting your code is a critical practice that can save you time and prevent confusion later. Even though your code should aim to be self-explanatory, comments provide invaluable context about the reasoning behind your code and help document key findings and decisions in data analysis.</p>
 <p>Use <code>#</code> and a space to write a comment. Stick to sentence case and only use a full stop at the end if your comment spans multiple sentences. Begin each line of the comment with <code>#</code> and a space.</p>
 <p>If you find you need many comments to explain your code, consider refining it for clarity. A code that requires an excess of comments may be better suited to a verbose platform, such as Quarto.</p>
@@ -525,8 +530,8 @@ document.addEventListener("DOMContentLoaded", function () {
 #We will sum all of the heights and divide by the number of heights</code></pre>
 </div>
 </div>
-</section><section id="long-functions" class="level3" data-number="11.0.5"><h3 data-number="11.0.5" class="anchored" data-anchor-id="long-functions">
-<span class="header-section-number">11.0.5</span> Long Functions</h3>
+</section><section id="long-functions" class="level3" data-number="11.1.5"><h3 data-number="11.1.5" class="anchored" data-anchor-id="long-functions">
+<span class="header-section-number">11.1.5</span> Long Functions</h3>
 <p>Aim to confine your code within 80 characters per line. This fits well on a standard printed page using a readable font size. If you find your code exceeding this limit, consider it a hint to encapsulate some of your code into a separate function.</p>
 <p>For function calls that extend beyond a single line, allocate separate lines for the function name, each of its arguments, and the closing parenthesis. This practice enhances readability and future edits.</p>
 <p>Good</p>
@@ -546,8 +551,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <p>The R packages <code>styler</code> and <code>lintr</code> can automatically enforce these guidelines, making them beneficial tools for learning these conventions.</p>
 <p>The whole style guide should take longer then 20 minutes to read, so please go through it: <a href="https://style.tidyverse.org/index.html">tidyverse style guide</a></p>
-</section><section id="styler" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="styler">
-<span class="header-section-number">11.1</span> Styler</h2>
+</section></section><section id="styler" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="styler">
+<span class="header-section-number">11.2</span> Styler</h2>
 <p>Styler, an R package, formats your code in line with the tidyverse style guide. It’s straightforward to install using <code>install.packages("styler")</code>. After installation, you’ll find a new function in the <code>Addins</code> menu at the top of your RStudio window. It’s advisable to set a keyboard shortcut, such as “Command + Shift + a”, for the “Style Selection” function for easy access.</p>
 <p>Before</p>
 <div class="cell">
@@ -560,8 +565,8 @@ document.addEventListener("DOMContentLoaded", function () {
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="linter" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="linter">
-<span class="header-section-number">11.2</span> Linter</h2>
+</section><section id="linter" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="linter">
+<span class="header-section-number">11.3</span> Linter</h2>
 <p>Static code analysis is a method of debugging by examining the code without running it. In the context of R programming, linters are tools that perform static code analysis. The primary purpose of a linter is to catch potential errors, enforce coding standards, and to ensure consistent style across a project.</p>
 <p>R’s <code>lintr</code> package is a static code analysis tool that flags style, coding and syntax issues. Here’s a brief explanation of these three components:</p>
 <ol type="1">
@@ -574,8 +579,8 @@ document.addEventListener("DOMContentLoaded", function () {
 <blockquote class="blockquote">
 <p>Styler and Linter might appear similar, but they have different functions. Styler is faster and tidies up your code for better readability, while Linter is a bit slower but essential for spotting and avoiding errors in your code. So, Styler makes your code look neat, and Linter keeps it bug-free.</p>
 </blockquote>
-</section><section id="why-do-we-care" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="why-do-we-care">
-<span class="header-section-number">11.3</span> Why do we care?</h2>
+</section><section id="why-care" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="why-care">
+<span class="header-section-number">11.4</span> Why Care?</h2>
 <p>You may wonder, if you’re comfortable with your coding style, why use these tools? While there are subjective benefits, the primary reason is that they enhance your code’s accessibility, eliminate irrelevant stylistic changes from git commits, and ensure cross-OS functionality.</p>
 <blockquote class="blockquote">
 <p>Mac and Windows represent tabs with different symbols. If your code contains tabs, it may fail on a different OS. To ensure compatibility, use spaces (your editor can convert tabs into spaces).</p>

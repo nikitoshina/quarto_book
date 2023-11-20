@@ -1,5 +1,5 @@
 ---
-title: "Color"
+title: "Color Data"
 editor: visual
 format:
   html:
@@ -383,78 +383,4 @@ Prebuilt color scales such as "Viridis" are crafted for perceptual uniformity, e
     theme = theme(plot.title = element_text(size = 16))
   )
 ```
-
-## Color Systems
-
-Several popular color systems are commonly used in digital design and data visualization. The standard color space for displaying images and graphics on digital displays is the sRGB color system, a device-dependent color space designed to provide consistent color reproduction across a wide range of devices. The HCV color system, based on hue, chroma, and value, is employed to create visually distinct color palettes for use in data visualization. The HSL color system, founded on hue, saturation, and lightness, is frequently used to devise color palettes for web design and user interfaces. Meanwhile, the LAB color system is a device-independent color space intended to accurately represent colors across various devices and environments; this system often finds use in professional printing and color management applications. Each of these color systems has its unique strengths and weaknesses, with the choice depending on the specific needs of the project.
-
-To see how these spaces look, check out this amazing video!
-
-{{< video https://youtu.be/HlDySNpGbyc >}}
-
-### HSL
-
-The HSL color system characterizes colors employing three parameters: hue, saturation, and lightness. Hue, designated by a value from 0 to 360 degrees on the color wheel, determines the fundamental color of the pixel. Saturation denotes the purity of the hue, representing the degree of gray mixed into the color. Values for saturation range from 0% (gray) to 100% (pure hue). Lightness, conversely, symbolizes the proportion of white or black mixed with the color, with 0% being black, 50% being the pure color, and 100% being white. Despite its usefulness in graphic design and web development, the HSL system has some constraints, such as not being perceptually uniform, which means that changes in the numeric values of the parameters may not correlate to equal changes in the perceived color.
-
-### HSV
-
-The HSV color system describes colors using three parameters: hue, saturation, and value. Hue and saturation function the same way as in the HSL system. Value signifies the brightness of the pixel, with 0% being black and 100% being the brightest possible color. Like the HSL system, the HSV system also suffers from a lack of perceptual uniformity.
-
-### HCL
-
-The HCL color system, a perceptually uniform color space, is frequently employed in data visualization and scientific applications. It comprises three values: hue, chroma, and lightness, which symbolize the color, saturation, and brightness of a color respectively. Owing to its capability to emulate human perception of color, the HCL color space is garnering increased popularity in design and user interface applications.
-
-### LAB
-
-The LAB color system, a device-independent color space designed to represent colors accurately across various devices and environments, comprises three parameters: L (lightness), a (position between red/magenta and green), and b (position between yellow and blue). The LAB color space finds frequent use in professional printing and color management applications due to its ability to enable accurate color matching across diverse devices and environments. Some of the newer LAB color spaces (e.g., OKLAB) are perceptually uniform, meaning that equal distances in the LAB color space correspond to equal increments in perceived color difference.
-
-### OKLAB
-
-OKLAB is a color space engineered to be more perceptually uniform than other color spaces like sRGB or LAB. It employs an opponent color model, encoding color information as L -- perceived lightness, a -- the green/red aspect of the color, and b -- the blue/yellow aspect of the color. This allows the OKLAB color space to represent colors accurately while maintaining perceptual uniformity. OKLAB is growing in popularity in digital design and data visualization due to its enhanced accuracy and consistency in color representation.
-
-For a deeper understanding of OKLAB and other color spaces, the blog posts on [OKLAB](https://bottosson.github.io/posts/oklab/) and [Colorpicker](https://bottosson.github.io/posts/colorpicker/) offer excellent insights.
-
-### Perceptual Uniformity
-
-Humans perceive colors differently than machines. For instance, a color that seems similar to a machine might not appear so to a human. The images below illustrate this concept using two color wheels, one RGB (perceptually non-uniform) and the other HCL (uniform). When viewed in grayscale, the non-uniform nature of the RGB color wheel becomes apparent. Technically, a perceptually uniform color space ensures that the difference between two colors, as perceived by the human eye, is proportional to the Euclidean distance within the given color space.
-
-![uniform perception](images/uniform_perception.jpg){#pic-rgb_hcl}
-
-#### Warning: Colormaps Might Increase Risk of Death!
-
-In the 1990s, data visualization specialists adopted the Rainbow Color Map, the most renowned variation being the Jet default palette. However, researchers expressed concerns over its non-uniform nature, which introduced transitions that could be misperceived.
-
-Rogowitz and Treinish voiced their concerns about the Rainbow Color Map in their 1998 article, "Data Visualization: The End of the Rainbow" [@rogowitzDataVisualizationEnd1998], and Borland and Taylor highlighted further concerns in their 2007 paper, "Rainbow Color Map (Still) Considered Harmful" [@borlandRainbowColorMap2007]. In 2011, Borkin et al. conducted user studies on various color maps, including the Rainbow Color map, within medical visualization contexts. Their findings, published in "Evaluation of Artery Visualizations of Heart Disease Diagnosis" [@borkinEvaluationArteryVisualizations2011], demonstrated that a perceptually uniform color map resulted in fewer diagnostic errors than the Rainbow Color map. Simply put, using a proper color palette could decrease diagnostic errors. Yet, as outlined by Crameri, Shephard, and Heron in their 2020 article, "The misuse of colour in science communication" [@crameriMisuseColourScience2020], the improper use of color persists in science, making this a must-read article for any scientist.
-
-![Image from the "Rainbow Color Map (Still Considered Harmful)](images/jet_comparison.jpg){#pic-rainbow_harm}
-
-These issues intensify when considering colorblind individuals. Approximately 8% of all men and 0.5% of all women are colorblind. There are three main forms of colorblindness: protan (red), deutan (green), and tritan (blue), each corresponding to color-sensitive cones in our eyes. To check whether your visualization is colorblind-friendly, use [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) [@CoblisColorBlindness].
-
-Improving the readability of your colors involves varying their value and hue, but avoid including both red and green in your graphics as red-green color blindness is the most common form.
-
-![Color Blind Rainbow Flower](images/Color_Blindness.jpg){#pic-color_blind width="665"}
-
-#### So, What Should You Use?
-
-A simple and correct answer would be to use a scientific color map that you find appealing and make it your default. If you need help, this graph from "The misuse of colour in science communication" might be useful.
-
-![choosing color map](images/choosing_color_map.jpg){#pic-choose_color width="365"}
-
-If you want to select colors yourself, use HSL, as it is the most intuitive and easiest to use in creating color palettes. You might also want to experiment with OKHSL, a child of OKLAB and HSL that produces a perceptually uniform HSL space. Try out both of them and observe the difference [here](https://bottosson.github.io/misc/colorpicker/)[^color-1].
-
-[^color-1]: https://bottosson.github.io/misc/colorpicker/
-
-### Where Can I Find Color Waves?
-
-[Adobe Color](https://color.adobe.com/create/color-wheel) - Adobe Color allows you to create color palettes using different color harmony rules and color modes. You can also select colors from your image, create gradients from images, and test for accessibility.
-
-[Paletton](https://paletton.com/) - This is a fantastic tool for creating color palettes.
-
-[Color Brewer](http://colorbrewer2.org/) - Color Brewer provides perceptually uniform color schemes for maps and data visualizations.
-
-[Color Thief](https://lokeshdhakar.com/projects/color-thief/) - Color Thief lets you extract colors from your image to create nature-inspired palettes.
-
-[Viz Palette](https://projects.susielu.com/viz-palette) - Viz Palette can be used to check your color palettes before creating visualizations. It allows you to view color sets in example plots, simulate color deficiencies, and modify the colors of your palette.
-
-[Scientific colour maps](https://www.fabiocrameri.ch/colourmaps/) - This is a collection of uniform and readable color maps for scientific use.
 

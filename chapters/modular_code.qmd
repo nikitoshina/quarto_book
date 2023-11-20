@@ -4,7 +4,7 @@ eval: false
 code-annotations: hover
 ---
 
-Working within a single file is a smooth ride until you hit a couple of hundred lines and searching for bugs, edits, and simply understanding your location in the file becomes rather problematic. We can add comments and have something like Table of Contents, use search to move around the file, but all of this is just a bandaid and will completely useless when sharing the code with others. More problems araise when you have to download multiple libraries and you get name-space conflicts or when all the names that make sense for variables and functions are taken and you end up with `very_important_variable_2_winz`. 
+Working within a single file is a smooth ride until you hit a couple of hundred lines and searching for bugs, edits, and simply understanding your location in the file becomes rather problematic. We can add comments and have something like Table of Contents, use search to move around the file, but all of this is just a bandaid and will be completely useless when sharing the code with others. More problems araise when you have to download multiple libraries and you get name-space conflicts or when all the names that make sense for variables and functions are taken and you end up with `very_important_variable_2_winz`. 
 
 The solution to this is using modules. Usually, in R we use functions and packages to organize our projects. However, projects are pretty complicated and often it is not worth squeezing your code into a package. So we would like to turn towards modules as they provide local environment, meaning all the packages you load and all the variables you define do not leak and clash in the global environment. Additionally, modules make it easy to extend your code to different files and reuse them in different projects. Each file is self contained and orthogonal to others, change in one doesn't affect the other.
 
@@ -41,66 +41,72 @@ This will drastically improve your code's readability. You can use `source` to l
 
 You can run these scripts separately, for instance you first run a `load_data` script that saves the loaded data and then run the `data_preprocessing` and `data_visualization` scripts. Or you can source the files and use the functions in the main file. Additionally, you can load the scripts into the same local environment with `local = TRUE`.
 
-<!-- # ```{r} -->
-<!-- # # data_loading.R -->
-<!-- # load_data <- function(file_path) { -->
-<!-- #   # Code to load data from a file -->
-<!-- # } -->
-<!-- #  -->
-<!-- # # data_preprocessing.R -->
-<!-- # preprocess_data <- function(data) { -->
-<!-- #   # Code to preprocess data -->
-<!-- # } -->
-<!-- #  -->
-<!-- # # data_visualization.R -->
-<!-- # visualize_data <- function(data) { -->
-<!-- #   # Code to visualize data -->
-<!-- # } -->
-<!-- # ``` -->
-<!-- #  -->
-<!-- # ```{r} -->
-<!-- # source(data_loading.R, local = TRUE) -->
-<!-- # source(data_preprocessing.R, local = TRUE) -->
-<!-- # source(data_visualization.R, local = TRUE) -->
-<!-- # ``` -->
+```{r}
+# data_loading.r
+load_data <- function(file_path) {
+  # Code to load data from a file
+}
+
+# data_preprocessing.r
+preprocess_data <- function(data) {
+  # Code to preprocess data
+}
+
+# data_visualization.r
+visualize_data <- function(data) {
+  # Code to visualize data
+}
+```
+
+```{r}
+source(data_loading.r, local = TRUE)
+source(data_preprocessing.r, local = TRUE)
+source(data_visualization.r, local = TRUE)
+```
+
+Now let's delve into the functionality of the `source` command in R, particularly when dealing with multiple files. The example shows the process through snippets encompassed in distinct files: "name.csv" holds a single entry, "Dima"; "load_data.r" loads the data from the csv; "add_title.r" defines the `add_title` function, combining a name and a title; "say_hi.r" defines `say_hi`, appending "Hi" to a name; and "main.r" utilizes the source command to load these modules and showcases their utilization in a sequence of chained operations. Ultimately, the code yields the output "Hi Mr. Dima," highlighting how `source` integrates functions across multiple files.
 
 ```{r}
 # name.csv
 Dima # <1>
 ```
-1. CSV file named "name.csv" with a single entry, "Dima."
+1. CSV file named "name.csv" with a single entry, "Dima".
 
 ```{r}
-# addTitle.R
-addTitle <- function(name, title) { # <1>
+# load_data.r
+my_name <- read.csv("name.csv", header = FALSE) # <1>
+```
+1. Read `name.csv` and get the name of the column (name is stored and column name).
+
+```{r}
+# add_title.r
+source("load_data.r")
+add_title <- function(name, title) { # <1>
   return(paste(title, name))
 }
-
-myName <- colnames(read.csv("name.csv")) # <2>
 ```
-1. Defines a function called `addTitle`, which concatenates a title and name to create a new string.
-2. Read `name.csv` and get the name of the column (name is stored and column name).
+1. Defines a function called `add_title`, which concatenates a title and name to create a new string.
 
 ```{r}
-# sayHi.R
-sayHi <- function(name) { # <1>
+# say_hi.r
+say_hi <- function(name) { # <1>
   return(paste("Hi", name))
 }
 ```
-1. Defines a function called `sayHi`, which concatenates a name and "Hi".
+1. Defines a function called `say_hi`, which concatenates a name and "Hi".
 
 ```{r}
-# main.R
-source("sayHi.R") # <1>
-source("addTitle.R")
+# main.r
+source("say_hi.r") # <1>
+source("add_title.r")
 
 title <- "Mr."
 
-addTitle(myName, title) |>
-  sayHi() |>
+add_title(myName, title) |>
+  say_hi() |>
   print()
 ```
-1. Named "main.R," loads the `sayHi` and `addTitle` modules from their respective files using the source function.
+1. Named "main.r," loads the `say_hi` and `add_title` modules from their respective files using the source function.
 
 ```{r}
 #| eval: true
@@ -108,18 +114,15 @@ addTitle(myName, title) |>
 print("Hi Mr. Dima")
 ```
 
-
-
-
 ## `box` It 
 
 The 'box' system in R allows you to convert regular R files into reusable modules, enabling simplified code sharing without packaging. You can export functions by placing the `#' @export` directive before the function's name. For instance:
 
 ```{r}
-# functions/sayHi.R
+# say_hi.r
 #' @export
-sayHi  <- function(name) {
-    return(paste("Hi", name,"!"))
+say_hi <- function(name) { # <1>
+  return(paste("Hi", name))
 }
 ```
 
@@ -140,28 +143,32 @@ box::use(ggplot2[...])
 `Box::use` allows specific function loading, which avoids name clashes and improves traceability of function origin. It allows aliasing to assign a different name to a package or its functions when imported:
 
 ```{r}
-# functions/addTitle.R
+# load_data.r
 box::use(
   utils[read = read.csv] # <1>
 )
 
-#' @export # <2> exports the function
-addTitle <- function(name, title) {
-  return(paste(title, name))
-}
-
 #' @export
-myName <- colnames(read("name.csv"))
+my_name <- read("name.csv", header = FALSE) 
 ```
 1. Load `read.csv` function from `utils` and rename it to `read`
+
+```{r}
+# add_title.r
+#' @export
+add_title <- function(name, title) {
+  return(paste(title, name))
+}
+```
 
 These modules can be stored in a central location or within individual projects and can be imported and used with the `box::use` function, like:
 
 ```{r}
-# main.R
+# main.r
 box::use( # <1>
-  functions/bsayHi,
-  functions/baddTitle,
+    ./say_hi, # <1>
+    ./add_title, # <1>
+    ./load_data[my_name] # <1>
 )
 
 box::use(
@@ -170,13 +177,10 @@ box::use(
 
 title <- "Mr."
 
-baddTitle$addTitle(baddTitle$myName, title) |> # <3>
-  bsayHi$sayHi() |>
-  str_split_1(patter = " ") # <4>
+add_title$add_title(my_name, title) |> # <3>
+  say_hi$say_hi() |>
+  str_split_1(pattern = " ") # <4>
 ```
-
-Modules in `box` share similarities with R packages, but are simpler to create and use, and offer features such as hierarchical nesting.
-
 1. Load the files
 2. Load function from `stringr` package. 
 3. Access the function and the variable using `module$variable`.
@@ -187,5 +191,7 @@ Modules in `box` share similarities with R packages, but are simpler to create a
 #| echo: false
 "Hi Mr. Dima !" |> stringr::str_split_1(pattern = " ")
 ```
+
+Modules in `box` share similarities with R packages, but are simpler to create and use, and offer features such as hierarchical nesting.
 
 `box` is an amazing package that will greatly aid you on larger projects it is also a part of `rhino` shiny framework. There is a lot more to it, so make sure to read the official [ documentation ](https://klmr.me/box/articles/box.html).

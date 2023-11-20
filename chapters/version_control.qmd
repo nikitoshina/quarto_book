@@ -33,6 +33,8 @@ Starting to use Git and GitHub can be a little overwhelming and confusing, espec
 
 There have been many guides on installing Git on your machine and connecting it to RStudio. I will spare the world from my version. I recommend you use the guide from @hesterLetGitStarted [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html) and use it as a reference for your other adventures with Git. Once you went through the whole process of installation. You may want to connect it to RStudio; however, it is optional. Because the commands can be hard to memorize and connect to the actions and the state of your repository, you should install a Git Client, which will get an overview of the recent commit history, branches, and a GUI that simplifies Git operations. Try [GitHub Destop](https://desktop.github.com/) or [GitKraken](https://www.gitkraken.com/).
 
+> When inside of repository press "." to start web version of VSCode to work with the repository.
+
 ## Basics
 
 Repositories on GitHub are storage spaces for your projects, where you can manage, organize, and collaborate on files while keeping track of changes using Git's version control system. To create a repository you can start with GitHub first or Local first. In other words, with GitHub first you start by initiating a repository on GitHub and then cloning it into your machine and with Local First you write somecode and connect your repository to the GitHub. I am generally using Local First as I often start the project and later decide whether I want it online. With GitHub desktop it is extremely easy to add a repo by just going to File -\> New Repository. There are also two types of repositories Private and Public. You can change the status in your repository's settings.

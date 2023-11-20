@@ -1,0 +1,283 @@
+1.  Introduction
+    1.  About the book
+    2.  Who Should Read This Book
+2.  Summary
+3.  Set up
+    1.  R and RStudio Set Up
+    2.  Download R
+        1.  For macOS
+        2.  For Windows
+    3.  Download RStudio
+    4.  Configure RStudio
+    5.  Install Packages
+4.  Data Manipulation
+    1.  Basics
+        1.  Data Types
+    2.  Downloading Data
+        1.  Example Data
+    3.  Basic Data Management With `dplyr`
+        1.  `select()`
+        2.  `filter()`
+        3.  `arrange()`
+        4.  `mutate()`
+        5.  `recode()`
+        6.  `summarize()`
+        7.  `group_by()` and `ungroup()`
+            1.  `group_by()`
+            2.  `ungroup()`
+            3.  `.by`
+        8.  `rowwise()`
+        9.  `count()`
+        10. `rename()`
+        11. `row_number()`
+        12. `skim()`
+    4.  Exploring Date and Time with `lubridate`
+        1.  Unraveling Date Formats: `ymd()`, `md()`, `hms()`, `ymd_hms()`, and More
+        2.  Extracting Date Components: `year()`, `month()`, `day()`, and More
+5.  Tidy Data
+    1.  Example
+    2.  `pivot_longer()`
+    3.  `pivot_wider()`
+    4.  `separate()` and `unite()`
+    5.  `tibble()` and `tribble()`
+    6.  `janitor`: Clean Your Data
+        1.  `clean_names()`
+        2.  `remove_empty()`
+        3.  `remove_constant()`
+        4.  `convert_to_date()` and `convert_to_datetime()`
+        5.  `row_to_names()`
+6.  Relational Databases
+    1.  Relationship Types { sec-relationships}
+        1.  One to One (1:1)
+        2.  One to Many (1:M)
+        3.  Many to Many (M:N)
+    2.  The Concept of Keys
+    3.  Types of Joins
+        1.  Outer Joins
+            1.  Left Join
+            2.  Right Join
+            3.  Full Join
+            4.  Inner Join
+        2.  Filtering Joins
+            1.  Anti Join
+            2.  Semi Join
+    4.  Visualizing Databases
+7.  Optimizing Data Validation
+    1.  Manual Inspection
+    2.  Handling Data Issues
+        1.  Base R
+        2.  Assert Your Conditions
+        3.  Precise Validation with Pointblank
+            1.  Step 1: Create a Validation Plan (an Agent)
+            2.  Step 2: Specify Checks
+            3.  Step 3: Execute Checks
+8.  Imputation
+    1.  Types of Missing Data
+    2.  Dealing with Missing Data
+        1.  Explicitly Handling Missing Data with `complete()`
+        2.  Simple Imputations
+            1.  Fixed Value Imputation
+            2.  Mean and Median Imputation
+            3.  Fill
+            4.  K-Nearest Neighbors (KNN)
+            5.  Maximum Likelihood
+            6.  Regression
+            7.  Forest
+        3.  Multiple Imputations
+            1.  MICE (Multivariate Imputation by Chained Equations)
+            2.  Table of Imputations
+9.  Reproducible Research
+    1.  Literate Programming
+        1.  Example: Customer Satisfaction Survey Analysis
+10. Reproducible Environment
+    1.  `renv`
+        1.  Workflow
+11. Modular Code
+    1.  Reuse Functions
+    2.  Split It
+    3.  `box` It
+12. Style and Lint your Code
+    1.  Tidyverse Style
+        1.  White Spaces and Indentation
+        2.  Naming Conventions
+        3.  Use of Braces
+        4.  Comments
+        5.  Long Functions
+    2.  Styler
+    3.  Linter
+    4.  Why Care?
+13. Introduction to Command Line
+    1.  Learning Basic Commands
+        1.  Navigation
+        2.  File Manipulation
+        3.  Directory Management
+    2.  Terminal
+        1.  Getting Started with Nano
+            1.  Starting Nano
+        2.  Basic Navigation
+            1.  Editing Text
+            2.  Saving and Exiting
+            3.  Getting Help
+14. Version Control with Git and Github
+    1.  Git and Github
+    2.  Basics
+    3.  Contribute
+    4.  Guide to Using .gitignore
+        1.  Creating a .gitignore file
+        2.  Specifying Files to Ignore
+        3.  The Global .gitignore file
+        4.  .gitignore in Other Programs
+    5.  Other Resources
+15. Literature Research
+    1.  Search
+    2.  Reference Management
+    3.  Reading
+    4.  Taking notes
+16. Write
+    1.  WYSIWYG
+    2.  Markup Languages
+        1.  HTML
+        2.  LaTeX
+        3.  Markdown
+        4.  Yet Another Markup Language (YAML)
+        5.  Pandoc
+    3.  Quarto
+        1.  Installing
+            1.  RStudio
+            2.  Visual Studio Code
+        2.  Your First Document
+17. Layout and References
+    1.  Knitr
+    2.  Div Blocks
+    3.  Diagrams
+    4.  Citations
+18. Thesis Template
+    1.  Getting Started
+        1.  RStudio
+        2.  Visual Studio Code
+    2.  Adding the Quarto Template
+    3.  Usage
+19. Collaboration
+    1.  `trackdown` and Google Docs
+20. Survey Error
+    1.  Total Survey Error (TSE)
+    2.  Basic Theoretical Model of the Survey Process
+        1.  Establishing goals
+        2.  Target Population and Sampling Frame
+        3.  Representativeness
+    3.  Iterative Design
+    4.  The People You Ask and Those Who Respond
+    5.  What Responses Depend On
+    6.  How BAD Are U???
+    7.  Answering a Question
+        1.  Enhancing Question Quality
+21. Design Questions
+    1.  Guidelines for Effective Question Design
+    2.  The Impact of Question Order
+    3.  Survey Says: Bacon!
+    4.  Types of Question Formats
+    5.  Likert Scales
+    6.  I don't know and N/A Options
+    7.  Survey Length
+    8.  Survey Invitation
+22. Survey Tools 1. Physical Survey Methods 1. Digital Survey Tools 1. Participant Recruitment Platforms
+23. APIs
+    1.  Monsieur!
+    2.  Your First Order
+    3.  Utilizing APIs in R
+        1.  Incorporating Request Body and Headers
+24. Google Services in R
+    1.  Constructing a Database in Google Sheets
+        1.  Common Use Cases of `googlesheets4`
+        2.  Reading and Writing Data in Google Sheets with R
+            1.  Reading from Google Sheets
+            2.  Writing to Google Sheets
+        3.  Managing Secrets with `gargle`
+        4.  Google Drive and R
+            1.  Exploring Other Google Services
+25. Qualtrics API
+    1.  Core Functions
+    2.  Connecting to the API
+    3.  Example
+26. Document
+    1.  Principles of Documentation
+    2.  Hierarchical Structure of Documentation
+    3.  Physical Documentation
+    4.  Field Journal
+    5.  Electronic Documentation
+    6.  Data Storage and Labeling
+    7.  Data Entry
+    8.  Sampling Strategy
+    9.  Marketing
+    10. Administration
+    11. Accounting
+    12. Data Protection, Privacy, and Quality Control
+    13. Data Analysis and Improvement
+    14. Communication
+27. Data Visualization
+    1.  Types of Data Visualisation
+        1.  Exploratory
+        2.  Explanatory
+    2.  Grammar of Graphics
+    3.  `ggplot()`
+    4.  Interactive Plots
+        1.  Building Plots with Plotly
+        2.  ECharts4r
+    5.  Tips
+        1.  `group`
+28. Color Data
+    1.  Color and Categorical Data
+        1.  Emphasizing Significant Details
+        2.  Comparing Two Things
+            1.  Complementary Harmony with a Positive/Negative Connotation
+            2.  Near Complementary Harmony for Highlighting Two Series Where One Is the Primary Focus
+        3.  Color Palettes for Comparing Three Things
+            1.  Analogous/Triadic Harmony for Highlighting Three Series
+            2.  Highlighting One Series Against Two Related Series
+        4.  Color Palettes for Comparing Four Things
+            1.  Analogous Complementary for One Main Series and Its Three Secondary
+            2.  Double Complementary for Two Pairs Where One Pair Is Dominant
+            3.  Rectangular or Square Complementary for Four Series of Equal Emphasis
+    2.  Sequential and Divergent
+        1.  Sequential
+        2.  Divergent
+        3.  Prebuilt
+29. Color Systems
+    1.  HSL
+    2.  HSV
+    3.  HCL
+    4.  LAB
+    5.  OKLAB
+    6.  Perceptual Uniformity
+    7.  Warning: Colormaps Might Increase Risk of Death!
+    8.  So, What Should You Use?
+    9.  Where Can I Find Color Waves?
+30. A Graph for The Job
+    1.  Category Comparison
+        1.  Lolipop Chart
+        2.  Bullet Graph
+    2.  Distribution
+        1.  Histogram
+        2.  Density Plot
+        3.  Frequency Polygon
+        4.  Box Plot
+        5.  Violin Plot
+        6.  Bee Hive Plot
+        7.  Margins
+        8.  Rain Cloud Plot
+    3.  Proportions
+        1.  Stacked Bar Charts
+        2.  Pie Chart
+        3.  Waffle Chart
+        4.  Tree Maps
+    4.  Correlation
+        1.  Scatter Plot
+        2.  Correlograms
+    5.  Change over Time
+        1.  Line Chart
+    6.  Waterfall Graph
+31. Make Tables
+    1.  `gt` Tables
+        1.  Installing and Loading the `gt` Package
+        2.  Prepare your data
+    2.  DT Tables

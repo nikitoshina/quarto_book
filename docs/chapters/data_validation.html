@@ -97,7 +97,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -349,30 +348,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/visualization_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Color Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color_scheme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Color Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/epilogue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epilogue</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
@@ -401,30 +418,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<!-- Container for reading time -->
-<div id="reading-time"></div>
-
-<!-- JavaScript code for calculating reading time -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const wordsPerMinute = 200;
-  const content = document.querySelector("main");
-  const wordCount = content.innerText.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
-  const readingTimeContainer = document.getElementById("reading-time");
-  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
-});
-</script>
-
-<!-- CSS code for styling the reading time container -->
-<style>
-#reading-time {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1em;
-}
-</style>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -473,23 +466,23 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="3" data-code-cell="annotated-cell-1">Stops execution if <code>x</code> isn’t numeric.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="3">Stops execution if <code>x</code> isn’t numeric.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="4" data-code-cell="annotated-cell-1">Halts if <code>x</code> isn’t numeric.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="2" data-code-lines="4">Halts if <code>x</code> isn’t numeric.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="5" data-code-cell="annotated-cell-1">Stops the process if <code>x</code> contains non-positive values.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="3" data-code-lines="5">Stops the process if <code>x</code> contains non-positive values.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-lines="6" data-code-cell="annotated-cell-1">Halts execution if <code>x</code> has duplicates.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="4" data-code-lines="6">Halts execution if <code>x</code> has duplicates.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-lines="7" data-code-cell="annotated-cell-1">Issues a warning if <code>df</code> has duplicate rows.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="5" data-code-lines="7">Issues a warning if <code>df</code> has duplicate rows.</span>
 </dd>
 </dl>
 </div>
@@ -513,15 +506,15 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="5" data-code-cell="annotated-cell-3">Verify dataset isn’t empty.</span>
+<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="5">Verify dataset isn’t empty.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="6" data-code-cell="annotated-cell-3">Assert that specified Engine Types are present in row names.</span>
+<span data-code-cell="annotated-cell-3" data-code-annotation="2" data-code-lines="6">Assert that specified Engine Types are present in row names.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="7" data-code-cell="annotated-cell-3">Ensure that at least one ‘mpg’ value is within two standard deviations.</span>
+<span data-code-cell="annotated-cell-3" data-code-annotation="3" data-code-lines="7">Ensure that at least one ‘mpg’ value is within two standard deviations.</span>
 </dd>
 </dl>
 </div>
@@ -601,19 +594,19 @@ Attaching package: 'dplyr'</code></pre>
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-5">Check if ‘mpg’ values are greater than 10.</span>
+<span data-code-cell="annotated-cell-5" data-code-annotation="1" data-code-lines="2">Check if ‘mpg’ values are greater than 10.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-5">Check if ‘hp’ values are less than or equal to 335.</span>
+<span data-code-cell="annotated-cell-5" data-code-annotation="2" data-code-lines="3">Check if ‘hp’ values are less than or equal to 335.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="4" data-code-cell="annotated-cell-5">Check if ‘vs’ and ‘am’ columns exist.</span>
+<span data-code-cell="annotated-cell-5" data-code-annotation="3" data-code-lines="4">Check if ‘vs’ and ‘am’ columns exist.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-lines="5" data-code-cell="annotated-cell-5">Check if ‘cyl’ and ‘gear’ columns have no missing values.</span>
+<span data-code-cell="annotated-cell-5" data-code-annotation="4" data-code-lines="5">Check if ‘cyl’ and ‘gear’ columns have no missing values.</span>
 </dd>
 </dl>
 </div>
@@ -1310,9 +1303,9 @@ Attaching package: 'dplyr'</code></pre>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
-      <td class="gt_sourcenote" colspan="14"><span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin-left:10px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;padding:2px 10px 2px 10px;">2023-08-23 12:23:01 PDT</span>
+      <td class="gt_sourcenote" colspan="14"><span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin-left:10px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;padding:2px 10px 2px 10px;">2023-11-04 14:56:37 PDT</span>
 <span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;margin:5px 1px 5px 0;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">&lt; 1 s</span>
-<span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 1px 5px -1px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">2023-08-23 12:23:01 PDT</span></td>
+<span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 1px 5px -1px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">2023-11-04 14:56:37 PDT</span></td>
     </tr>
   </tfoot>
   

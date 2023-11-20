@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research Toolkit - 29&nbsp; Make Tables</title>
+<title>Research Toolkit - 31&nbsp; Make Tables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/references.html" rel="next">
+<link href="../chapters/epilogue.html" rel="next">
 <link href="../chapters/which_graph.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
-<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -131,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/data_viz.html">Presenting the Data</a></li><li class="breadcrumb-item"><a href="../chapters/tables.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/visualization_theory.html">Presenting the Data</a></li><li class="breadcrumb-item"><a href="../chapters/tables.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -370,30 +369,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/visualization_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Color Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color_scheme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Color Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/epilogue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epilogue</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
@@ -410,45 +427,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#gt-tables" id="toc-gt-tables" class="nav-link active" data-scroll-target="#gt-tables"><span class="header-section-number">29.1</span> <code>gt</code> Tables</a>
+  <li><a href="#gt-tables" id="toc-gt-tables" class="nav-link active" data-scroll-target="#gt-tables"><span class="header-section-number">31.1</span> <code>gt</code> Tables</a>
   <ul class="collapse">
-  <li><a href="#installing-and-loading-the-gt-package" id="toc-installing-and-loading-the-gt-package" class="nav-link" data-scroll-target="#installing-and-loading-the-gt-package"><span class="header-section-number">29.1.1</span> Installing and Loading the <code>gt</code> Package</a></li>
-  <li><a href="#prepare-your-data" id="toc-prepare-your-data" class="nav-link" data-scroll-target="#prepare-your-data"><span class="header-section-number">29.1.2</span> Prepare your data</a></li>
+  <li><a href="#installing-and-loading-the-gt-package" id="toc-installing-and-loading-the-gt-package" class="nav-link" data-scroll-target="#installing-and-loading-the-gt-package"><span class="header-section-number">31.1.1</span> Installing and Loading the <code>gt</code> Package</a></li>
+  <li><a href="#prepare-your-data" id="toc-prepare-your-data" class="nav-link" data-scroll-target="#prepare-your-data"><span class="header-section-number">31.1.2</span> Prepare your data</a></li>
   </ul></li>
-  <li><a href="#dt-tables" id="toc-dt-tables" class="nav-link" data-scroll-target="#dt-tables"><span class="header-section-number">29.2</span> DT Tables</a></li>
+  <li><a href="#dt-tables" id="toc-dt-tables" class="nav-link" data-scroll-target="#dt-tables"><span class="header-section-number">31.2</span> DT Tables</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/tables.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<!-- Container for reading time -->
-<div id="reading-time"></div>
-
-<!-- JavaScript code for calculating reading time -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const wordsPerMinute = 200;
-  const content = document.querySelector("main");
-  const wordCount = content.innerText.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
-  const readingTimeContainer = document.getElementById("reading-time");
-  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
-});
-</script>
-
-<!-- CSS code for styling the reading time container -->
-<style>
-#reading-time {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1em;
-}
-</style>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></h1>
+<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></h1>
 </div>
 
 
@@ -473,10 +466,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <figcaption class="figure-caption">GT Table Parts</figcaption>
 </figure>
 </div>
-<section id="gt-tables" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="gt-tables"><span class="header-section-number">29.1</span> <code>gt</code> Tables</h2>
-<section id="installing-and-loading-the-gt-package" class="level3" data-number="29.1.1">
-<h3 data-number="29.1.1" class="anchored" data-anchor-id="installing-and-loading-the-gt-package"><span class="header-section-number">29.1.1</span> Installing and Loading the <code>gt</code> Package</h3>
+<section id="gt-tables" class="level2" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="gt-tables"><span class="header-section-number">31.1</span> <code>gt</code> Tables</h2>
+<section id="installing-and-loading-the-gt-package" class="level3" data-number="31.1.1">
+<h3 data-number="31.1.1" class="anchored" data-anchor-id="installing-and-loading-the-gt-package"><span class="header-section-number">31.1.1</span> Installing and Loading the <code>gt</code> Package</h3>
 <p>To start, ensure you have the <code>gt</code> package installed. We’ll also use the <code>gtExtras</code> package to expand the <code>gt</code> package’s capabilities with custom themes, conditional formatting, and more. In addition, we’ll use the <code>emojifont</code> package for accessing emojis and <code>dplyr</code> from <code>tidyverse</code> for data manipulation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("gt","gtExtras","emojifont"))</span></span>
@@ -490,23 +483,23 @@ document.addEventListener("DOMContentLoaded", function () {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">sample_n</span>(gt<span class="sc">::</span>gtcars, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="xnoacmctzb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xnoacmctzb table {
+<div id="xmjgorpvlr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xmjgorpvlr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xnoacmctzb thead, #xnoacmctzb tbody, #xnoacmctzb tfoot, #xnoacmctzb tr, #xnoacmctzb td, #xnoacmctzb th {
+#xmjgorpvlr thead, #xmjgorpvlr tbody, #xmjgorpvlr tfoot, #xmjgorpvlr tr, #xmjgorpvlr td, #xmjgorpvlr th {
   border-style: none;
 }
 
-#xnoacmctzb p {
+#xmjgorpvlr p {
   margin: 0;
   padding: 0;
 }
 
-#xnoacmctzb .gt_table {
+#xmjgorpvlr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -532,12 +525,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_caption {
+#xmjgorpvlr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xnoacmctzb .gt_title {
+#xmjgorpvlr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -549,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#xnoacmctzb .gt_subtitle {
+#xmjgorpvlr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -561,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#xnoacmctzb .gt_heading {
+#xmjgorpvlr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -573,13 +566,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_bottom_border {
+#xmjgorpvlr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_col_headings {
+#xmjgorpvlr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -594,7 +587,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_col_heading {
+#xmjgorpvlr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -614,7 +607,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#xnoacmctzb .gt_column_spanner_outer {
+#xmjgorpvlr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -626,15 +619,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#xnoacmctzb .gt_column_spanner_outer:first-child {
+#xmjgorpvlr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xnoacmctzb .gt_column_spanner_outer:last-child {
+#xmjgorpvlr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xnoacmctzb .gt_column_spanner {
+#xmjgorpvlr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -646,11 +639,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#xnoacmctzb .gt_spanner_row {
+#xmjgorpvlr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xnoacmctzb .gt_group_heading {
+#xmjgorpvlr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -676,7 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#xnoacmctzb .gt_empty_group_heading {
+#xmjgorpvlr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -691,15 +684,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#xnoacmctzb .gt_from_md > :first-child {
+#xmjgorpvlr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xnoacmctzb .gt_from_md > :last-child {
+#xmjgorpvlr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xnoacmctzb .gt_row {
+#xmjgorpvlr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -718,7 +711,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#xnoacmctzb .gt_stub {
+#xmjgorpvlr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -731,7 +724,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#xnoacmctzb .gt_stub_row_group {
+#xmjgorpvlr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -745,15 +738,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#xnoacmctzb .gt_row_group_first td {
+#xmjgorpvlr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xnoacmctzb .gt_row_group_first th {
+#xmjgorpvlr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xnoacmctzb .gt_summary_row {
+#xmjgorpvlr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -763,16 +756,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#xnoacmctzb .gt_first_summary_row {
+#xmjgorpvlr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_first_summary_row.thick {
+#xmjgorpvlr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xnoacmctzb .gt_last_summary_row {
+#xmjgorpvlr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -782,7 +775,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_grand_summary_row {
+#xmjgorpvlr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -792,7 +785,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#xnoacmctzb .gt_first_grand_summary_row {
+#xmjgorpvlr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -802,7 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_last_grand_summary_row_top {
+#xmjgorpvlr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -812,11 +805,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_striped {
+#xmjgorpvlr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xnoacmctzb .gt_table_body {
+#xmjgorpvlr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -825,7 +818,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_footnotes {
+#xmjgorpvlr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -839,7 +832,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_footnote {
+#xmjgorpvlr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -848,7 +841,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#xnoacmctzb .gt_sourcenotes {
+#xmjgorpvlr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -862,7 +855,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#xnoacmctzb .gt_sourcenote {
+#xmjgorpvlr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -870,63 +863,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#xnoacmctzb .gt_left {
+#xmjgorpvlr .gt_left {
   text-align: left;
 }
 
-#xnoacmctzb .gt_center {
+#xmjgorpvlr .gt_center {
   text-align: center;
 }
 
-#xnoacmctzb .gt_right {
+#xmjgorpvlr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xnoacmctzb .gt_font_normal {
+#xmjgorpvlr .gt_font_normal {
   font-weight: normal;
 }
 
-#xnoacmctzb .gt_font_bold {
+#xmjgorpvlr .gt_font_bold {
   font-weight: bold;
 }
 
-#xnoacmctzb .gt_font_italic {
+#xmjgorpvlr .gt_font_italic {
   font-style: italic;
 }
 
-#xnoacmctzb .gt_super {
+#xmjgorpvlr .gt_super {
   font-size: 65%;
 }
 
-#xnoacmctzb .gt_footnote_marks {
+#xmjgorpvlr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xnoacmctzb .gt_asterisk {
+#xmjgorpvlr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xnoacmctzb .gt_indent_1 {
+#xmjgorpvlr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xnoacmctzb .gt_indent_2 {
+#xmjgorpvlr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xnoacmctzb .gt_indent_3 {
+#xmjgorpvlr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xnoacmctzb .gt_indent_4 {
+#xmjgorpvlr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xnoacmctzb .gt_indent_5 {
+#xmjgorpvlr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -952,66 +945,66 @@ document.addEventListener("DOMContentLoaded", function () {
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="mfr" class="gt_row gt_left">Audi</td>
-<td headers="model" class="gt_row gt_left">RS 7</td>
+    <tr><td headers="mfr" class="gt_row gt_left">BMW</td>
+<td headers="model" class="gt_row gt_left">M5</td>
 <td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">Quattro Hatchback</td>
-<td headers="bdy_style" class="gt_row gt_left">hatchback</td>
+<td headers="trim" class="gt_row gt_left">Base Sedan</td>
+<td headers="bdy_style" class="gt_row gt_left">sedan</td>
 <td headers="hp" class="gt_row gt_right">560</td>
-<td headers="hp_rpm" class="gt_row gt_right">5700</td>
-<td headers="trq" class="gt_row gt_right">516</td>
-<td headers="trq_rpm" class="gt_row gt_right">1750</td>
+<td headers="hp_rpm" class="gt_row gt_right">6000</td>
+<td headers="trq" class="gt_row gt_right">500</td>
+<td headers="trq_rpm" class="gt_row gt_right">1500</td>
+<td headers="mpg_c" class="gt_row gt_right">15</td>
+<td headers="mpg_h" class="gt_row gt_right">22</td>
+<td headers="drivetrain" class="gt_row gt_left">rwd</td>
+<td headers="trsmn" class="gt_row gt_left">7am</td>
+<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
+<td headers="msrp" class="gt_row gt_right">94100</td></tr>
+    <tr><td headers="mfr" class="gt_row gt_left">Bentley</td>
+<td headers="model" class="gt_row gt_left">Continental GT</td>
+<td headers="year" class="gt_row gt_right">2016</td>
+<td headers="trim" class="gt_row gt_left">V8 Coupe</td>
+<td headers="bdy_style" class="gt_row gt_left">coupe</td>
+<td headers="hp" class="gt_row gt_right">500</td>
+<td headers="hp_rpm" class="gt_row gt_right">6000</td>
+<td headers="trq" class="gt_row gt_right">487</td>
+<td headers="trq_rpm" class="gt_row gt_right">1700</td>
 <td headers="mpg_c" class="gt_row gt_right">15</td>
 <td headers="mpg_h" class="gt_row gt_right">25</td>
 <td headers="drivetrain" class="gt_row gt_left">awd</td>
 <td headers="trsmn" class="gt_row gt_left">8am</td>
-<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
-<td headers="msrp" class="gt_row gt_right">108900</td></tr>
-    <tr><td headers="mfr" class="gt_row gt_left">Mercedes-Benz</td>
-<td headers="model" class="gt_row gt_left">AMG GT</td>
+<td headers="ctry_origin" class="gt_row gt_left">United Kingdom</td>
+<td headers="msrp" class="gt_row gt_right">198500</td></tr>
+    <tr><td headers="mfr" class="gt_row gt_left">Audi</td>
+<td headers="model" class="gt_row gt_left">S7</td>
 <td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">S Coupe</td>
+<td headers="trim" class="gt_row gt_left">Prestige quattro Hatchback</td>
+<td headers="bdy_style" class="gt_row gt_left">hatchback</td>
+<td headers="hp" class="gt_row gt_right">450</td>
+<td headers="hp_rpm" class="gt_row gt_right">5800</td>
+<td headers="trq" class="gt_row gt_right">406</td>
+<td headers="trq_rpm" class="gt_row gt_right">1400</td>
+<td headers="mpg_c" class="gt_row gt_right">17</td>
+<td headers="mpg_h" class="gt_row gt_right">27</td>
+<td headers="drivetrain" class="gt_row gt_left">awd</td>
+<td headers="trsmn" class="gt_row gt_left">7a</td>
+<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
+<td headers="msrp" class="gt_row gt_right">82900</td></tr>
+    <tr><td headers="mfr" class="gt_row gt_left">BMW</td>
+<td headers="model" class="gt_row gt_left">M6</td>
+<td headers="year" class="gt_row gt_right">2016</td>
+<td headers="trim" class="gt_row gt_left">Base Coupe</td>
 <td headers="bdy_style" class="gt_row gt_left">coupe</td>
-<td headers="hp" class="gt_row gt_right">503</td>
-<td headers="hp_rpm" class="gt_row gt_right">6250</td>
-<td headers="trq" class="gt_row gt_right">479</td>
-<td headers="trq_rpm" class="gt_row gt_right">1750</td>
-<td headers="mpg_c" class="gt_row gt_right">16</td>
+<td headers="hp" class="gt_row gt_right">560</td>
+<td headers="hp_rpm" class="gt_row gt_right">6000</td>
+<td headers="trq" class="gt_row gt_right">500</td>
+<td headers="trq_rpm" class="gt_row gt_right">1500</td>
+<td headers="mpg_c" class="gt_row gt_right">15</td>
 <td headers="mpg_h" class="gt_row gt_right">22</td>
 <td headers="drivetrain" class="gt_row gt_left">rwd</td>
 <td headers="trsmn" class="gt_row gt_left">7a</td>
 <td headers="ctry_origin" class="gt_row gt_left">Germany</td>
-<td headers="msrp" class="gt_row gt_right">129900</td></tr>
-    <tr><td headers="mfr" class="gt_row gt_left">Porsche</td>
-<td headers="model" class="gt_row gt_left">Panamera</td>
-<td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">Base Sedan</td>
-<td headers="bdy_style" class="gt_row gt_left">sedan</td>
-<td headers="hp" class="gt_row gt_right">310</td>
-<td headers="hp_rpm" class="gt_row gt_right">6200</td>
-<td headers="trq" class="gt_row gt_right">295</td>
-<td headers="trq_rpm" class="gt_row gt_right">3750</td>
-<td headers="mpg_c" class="gt_row gt_right">18</td>
-<td headers="mpg_h" class="gt_row gt_right">28</td>
-<td headers="drivetrain" class="gt_row gt_left">rwd</td>
-<td headers="trsmn" class="gt_row gt_left">7a</td>
-<td headers="ctry_origin" class="gt_row gt_left">Germany</td>
-<td headers="msrp" class="gt_row gt_right">78100</td></tr>
-    <tr><td headers="mfr" class="gt_row gt_left">Aston Martin</td>
-<td headers="model" class="gt_row gt_left">Vanquish</td>
-<td headers="year" class="gt_row gt_right">2016</td>
-<td headers="trim" class="gt_row gt_left">Base Coupe</td>
-<td headers="bdy_style" class="gt_row gt_left">coupe</td>
-<td headers="hp" class="gt_row gt_right">568</td>
-<td headers="hp_rpm" class="gt_row gt_right">6650</td>
-<td headers="trq" class="gt_row gt_right">465</td>
-<td headers="trq_rpm" class="gt_row gt_right">5500</td>
-<td headers="mpg_c" class="gt_row gt_right">13</td>
-<td headers="mpg_h" class="gt_row gt_right">21</td>
-<td headers="drivetrain" class="gt_row gt_left">rwd</td>
-<td headers="trsmn" class="gt_row gt_left">8am</td>
-<td headers="ctry_origin" class="gt_row gt_left">United Kingdom</td>
-<td headers="msrp" class="gt_row gt_right">287250</td></tr>
+<td headers="msrp" class="gt_row gt_right">113400</td></tr>
   </tbody>
   
   
@@ -1020,8 +1013,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </section>
-<section id="prepare-your-data" class="level3" data-number="29.1.2">
-<h3 data-number="29.1.2" class="anchored" data-anchor-id="prepare-your-data"><span class="header-section-number">29.1.2</span> Prepare your data</h3>
+<section id="prepare-your-data" class="level3" data-number="31.1.2">
+<h3 data-number="31.1.2" class="anchored" data-anchor-id="prepare-your-data"><span class="header-section-number">31.1.2</span> Prepare your data</h3>
 <p>The <code>gt</code> package works seamlessly with <code>dplyr</code>, allowing us to utilize familiar verbs for table formatting. Let’s start by focusing on the top auto industry country, Germany. We’ll group cars by their manufacturer (mfr) and sort them based on their price (msrp). During table creation, the <code>rowname_col</code> parameter allows us to designate a column as row names - for this example, we’ll use the ‘model’ column.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>(table_grouped <span class="ot">&lt;-</span> gt<span class="sc">::</span>gtcars <span class="sc">%&gt;%</span></span>
@@ -1035,53 +1028,53 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-3" data-code-lines="1">Start with the <code>gtcars</code> dataset from the <code>gt</code> package.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-3" data-code-annotation="1">Start with the <code>gtcars</code> dataset from the <code>gt</code> package.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-3" data-code-lines="2">Filter the data to include only cars that originated from Germany.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-3" data-code-annotation="2">Filter the data to include only cars that originated from Germany.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-3" data-code-lines="3">Group the data by the manufacturer.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-3" data-code-annotation="3">Group the data by the manufacturer.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-3" data-code-lines="4">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-3" data-code-annotation="4">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-cell="annotated-cell-3" data-code-lines="5">Select only the top two cars (based on the previous sorting).</span>
+<span data-code-lines="5" data-code-cell="annotated-cell-3" data-code-annotation="5">Select only the top two cars (based on the previous sorting).</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-annotation="6" data-code-cell="annotated-cell-3" data-code-lines="6">Filter to include only cars from Audi and BMW.</span>
+<span data-code-lines="6" data-code-cell="annotated-cell-3" data-code-annotation="6">Filter to include only cars from Audi and BMW.</span>
 </dd>
 <dt data-target-cell="annotated-cell-3" data-target-annotation="7">7</dt>
 <dd>
-<span data-code-annotation="7" data-code-cell="annotated-cell-3" data-code-lines="7">Start a new <code>gt</code> table using the car models as row names.</span>
+<span data-code-lines="7" data-code-cell="annotated-cell-3" data-code-annotation="7">Start a new <code>gt</code> table using the car models as row names.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="ebwslvoyud" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ebwslvoyud table {
+<div id="popnqcaanm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#popnqcaanm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ebwslvoyud thead, #ebwslvoyud tbody, #ebwslvoyud tfoot, #ebwslvoyud tr, #ebwslvoyud td, #ebwslvoyud th {
+#popnqcaanm thead, #popnqcaanm tbody, #popnqcaanm tfoot, #popnqcaanm tr, #popnqcaanm td, #popnqcaanm th {
   border-style: none;
 }
 
-#ebwslvoyud p {
+#popnqcaanm p {
   margin: 0;
   padding: 0;
 }
 
-#ebwslvoyud .gt_table {
+#popnqcaanm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1107,12 +1100,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_caption {
+#popnqcaanm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ebwslvoyud .gt_title {
+#popnqcaanm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1124,7 +1117,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#ebwslvoyud .gt_subtitle {
+#popnqcaanm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1136,7 +1129,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#ebwslvoyud .gt_heading {
+#popnqcaanm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1148,13 +1141,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_bottom_border {
+#popnqcaanm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_col_headings {
+#popnqcaanm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1169,7 +1162,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_col_heading {
+#popnqcaanm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1189,7 +1182,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ebwslvoyud .gt_column_spanner_outer {
+#popnqcaanm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1201,15 +1194,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#ebwslvoyud .gt_column_spanner_outer:first-child {
+#popnqcaanm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ebwslvoyud .gt_column_spanner_outer:last-child {
+#popnqcaanm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ebwslvoyud .gt_column_spanner {
+#popnqcaanm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1221,11 +1214,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#ebwslvoyud .gt_spanner_row {
+#popnqcaanm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ebwslvoyud .gt_group_heading {
+#popnqcaanm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1251,7 +1244,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#ebwslvoyud .gt_empty_group_heading {
+#popnqcaanm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1266,15 +1259,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#ebwslvoyud .gt_from_md > :first-child {
+#popnqcaanm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ebwslvoyud .gt_from_md > :last-child {
+#popnqcaanm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ebwslvoyud .gt_row {
+#popnqcaanm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1293,7 +1286,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ebwslvoyud .gt_stub {
+#popnqcaanm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1306,7 +1299,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ebwslvoyud .gt_stub_row_group {
+#popnqcaanm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1320,15 +1313,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#ebwslvoyud .gt_row_group_first td {
+#popnqcaanm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ebwslvoyud .gt_row_group_first th {
+#popnqcaanm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ebwslvoyud .gt_summary_row {
+#popnqcaanm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1338,16 +1331,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ebwslvoyud .gt_first_summary_row {
+#popnqcaanm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_first_summary_row.thick {
+#popnqcaanm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ebwslvoyud .gt_last_summary_row {
+#popnqcaanm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1357,7 +1350,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_grand_summary_row {
+#popnqcaanm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1367,7 +1360,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ebwslvoyud .gt_first_grand_summary_row {
+#popnqcaanm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1377,7 +1370,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_last_grand_summary_row_top {
+#popnqcaanm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1387,11 +1380,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_striped {
+#popnqcaanm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ebwslvoyud .gt_table_body {
+#popnqcaanm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1400,7 +1393,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_footnotes {
+#popnqcaanm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1414,7 +1407,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_footnote {
+#popnqcaanm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1423,7 +1416,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ebwslvoyud .gt_sourcenotes {
+#popnqcaanm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1437,7 +1430,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ebwslvoyud .gt_sourcenote {
+#popnqcaanm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1445,63 +1438,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ebwslvoyud .gt_left {
+#popnqcaanm .gt_left {
   text-align: left;
 }
 
-#ebwslvoyud .gt_center {
+#popnqcaanm .gt_center {
   text-align: center;
 }
 
-#ebwslvoyud .gt_right {
+#popnqcaanm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ebwslvoyud .gt_font_normal {
+#popnqcaanm .gt_font_normal {
   font-weight: normal;
 }
 
-#ebwslvoyud .gt_font_bold {
+#popnqcaanm .gt_font_bold {
   font-weight: bold;
 }
 
-#ebwslvoyud .gt_font_italic {
+#popnqcaanm .gt_font_italic {
   font-style: italic;
 }
 
-#ebwslvoyud .gt_super {
+#popnqcaanm .gt_super {
   font-size: 65%;
 }
 
-#ebwslvoyud .gt_footnote_marks {
+#popnqcaanm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ebwslvoyud .gt_asterisk {
+#popnqcaanm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ebwslvoyud .gt_indent_1 {
+#popnqcaanm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ebwslvoyud .gt_indent_2 {
+#popnqcaanm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ebwslvoyud .gt_indent_3 {
+#popnqcaanm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ebwslvoyud .gt_indent_4 {
+#popnqcaanm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ebwslvoyud .gt_indent_5 {
+#popnqcaanm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1605,41 +1598,41 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-4" data-code-lines="1">Start with the previously created <code>table_grouped</code>.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-4" data-code-annotation="1">Start with the previously created <code>table_grouped</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-4" data-code-lines="2">Hide certain columns that aren’t needed in the final table.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-4" data-code-annotation="2">Hide certain columns that aren’t needed in the final table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-4" data-code-lines="3">Move specific columns to appear after the <code>year</code> column.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-4" data-code-annotation="3">Move specific columns to appear after the <code>year</code> column.</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-4" data-code-lines="4">Create a spanner header for performance-related columns.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-4" data-code-annotation="4">Create a spanner header for performance-related columns.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="lurdlagwcn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lurdlagwcn table {
+<div id="mbelgedhjb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mbelgedhjb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lurdlagwcn thead, #lurdlagwcn tbody, #lurdlagwcn tfoot, #lurdlagwcn tr, #lurdlagwcn td, #lurdlagwcn th {
+#mbelgedhjb thead, #mbelgedhjb tbody, #mbelgedhjb tfoot, #mbelgedhjb tr, #mbelgedhjb td, #mbelgedhjb th {
   border-style: none;
 }
 
-#lurdlagwcn p {
+#mbelgedhjb p {
   margin: 0;
   padding: 0;
 }
 
-#lurdlagwcn .gt_table {
+#mbelgedhjb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1665,12 +1658,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_caption {
+#mbelgedhjb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lurdlagwcn .gt_title {
+#mbelgedhjb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1682,7 +1675,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#lurdlagwcn .gt_subtitle {
+#mbelgedhjb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1694,7 +1687,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#lurdlagwcn .gt_heading {
+#mbelgedhjb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1706,13 +1699,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_bottom_border {
+#mbelgedhjb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_col_headings {
+#mbelgedhjb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1727,7 +1720,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_col_heading {
+#mbelgedhjb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1747,7 +1740,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#lurdlagwcn .gt_column_spanner_outer {
+#mbelgedhjb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1759,15 +1752,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#lurdlagwcn .gt_column_spanner_outer:first-child {
+#mbelgedhjb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lurdlagwcn .gt_column_spanner_outer:last-child {
+#mbelgedhjb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lurdlagwcn .gt_column_spanner {
+#mbelgedhjb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1779,11 +1772,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#lurdlagwcn .gt_spanner_row {
+#mbelgedhjb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lurdlagwcn .gt_group_heading {
+#mbelgedhjb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1809,7 +1802,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#lurdlagwcn .gt_empty_group_heading {
+#mbelgedhjb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1824,15 +1817,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#lurdlagwcn .gt_from_md > :first-child {
+#mbelgedhjb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lurdlagwcn .gt_from_md > :last-child {
+#mbelgedhjb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lurdlagwcn .gt_row {
+#mbelgedhjb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1851,7 +1844,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#lurdlagwcn .gt_stub {
+#mbelgedhjb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1864,7 +1857,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#lurdlagwcn .gt_stub_row_group {
+#mbelgedhjb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1878,15 +1871,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#lurdlagwcn .gt_row_group_first td {
+#mbelgedhjb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lurdlagwcn .gt_row_group_first th {
+#mbelgedhjb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lurdlagwcn .gt_summary_row {
+#mbelgedhjb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1896,16 +1889,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#lurdlagwcn .gt_first_summary_row {
+#mbelgedhjb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_first_summary_row.thick {
+#mbelgedhjb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lurdlagwcn .gt_last_summary_row {
+#mbelgedhjb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1915,7 +1908,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_grand_summary_row {
+#mbelgedhjb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1925,7 +1918,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#lurdlagwcn .gt_first_grand_summary_row {
+#mbelgedhjb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1935,7 +1928,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_last_grand_summary_row_top {
+#mbelgedhjb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1945,11 +1938,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_striped {
+#mbelgedhjb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lurdlagwcn .gt_table_body {
+#mbelgedhjb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1958,7 +1951,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_footnotes {
+#mbelgedhjb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1972,7 +1965,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_footnote {
+#mbelgedhjb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1981,7 +1974,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#lurdlagwcn .gt_sourcenotes {
+#mbelgedhjb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1995,7 +1988,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#lurdlagwcn .gt_sourcenote {
+#mbelgedhjb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2003,63 +1996,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#lurdlagwcn .gt_left {
+#mbelgedhjb .gt_left {
   text-align: left;
 }
 
-#lurdlagwcn .gt_center {
+#mbelgedhjb .gt_center {
   text-align: center;
 }
 
-#lurdlagwcn .gt_right {
+#mbelgedhjb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lurdlagwcn .gt_font_normal {
+#mbelgedhjb .gt_font_normal {
   font-weight: normal;
 }
 
-#lurdlagwcn .gt_font_bold {
+#mbelgedhjb .gt_font_bold {
   font-weight: bold;
 }
 
-#lurdlagwcn .gt_font_italic {
+#mbelgedhjb .gt_font_italic {
   font-style: italic;
 }
 
-#lurdlagwcn .gt_super {
+#mbelgedhjb .gt_super {
   font-size: 65%;
 }
 
-#lurdlagwcn .gt_footnote_marks {
+#mbelgedhjb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lurdlagwcn .gt_asterisk {
+#mbelgedhjb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lurdlagwcn .gt_indent_1 {
+#mbelgedhjb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lurdlagwcn .gt_indent_2 {
+#mbelgedhjb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lurdlagwcn .gt_indent_3 {
+#mbelgedhjb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lurdlagwcn .gt_indent_4 {
+#mbelgedhjb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lurdlagwcn .gt_indent_5 {
+#mbelgedhjb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2150,45 +2143,45 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-5" data-code-lines="1">Start with the previously created <code>table_span</code>.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-5" data-code-annotation="1">Start with the previously created <code>table_span</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-5" data-code-lines="2">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-5" data-code-annotation="2">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-5" data-code-lines="3">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-5" data-code-annotation="3">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-5" data-code-lines="4">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-5" data-code-annotation="4">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-cell="annotated-cell-5" data-code-lines="5">Set custom labels for specific columns.</span>
+<span data-code-lines="5" data-code-cell="annotated-cell-5" data-code-annotation="5">Set custom labels for specific columns.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="wgxblowkxy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wgxblowkxy table {
+<div id="zeflfutzte" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zeflfutzte table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wgxblowkxy thead, #wgxblowkxy tbody, #wgxblowkxy tfoot, #wgxblowkxy tr, #wgxblowkxy td, #wgxblowkxy th {
+#zeflfutzte thead, #zeflfutzte tbody, #zeflfutzte tfoot, #zeflfutzte tr, #zeflfutzte td, #zeflfutzte th {
   border-style: none;
 }
 
-#wgxblowkxy p {
+#zeflfutzte p {
   margin: 0;
   padding: 0;
 }
 
-#wgxblowkxy .gt_table {
+#zeflfutzte .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2214,12 +2207,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_caption {
+#zeflfutzte .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wgxblowkxy .gt_title {
+#zeflfutzte .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2231,7 +2224,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#wgxblowkxy .gt_subtitle {
+#zeflfutzte .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2243,7 +2236,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#wgxblowkxy .gt_heading {
+#zeflfutzte .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2255,13 +2248,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_bottom_border {
+#zeflfutzte .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_col_headings {
+#zeflfutzte .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2276,7 +2269,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_col_heading {
+#zeflfutzte .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2296,7 +2289,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#wgxblowkxy .gt_column_spanner_outer {
+#zeflfutzte .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2308,15 +2301,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#wgxblowkxy .gt_column_spanner_outer:first-child {
+#zeflfutzte .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wgxblowkxy .gt_column_spanner_outer:last-child {
+#zeflfutzte .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wgxblowkxy .gt_column_spanner {
+#zeflfutzte .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2328,11 +2321,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#wgxblowkxy .gt_spanner_row {
+#zeflfutzte .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wgxblowkxy .gt_group_heading {
+#zeflfutzte .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2358,7 +2351,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#wgxblowkxy .gt_empty_group_heading {
+#zeflfutzte .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2373,15 +2366,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#wgxblowkxy .gt_from_md > :first-child {
+#zeflfutzte .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wgxblowkxy .gt_from_md > :last-child {
+#zeflfutzte .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wgxblowkxy .gt_row {
+#zeflfutzte .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2400,7 +2393,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#wgxblowkxy .gt_stub {
+#zeflfutzte .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2413,7 +2406,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#wgxblowkxy .gt_stub_row_group {
+#zeflfutzte .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2427,15 +2420,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#wgxblowkxy .gt_row_group_first td {
+#zeflfutzte .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wgxblowkxy .gt_row_group_first th {
+#zeflfutzte .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wgxblowkxy .gt_summary_row {
+#zeflfutzte .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2445,16 +2438,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#wgxblowkxy .gt_first_summary_row {
+#zeflfutzte .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_first_summary_row.thick {
+#zeflfutzte .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wgxblowkxy .gt_last_summary_row {
+#zeflfutzte .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2464,7 +2457,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_grand_summary_row {
+#zeflfutzte .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2474,7 +2467,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#wgxblowkxy .gt_first_grand_summary_row {
+#zeflfutzte .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2484,7 +2477,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_last_grand_summary_row_top {
+#zeflfutzte .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2494,11 +2487,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_striped {
+#zeflfutzte .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wgxblowkxy .gt_table_body {
+#zeflfutzte .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2507,7 +2500,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_footnotes {
+#zeflfutzte .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2521,7 +2514,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_footnote {
+#zeflfutzte .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2530,7 +2523,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#wgxblowkxy .gt_sourcenotes {
+#zeflfutzte .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2544,7 +2537,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#wgxblowkxy .gt_sourcenote {
+#zeflfutzte .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2552,63 +2545,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#wgxblowkxy .gt_left {
+#zeflfutzte .gt_left {
   text-align: left;
 }
 
-#wgxblowkxy .gt_center {
+#zeflfutzte .gt_center {
   text-align: center;
 }
 
-#wgxblowkxy .gt_right {
+#zeflfutzte .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wgxblowkxy .gt_font_normal {
+#zeflfutzte .gt_font_normal {
   font-weight: normal;
 }
 
-#wgxblowkxy .gt_font_bold {
+#zeflfutzte .gt_font_bold {
   font-weight: bold;
 }
 
-#wgxblowkxy .gt_font_italic {
+#zeflfutzte .gt_font_italic {
   font-style: italic;
 }
 
-#wgxblowkxy .gt_super {
+#zeflfutzte .gt_super {
   font-size: 65%;
 }
 
-#wgxblowkxy .gt_footnote_marks {
+#zeflfutzte .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wgxblowkxy .gt_asterisk {
+#zeflfutzte .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wgxblowkxy .gt_indent_1 {
+#zeflfutzte .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wgxblowkxy .gt_indent_2 {
+#zeflfutzte .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wgxblowkxy .gt_indent_3 {
+#zeflfutzte .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wgxblowkxy .gt_indent_4 {
+#zeflfutzte .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wgxblowkxy .gt_indent_5 {
+#zeflfutzte .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2681,41 +2674,41 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-6" data-code-lines="2">Format the msrp column as currency</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-6" data-code-annotation="1">Format the msrp column as currency</span>
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-6" data-code-lines="3">Center align specific columns</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-6" data-code-annotation="2">Center align specific columns</span>
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-6" data-code-lines="4,5,6,7">Apply cell text style to specific columns</span>
+<span data-code-lines="4,5,6,7" data-code-cell="annotated-cell-6" data-code-annotation="3">Apply cell text style to specific columns</span>
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-6" data-code-lines="8">Apply a data-driven color scale to the msrp column</span>
+<span data-code-lines="8" data-code-cell="annotated-cell-6" data-code-annotation="4">Apply a data-driven color scale to the msrp column</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="ldswkskdsr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ldswkskdsr table {
+<div id="frqocflmqt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#frqocflmqt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ldswkskdsr thead, #ldswkskdsr tbody, #ldswkskdsr tfoot, #ldswkskdsr tr, #ldswkskdsr td, #ldswkskdsr th {
+#frqocflmqt thead, #frqocflmqt tbody, #frqocflmqt tfoot, #frqocflmqt tr, #frqocflmqt td, #frqocflmqt th {
   border-style: none;
 }
 
-#ldswkskdsr p {
+#frqocflmqt p {
   margin: 0;
   padding: 0;
 }
 
-#ldswkskdsr .gt_table {
+#frqocflmqt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2741,12 +2734,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_caption {
+#frqocflmqt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ldswkskdsr .gt_title {
+#frqocflmqt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2758,7 +2751,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#ldswkskdsr .gt_subtitle {
+#frqocflmqt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2770,7 +2763,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#ldswkskdsr .gt_heading {
+#frqocflmqt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2782,13 +2775,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_bottom_border {
+#frqocflmqt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_col_headings {
+#frqocflmqt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2803,7 +2796,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_col_heading {
+#frqocflmqt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2823,7 +2816,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ldswkskdsr .gt_column_spanner_outer {
+#frqocflmqt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2835,15 +2828,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#ldswkskdsr .gt_column_spanner_outer:first-child {
+#frqocflmqt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ldswkskdsr .gt_column_spanner_outer:last-child {
+#frqocflmqt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ldswkskdsr .gt_column_spanner {
+#frqocflmqt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2855,11 +2848,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#ldswkskdsr .gt_spanner_row {
+#frqocflmqt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ldswkskdsr .gt_group_heading {
+#frqocflmqt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2885,7 +2878,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#ldswkskdsr .gt_empty_group_heading {
+#frqocflmqt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2900,15 +2893,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#ldswkskdsr .gt_from_md > :first-child {
+#frqocflmqt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ldswkskdsr .gt_from_md > :last-child {
+#frqocflmqt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ldswkskdsr .gt_row {
+#frqocflmqt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2927,7 +2920,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#ldswkskdsr .gt_stub {
+#frqocflmqt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2940,7 +2933,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ldswkskdsr .gt_stub_row_group {
+#frqocflmqt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2954,15 +2947,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#ldswkskdsr .gt_row_group_first td {
+#frqocflmqt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ldswkskdsr .gt_row_group_first th {
+#frqocflmqt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ldswkskdsr .gt_summary_row {
+#frqocflmqt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2972,16 +2965,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ldswkskdsr .gt_first_summary_row {
+#frqocflmqt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_first_summary_row.thick {
+#frqocflmqt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ldswkskdsr .gt_last_summary_row {
+#frqocflmqt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2991,7 +2984,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_grand_summary_row {
+#frqocflmqt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3001,7 +2994,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ldswkskdsr .gt_first_grand_summary_row {
+#frqocflmqt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3011,7 +3004,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_last_grand_summary_row_top {
+#frqocflmqt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3021,11 +3014,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_striped {
+#frqocflmqt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ldswkskdsr .gt_table_body {
+#frqocflmqt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3034,7 +3027,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_footnotes {
+#frqocflmqt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3048,7 +3041,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_footnote {
+#frqocflmqt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3057,7 +3050,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ldswkskdsr .gt_sourcenotes {
+#frqocflmqt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3071,7 +3064,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#ldswkskdsr .gt_sourcenote {
+#frqocflmqt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3079,63 +3072,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#ldswkskdsr .gt_left {
+#frqocflmqt .gt_left {
   text-align: left;
 }
 
-#ldswkskdsr .gt_center {
+#frqocflmqt .gt_center {
   text-align: center;
 }
 
-#ldswkskdsr .gt_right {
+#frqocflmqt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ldswkskdsr .gt_font_normal {
+#frqocflmqt .gt_font_normal {
   font-weight: normal;
 }
 
-#ldswkskdsr .gt_font_bold {
+#frqocflmqt .gt_font_bold {
   font-weight: bold;
 }
 
-#ldswkskdsr .gt_font_italic {
+#frqocflmqt .gt_font_italic {
   font-style: italic;
 }
 
-#ldswkskdsr .gt_super {
+#frqocflmqt .gt_super {
   font-size: 65%;
 }
 
-#ldswkskdsr .gt_footnote_marks {
+#frqocflmqt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ldswkskdsr .gt_asterisk {
+#frqocflmqt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ldswkskdsr .gt_indent_1 {
+#frqocflmqt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ldswkskdsr .gt_indent_2 {
+#frqocflmqt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ldswkskdsr .gt_indent_3 {
+#frqocflmqt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ldswkskdsr .gt_indent_4 {
+#frqocflmqt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ldswkskdsr .gt_indent_5 {
+#frqocflmqt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3205,45 +3198,45 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-7" data-code-lines="1">Start with the previously formatted table.</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-7" data-code-annotation="1">Start with the previously formatted table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-7" data-code-lines="2">Add a title and a subtitle to the table with an emoji.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-7" data-code-annotation="2">Add a title and a subtitle to the table with an emoji.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-7" data-code-lines="3">Add a footnote to clarify what MSRP stands for.</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-7" data-code-annotation="3">Add a footnote to clarify what MSRP stands for.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-7" data-code-lines="4">Add a specific footnote to the most expensive car, noting that electric cars used to be expensive.</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-7" data-code-annotation="4">Add a specific footnote to the most expensive car, noting that electric cars used to be expensive.</span>
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-cell="annotated-cell-7" data-code-lines="5">Add a source note to cite the source of the data.</span>
+<span data-code-lines="5" data-code-cell="annotated-cell-7" data-code-annotation="5">Add a source note to cite the source of the data.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="svfvqsxxvw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#svfvqsxxvw table {
+<div id="pllhfegrlb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pllhfegrlb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#svfvqsxxvw thead, #svfvqsxxvw tbody, #svfvqsxxvw tfoot, #svfvqsxxvw tr, #svfvqsxxvw td, #svfvqsxxvw th {
+#pllhfegrlb thead, #pllhfegrlb tbody, #pllhfegrlb tfoot, #pllhfegrlb tr, #pllhfegrlb td, #pllhfegrlb th {
   border-style: none;
 }
 
-#svfvqsxxvw p {
+#pllhfegrlb p {
   margin: 0;
   padding: 0;
 }
 
-#svfvqsxxvw .gt_table {
+#pllhfegrlb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3269,12 +3262,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_caption {
+#pllhfegrlb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#svfvqsxxvw .gt_title {
+#pllhfegrlb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3286,7 +3279,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#svfvqsxxvw .gt_subtitle {
+#pllhfegrlb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3298,7 +3291,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#svfvqsxxvw .gt_heading {
+#pllhfegrlb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3310,13 +3303,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_bottom_border {
+#pllhfegrlb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_col_headings {
+#pllhfegrlb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3331,7 +3324,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_col_heading {
+#pllhfegrlb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3351,7 +3344,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#svfvqsxxvw .gt_column_spanner_outer {
+#pllhfegrlb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3363,15 +3356,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#svfvqsxxvw .gt_column_spanner_outer:first-child {
+#pllhfegrlb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#svfvqsxxvw .gt_column_spanner_outer:last-child {
+#pllhfegrlb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#svfvqsxxvw .gt_column_spanner {
+#pllhfegrlb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3383,11 +3376,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#svfvqsxxvw .gt_spanner_row {
+#pllhfegrlb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#svfvqsxxvw .gt_group_heading {
+#pllhfegrlb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3413,7 +3406,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#svfvqsxxvw .gt_empty_group_heading {
+#pllhfegrlb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3428,15 +3421,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#svfvqsxxvw .gt_from_md > :first-child {
+#pllhfegrlb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#svfvqsxxvw .gt_from_md > :last-child {
+#pllhfegrlb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#svfvqsxxvw .gt_row {
+#pllhfegrlb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3455,7 +3448,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#svfvqsxxvw .gt_stub {
+#pllhfegrlb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3468,7 +3461,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#svfvqsxxvw .gt_stub_row_group {
+#pllhfegrlb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3482,15 +3475,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#svfvqsxxvw .gt_row_group_first td {
+#pllhfegrlb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#svfvqsxxvw .gt_row_group_first th {
+#pllhfegrlb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#svfvqsxxvw .gt_summary_row {
+#pllhfegrlb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3500,16 +3493,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#svfvqsxxvw .gt_first_summary_row {
+#pllhfegrlb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_first_summary_row.thick {
+#pllhfegrlb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#svfvqsxxvw .gt_last_summary_row {
+#pllhfegrlb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3519,7 +3512,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_grand_summary_row {
+#pllhfegrlb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3529,7 +3522,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#svfvqsxxvw .gt_first_grand_summary_row {
+#pllhfegrlb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3539,7 +3532,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_last_grand_summary_row_top {
+#pllhfegrlb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3549,11 +3542,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_striped {
+#pllhfegrlb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#svfvqsxxvw .gt_table_body {
+#pllhfegrlb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3562,7 +3555,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_footnotes {
+#pllhfegrlb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3576,7 +3569,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_footnote {
+#pllhfegrlb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3585,7 +3578,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#svfvqsxxvw .gt_sourcenotes {
+#pllhfegrlb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3599,7 +3592,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#svfvqsxxvw .gt_sourcenote {
+#pllhfegrlb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3607,63 +3600,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#svfvqsxxvw .gt_left {
+#pllhfegrlb .gt_left {
   text-align: left;
 }
 
-#svfvqsxxvw .gt_center {
+#pllhfegrlb .gt_center {
   text-align: center;
 }
 
-#svfvqsxxvw .gt_right {
+#pllhfegrlb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#svfvqsxxvw .gt_font_normal {
+#pllhfegrlb .gt_font_normal {
   font-weight: normal;
 }
 
-#svfvqsxxvw .gt_font_bold {
+#pllhfegrlb .gt_font_bold {
   font-weight: bold;
 }
 
-#svfvqsxxvw .gt_font_italic {
+#pllhfegrlb .gt_font_italic {
   font-style: italic;
 }
 
-#svfvqsxxvw .gt_super {
+#pllhfegrlb .gt_super {
   font-size: 65%;
 }
 
-#svfvqsxxvw .gt_footnote_marks {
+#pllhfegrlb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#svfvqsxxvw .gt_asterisk {
+#pllhfegrlb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#svfvqsxxvw .gt_indent_1 {
+#pllhfegrlb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#svfvqsxxvw .gt_indent_2 {
+#pllhfegrlb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#svfvqsxxvw .gt_indent_3 {
+#pllhfegrlb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#svfvqsxxvw .gt_indent_4 {
+#pllhfegrlb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#svfvqsxxvw .gt_indent_5 {
+#pllhfegrlb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3746,30 +3739,30 @@ document.addEventListener("DOMContentLoaded", function () {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-8" data-code-lines="2">Add Five Thirty Eight theme to the table</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-8" data-code-annotation="1">Add Five Thirty Eight theme to the table</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="vmznocuvjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="paxnhahbno" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#vmznocuvjo table {
+#paxnhahbno table {
   font-family: Chivo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vmznocuvjo thead, #vmznocuvjo tbody, #vmznocuvjo tfoot, #vmznocuvjo tr, #vmznocuvjo td, #vmznocuvjo th {
+#paxnhahbno thead, #paxnhahbno tbody, #paxnhahbno tfoot, #paxnhahbno tr, #paxnhahbno td, #paxnhahbno th {
   border-style: none;
 }
 
-#vmznocuvjo p {
+#paxnhahbno p {
   margin: 0;
   padding: 0;
 }
 
-#vmznocuvjo .gt_table {
+#paxnhahbno .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3795,12 +3788,12 @@ document.addEventListener("DOMContentLoaded", function () {
   border-left-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_caption {
+#paxnhahbno .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vmznocuvjo .gt_title {
+#paxnhahbno .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3812,7 +3805,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-width: 0;
 }
 
-#vmznocuvjo .gt_subtitle {
+#paxnhahbno .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3824,7 +3817,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-width: 0;
 }
 
-#vmznocuvjo .gt_heading {
+#paxnhahbno .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -3836,13 +3829,13 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_bottom_border {
+#paxnhahbno .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_col_headings {
+#paxnhahbno .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3857,7 +3850,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_col_heading {
+#paxnhahbno .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3877,7 +3870,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#vmznocuvjo .gt_column_spanner_outer {
+#paxnhahbno .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3889,15 +3882,15 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 4px;
 }
 
-#vmznocuvjo .gt_column_spanner_outer:first-child {
+#paxnhahbno .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vmznocuvjo .gt_column_spanner_outer:last-child {
+#paxnhahbno .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vmznocuvjo .gt_column_spanner {
+#paxnhahbno .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -3909,11 +3902,11 @@ document.addEventListener("DOMContentLoaded", function () {
   width: 100%;
 }
 
-#vmznocuvjo .gt_spanner_row {
+#paxnhahbno .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vmznocuvjo .gt_group_heading {
+#paxnhahbno .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3939,7 +3932,7 @@ document.addEventListener("DOMContentLoaded", function () {
   text-align: left;
 }
 
-#vmznocuvjo .gt_empty_group_heading {
+#paxnhahbno .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3954,15 +3947,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: middle;
 }
 
-#vmznocuvjo .gt_from_md > :first-child {
+#paxnhahbno .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vmznocuvjo .gt_from_md > :last-child {
+#paxnhahbno .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vmznocuvjo .gt_row {
+#paxnhahbno .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -3981,7 +3974,7 @@ document.addEventListener("DOMContentLoaded", function () {
   overflow-x: hidden;
 }
 
-#vmznocuvjo .gt_stub {
+#paxnhahbno .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -3994,7 +3987,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#vmznocuvjo .gt_stub_row_group {
+#paxnhahbno .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4008,15 +4001,15 @@ document.addEventListener("DOMContentLoaded", function () {
   vertical-align: top;
 }
 
-#vmznocuvjo .gt_row_group_first td {
+#paxnhahbno .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vmznocuvjo .gt_row_group_first th {
+#paxnhahbno .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vmznocuvjo .gt_summary_row {
+#paxnhahbno .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4026,16 +4019,16 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#vmznocuvjo .gt_first_summary_row {
+#paxnhahbno .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_first_summary_row.thick {
+#paxnhahbno .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vmznocuvjo .gt_last_summary_row {
+#paxnhahbno .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4045,7 +4038,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_grand_summary_row {
+#paxnhahbno .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4055,7 +4048,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#vmznocuvjo .gt_first_grand_summary_row {
+#paxnhahbno .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4065,7 +4058,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-top-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_last_grand_summary_row_top {
+#paxnhahbno .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4075,11 +4068,11 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_striped {
+#paxnhahbno .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vmznocuvjo .gt_table_body {
+#paxnhahbno .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4088,7 +4081,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-bottom-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_footnotes {
+#paxnhahbno .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4102,7 +4095,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_footnote {
+#paxnhahbno .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4111,7 +4104,7 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#vmznocuvjo .gt_sourcenotes {
+#paxnhahbno .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4125,7 +4118,7 @@ document.addEventListener("DOMContentLoaded", function () {
   border-right-color: #D3D3D3;
 }
 
-#vmznocuvjo .gt_sourcenote {
+#paxnhahbno .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4133,63 +4126,63 @@ document.addEventListener("DOMContentLoaded", function () {
   padding-right: 5px;
 }
 
-#vmznocuvjo .gt_left {
+#paxnhahbno .gt_left {
   text-align: left;
 }
 
-#vmznocuvjo .gt_center {
+#paxnhahbno .gt_center {
   text-align: center;
 }
 
-#vmznocuvjo .gt_right {
+#paxnhahbno .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vmznocuvjo .gt_font_normal {
+#paxnhahbno .gt_font_normal {
   font-weight: normal;
 }
 
-#vmznocuvjo .gt_font_bold {
+#paxnhahbno .gt_font_bold {
   font-weight: bold;
 }
 
-#vmznocuvjo .gt_font_italic {
+#paxnhahbno .gt_font_italic {
   font-style: italic;
 }
 
-#vmznocuvjo .gt_super {
+#paxnhahbno .gt_super {
   font-size: 65%;
 }
 
-#vmznocuvjo .gt_footnote_marks {
+#paxnhahbno .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vmznocuvjo .gt_asterisk {
+#paxnhahbno .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vmznocuvjo .gt_indent_1 {
+#paxnhahbno .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vmznocuvjo .gt_indent_2 {
+#paxnhahbno .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vmznocuvjo .gt_indent_3 {
+#paxnhahbno .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vmznocuvjo .gt_indent_4 {
+#paxnhahbno .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vmznocuvjo .gt_indent_5 {
+#paxnhahbno .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -4328,114 +4321,114 @@ tbody tr:last-child {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-10" data-code-lines="1,2,3,4">Load the necessary libraries for data manipulation and visualization.</span>
+<span data-code-lines="1,2,3,4" data-code-cell="annotated-cell-10" data-code-annotation="1">Load the necessary libraries for data manipulation and visualization.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-10" data-code-lines="7">Load the data.</span>
+<span data-code-lines="7" data-code-cell="annotated-cell-10" data-code-annotation="2">Load the data.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-10" data-code-lines="8">Filter the data to include only cars that originated from Germany.</span>
+<span data-code-lines="8" data-code-cell="annotated-cell-10" data-code-annotation="3">Filter the data to include only cars that originated from Germany.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-10" data-code-lines="9">Group the data by the manufacturer.</span>
+<span data-code-lines="9" data-code-cell="annotated-cell-10" data-code-annotation="4">Group the data by the manufacturer.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-cell="annotated-cell-10" data-code-lines="10">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
+<span data-code-lines="10" data-code-cell="annotated-cell-10" data-code-annotation="5">Arrange the data in descending order based on the Manufacturer’s Suggested Retail Price (MSRP).</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-annotation="6" data-code-cell="annotated-cell-10" data-code-lines="11">Start a new gt table using the car models as row names.</span>
+<span data-code-lines="11" data-code-cell="annotated-cell-10" data-code-annotation="6">Start a new gt table using the car models as row names.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="7">7</dt>
 <dd>
-<span data-code-annotation="7" data-code-cell="annotated-cell-10" data-code-lines="12">Hide certain columns that aren’t needed in the final table.</span>
+<span data-code-lines="12" data-code-cell="annotated-cell-10" data-code-annotation="7">Hide certain columns that aren’t needed in the final table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="8">8</dt>
 <dd>
-<span data-code-annotation="8" data-code-cell="annotated-cell-10" data-code-lines="13">Move specific columns to appear after the trim column.</span>
+<span data-code-lines="13" data-code-cell="annotated-cell-10" data-code-annotation="8">Move specific columns to appear after the trim column.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="9">9</dt>
 <dd>
-<span data-code-annotation="9" data-code-cell="annotated-cell-10" data-code-lines="14">Create a spanner header for performance-related columns.</span>
+<span data-code-lines="14" data-code-cell="annotated-cell-10" data-code-annotation="9">Create a spanner header for performance-related columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="10">10</dt>
 <dd>
-<span data-code-annotation="10" data-code-cell="annotated-cell-10" data-code-lines="15">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
+<span data-code-lines="15" data-code-cell="annotated-cell-10" data-code-annotation="10">Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="11">11</dt>
 <dd>
-<span data-code-annotation="11" data-code-cell="annotated-cell-10" data-code-lines="16">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
+<span data-code-lines="16" data-code-cell="annotated-cell-10" data-code-annotation="11">Merge the torque (trq) and torque rpm (trq_rpm) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="12">12</dt>
 <dd>
-<span data-code-annotation="12" data-code-cell="annotated-cell-10" data-code-lines="17">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
+<span data-code-lines="17" data-code-cell="annotated-cell-10" data-code-annotation="12">Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="13">13</dt>
 <dd>
-<span data-code-annotation="13" data-code-cell="annotated-cell-10" data-code-lines="18">Set custom labels for specific columns.</span>
+<span data-code-lines="18" data-code-cell="annotated-cell-10" data-code-annotation="13">Set custom labels for specific columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="14">14</dt>
 <dd>
-<span data-code-annotation="14" data-code-cell="annotated-cell-10" data-code-lines="25">Format the MSRP column as currency in USD.</span>
+<span data-code-lines="25" data-code-cell="annotated-cell-10" data-code-annotation="14">Format the MSRP column as currency in USD.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="15">15</dt>
 <dd>
-<span data-code-annotation="15" data-code-cell="annotated-cell-10" data-code-lines="26">Center align specific columns.</span>
+<span data-code-lines="26" data-code-cell="annotated-cell-10" data-code-annotation="15">Center align specific columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="16">16</dt>
 <dd>
-<span data-code-annotation="16" data-code-cell="annotated-cell-10" data-code-lines="27">Apply a specific text style to certain columns.</span>
+<span data-code-lines="27" data-code-cell="annotated-cell-10" data-code-annotation="16">Apply a specific text style to certain columns.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="17">17</dt>
 <dd>
-<span data-code-annotation="17" data-code-cell="annotated-cell-10" data-code-lines="31">Apply a data-driven color scale to the MSRP column.</span>
+<span data-code-lines="31" data-code-cell="annotated-cell-10" data-code-annotation="17">Apply a data-driven color scale to the MSRP column.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="18">18</dt>
 <dd>
-<span data-code-annotation="18" data-code-cell="annotated-cell-10" data-code-lines="32">Add a title and subtitle to the table.</span>
+<span data-code-lines="32" data-code-cell="annotated-cell-10" data-code-annotation="18">Add a title and subtitle to the table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="19">19</dt>
 <dd>
-<span data-code-annotation="19" data-code-cell="annotated-cell-10" data-code-lines="33">Add a footnote to clarify what MSRP stands for.</span>
+<span data-code-lines="33" data-code-cell="annotated-cell-10" data-code-annotation="19">Add a footnote to clarify what MSRP stands for.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="20">20</dt>
 <dd>
-<span data-code-annotation="20" data-code-cell="annotated-cell-10" data-code-lines="34">Add a footnote to the most expensive car, noting that electric cars used to be expensive.</span>
+<span data-code-lines="34" data-code-cell="annotated-cell-10" data-code-annotation="20">Add a footnote to the most expensive car, noting that electric cars used to be expensive.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="21">21</dt>
 <dd>
-<span data-code-annotation="21" data-code-cell="annotated-cell-10" data-code-lines="35">Add a source note to cite the source of the data.</span>
+<span data-code-lines="35" data-code-cell="annotated-cell-10" data-code-annotation="21">Add a source note to cite the source of the data.</span>
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="22">22</dt>
 <dd>
-<span data-code-annotation="22" data-code-cell="annotated-cell-10" data-code-lines="36">Apply a theme to the table for a more polished look.</span>
+<span data-code-lines="36" data-code-cell="annotated-cell-10" data-code-annotation="22">Apply a theme to the table for a more polished look.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div id="ofentaiinx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vfgrwlemhu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#ofentaiinx table {
+#vfgrwlemhu table {
   font-family: Chivo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ofentaiinx thead, #ofentaiinx tbody, #ofentaiinx tfoot, #ofentaiinx tr, #ofentaiinx td, #ofentaiinx th {
+#vfgrwlemhu thead, #vfgrwlemhu tbody, #vfgrwlemhu tfoot, #vfgrwlemhu tr, #vfgrwlemhu td, #vfgrwlemhu th {
   border-style: none;
 }
 
-#ofentaiinx p {
+#vfgrwlemhu p {
   margin: 0;
   padding: 0;
 }
 
-#ofentaiinx .gt_table {
+#vfgrwlemhu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4461,12 +4454,12 @@ tbody tr:last-child {
   border-left-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_caption {
+#vfgrwlemhu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ofentaiinx .gt_title {
+#vfgrwlemhu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4478,7 +4471,7 @@ tbody tr:last-child {
   border-bottom-width: 0;
 }
 
-#ofentaiinx .gt_subtitle {
+#vfgrwlemhu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4490,7 +4483,7 @@ tbody tr:last-child {
   border-top-width: 0;
 }
 
-#ofentaiinx .gt_heading {
+#vfgrwlemhu .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -4502,13 +4495,13 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_bottom_border {
+#vfgrwlemhu .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_col_headings {
+#vfgrwlemhu .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4523,7 +4516,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_col_heading {
+#vfgrwlemhu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4543,7 +4536,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#ofentaiinx .gt_column_spanner_outer {
+#vfgrwlemhu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4555,15 +4548,15 @@ tbody tr:last-child {
   padding-right: 4px;
 }
 
-#ofentaiinx .gt_column_spanner_outer:first-child {
+#vfgrwlemhu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ofentaiinx .gt_column_spanner_outer:last-child {
+#vfgrwlemhu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ofentaiinx .gt_column_spanner {
+#vfgrwlemhu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -4575,11 +4568,11 @@ tbody tr:last-child {
   width: 100%;
 }
 
-#ofentaiinx .gt_spanner_row {
+#vfgrwlemhu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ofentaiinx .gt_group_heading {
+#vfgrwlemhu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4605,7 +4598,7 @@ tbody tr:last-child {
   text-align: left;
 }
 
-#ofentaiinx .gt_empty_group_heading {
+#vfgrwlemhu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4620,15 +4613,15 @@ tbody tr:last-child {
   vertical-align: middle;
 }
 
-#ofentaiinx .gt_from_md > :first-child {
+#vfgrwlemhu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ofentaiinx .gt_from_md > :last-child {
+#vfgrwlemhu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ofentaiinx .gt_row {
+#vfgrwlemhu .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -4647,7 +4640,7 @@ tbody tr:last-child {
   overflow-x: hidden;
 }
 
-#ofentaiinx .gt_stub {
+#vfgrwlemhu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -4660,7 +4653,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ofentaiinx .gt_stub_row_group {
+#vfgrwlemhu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4674,15 +4667,15 @@ tbody tr:last-child {
   vertical-align: top;
 }
 
-#ofentaiinx .gt_row_group_first td {
+#vfgrwlemhu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ofentaiinx .gt_row_group_first th {
+#vfgrwlemhu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ofentaiinx .gt_summary_row {
+#vfgrwlemhu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4692,16 +4685,16 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ofentaiinx .gt_first_summary_row {
+#vfgrwlemhu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_first_summary_row.thick {
+#vfgrwlemhu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ofentaiinx .gt_last_summary_row {
+#vfgrwlemhu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4711,7 +4704,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_grand_summary_row {
+#vfgrwlemhu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4721,7 +4714,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ofentaiinx .gt_first_grand_summary_row {
+#vfgrwlemhu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4731,7 +4724,7 @@ tbody tr:last-child {
   border-top-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_last_grand_summary_row_top {
+#vfgrwlemhu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4741,11 +4734,11 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_striped {
+#vfgrwlemhu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ofentaiinx .gt_table_body {
+#vfgrwlemhu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4754,7 +4747,7 @@ tbody tr:last-child {
   border-bottom-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_footnotes {
+#vfgrwlemhu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4768,7 +4761,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_footnote {
+#vfgrwlemhu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4777,7 +4770,7 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ofentaiinx .gt_sourcenotes {
+#vfgrwlemhu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4791,7 +4784,7 @@ tbody tr:last-child {
   border-right-color: #D3D3D3;
 }
 
-#ofentaiinx .gt_sourcenote {
+#vfgrwlemhu .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4799,63 +4792,63 @@ tbody tr:last-child {
   padding-right: 5px;
 }
 
-#ofentaiinx .gt_left {
+#vfgrwlemhu .gt_left {
   text-align: left;
 }
 
-#ofentaiinx .gt_center {
+#vfgrwlemhu .gt_center {
   text-align: center;
 }
 
-#ofentaiinx .gt_right {
+#vfgrwlemhu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ofentaiinx .gt_font_normal {
+#vfgrwlemhu .gt_font_normal {
   font-weight: normal;
 }
 
-#ofentaiinx .gt_font_bold {
+#vfgrwlemhu .gt_font_bold {
   font-weight: bold;
 }
 
-#ofentaiinx .gt_font_italic {
+#vfgrwlemhu .gt_font_italic {
   font-style: italic;
 }
 
-#ofentaiinx .gt_super {
+#vfgrwlemhu .gt_super {
   font-size: 65%;
 }
 
-#ofentaiinx .gt_footnote_marks {
+#vfgrwlemhu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ofentaiinx .gt_asterisk {
+#vfgrwlemhu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ofentaiinx .gt_indent_1 {
+#vfgrwlemhu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ofentaiinx .gt_indent_2 {
+#vfgrwlemhu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ofentaiinx .gt_indent_3 {
+#vfgrwlemhu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ofentaiinx .gt_indent_4 {
+#vfgrwlemhu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ofentaiinx .gt_indent_5 {
+#vfgrwlemhu .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -5014,8 +5007,8 @@ tbody tr:last-child {
 </div>
 </section>
 </section>
-<section id="dt-tables" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="dt-tables"><span class="header-section-number">29.2</span> DT Tables</h2>
+<section id="dt-tables" class="level2" data-number="31.2">
+<h2 data-number="31.2" class="anchored" data-anchor-id="dt-tables"><span class="header-section-number">31.2</span> DT Tables</h2>
 <p>When you need to present data to important stakeholders, static HTML tables can sometimes fall short. The <code>DT</code> package in R can be a great solution for this, as it lets you include interactive tables in your reports or analyses. <code>DT</code> is an interface to the JavaScript library DataTables, which is a plug-in for the jQuery JavaScript library. It’s a flexible tool for displaying data in tables, with lots of customization options. Unlike the <code>gt</code> package, which is designed more for creating tables ready for publication, <code>DT</code> is really about making tables interactive for better data exploration.</p>
 <p>The <code>DT</code> package lets you sort, filter, and paginate tables, which is really useful when you’re dealing with larger datasets. It also has features like filters for individual columns, and the ability to hide or rearrange columns. Plus, there are several options for how you present your data. We’ll show you how to use the <code>DT</code> package to create a table with a dataset of German automobiles in the next section.</p>
 <div class="cell">
@@ -5047,58 +5040,58 @@ tbody tr:last-child {
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-11" data-code-lines="7">Filter the <code>gtcars</code> dataset to include only cars that originate from Germany.</span>
+<span data-code-lines="7" data-code-cell="annotated-cell-11" data-code-annotation="1">Filter the <code>gtcars</code> dataset to include only cars that originate from Germany.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-11" data-code-lines="11">Pass the <code>german_cars</code> dataframe to the <code>datatable</code> function to display it as a DT table.</span>
+<span data-code-lines="11" data-code-cell="annotated-cell-11" data-code-annotation="2">Pass the <code>german_cars</code> dataframe to the <code>datatable</code> function to display it as a DT table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-11" data-code-lines="12">Enable the <code>Buttons</code> extension, which adds various functionalities to the table.</span>
+<span data-code-lines="12" data-code-cell="annotated-cell-11" data-code-annotation="3">Enable the <code>Buttons</code> extension, which adds various functionalities to the table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-annotation="4" data-code-cell="annotated-cell-11" data-code-lines="14">The <code>dom</code> option is used to define the table control elements to be displayed on the page and their order.</span>
+<span data-code-lines="14" data-code-cell="annotated-cell-11" data-code-annotation="4">The <code>dom</code> option is used to define the table control elements to be displayed on the page and their order.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-annotation="5" data-code-cell="annotated-cell-11" data-code-lines="15">Add buttons to the table that allow for various actions, such as copying the table data and exporting it in different formats.</span>
+<span data-code-lines="15" data-code-cell="annotated-cell-11" data-code-annotation="5">Add buttons to the table that allow for various actions, such as copying the table data and exporting it in different formats.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-annotation="6" data-code-cell="annotated-cell-11" data-code-lines="16">Set the number of rows to be displayed per page.</span>
+<span data-code-lines="16" data-code-cell="annotated-cell-11" data-code-annotation="6">Set the number of rows to be displayed per page.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="7">7</dt>
 <dd>
-<span data-code-annotation="7" data-code-cell="annotated-cell-11" data-code-lines="17">Automatically adjust the column width to the content.</span>
+<span data-code-lines="17" data-code-cell="annotated-cell-11" data-code-annotation="7">Automatically adjust the column width to the content.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="8">8</dt>
 <dd>
-<span data-code-annotation="8" data-code-cell="annotated-cell-11" data-code-lines="18">Set the initial sorting order for the table.</span>
+<span data-code-lines="18" data-code-cell="annotated-cell-11" data-code-annotation="8">Set the initial sorting order for the table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="9">9</dt>
 <dd>
-<span data-code-annotation="9" data-code-cell="annotated-cell-11" data-code-lines="19">Specify the options for the “entries per page” dropdown and their display text.</span>
+<span data-code-lines="19" data-code-cell="annotated-cell-11" data-code-annotation="9">Specify the options for the “entries per page” dropdown and their display text.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="10">10</dt>
 <dd>
-<span data-code-annotation="10" data-code-cell="annotated-cell-11" data-code-lines="20">Highlight any text in the table that matches the filter.</span>
+<span data-code-lines="20" data-code-cell="annotated-cell-11" data-code-annotation="10">Highlight any text in the table that matches the filter.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="11">11</dt>
 <dd>
-<span data-code-annotation="11" data-code-cell="annotated-cell-11" data-code-lines="21">Enable the ability to filter data in the table.</span>
+<span data-code-lines="21" data-code-cell="annotated-cell-11" data-code-annotation="11">Enable the ability to filter data in the table.</span>
 </dd>
 <dt data-target-cell="annotated-cell-11" data-target-annotation="12">12</dt>
 <dd>
-<span data-code-annotation="12" data-code-cell="annotated-cell-11" data-code-lines="22">Allow the user to change the number of entries shown per page.</span>
+<span data-code-lines="22" data-code-cell="annotated-cell-11" data-code-annotation="12">Allow the user to change the number of entries shown per page.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-329619ca636ebc981f7d" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-329619ca636ebc981f7d">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["BMW","BMW","BMW","BMW","BMW","Audi","Audi","Audi","Audi","Audi","Mercedes-Benz","Mercedes-Benz","Porsche","Porsche","Porsche","Porsche"],["6-Series","i8","M4","M5","M6","R8","RS 7","S6","S7","S8","AMG GT","SL-Class","718 Boxster","718 Cayman","911","Panamera"],[2016,2016,2016,2016,2016,2015,2016,2016,2016,2016,2016,2016,2017,2017,2016,2016],["640 I Coupe","Mega World Coupe","Base Coupe","Base Sedan","Base Coupe","4.2 (Manual) Coupe","Quattro Hatchback","Premium Plus quattro Sedan","Prestige quattro Hatchback","Base Sedan","S Coupe","SL400 Convertible","Base Convertible","Base Coupe","Carrera Coupe","Base Sedan"],["coupe","coupe","coupe","sedan","coupe","coupe","hatchback","sedan","hatchback","sedan","coupe","convertible","convertible","coupe","coupe","sedan"],[315,357,425,560,560,430,560,450,450,520,503,329,300,300,350,310],[5800,5800,5500,6000,6000,7900,5700,5800,5800,5800,6250,5250,6500,6500,7400,6200],[330,420,406,500,500,317,516,406,406,481,479,354,280,280,287,295],[1400,3700,1850,1500,1500,4500,1750,1400,1400,1700,1750,1600,1950,1950,5600,3750],[20,28,17,15,15,11,15,18,17,15,16,20,21,20,20,18],[30,29,24,22,22,20,25,27,27,25,22,27,28,29,28,28],["rwd","awd","rwd","rwd","rwd","awd","awd","awd","awd","awd","rwd","rwd","rwd","rwd","rwd","rwd"],["8am","6am","6m","7am","7a","6m","8am","7a","7a","8am","7a","7am","6m","6m","7m","7a"],["Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany"],[77300,140700,65700,94100,113400,115900,108900,70900,82900,114900,129900,85050,56000,53900,84300,78100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mfr<\/th>\n      <th>model<\/th>\n      <th>year<\/th>\n      <th>trim<\/th>\n      <th>bdy_style<\/th>\n      <th>hp<\/th>\n      <th>hp_rpm<\/th>\n      <th>trq<\/th>\n      <th>trq_rpm<\/th>\n      <th>mpg_c<\/th>\n      <th>mpg_h<\/th>\n      <th>drivetrain<\/th>\n      <th>trsmn<\/th>\n      <th>ctry_origin<\/th>\n      <th>msrp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":5,"autoWidth":true,"order":[[1,"asc"]],"lengthMenu":[[5,10,15,-1],["5 rows","10 rows","15 rows","Show all"]],"searchHighlight":true,"searching":true,"lengthChange":true,"columnDefs":[{"className":"dt-right","targets":[3,6,7,8,9,10,11,15]},{"orderable":false,"targets":0}],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f973b8f729ffaa73a486" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f973b8f729ffaa73a486">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["BMW","BMW","BMW","BMW","BMW","Audi","Audi","Audi","Audi","Audi","Mercedes-Benz","Mercedes-Benz","Porsche","Porsche","Porsche","Porsche"],["6-Series","i8","M4","M5","M6","R8","RS 7","S6","S7","S8","AMG GT","SL-Class","718 Boxster","718 Cayman","911","Panamera"],[2016,2016,2016,2016,2016,2015,2016,2016,2016,2016,2016,2016,2017,2017,2016,2016],["640 I Coupe","Mega World Coupe","Base Coupe","Base Sedan","Base Coupe","4.2 (Manual) Coupe","Quattro Hatchback","Premium Plus quattro Sedan","Prestige quattro Hatchback","Base Sedan","S Coupe","SL400 Convertible","Base Convertible","Base Coupe","Carrera Coupe","Base Sedan"],["coupe","coupe","coupe","sedan","coupe","coupe","hatchback","sedan","hatchback","sedan","coupe","convertible","convertible","coupe","coupe","sedan"],[315,357,425,560,560,430,560,450,450,520,503,329,300,300,350,310],[5800,5800,5500,6000,6000,7900,5700,5800,5800,5800,6250,5250,6500,6500,7400,6200],[330,420,406,500,500,317,516,406,406,481,479,354,280,280,287,295],[1400,3700,1850,1500,1500,4500,1750,1400,1400,1700,1750,1600,1950,1950,5600,3750],[20,28,17,15,15,11,15,18,17,15,16,20,21,20,20,18],[30,29,24,22,22,20,25,27,27,25,22,27,28,29,28,28],["rwd","awd","rwd","rwd","rwd","awd","awd","awd","awd","awd","rwd","rwd","rwd","rwd","rwd","rwd"],["8am","6am","6m","7am","7a","6m","8am","7a","7a","8am","7a","7am","6m","6m","7m","7a"],["Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany"],[77300,140700,65700,94100,113400,115900,108900,70900,82900,114900,129900,85050,56000,53900,84300,78100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mfr<\/th>\n      <th>model<\/th>\n      <th>year<\/th>\n      <th>trim<\/th>\n      <th>bdy_style<\/th>\n      <th>hp<\/th>\n      <th>hp_rpm<\/th>\n      <th>trq<\/th>\n      <th>trq_rpm<\/th>\n      <th>mpg_c<\/th>\n      <th>mpg_h<\/th>\n      <th>drivetrain<\/th>\n      <th>trsmn<\/th>\n      <th>ctry_origin<\/th>\n      <th>msrp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":5,"autoWidth":true,"order":[[1,"asc"]],"lengthMenu":[[5,10,15,-1],["5 rows","10 rows","15 rows","Show all"]],"searchHighlight":true,"searching":true,"lengthChange":true,"columnDefs":[{"className":"dt-right","targets":[3,6,7,8,9,10,11,15]},{"orderable":false,"targets":0}],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
@@ -5418,12 +5411,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/which_graph.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/epilogue.html" class="pagination-link">
+        <span class="nav-page-text">Epilogue</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

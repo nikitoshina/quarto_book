@@ -802,6 +802,100 @@
             },
             "title": "What is a good survey length for online research?",
             "type": ""
+        },
+        {
+            "URL": "https://books.google.com/books?id=axXjhXzMDZ4C",
+            "author": [
+                {
+                    "family": "Weschler",
+                    "given": "L."
+                },
+                {
+                    "family": "Irwin",
+                    "given": "R."
+                }
+            ],
+            "id": "weschlerSeeingForgettingName1982",
+            "issued": {
+                "date-parts": [
+                    [
+                        1982
+                    ]
+                ]
+            },
+            "publisher": "University of California Press",
+            "title": "Seeing is forgetting the name of the thing one sees: A life of contemporary artist robert irwin",
+            "title-short": "Seeing is forgetting the name of the thing one sees",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Ware",
+                    "given": "Colin"
+                }
+            ],
+            "edition": "Fourth edition",
+            "id": "wareInformationVisualizationPerception2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "publisher": "Morgan Kaufmann, Inc",
+            "publisher-place": "Cambridge, MA",
+            "title": "Information visualization: Perception for design",
+            "title-short": "Information visualization",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Tufte",
+                    "given": "Edward R."
+                }
+            ],
+            "edition": "2nd ed",
+            "id": "tufteVisualDisplayQuantitative2001",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001
+                    ]
+                ]
+            },
+            "publisher": "Graphics Press",
+            "publisher-place": "Cheshire, Conn",
+            "title": "The visual display of quantitative information",
+            "type": "book"
+        },
+        {
+            "URL": "https://nightingaledvs.com/cognitive-load-as-a-guide-12-spectrums-to-improve-your-data-visualizations/",
+            "author": [
+                {
+                    "family": "Sibinga",
+                    "given": "Eva"
+                },
+                {
+                    "family": "Waldron",
+                    "given": "Erin"
+                }
+            ],
+            "id": "sibingaCognitiveLoadGuide2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        9,
+                        30
+                    ]
+                ]
+            },
+            "title": "Cognitive load as a guide: 12 spectrums to improve your data visualizations | nightingale",
+            "title-short": "Cognitive load as a guide",
+            "type": ""
         }
     ],
     "project_biblios": [

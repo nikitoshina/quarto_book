@@ -47,31 +47,37 @@ book:
         - chapters/documentation.qmd
     - part: "Presenting the Data"
       chapters:
+        - chapters/visualization_theory.qmd
         - chapters/data_viz.qmd 
         - chapters/color.qmd
+        - chapters/color_scheme.qmd
         - chapters/which_graph.qmd # add annotations
         - chapters/tables.qmd # Add maybe kable
     # - part: "Run Your Models"
         # Power Analysis and Simulations
         # Modeling
         # Vizualizing models and model assumption
+    - chapters/epilogue.qmd
     - chapters/references.qmd
+    
   repo-actions: [edit, issue]
   repo-url: https://github.com/nikitoshina/quarto_book
   issue-url: https://github.com/nikitoshina/quarto_book/issues/new/choose
 
 bibliography: references.bib
 
-format:
-  html:
-    theme: cosmo
-    include-before-body: reading-time.html
-    css: styles.css
-    
-code-link: true
+output: md_document
 
+# format:
+  # html:
+  #   theme: cosmo
+  #   include-before-body: reading-time.html
+  #   css: styles.css
   # pdf:
   #  documentclass: book
+   
+code-link: true
+
 website:
   comments:
     giscus:
@@ -79,3 +85,6 @@ website:
 
 reference-location: margin
 citation-location: margin
+
+
+# get toc from files

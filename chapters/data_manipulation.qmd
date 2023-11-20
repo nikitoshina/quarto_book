@@ -378,6 +378,7 @@ data_raven %>%
   head(5)
 ```
 
+
 ### `skim()`
 
 `skim()` from the `skimr` package provides an extensive summary of a dataframe. It offers more than `summary()`, detailing quartiles, missing values, and histograms. Use it during exploratory data analysis to understand your data. 
@@ -388,3 +389,35 @@ skim(data_raven)
 ```
 
 It provides a neat, comprehensive view of each variable, useful for further analysis.
+
+## Exploring Date and Time with `lubridate`
+
+Navigating the complexities of dates, times, and timezones can be a daunting task, but fear not! The `lubridate` package, a recent addition to the `tidyverse`, comes to the rescue with its remarkable capabilities for simplifying date and time manipulations. With `lubridate`, you can effortlessly convert strings into dates, dates into strings, alter formats, check for overlaps, and perform date arithmetic.
+
+### Unraveling Date Formats: `ymd()`, `md()`, `hms()`, `ymd_hms()`, and More
+
+When working with dates, various notations exist, each represented by a combination of letters. To extract dates from text, all you need is to discern the order of year, month, day, hours, minutes, and seconds, and then employ the corresponding function to work your magic.
+
+```{r}
+library(lubridate)
+day_year_month <- "31/2001/01"
+(date <- dym(day_year_month))
+
+month_day_year_hour_minute <- "Jan 31st 2001 6:05PM"
+(date_time <- mdy_hm(month_day_year_hour_minute))
+
+sentence_with_date <- "Elizabeth II was Queen of the United Kingdom and other Commonwealth realms from 6 February 1952."
+dmy(sentence_with_date) # <1>
+```
+1. Impressive, isn't it? `lubridate` can identify the date within text and parse it for you!
+
+### Extracting Date Components: `year()`, `month()`, `day()`, and More
+
+Similarly, you can extract specific date and time components using functions aptly named after the elements you wish to retrieve.
+
+```{r}
+day(date_time)
+hour(date_time)
+month(date_time, label = TRUE, abbr = FALSE) # <1>
+```
+1. Setting `label = TRUE` provides the month's name, while `abbr = FALSE` yields the full name.

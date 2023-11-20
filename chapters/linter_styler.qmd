@@ -3,6 +3,7 @@ title: "Style and Lint your Code"
 eval: false
 ---
 
+## Tidyverse Style 
 While immersing yourself in coding, you might neglect aesthetics like proper indentation or line breaks, which could make your code less readable and more error-prone. It's crucial to adopt certain coding practices to enhance readability and minimize errors. To help with this, we will explore R code conventions and introduce `styler` and `lintr`, packages that improve code aesthetics and detect potential errors.
 
 A good coding style, much like correct punctuation, significantly enhances readability. It's important to remember that while some guidelines improve usability, others may be subjective. However, their true value lies in fostering consistency, which simplifies the coding process.
@@ -234,7 +235,7 @@ Read the documentation for more information: [lintr](https://lintr.r-lib.org/ind
 
 > Styler and Linter might appear similar, but they have different functions. Styler is faster and tidies up your code for better readability, while Linter is a bit slower but essential for spotting and avoiding errors in your code. So, Styler makes your code look neat, and Linter keeps it bug-free.
 
-## Why do we care?
+## Why Care?
 
 You may wonder, if you're comfortable with your coding style, why use these tools?
 While there are subjective benefits, the primary reason is that they enhance your code's accessibility,

@@ -1,5 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+> Optimizing Research Toolkit: A Guide for What School Forgot to Teach.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This book was born from my frustrations and experiences in higher education and professional work. Young data professionals typically learn about models, experiments, and theories during their classes and frequently return to that knowledge. However, executing high-quality research and analysis necessitates a deeper understanding of the tools and the "How" rather than just the "What" and "Why". The knowledge required often transcends what is taught within the constraints of a standard curriculum. In this book, I aim to bridge that gap between knowing what you want to do and understanding how to do it. I've distilled hundreds of hours of frustrations into these chapters, so you won't have to traverse that path yourself.

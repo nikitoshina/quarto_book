@@ -97,7 +97,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating slimcontent">
@@ -349,30 +348,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/visualization_theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Color</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Color Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/color_scheme.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Color Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/which_graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">A Graph for The Job</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Make Tables</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/epilogue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epilogue</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
@@ -412,35 +429,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#row_number" id="toc-row_number" class="nav-link" data-scroll-target="#row_number"><span class="header-section-number">3.3.11</span> <code>row_number()</code></a></li>
   <li><a href="#skim" id="toc-skim" class="nav-link" data-scroll-target="#skim"><span class="header-section-number">3.3.12</span> <code>skim()</code></a></li>
   </ul></li>
+  <li><a href="#exploring-date-and-time-with-lubridate" id="toc-exploring-date-and-time-with-lubridate" class="nav-link" data-scroll-target="#exploring-date-and-time-with-lubridate"><span class="header-section-number">3.4</span> Exploring Date and Time with <code>lubridate</code></a>
+  <ul class="collapse">
+  <li><a href="#unraveling-date-formats-ymd-md-hms-ymd_hms-and-more" id="toc-unraveling-date-formats-ymd-md-hms-ymd_hms-and-more" class="nav-link" data-scroll-target="#unraveling-date-formats-ymd-md-hms-ymd_hms-and-more"><span class="header-section-number">3.4.1</span> Unraveling Date Formats: <code>ymd()</code>, <code>md()</code>, <code>hms()</code>, <code>ymd_hms()</code>, and More</a></li>
+  <li><a href="#extracting-date-components-year-month-day-and-more" id="toc-extracting-date-components-year-month-day-and-more" class="nav-link" data-scroll-target="#extracting-date-components-year-month-day-and-more"><span class="header-section-number">3.4.2</span> Extracting Date Components: <code>year()</code>, <code>month()</code>, <code>day()</code>, and More</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nikitoshina/quarto_book/edit/main/chapters/data_manipulation.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nikitoshina/quarto_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<!-- Container for reading time -->
-<div id="reading-time"></div>
-
-<!-- JavaScript code for calculating reading time -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const wordsPerMinute = 200;
-  const content = document.querySelector("main");
-  const wordCount = content.innerText.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
-  const readingTimeContainer = document.getElementById("reading-time");
-  readingTimeContainer.textContent = `Estimated reading time: ${readingTime} minute${readingTime != 1 ? "s" : ""}`;
-});
-</script>
-
-<!-- CSS code for styling the reading time container -->
-<style>
-#reading-time {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 1em;
-}
-</style>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -530,7 +528,7 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-11">Wrapping with (…) prints the variable</span>
+<span data-code-cell="annotated-cell-11" data-code-annotation="1" data-code-lines="1">Wrapping with (…) prints the variable</span>
 </dd>
 </dl>
 </div>
@@ -574,15 +572,15 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="2" data-code-cell="annotated-cell-17">Adds 10 to each element</span>
+<span data-code-cell="annotated-cell-17" data-code-annotation="1" data-code-lines="2">Adds 10 to each element</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="3" data-code-cell="annotated-cell-17">Multiplies each element by 10</span>
+<span data-code-cell="annotated-cell-17" data-code-annotation="2" data-code-lines="3">Multiplies each element by 10</span>
 </dd>
 <dt data-target-cell="annotated-cell-17" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="4" data-code-cell="annotated-cell-17">Adds together elements in corresponding positions</span>
+<span data-code-cell="annotated-cell-17" data-code-annotation="3" data-code-lines="4">Adds together elements in corresponding positions</span>
 </dd>
 </dl>
 </div>
@@ -635,7 +633,7 @@ overflow-y: scroll;
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-23" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-23">Download data from GitHub</span>
+<span data-code-cell="annotated-cell-23" data-code-annotation="1" data-code-lines="1">Download data from GitHub</span>
 </dd>
 </dl>
 </div>
@@ -1365,6 +1363,61 @@ $ end_time_h         &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 15, 15, 15, 15,
 </div>
 </div>
 <p>It provides a neat, comprehensive view of each variable, useful for further analysis.</p>
+</section>
+</section>
+<section id="exploring-date-and-time-with-lubridate" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="exploring-date-and-time-with-lubridate"><span class="header-section-number">3.4</span> Exploring Date and Time with <code>lubridate</code></h2>
+<p>Navigating the complexities of dates, times, and timezones can be a daunting task, but fear not! The <code>lubridate</code> package, a recent addition to the <code>tidyverse</code>, comes to the rescue with its remarkable capabilities for simplifying date and time manipulations. With <code>lubridate</code>, you can effortlessly convert strings into dates, dates into strings, alter formats, check for overlaps, and perform date arithmetic.</p>
+<section id="unraveling-date-formats-ymd-md-hms-ymd_hms-and-more" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="unraveling-date-formats-ymd-md-hms-ymd_hms-and-more"><span class="header-section-number">3.4.1</span> Unraveling Date Formats: <code>ymd()</code>, <code>md()</code>, <code>hms()</code>, <code>ymd_hms()</code>, and More</h3>
+<p>When working with dates, various notations exist, each represented by a combination of letters. To extract dates from text, all you need is to discern the order of year, month, day, hours, minutes, and seconds, and then employ the corresponding function to work your magic.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-47"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-47-1"><a href="#annotated-cell-47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="annotated-cell-47-2"><a href="#annotated-cell-47-2" aria-hidden="true" tabindex="-1"></a>day_year_month <span class="ot">&lt;-</span> <span class="st">"31/2001/01"</span></span>
+<span id="annotated-cell-47-3"><a href="#annotated-cell-47-3" aria-hidden="true" tabindex="-1"></a>(date <span class="ot">&lt;-</span> <span class="fu">dym</span>(day_year_month))</span>
+<span id="annotated-cell-47-4"><a href="#annotated-cell-47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-47-5"><a href="#annotated-cell-47-5" aria-hidden="true" tabindex="-1"></a>month_day_year_hour_minute <span class="ot">&lt;-</span> <span class="st">"Jan 31st 2001 6:05PM"</span></span>
+<span id="annotated-cell-47-6"><a href="#annotated-cell-47-6" aria-hidden="true" tabindex="-1"></a>(date_time <span class="ot">&lt;-</span> <span class="fu">mdy_hm</span>(month_day_year_hour_minute))</span>
+<span id="annotated-cell-47-7"><a href="#annotated-cell-47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-47-8"><a href="#annotated-cell-47-8" aria-hidden="true" tabindex="-1"></a>sentence_with_date <span class="ot">&lt;-</span> <span class="st">"Elizabeth II was Queen of the United Kingdom and other Commonwealth realms from 6 February 1952."</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-47" data-target-annotation="1">1</button><span id="annotated-cell-47-9" class="code-annotation-target"><a href="#annotated-cell-47-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(sentence_with_date)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-47" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-47" data-code-annotation="1" data-code-lines="9">Impressive, isn’t it? <code>lubridate</code> can identify the date within text and parse it for you!</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2001-01-31"
+[1] "2001-01-31 18:05:00 UTC"
+[1] "1952-02-06"</code></pre>
+</div>
+</div>
+</section>
+<section id="extracting-date-components-year-month-day-and-more" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="extracting-date-components-year-month-day-and-more"><span class="header-section-number">3.4.2</span> Extracting Date Components: <code>year()</code>, <code>month()</code>, <code>day()</code>, and More</h3>
+<p>Similarly, you can extract specific date and time components using functions aptly named after the elements you wish to retrieve.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-48"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-48-1"><a href="#annotated-cell-48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(date_time)</span>
+<span id="annotated-cell-48-2"><a href="#annotated-cell-48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(date_time)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-48" data-target-annotation="1">1</button><span id="annotated-cell-48-3" class="code-annotation-target"><a href="#annotated-cell-48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(date_time, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-48" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-48" data-code-annotation="1" data-code-lines="3">Setting <code>label = TRUE</code> provides the month’s name, while <code>abbr = FALSE</code> yields the full name.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31
+[1] 18
+[1] January
+12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
+</div>
+</div>
 
 
 </section>
