@@ -5,7 +5,7 @@ project:
 code-annotations: hover
 
 book:
-  title: "Research Toolkit"
+  title: "Practical tools for modern research"
   author: "Nikita Tkachenko"
   date: today
   chapters:

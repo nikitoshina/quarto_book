@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Research Toolkit - 16&nbsp; Layout and References</title>
+<title>Practical tools for modern research - 16&nbsp; Layout and References</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Research Toolkit</a> 
+      <a href="../">Practical tools for modern research</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/nikitoshina/quarto_book" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -437,8 +437,20 @@ div.csl-indent {
 <p><code>knitr</code> is a package that takes care of the middle step between evaluating code and producing pdf/html. The package runs your code and places its output into a final markdown file, which is later converted by pandoc.</p>
 <p><code>knitr</code> lets you set cell options that influence code blocks’ execution and output. They are put at the top of a block within comments. For example:</p>
 <div>
-<details open=""><summary>Collapse Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sunspot.year</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">uspop</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open=""><summary>Collapse Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: "fenced"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plots</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Plots</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-subcap:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Sunspot"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "US Population"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| layout-ncol: 2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Collapse Code"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sunspot.year)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(uspop)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-plots" class="cell quarto-layout-panel">
 <figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
@@ -554,7 +566,12 @@ Note
 </div>
 </div>
 <p>More content.</p>
-</div></div><p>The <code></code> short code enables you to insert a native page break into a document that will be compatible with all the other formats:</p>
+</div></div><p>The <code>pagebreak</code> short code enables you to insert a native page break into a document that will be compatible with all the other formats:</p>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>First Page</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Second Page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Because R, YAML, HTML, LaTeX have different notations for <!-- hiding or --> commenting. So, the one that will work universally within quarto is HTML’s <code>&lt;!-- comment here --&gt;</code>.</p>
 </section><section id="diagrams" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="diagrams">
 <span class="header-section-number">16.3</span> Diagrams</h2>
@@ -582,7 +599,7 @@ Note
 <p>Adding citations to your work shouldn’t be stressful or confusing. With Quarto’s seamless integration with Zotero, you can easily add citations in your preferred style and create a reference list, all without hassle. How cool is that? I think pretty cool.</p>
 <p>Quarto utilizes Pandoc to generate citations and bibliographies in your preferred style. To source your citations, you’ll need a .bib or .bibtex file, and optionally a .csl file for the citation style. Simply, add <code>bibliography: references.bib</code> to you YAML header in <code>_quarto.yml</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can easily cite your article using <code>@yourcitation9999</code>. Visual mode also provides suggestions, and entering the article’s DOI will help locate and insert it even if it is not in your bibliography. For more information on citation methods, see <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html">Quarto Citation</a> and <a href="https://pandoc.org/MANUAL.html#citations">Pandoc Citations</a>.</p>
 <table class="table">
@@ -617,7 +634,7 @@ Bai, Jushan. 2009. <span>“Panel Data Models with Interactive Fixed Effects.”
 </div></div><p>If you’ve successfully created your bibliography in Zotero, adding citations to your document will be a breeze. Simply start typing and Zotero will suggest citations to add to your bibliography file. For a paper with more than 10 citations, I recommend using Better Bibtex, which allows you to connect citation keys to the paper as you write, just make sure Zotero is open.</p>
 <p>To generate your citations from a document (say cited in Obsidian) without having to re-cite everything, you can use the <code>bbt_update_bib()</code> function from the <a href="https://github.com/paleolimbot/rbbt">rbbt</a> package. Ensure that Zotero is running and that you’re in the markdown document where you want to update citations. Run the <code>bbt_update_bib()</code> function to create a bibliography, and specify any additional arguments as needed.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">bbt_update_bib</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">bbt_update_bib</span><span class="op">(</span></span>
 <span>  <span class="va">path_rmd</span>, <span class="co"># Path to your Markdown document.</span></span>
 <span>  path_bib <span class="op">=</span> <span class="fu">bbt_guess_bib_file</span><span class="op">(</span><span class="va">path_rmd</span><span class="op">)</span>, <span class="co"># Path to the references.bib file</span></span>
 <span>  translator <span class="op">=</span> <span class="fu">bbt_guess_translator</span><span class="op">(</span><span class="va">path_bib</span><span class="op">)</span>, <span class="co"># type of bibliography file to generate: CSL-JSON, BibLaTeX, BibTeX, and CSL YAML.</span></span>

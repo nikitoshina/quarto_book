@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Research Toolkit - 4&nbsp; Tidy Data</title>
+<title>Practical tools for modern research - 4&nbsp; Tidy Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Research Toolkit</a> 
+      <a href="../">Practical tools for modern research</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/nikitoshina/quarto_book" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -444,9 +444,6 @@ div.csl-indent {
   
 
 </header><div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">id</span>, <span class="va">mean_temp_celsius</span>, <span class="va">gender</span>, <span class="va">pr_correct</span>, <span class="va">tr_correct</span>, <span class="va">ch_tournament</span>, <span class="va">ch_correct</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
 <style type="text/css">
 .output {
 max-height: 300px;
@@ -720,6 +717,25 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 <span class="header-section-number">4.2</span> <code>pivot_longer()</code>
 </h2>
 <p>A common problem arises in datasets where column names are not variable names, but <em>values</em> of a variable. This is the case for <code>pr_correct</code>, <code>tr_correct</code>, <code>ch_correct</code>, where the column names represent the <code>game</code> variable’s name. Meanwhile, the values in the columns represent the number of correct answers, and each row denotes two observations, not one.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">data_raven</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">id</span>, <span class="va">mean_temp_celsius</span>, <span class="va">gender</span>, <span class="va">pr_correct</span>, <span class="va">tr_correct</span>, <span class="va">ch_tournament</span>, <span class="va">ch_correct</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 114 × 7
+   id    mean_temp_celsius gender pr_correct tr_correct ch_tournament ch_correct
+   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+ 1 0010…              28.6 Female          7          3             1          9
+ 2 0010…              28.6 Male            5          6             0          4
+ 3 0010…              28.6 Male            6          7             0          7
+ 4 0010…              28.6 Male            1          5             1          7
+ 5 0010…              28.6 Male            7          9             1         10
+ 6 0010…              28.6 Female          2          7             0          5
+ 7 0010…              28.6 Female          6          6             0          7
+ 8 0010…              28.6 Female          7          7             0          6
+ 9 0010…              30.7 Female          5          4             0          4
+10 0010…              30.7 Male            6          7             1          4
+# ℹ 104 more rows</code></pre>
+</div>
+</div>
 <p>To tidy such a dataset, we need to pivot the problematic columns into a new pair of variables. This operation requires:</p>
 <ol type="1">
 <li>The columns whose names are values, not variables—columns we want to pivot. In this case, <code>pr_correct</code>, <code>tr_correct</code>, <code>ch_correct</code>.</li>
@@ -727,7 +743,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 <li>The name of the variable where we’ll move the column values. Here, it’s <code>n_correct</code>. The default is <code>value</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pr_correct</span>, <span class="va">tr_correct</span>, <span class="va">ch_correct</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"game"</span>, values_to <span class="op">=</span> <span class="st">"n_correct"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">id</span>, <span class="va">game</span>, <span class="va">n_correct</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -747,7 +763,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h2>
 <p><code>pivot_wider()</code> is the opposite of <code>pivot_longer()</code>. It is used when an observation is scattered across multiple rows. For instance, consider the <code>data_raven_accident</code> dataset, where <code>mean_temp_celsius</code> and <code>ch_tournament</code> are stacked. In this case, an observation is spread across two rows.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_accident</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_accident</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   id        name              value
@@ -765,7 +781,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 <li>The column to take values from. Here it’s <code>value</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_accident</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_accident</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">name</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -785,7 +801,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h2>
 <p>Sometimes, data may come with columns united, necessitating us to <code>separate()</code> them to maintain tidy data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_sep</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_sep</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   id        `gender/pr_correct`
@@ -798,7 +814,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_sep</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_sep</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">separate</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"gender/pr_correct"</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"pr_correct"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -814,7 +830,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </div>
 <p>What if we have one column that has been split across multiple columns? Consider a situation where our subject ID code, composed of site_id, session_n, and subject_n, has been broken down into three separate columns. In such a scenario, we would need to unite() these columns back into one.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_uni</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_uni</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   site_id session_n subject_n gender
@@ -827,7 +843,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_uni</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_raven_uni</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">unite</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">site_id</span>, <span class="va">session_n</span>, <span class="va">subject_n</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"id"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -846,7 +862,6 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h2>
 <p>A tibble is a special kind of data frame in R. Tibbles are a modern re-imagining of the data frame, designed to be more friendly and consistent than traditional data frames. To create a tibble, we can use <code>tibble()</code>, similar to <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>. Here are some features that make tibbles unique:</p>
 <ul>
-<li><p>Like data frames, tibbles can hold tabular data, but they have some key differences.</p></li>
 <li><p>By default, tibbles display only the first 10 rows when printed, making them easier to work with large datasets.</p></li>
 <li><p>They use a consistent printing format, making it easier to work with multiple tibbles in the same session.</p></li>
 <li><p>Tibbles have a consistent subsetting behavior, making it easier to select columns by name. When printed, the data type of each column is specified.</p></li>
@@ -855,7 +870,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </ul>
 <p>In summary, Tibbles are a more modern and consistent version of data frames. They are less prone to errors and more readable, making them an excellent choice for data manipulation and exploration tasks.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span>
 <span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -870,7 +885,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </div>
 <p>You can also use <code>tribble()</code> to create a row-wise, readable tibble in R. This is especially useful when creating small tables of data. The syntax is as follows: <code>tribble(~column1, ~column2)</code>, where the Row column — represents the data in a row by row layout.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tribble</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tribble</span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>,</span>
 <span>  <span class="fl">1</span>, <span class="st">"one"</span>,</span>
 <span>  <span class="fl">2</span>, <span class="st">"two"</span>,</span>
@@ -893,7 +908,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h3>
 <p>The <code><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names()</a></code> function is used to clean variable names, especially those read in from Excel files using <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> and <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code>. It parses letter cases, separators, and special characters into a consistent format, converts certain characters like “%” to “percent” and “#” to “number” to retain meaning, and resolves issues of duplicate or empty names. It is recommended to call this function every time data is read.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data.frame with dirty names</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data.frame with dirty names</span></span>
 <span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"camelCase"</span>, <span class="st">"ábc@!*"</span>, <span class="st">"% of respondents (2009)"</span>,</span>
@@ -907,7 +922,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span>
 <span><span class="va">test_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -922,7 +937,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h3>
 <p><code><a href="https://rdrr.io/pkg/janitor/man/remove_empty.html">remove_empty()</a></code> removes empty rows and columns, which is especially useful after reading Excel files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span><span class="op">)</span>,</span>
 <span>  food <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
 <span>  letters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="cn">NA</span>, <span class="st">"c"</span><span class="op">)</span></span>
@@ -934,7 +949,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 2      NA   NA    &lt;NA&gt;
 3       3   NA       c</code></pre>
 </div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/remove_empty.html">remove_empty</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rows"</span>, <span class="st">"cols"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  numbers letters
@@ -947,7 +962,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h3>
 <p><code><a href="https://rdrr.io/pkg/janitor/man/remove_constant.html">remove_constant()</a></code> drops columns from a data.frame that contain only a single constant value (with an na.rm option to control whether NAs should be considered as different values from the constant).</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cool_numbers <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, boring <span class="op">=</span> <span class="st">"the same"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cool_numbers <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, boring <span class="op">=</span> <span class="st">"the same"</span><span class="op">)</span></span>
 <span><span class="va">test_df3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  cool_numbers   boring
@@ -955,7 +970,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 2            2 the same
 3            3 the same</code></pre>
 </div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/remove_constant.html">remove_constant</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/remove_constant.html">remove_constant</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  cool_numbers
 1            1
@@ -968,11 +983,11 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h3>
 <p>Do you remember loading data from Excel and seeing <code>36922.75</code> instead of dates? Well, <code><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_date()</a></code> and <code><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_datetime()</a></code> will convert this format and other date-time formats to actual dates! If you need more customization, check <code><a href="https://rdrr.io/pkg/janitor/man/excel_numeric_to_date.html">excel_numeric_to_date()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_date</a></span><span class="op">(</span><span class="fl">36922.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_date</a></span><span class="op">(</span><span class="fl">36922.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-01-31"</code></pre>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_datetime</a></span><span class="op">(</span><span class="fl">36922.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/convert_to_date.html">convert_to_datetime</a></span><span class="op">(</span><span class="fl">36922.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-01-31 18:00:00 UTC"</code></pre>
 </div>
@@ -982,7 +997,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 </h3>
 <p><code><a href="https://rdrr.io/pkg/janitor/man/row_to_names.html">row_to_names()</a></code> is a function that takes the names of variables stored in a row of a data frame and makes them the column names of the data frame. It can also remove the row that contained the names, and any rows above it, if desired.</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  x_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"Names"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
 <span>  x_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"Value"</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -995,7 +1010,7 @@ Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of
 4     2     5
 5     3     6</code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="va">test_df4</span>, <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="va">test_df4</span>, <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Names Value
 3     1     4

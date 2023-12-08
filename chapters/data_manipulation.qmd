@@ -53,7 +53,7 @@ class(x)
 ```
 
 ```{r}
-(name <- "Parsa Rahimi") # <1> 
+(name <- "Parsa Rahimi") # <1>
 class(name)
 ```
 1. Wrapping with (...) prints the variable
@@ -115,7 +115,7 @@ library(tidyverse)
 ```
 
 ```{r cache = TRUE}
-data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") # <1> 
+data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") # <1>
 ```
 1. Download data from GitHub
 
@@ -144,7 +144,7 @@ data %>% glimpse()
 
 ```{r}
 data_raven <- data %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct)
-head(data_raven)
+tail(data_raven)
 ```
 
 You can also exclude columns or select everything else with select using `-`
@@ -160,7 +160,7 @@ data_raven %>%
 The `filter()` function keeps only rows that satisfy specified criteria. Below, we use it to create two separate datasets for Males and Females.
 
 ```{r}
-data_male <- data_raven %>% filter(gender == "Male") 
+data_male <- data_raven %>% filter(gender == "Male")
 data_female <- data_raven %>% filter(gender == "Female")
 head(data_male)
 head(data_female)
@@ -173,7 +173,8 @@ You can chain multiple criteria. In the example below, we filter for Males with 
 data_raven %>%
   filter(
     (gender == "Male" & mean_temp_celsius > 30) | (gender == "Female" & mean_temp_celsius < 30)
-  )
+  ) %>%
+  head()
 ```
 
 ### `arrange()`
@@ -196,11 +197,11 @@ data_raven %>%
 
 ### `mutate()`
 
-The `mutate()` function adds new columns or modifies existing ones in the dataset. For instance, you can create a dataset with 10 rows and add three new variable columns:
+The `mutate()` function adds new columns or modifies existing ones in the dataset. For instance, you can create a dataset with 4 rows and add three new variable columns:
 
 ```{r}
 #| classes: output
-tibble(rows = 1:10) %>% mutate(
+tibble(rows = 1:4) %>% mutate(
   One = 1,
   Comment = "Something",
   Approved = TRUE
@@ -214,7 +215,8 @@ data_raven %>% mutate(
   mean_temp_fahrenheit = (mean_temp_celsius * 9 / 5) + 32,
   impovement = tr_correct - pr_correct,
   pr_deviation = pr_correct - mean(pr_correct)
-)
+) %>% 
+  head()
 ```
 
 Notice how we can nest functions within `mutate()` to first calculate the mean of an entire column and then subtract it from `pr_correct`.
@@ -252,7 +254,7 @@ The `group_by()` function groups data by specific variables for subsequent opera
 
 ```{r}
 data_raven %>%
-  drop_na(gender) %>% 
+  drop_na(gender) %>%
   group_by(gender) %>%
   summarize(
     pr_mean = mean(pr_correct),
@@ -268,7 +270,7 @@ Now, let's group by gender and choice in the choice round to look at points in t
 
 ```{r}
 data_raven %>%
-  drop_na(gender) %>% 
+  drop_na(gender) %>%
   group_by(gender, ch_tournament) %>%
   summarize(
     ch_mean = mean(ch_correct),
@@ -284,7 +286,7 @@ The `ungroup()` function removes grouping. Always ungroup your data after perfor
 
 ```{r}
 data_raven %>%
-  drop_na(gender) %>% 
+  drop_na(gender) %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
   mutate(mean_male = mean(gender == "Male")) %>%
@@ -297,7 +299,7 @@ Notice how `mean_male` (the ratio of males to the total) is 0 for Female and 1 f
 
 ```{r}
 data_raven %>%
-  drop_na(gender) %>% 
+  drop_na(gender) %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
   ungroup() %>%
@@ -394,7 +396,7 @@ It provides a neat, comprehensive view of each variable, useful for further anal
 
 Navigating the complexities of dates, times, and timezones can be a daunting task, but fear not! The `lubridate` package, a recent addition to the `tidyverse`, comes to the rescue with its remarkable capabilities for simplifying date and time manipulations. With `lubridate`, you can effortlessly convert strings into dates, dates into strings, alter formats, check for overlaps, and perform date arithmetic.
 
-### Unraveling Date Formats: `ymd()`, `md()`, `hms()`, `ymd_hms()`, and More
+### `ymd()`, `md()`, `hms()`, `ymd_hms()`
 
 When working with dates, various notations exist, each represented by a combination of letters. To extract dates from text, all you need is to discern the order of year, month, day, hours, minutes, and seconds, and then employ the corresponding function to work your magic.
 
@@ -411,7 +413,7 @@ dmy(sentence_with_date) # <1>
 ```
 1. Impressive, isn't it? `lubridate` can identify the date within text and parse it for you!
 
-### Extracting Date Components: `year()`, `month()`, `day()`, and More
+### `year()`, `month()`, `day()`
 
 Similarly, you can extract specific date and time components using functions aptly named after the elements you wish to retrieve.
 

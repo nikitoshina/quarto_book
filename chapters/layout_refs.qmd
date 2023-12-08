@@ -9,7 +9,8 @@ editor: visual
 
 `knitr` lets you set cell options that influence code blocks' execution and output. They are put at the top of a block within comments. For example:
 
-```{r, echo = T}
+```{r}
+#| echo: "fenced"
 #| label: fig-plots
 #| fig-cap: Plots
 #| fig-subcap: 
@@ -76,7 +77,14 @@ Here is a Note!
 More content.
 :::
 
-The `{{< pagebreak >}}` short code enables you to insert a native page break into a document that will be compatible with all the other formats:
+The `pagebreak` short code enables you to insert a native page break into a document that will be compatible with all the other formats:
+```{.markdown shortcodes="false"}
+First Page
+
+{{< pagebreak >}}
+
+Second Page
+```
 
 Because R, YAML, HTML, LaTeX have different notations for <!-- hiding or --> commenting. So, the one that will work universally within quarto is HTML's `<!-- comment here -->`.
 
@@ -92,7 +100,6 @@ flowchart LR
   C --> E[Result two]
 ```
 
-This might be your first time hearing that there is a language behind diagrams. UML is a standard graphical notation to describe software designs. It is a powerful tools for planning, visualizing and documents your projects. There are different types of diagrams to depict structures, behaviors and interactions with the standard set of symbols and notation. We will meet some of them in the chapter on [Relational Databases](data_bases.qmd).
 
 ## Citations
 

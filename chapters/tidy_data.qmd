@@ -8,10 +8,6 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
 ```
 
-```{r}
-data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct)
-```
-
 ```{css, echo = FALSE}
 .output {
 max-height: 300px;
@@ -126,6 +122,10 @@ In this format, data input is straightforward, and generating summary tables is 
 
 A common problem arises in datasets where column names are not variable names, but *values* of a variable. This is the case for `pr_correct`, `tr_correct`, `ch_correct`, where the column names represent the `game` variable's name. Meanwhile, the values in the columns represent the number of correct answers, and each row denotes two observations, not one.
 
+```{r}
+(data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct))
+```
+
 To tidy such a dataset, we need to pivot the problematic columns into a new pair of variables. This operation requires:
 
 1.  The columns whose names are values, not variables—columns we want to pivot. In this case, `pr_correct`, `tr_correct`, `ch_correct`.
@@ -207,8 +207,6 @@ data_raven_uni %>%
 ## `tibble()` and `tribble()`
 
 A tibble is a special kind of data frame in R. Tibbles are a modern re-imagining of the data frame, designed to be more friendly and consistent than traditional data frames. To create a tibble, we can use `tibble()`, similar to `data.frame()`. Here are some features that make tibbles unique:
-
--   Like data frames, tibbles can hold tabular data, but they have some key differences.
 
 -   By default, tibbles display only the first 10 rows when printed, making them easier to work with large datasets.
 

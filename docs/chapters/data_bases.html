@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Research Toolkit - 5&nbsp; Relational Databases</title>
+<title>Practical tools for modern research - 5&nbsp; Relational Databases</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Research Toolkit</a> 
+      <a href="../">Practical tools for modern research</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/nikitoshina/quarto_book" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -481,13 +481,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <svg width="672" height="480" viewbox="0.00 0.00 214.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126)"><title>
 G
 </title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-126 210,-126 210,4 -4,4"></polygon><g id="clust1" class="cluster"><title>
-cluster_0
-</title>
-<polygon fill="none" stroke="white" points="8,-8 8,-114 96,-114 96,-8 8,-8"></polygon></g><g id="clust2" class="cluster"><title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-126 210,-126 210,4 -4,4"></polygon><g id="clust2" class="cluster"><title>
 cluster_1
 </title>
-<polygon fill="none" stroke="white" points="116,-8 116,-114 198,-114 198,-8 116,-8"></polygon></g><!-- Table1 --><g id="node1" class="node"><title>
+<polygon fill="none" stroke="white" points="116,-8 116,-114 198,-114 198,-8 116,-8"></polygon></g><g id="clust1" class="cluster"><title>
+cluster_0
+</title>
+<polygon fill="none" stroke="white" points="8,-8 8,-114 96,-114 96,-8 8,-8"></polygon></g><!-- Table1 --><g id="node1" class="node"><title>
 Table1
 </title>
 <polygon fill="lightblue" stroke="transparent" points="25,-81 25,-101 79,-101 79,-81 25,-81"></polygon><text text-anchor="start" x="26.72" y="-87.4" font-family="Times,serif" font-weight="bold" font-size="14.00">Country</text><text text-anchor="start" x="35.28" y="-66.4" font-family="Times,serif" font-size="14.00">China</text><text text-anchor="start" x="32.96" y="-46.4" font-family="Times,serif" font-size="14.00">France</text><text text-anchor="start" x="39.17" y="-26.4" font-family="Times,serif" font-size="14.00">Italy</text><polygon fill="none" stroke="black" points="24,-20 24,-102 80,-102 80,-20 24,-20"></polygon></g><!-- Table2 --><g id="node2" class="node"><title>
@@ -553,13 +553,13 @@ Table1:e-&gt;Table2:w
 <svg width="672" height="480" viewbox="0.00 0.00 205.00 130.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126)"><title>
 G
 </title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-126 201,-126 201,4 -4,4"></polygon><g id="clust1" class="cluster"><title>
-cluster_0
-</title>
-<polygon fill="none" stroke="white" points="8,-8 8,-114 92,-114 92,-8 8,-8"></polygon></g><g id="clust2" class="cluster"><title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-126 201,-126 201,4 -4,4"></polygon><g id="clust2" class="cluster"><title>
 cluster_1
 </title>
-<polygon fill="none" stroke="white" points="112,-8 112,-114 189,-114 189,-8 112,-8"></polygon></g><!-- Table1 --><g id="node1" class="node"><title>
+<polygon fill="none" stroke="white" points="112,-8 112,-114 189,-114 189,-8 112,-8"></polygon></g><g id="clust1" class="cluster"><title>
+cluster_0
+</title>
+<polygon fill="none" stroke="white" points="8,-8 8,-114 92,-114 92,-8 8,-8"></polygon></g><!-- Table1 --><g id="node1" class="node"><title>
 Table1
 </title>
 <polygon fill="lightblue" stroke="transparent" points="25,-81 25,-101 75,-101 75,-81 25,-81"></polygon><text text-anchor="start" x="26.66" y="-87.4" font-family="Times,serif" font-weight="bold" font-size="14.00">Student</text><text text-anchor="start" x="36.78" y="-66.4" font-family="Times,serif" font-size="14.00">John</text><text text-anchor="start" x="32.89" y="-46.4" font-family="Times,serif" font-size="14.00">David</text><text text-anchor="start" x="29.4" y="-26.4" font-family="Times,serif" font-size="14.00">Celeste</text><polygon fill="none" stroke="black" points="24,-20 24,-102 76,-102 76,-20 24,-20"></polygon></g><!-- Table2 --><g id="node2" class="node"><title>
@@ -954,13 +954,14 @@ Table1:e-&gt;Table2:w
 <section id="anti-join" class="level4" data-number="5.3.2.1"><h4 data-number="5.3.2.1" class="anchored" data-anchor-id="anti-join">
 <span class="header-section-number">5.3.2.1</span> Anti Join</h4>
 <p>An anti join returns the rows from the left table that do not find a corresponding match in the right table, without adding any new columns to the output. It’s useful when you want to filter rows based on the absence of matching entries in the other table.</p>
-<div class="columns">
-<div class="column">
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anti_join_result</span> <span class="op">&lt;-</span> <span class="va">employees</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">anti_join</span><span class="op">(</span><span class="va">projects</span>, by <span class="op">=</span> <span class="st">"employee_id"</span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">anti_join_result</span>, caption <span class="op">=</span> <span class="st">"Result of Anti Join"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column">
+<div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Result of Anti Join</caption>
@@ -975,10 +976,10 @@ Table1:e-&gt;Table2:w
 </table>
 </div>
 </div>
-</div><div class="column">
-<p>Tom does not have a project assigned! Perhaps he could take on project 6?</p>
 </div>
+<p>:r:: column Tom does not have a project assigned! Perhaps he could take on project 6?</p>
 </div>
+<p>:::</p>
 </section><section id="semi-join" class="level4" data-number="5.3.2.2"><h4 data-number="5.3.2.2" class="anchored" data-anchor-id="semi-join">
 <span class="header-section-number">5.3.2.2</span> Semi Join</h4>
 <p>A semi join is akin to an inner join in identifying matching rows between two tables. However, unlike an inner join, it does not add any new columns to the output. Instead, it filters the rows from the left table that have a corresponding match in the right table. You’d use a semi join when you want to filter the left table based on the presence of matching entries in the right table.</p>
