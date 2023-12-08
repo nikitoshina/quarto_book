@@ -14,7 +14,7 @@ max-height: 300px;
 overflow-y: scroll;
 }
 ```
-In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages^[A package is a collection of pre-written functions, data, and documentation that enhances the capabilities of the R programming language for specific tasks.], has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using `install.packages("tidyverse")` and `library("tidyverse")` respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing `readr` for data reading, `tidyr` for tidying, `dplyr` for manipulation, and `ggplot2` for visualization. To explore more about Tidyverse, visit their website <https://www.tidyverse.org/>.
+In the realm of data analysis, data visualization and manipulation are indispensable tools for understanding and communicating complex information. R, being a potent programming language for data analysis, provides an array of packages that allow creation of visually striking plots and facilitate efficient data manipulation. Tidyverse, one of the most user-friendly and widely used collections of R packages^[A package is a collection of pre-written functions, data, and documentation that enhances the capabilities of the R programming language for specific tasks.], has been developed by Hadley Wickham, the Chief Scientist at Posit (RStudio). Tidyverse encompasses packages catering to all common tasks, which can be installed and activated using `install.packages("tidyverse")` and `library("tidyverse")` respectively. In this introduction, we will delve into the basics of Tidyverse, utilizing `readr` for data reading, `dplyr` for manipulation, `tidyr` for tidying, and later in the book `ggplot2` for visualization. To explore more about Tidyverse, visit their website <https://www.tidyverse.org/>.
 
 ## Basics
 
@@ -29,7 +29,7 @@ Let's kick off with some fundamental concepts! R can be employed as a simple cal
 log(10) # Calculates the natural log of 10!
 ```
 
-R allows for defining variables and performing operations on them. Both `=` or `<-` can be used for assigning values to a variable name, though `<-` is typically preferred to evade confusion and certain errors.
+R allows for defining variables and performing operations on them. Both `=` or `<-` can be used for assigning values to a variable name, though `<-` is  preferred to evade confusion and certain errors.
 
 ```{r}
 x <- 2 # Equivalent to x = 2
@@ -91,7 +91,7 @@ name <- i + c(5, 4, 2, 1)
 name
 ```
 
-Notice that `name` is no longer "Parsa Rahimi". It was overwritten by a numeric vector rather than a character string. Take care to perform numeric operations only on numeric objects to avoid encountering errors. The `str()` function can be utilized to obtain the structure of the object, such as type, length, etc.
+Notice that `name` is no longer "Parsa Rahimi". It was overwritten by a numeric vector rather than a character string. Make sure to perform numeric operations only on numeric objects to avoid errors. The `str()` function can be used to obtain the structure of the object, such as type, length, etc.
 
 ```{r error = TRUE}
 name_surname + 2
@@ -102,20 +102,21 @@ str(name_surname)
 
 If you're accustomed to Base R (i.e., functions that come with R upon installation), you may be aware of `read.csv()`. However, `readr`, a part of the Tidyverse package, offers functions that address common issues associated with Base R's reading functions. `read_csv` not only loads data 10 times faster than `read.csv`, but it also produces a tibble instead of a data frame and evades inconsistencies of `read.csv`. You might be asking, "What exactly is a tibble?" A tibble is a special type of data frame with several advantages, such as faster loading times, maintaining input types, permitting columns as lists, allowing non-standard variable names, and never creating row names.
 
-To load your data, you first need to know the path to your data. You can find your file, check its location, and then copy and paste it. If you are a Windows user, your path might contain "\\", which is an escape character. To rectify this, replace "\\" with "/". Copying the path gives you the absolute path (e.g., `"/Users/User/Documents/your_project/data/file.csv"`), but you can also use a local path from the folder of the project (e.g., `"/data/file.csv"`). Let's read the data! Using `readr::` specifies which package to use. Replace the text between the quotes with your path.
+To load your data, you first need to know the path to your data. You can find your file, check its location, and then copy and paste it. If you are a Windows user, your path might contain "\\", which is an escape character. To rectify this, replace "\\" with "/". Copying the path gives you the absolute path (e.g., `"/Users/User/Documents/your_project/data/file.csv"`), but you can also use a local path from the folder of the project (e.g., `"/data/file.csv"`). Let's read the data! Using `readr::` specifies which package to use. 
 
 ### Example Data
 
-In this tutorial, I'll be using a sample from the Climate and Cooperation Experiment conducted in Mexico. During the experiment, subjects were asked to complete three series of Raven's matrices, four dictator games, and a single lottery game. Sessions below 30 Celsius were labeled as control, and sessions above 30 Celsius were labeled as treatment. We will primarily be using results from the Raven's matrices games, which consist of 3 sets of 12 matrices. The first set, `pr_`, is the piece-rate round where participants received points for each correctly solved matrix. The second set, `tr_`, is the tournament round where participants competed against a random opponent. The winner received double points, and the loser received nothing. The third set, `ch_`, is the choice round where participants chose whether they wanted to play the piece-rate or tournament round against a different opponent's score from the tournament round.
+In this tutorial, I'll be using a real sample from the Climate and Cooperation Experiment conducted in Mexico. During the experiment, subjects were asked to complete three series of Raven's matrices, four dictator games, and a single lottery game in rooms with varying temperatures. We will primarily be using results from the Raven's matrices games, which consist of 3 sets of 12 matrices. The first set, `pr_`, is the piece-rate round where participants received points for each correctly solved matrix. The second set, `tr_`, is the tournament round where participants competed against a random opponent. The winner received double points, and the loser received nothing. The third set, `ch_`, is the choice round where participants chose whether they wanted to play the piece-rate or tournament round against a different opponent's score from the tournament round.
 
-The data can be found in the `data` directory of the GitHub repository. We'll need the `tidyverse` package.
+The data is located in the `data` directory of the GitHub repository. To access and manipulate it, we will require the `tidyverse` package. This package includes several sub-packages, including `reader`.
 
 ```{r}
+#| echo: true
 library(tidyverse)
 ```
 
 ```{r cache = TRUE}
-data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") # <1>
+data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/chapters/data/experiment_data.csv") # <1>
 ```
 1. Download data from GitHub
 
@@ -128,11 +129,13 @@ data %>% glimpse()
 
 ## Basic Data Management With `dplyr`
 
-`dplyr` uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator `%>%` from `magrittr` package. The way you use functions in base R is you wrap new function over the previous one, such as `k(g(f(x)))` this will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes `x %>% f() %>% g() %>% k()`! Now you can clearly see that we take `x` and apply `f()`, then `g()`, then `k()`. Note: base R now also has its own pipe `|>`, but we will stick to `%>%` for compatibility across packages.
+`dplyr` uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator `%>%` from `magrittr` package. The way you use functions in base R is you wrap new function over the previous one, such as `k(g(f(x)))` this will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes `x %>% f() %>% g() %>% k()`! Now you can clearly see that we take `x` and apply `f()`, then `g()`, then `k()`. 
+
+> Note: base R now also has its own pipe `|>`, but we will stick to `%>%` for compatibility across packages.
 
 ### `select()`
 
-`select()` selects only the columns that you want, removing all other columns. You can use column position (with numbers) or name. The columns will be displayed in the order you list them. We will select subject_id, temperature, gender and results of raven's matrices games.
+`select()` selects only the columns that you want, removing all other columns. You can use column position (with numbers) or name. The columns will be displayed in the order you list them. We will select `subject_id`, `temperature`, `gender` and results of raven's matrices games.
 
 -   `id` is a unique subject identification number, where site_id.session_n.subject_n (001.001.001).
 -   `mean_temp_celsius` is mean temperature through the session
@@ -147,7 +150,7 @@ data_raven <- data %>% select(id, mean_temp_celsius, gender, pr_correct, tr_corr
 tail(data_raven)
 ```
 
-You can also exclude columns or select everything else with select using `-`
+You can also exclude columns or select everything else with select using `-`.
 
 ```{r}
 data_raven %>%
@@ -157,7 +160,7 @@ data_raven %>%
 
 ### `filter()`
 
-The `filter()` function keeps only rows that satisfy specified criteria. Below, we use it to create two separate datasets for Males and Females.
+The `filter()` function keeps only rows that satisfy specified criteria. Below, we use it to create two separate datasets for Males and Females. We use == for comparisons.
 
 ```{r}
 data_male <- data_raven %>% filter(gender == "Male")
@@ -165,7 +168,6 @@ data_female <- data_raven %>% filter(gender == "Female")
 head(data_male)
 head(data_female)
 ```
-We use == for comparisons.
 
 You can chain multiple criteria. In the example below, we filter for Males with temperatures above 30 degrees Celsius and Females with temperatures below 30 degrees Celsius. We use `&` for "and" and `|` for "or", and enclose the conditions in parentheses to avoid confusion.
 
