@@ -2,3 +2,6 @@
   quarto-pub:
     - id: f35f2f83-0c00-4c2f-80a2-4cd56a9630dc
       url: 'https://nikitoshina.quarto.pub/research-toolkit'
+  netlify:
+    - id: 65cb9533-fde4-44d8-b6a5-b0396e3b981e
+      url: 'https://helpful-cascaron-0c550f.netlify.app'

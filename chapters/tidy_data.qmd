@@ -168,7 +168,7 @@ It is evident from their names that `pivot_wider()` and `pivot_longer()` are inv
 
 ## `separate()` and `unite()`
 
-Sometimes, data may come with columns united, necessitating us to `separate()` them to maintain tidy data.
+Sometimes, data may come with columns united, necessitating us to `separate()` them to maintain tidy data. The original function was superseded in favor of `separate_wider_position()` and `separate_wider_delim()`, there is also `separate_longer_*()` version.
 
 ```{r include = F}
 data_raven_sep <- data_raven %>%
@@ -188,11 +188,11 @@ data_raven_sep %>% head(n = 5)
 
 ```{r}
 data_raven_sep %>%
-  separate(col = "gender/pr_correct", into = c("gender", "pr_correct"), sep = "/") %>%
+  separate_wider_delim(col = "gender/pr_correct", delim = "/", names = c("gender", "pr_correct")) %>%
   head(n = 5)
 ```
 
-What if we have one column that has been split across multiple columns? Consider a situation where our subject ID code, composed of site_id, session_n, and subject_n, has been broken down into three separate columns. In such a scenario, we would need to unite() these columns back into one.
+What if we have one column that has been split across multiple columns? Consider a situation where our subject ID code, composed of site_id, session_n, and subject_n, has been broken down into three separate columns. In such a scenario, we would need to `unite()` these columns back into one.
 
 ```{r}
 data_raven_uni %>% head(n = 5)
@@ -240,7 +240,7 @@ tribble(
 
 ## `janitor`: Clean Your Data
 
-The `janitor` package is designed to make the process of cleaning and tidying data as simple and efficient as possible. To learn more about the functions it provides, check out [this vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)! If you are interested in creating summary tables with `janitor`, refer to [this vignette](https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html)!
+The `janitor` package is designed to make the process of cleaning and tidying data as simple and efficient as possible. To learn more about the functions it provides, check out [this vignette](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html)!
 
 ### `clean_names()`
 
@@ -280,7 +280,7 @@ test_df2 %>%
 
 ### `remove_constant()`
 
-`remove_constant()` drops columns from a data.frame that contain only a single constant value (with an na.rm option to control whether NAs should be considered as different values from the constant).
+`remove_constant()` drops columns from a data.frame that contain only a single constant value (with an na.rm option to control whether `NAs` should be considered as different values from the constant).
 
 ```{r}
 test_df3 <- data.frame(cool_numbers = 1:3, boring = "the same")
@@ -309,3 +309,7 @@ test_df4 <- data.frame(
 test_df4
 row_to_names(test_df4, 2)
 ```
+
+## Summary
+
+This chapter introduced the concept of tidy data, focusing on its structured format where each variable corresponds to a column, each observation to a row, and each observational unit type to a table. We highlighted the distinctions between wide and long data formats, and delved into practical R tools for organizing data into this tidy structure, including an overview of tibbles and additional resources for data cleaning. Understanding these principles of tidy data is invaluable and will prove beneficial throughout your career. Next, we will shift our focus to relational data and the concept of joins!

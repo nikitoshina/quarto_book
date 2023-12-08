@@ -160,7 +160,7 @@ data_raven %>%
 
 ### `filter()`
 
-The `filter()` function keeps only rows that satisfy specified criteria. Below, we use it to create two separate datasets for Males and Females. We use == for comparisons.
+The `filter()` function helps us keep only the rows we need, based on certain rules. For example, we use it here to make two separate groups of data: one for Males and another for Females. We use `==` to check one-to-one equality. Also, you can use symbols like `<`, `<=`, `>`, `>=`, and `%in%`. The `%in%` symbol is special – it checks if a value is part of a list.
 
 ```{r}
 data_male <- data_raven %>% filter(gender == "Male")
@@ -223,24 +223,24 @@ data_raven %>% mutate(
 
 Notice how we can nest functions within `mutate()` to first calculate the mean of an entire column and then subtract it from `pr_correct`.
 
-### `recode()`
+### `case_match()`
 
-The `recode()` function modifies values within a variable. For example, we can use `recode()` to change "Male" to "M" and "Female" to "F":
+The `case_match()` function modifies values within a variable. For example, we can use `case_match()` to change "Male" to "M" and "Female" to "F":
 
 ```{r}
-data_raven <- data_raven %>% mutate(gender = recode(gender, "Male" = "M", "Female" = "F"))
+data_raven <- data_raven %>% mutate(gender = case_match(gender, "Male" ~ "M", "Female" ~ "F"))
 ```
 
 ### `summarize()`
 
 The `summarize()` function reduces all rows into a one-row summary. It can be used to calculate the percentage of participants who were male, the median score in the piece-rate round, the maximum score in the tournament, the percentage of people choosing the tournament in choice round, and the mean score in the choice round.
 
-In dplyr 1.0.0, `summarize()` was replaced by `reframe()`. Unlike `summarize()`, `reframe()` can produce multiple row outputs. Use `summarize()` when expecting one row per group and `reframe()` for multiple rows.
+In dplyr 1.0.0, `reframe()` was introduced. Unlike `summarize()`, `reframe()` can produce multiple row outputs. Use `summarize()` when expecting one row per group and `reframe()` for multiple rows.
 
 ```{r}
 data_raven %>%
   summarize(
-    perc_male = sum(gender == "Male", na.rm = T) / n(),
+    prop_male = sum(gender == "M", na.rm = T) / n(),
     pr_median = median(pr_correct),
     tr_max = max(tr_correct),
     ch_ratio = sum(ch_tournament) / n(),
@@ -248,9 +248,7 @@ data_raven %>%
   )
 ```
 
-### `group_by()` and `ungroup()`
-
-#### `group_by()`
+### `group_by()`
 
 The `group_by()` function groups data by specific variables for subsequent operations. By combining `group_by()` and `summarize()`, you can calculate different summary statistics for genders!
 
@@ -264,8 +262,7 @@ data_raven %>%
     ch_mean = mean(ch_correct),
     pr_sd = sd(pr_correct),
     n = n()
-  ) %>%
-  ungroup()
+  ) 
 ```
 
 Now, let's group by gender and choice in the choice round to look at points in the choice round!
@@ -278,11 +275,10 @@ data_raven %>%
     ch_mean = mean(ch_correct),
     pr_sd = sd(ch_correct),
     n = n()
-  ) %>%
-  ungroup()
+  )
 ```
 
-#### `ungroup()`
+### `ungroup()`
 
 The `ungroup()` function removes grouping. Always ungroup your data after performing operations that required grouping to avoid confusion.
 
@@ -291,10 +287,8 @@ data_raven %>%
   drop_na(gender) %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
-  mutate(mean_male = mean(gender == "Male")) %>%
-  ungroup() %>%
-  select(id, gender, n, mean_male) %>%
-  head(n = 5)
+  summarize(mean_male = mean(gender == "M")) %>%
+  ungroup() 
 ```
 
 Notice how `mean_male` (the ratio of males to the total) is 0 for Female and 1 for Male. That's because the data was grouped, and we performed operations on Males and Females separately.
@@ -305,14 +299,12 @@ data_raven %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
   ungroup() %>%
-  mutate(mean_male = mean(gender == "Male")) %>%
-  select(id, gender, n, mean_male) %>%
-  head(n = 5)
+  summarize(mean_male = mean(gender == "M")) 
 ```
 
 This time, we ungrouped the data before calculating the ratio, which gives us the correct result!
 
-#### `.by`
+### `.by`
 
 Grouping is a commonly performed operation. Having to repeatedly group and ungroup for individual operations can lead to verbosity. To address this, `dplyr` introduced a convenient feature with version 1.0.0 — the `.by` argument within `dplyr` functions. This enhancement streamlines the process and reduces the need for excessive grouping and ungrouping.
 
@@ -346,6 +338,8 @@ df %>%
 ```
 
 With `rowwise()`, R runs the `length()` function on each list separately, providing the correct lengths. Alternatively, you can use `lengths()`, which applies `length()` to each list.
+
+> Or you can use `lengths()`.
 
 ### `count()`
 
@@ -385,7 +379,7 @@ data_raven %>%
 
 ### `skim()`
 
-`skim()` from the `skimr` package provides an extensive summary of a dataframe. It offers more than `summary()`, detailing quartiles, missing values, and histograms. Use it during exploratory data analysis to understand your data. 
+`skim()` from the `skimr` package provides an extensive summary of a data frame. It offers more than `summary()`, detailing quartiles, missing values, and histograms. Use it during exploratory data analysis to understand your data. 
 
 ```{r}
 library(skimr)
@@ -425,3 +419,7 @@ hour(date_time)
 month(date_time, label = TRUE, abbr = FALSE) # <1>
 ```
 1. Setting `label = TRUE` provides the month's name, while `abbr = FALSE` yields the full name.
+
+## Summary
+
+We explored basic operations in R and delved into the key features of Tidyverse for data manipulation. This included learning how to load, manage, and handle basic date and time data. This chapter lays a solid foundation for beginners. Next, we will delve into what constitutes tidy data and how to organize data effectively.

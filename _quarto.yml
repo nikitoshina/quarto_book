@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: "./docs"
+  post-render: npx staticrypt ./* -r -d .
+
   
 code-annotations: hover
 
@@ -14,51 +16,51 @@ book:
     # - chapters/acknowledgements.qmd
     # - chapters/summary.qmd
     - chapters/setup.qmd
-    - part: "Working with Data"
-      chapters:
-        - chapters/data_manipulation.qmd
-        - chapters/tidy_data.qmd
-        - chapters/data_bases.qmd
-        - chapters/data_validation.qmd
-        - chapters/imputation.qmd
-    - part: "Reproducible Research"
-      chapters:
-        - chapters/repres.qmd
-        - chapters/renv.qmd
-        - chapters/modular_code.qmd
-        - chapters/linter_styler.qmd
-        - chapters/command_line.qmd
-        - chapters/version_control.qmd
-    - part: "Lit Review and Writing"
-      chapters:
-        - chapters/litreview.qmd
-        - chapters/write.qmd
-        - chapters/layout_refs.qmd
-        - chapters/template.qmd
-        - chapters/collaboration.qmd
-    - part: "Collecting the Data"
-      chapters:
-        - chapters/survey_se.qmd  
-        - chapters/good_questions.qmd
-        - chapters/survey_tools.qmd 
-        - chapters/api.qmd
-        - chapters/google.qmd
-        - chapters/qualtrics_api.qmd
-        - chapters/documentation.qmd
-    - part: "Presenting the Data"
-      chapters:
-        - chapters/visualization_theory.qmd
-        - chapters/data_viz.qmd 
-        - chapters/color.qmd
-        - chapters/color_scheme.qmd
-        - chapters/which_graph.qmd # add annotations
-        - chapters/tables.qmd # Add maybe kable
-    # - part: "Run Your Models"
-        # Power Analysis and Simulations
-        # Modeling
-        # Vizualizing models and model assumption
-    - chapters/epilogue.qmd
-    - chapters/references.qmd
+    # - part: "Working with Data"
+    #   chapters:
+    #     - chapters/data_manipulation.qmd
+    #     - chapters/tidy_data.qmd
+    #     - chapters/data_bases.qmd
+    #     - chapters/data_validation.qmd
+    #     - chapters/imputation.qmd
+    # - part: "Reproducible Research"
+    #   chapters:
+    #     - chapters/repres.qmd
+    #     - chapters/renv.qmd
+    #     - chapters/modular_code.qmd
+    #     - chapters/linter_styler.qmd
+    #     - chapters/command_line.qmd
+    #     - chapters/version_control.qmd
+    # - part: "Lit Review and Writing"
+    #   chapters:
+    #     - chapters/litreview.qmd
+    #     - chapters/write.qmd
+    #     - chapters/layout_refs.qmd
+    #     - chapters/template.qmd
+    #     - chapters/collaboration.qmd
+    # - part: "Collecting the Data"
+    #   chapters:
+    #     - chapters/survey_se.qmd  
+    #     - chapters/good_questions.qmd
+    #     - chapters/survey_tools.qmd 
+    #     - chapters/api.qmd
+    #     - chapters/google.qmd
+    #     - chapters/qualtrics_api.qmd
+    #     - chapters/documentation.qmd
+    # - part: "Presenting the Data"
+    #   chapters:
+    #     - chapters/visualization_theory.qmd
+    #     - chapters/data_viz.qmd 
+    #     - chapters/color.qmd
+    #     - chapters/color_scheme.qmd
+    #     - chapters/which_graph.qmd # add annotations
+    #     - chapters/tables.qmd # Add maybe kable
+    # # - part: "Run Your Models"
+    #     # Power Analysis and Simulations
+    #     # Modeling
+    #     # Vizualizing models and model assumption
+    # - chapters/epilogue.qmd
+    # - chapters/references.qmd
     
   repo-actions: [edit, issue]
   repo-url: https://github.com/nikitoshina/quarto_book
@@ -85,6 +87,10 @@ website:
 
 reference-location: margin
 citation-location: margin
+
+resources:
+  - .htaccess
+  - .htpasswd
 
 
 # get toc from files

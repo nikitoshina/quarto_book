@@ -221,7 +221,11 @@ A left join retrieves all the rows from the left table and only the matched rows
 ```{r}
 left_join_result <- employees %>%
   left_join(projects, by = "employee_id")
+```
 
+
+```{r}
+#| echo: false
 knitr::kable(left_join_result, caption = "Result of Left Join")
 ```
 
@@ -234,7 +238,11 @@ A right join operates similarly to a left join, but it retrieves all the rows fr
 ```{r}
 right_join_result <- employees %>%
   right_join(projects, by = "employee_id")
+```
 
+
+```{r}
+# echo: false
 knitr::kable(right_join_result, caption = "Result of Right Join")
 ```
 
@@ -247,7 +255,11 @@ A full join returns all the rows from both tables, filling non-matching rows wit
 ```{r}
 full_join_result <- employees %>%
   full_join(projects, by = "employee_id")
+```
 
+
+```{r}
+#| echo: false
 knitr::kable(full_join_result, caption = "Result of Full Join")
 ```
 
@@ -260,7 +272,11 @@ An inner join only returns the matched rows between two tables. Thus, only the r
 ```{r}
 inner_join_result <- employees %>%
   inner_join(projects, by = "employee_id")
+```
 
+
+```{r}
+#| echo: false
 knitr::kable(inner_join_result, caption = "Result of Inner Join")
 ```
 
@@ -272,7 +288,7 @@ An anti join returns the rows from the left table that do not find a correspondi
 ```{r, results='hide'}
 anti_join_result <- employees %>%
   anti_join(projects, by = "employee_id")
-knitr::kable(anti_join_result, caption = "Result of Anti Join")
+# knitr::kable(anti_join_result, caption = "Result of Anti Join")
 ```
 
 ::: columns
@@ -282,7 +298,7 @@ knitr::kable(anti_join_result, caption = "Result of Anti Join")
 ```
 :::
 
-:r:: column
+::: column
 Tom does not have a project assigned! Perhaps he could take on project 6?
 :::
 :::
@@ -294,7 +310,11 @@ A semi join is akin to an inner join in identifying matching rows between two ta
 ```{r}
 semi_join_result <- employees %>%
   semi_join(projects, by = "employee_id")
+```
 
+
+```{r}
+#| echo: false
 knitr::kable(semi_join_result, caption = "Result of Semi Join")
 ```
 
@@ -302,7 +322,7 @@ knitr::kable(semi_join_result, caption = "Result of Semi Join")
 
 We're going to Unified Modeling Language (UML) to visualize relationships in databases. This might be your first time hearing that there is a language behind diagrams. UML is a standard graphical notation to describe software designs. It is a powerful tools for planning, visualizing and documents your projects. There are different types of diagrams to depict structures, behaviors and interactions with the standard set of symbols and notation.
 
-UML coding tools like Mermaid and Graphviz are options, but I find that drag-and-drop web applications such as [LucidChart](https://www.lucidchart.com) and [Draw.io](https://app.diagrams.net/) are more user-friendly. First, let's introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, order, and product. Each entity possesses attributes, for example, a customer has `customer_id`, `name`, `email`, `address`, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing a line between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in @sec-relationships.
+UML coding tools like Mermaid and Graphviz are great options, but I find that drag-and-drop web applications such as [LucidChart](https://www.lucidchart.com) and [Draw.io](https://app.diagrams.net/) are more user-friendly. First, let's introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, order, and product. Each entity possesses attributes, for example, a customer has `customer_id`, `name`, `email`, `address`, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing a line between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in @sec-relationships.
 
 ![Cardinality](images/cardinality.png)
 
