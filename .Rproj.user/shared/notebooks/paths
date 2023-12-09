@@ -8,6 +8,7 @@
 /Users/nikitoshina/Documents/Teaching/RProject/qualtric_example_pre_app.R="CDB45038"
 /Users/nikitoshina/Documents/quarto_book/_publish.yml="15429B60"
 /Users/nikitoshina/Documents/quarto_book/_quarto.yml="9FE9FD28"
+/Users/nikitoshina/Documents/quarto_book/chapters/.gitignore="A9CC3FB0"
 /Users/nikitoshina/Documents/quarto_book/chapters/acknowledgements.qmd="8CB7CF72"
 /Users/nikitoshina/Documents/quarto_book/chapters/api.qmd="E269ABAF"
 /Users/nikitoshina/Documents/quarto_book/chapters/collaboration.qmd="AD42D4D0"
@@ -45,3 +46,5 @@
 /Users/nikitoshina/Documents/quarto_book/output.txt="3811736E"
 /Users/nikitoshina/Documents/quarto_book/output3.html="B1E91A45"
 /Users/nikitoshina/Documents/quarto_book/output3.qmd="83FFB802"
+/Users/nikitoshina/Documents/quarto_book/package-lock.json="49FDE311"
+/Users/nikitoshina/Documents/quarto_book/package.json="29D13882"
