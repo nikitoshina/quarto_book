@@ -11,3 +11,4 @@ encrypt.r
 *.tex
 *.log
 .Rproj.user
+trackdown.qmd

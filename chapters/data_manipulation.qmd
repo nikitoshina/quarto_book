@@ -100,13 +100,13 @@ str(name_surname)
 
 ## Downloading Data
 
-If you're accustomed to Base R (i.e., functions that come with R upon installation), you may be aware of `read.csv()`. However, `readr`, a part of the Tidyverse package, offers functions that address common issues associated with Base R's reading functions. `read_csv` not only loads data 10 times faster than `read.csv`, but it also produces a tibble instead of a data frame and evades inconsistencies of `read.csv`. You might be asking, "What exactly is a tibble?" A tibble is a special type of data frame with several advantages, such as faster loading times, maintaining input types, permitting columns as lists, allowing non-standard variable names, and never creating row names.
+If you're accustomed to Base R (i.e., functions that come with R upon installation), you may be aware of `read.csv()`. However, `readr`, a part of the Tidyverse package, offers functions that address common issues associated with Base R's reading functions. `read_csv` not only loads data 10 times faster than `read.csv`, but it also produces a tibble instead of a data frame and evades inconsistencies of the base version. You might be asking, "What exactly is a tibble?" A tibble is a special type of data frame with several advantages, such as faster loading times, maintaining input types, permitting columns as lists, allowing non-standard variable names, and never creating row names.
 
 To load your data, you first need to know the path to your data. You can find your file, check its location, and then copy and paste it. If you are a Windows user, your path might contain "\\", which is an escape character. To rectify this, replace "\\" with "/". Copying the path gives you the absolute path (e.g., `"/Users/User/Documents/your_project/data/file.csv"`), but you can also use a local path from the folder of the project (e.g., `"/data/file.csv"`). Let's read the data! Using `readr::` specifies which package to use. 
 
 ### Example Data
 
-In this tutorial, I'll be using a real sample from the Climate and Cooperation Experiment conducted in Mexico. During the experiment, subjects were asked to complete three series of Raven's matrices, four dictator games, and a single lottery game in rooms with varying temperatures. We will primarily be using results from the Raven's matrices games, which consist of 3 sets of 12 matrices. The first set, `pr_`, is the piece-rate round where participants received points for each correctly solved matrix. The second set, `tr_`, is the tournament round where participants competed against a random opponent. The winner received double points, and the loser received nothing. The third set, `ch_`, is the choice round where participants chose whether they wanted to play the piece-rate or tournament round against a different opponent's score from the tournament round.
+In this tutorial, We'll be using a real sample from the Climate and Cooperation Experiment conducted in Mexico. During the experiment, subjects were asked to complete three series of Raven's matrices, four dictator games, and a single lottery game in rooms with varying temperatures. We will primarily be using results from the Raven's matrices games, which consist of 3 sets of 12 matrices. The first set, `pr_`, is the piece-rate round where participants received points for each correctly solved matrix. The second set, `tr_`, is the tournament round where participants competed against a random opponent. The winner received double points, and the loser received nothing. The third set, `ch_`, is the choice round where participants chose whether they wanted to play the piece-rate or tournament round against a different opponent's score from the tournament round.
 
 The data is located in the `data` directory of the GitHub repository. To access and manipulate it, we will require the `tidyverse` package. This package includes several sub-packages, including `reader`.
 
@@ -228,7 +228,8 @@ Notice how we can nest functions within `mutate()` to first calculate the mean o
 The `case_match()` function modifies values within a variable. For example, we can use `case_match()` to change "Male" to "M" and "Female" to "F":
 
 ```{r}
-data_raven <- data_raven %>% mutate(gender = case_match(gender, "Male" ~ "M", "Female" ~ "F"))
+data_raven <- data_raven %>% 
+  mutate(gender = case_match(gender, "Male" ~ "M", "Female" ~ "F"))
 ```
 
 ### `summarize()`
