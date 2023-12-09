@@ -1,4 +1,0 @@
-AuthType Basic 
-AuthName "My Protected Folder" 
-AuthUserFile .htpasswd 
-require valid-user

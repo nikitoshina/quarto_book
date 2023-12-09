@@ -1,6 +1,7 @@
 /.quarto/
+^.*
 .Rproj.user
-_ouput/
+_output/
 .RData
 .Rhistory
 *.Rproj
