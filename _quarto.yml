@@ -90,11 +90,6 @@ website:
 reference-location: margin
 citation-location: margin
 
-resources:
-  - .htaccess
-  - .htpasswd
-
-
 # get toc from files
 
  # cat _quarto.yml | grep -oE '\- chapters/([^[:space:]]+)'  | sed 's/- //' | xargs cat | sed '/^```/,/^```/d' | sed 's/^title:/#/' | grep '^\#' | sed 's/^\([^ ]*\) /\11. /' | sed 's/#/\t/g' | sed 's/"//g' | sed 's/^.//' > output3.qmd
