@@ -77,8 +77,8 @@ format:
     theme: cosmo
     include-before-body: reading-time.html
     css: styles.css
-  pdf:
-   documentclass: book
+  # pdf:
+  #  documentclass: book
    
 code-link: true
 

@@ -1,11 +1,12 @@
 /.quarto/
 .Rproj.user
-ouput/
+_ouput/
 .RData
 .Rhistory
 *.Rproj
 .gitattributes
 _publish.yml
+encrypt.r
 *.aux
 *.toc
 *.tex

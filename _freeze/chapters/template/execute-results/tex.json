@@ -1,0 +1,10 @@
+{
+  "hash": "f731f0679a1f7f35998fc6d44827e7b0",
+  "result": {
+    "markdown": "---\ntitle: \"Thesis Template\"\neditor: visual\n---\n\nIf you want your document to look a certain way for a journal, thesis, or a report you will appreciate the extensive customization of Pandoc template both in LaTeX and HTML. These templates are often a combination of LaTeX and Pandoc specific syntax. There is a large variety customizable [templates](https://quarto.org/docs/extensions/listing-journals.html) available.\n\nHere we will see how to use an [unofficial template for USFCA Economics Master's theses](https://github.com/nikitoshina/USFCA-Thesis-Template).\n\n## Getting Started\n\nTo use this template, you will need to install Quarto and TinyTeX.\n\n### RStudio\n\nInstall Quarto and TinyTeX by running the following command in R:\n\n```         \n\ninstall.packages(c(\"quarto\", \"tinytex\"))\n```\n\n### Visual Studio Code\n\nInstall the Quarto extension by going to Extensions -\\> search for \"Quarto\" -\\> install. Then run the following command in the terminal if you don't have TinyTeX installed:\n\n\n\n```{bash}      \nquarto install tinytex\n```\n\n\n\n## Adding the Quarto Template\n\nTo add the template to your project, run the following command in your terminal:\n\n\n\n```{bash}\nquarto use template nikitoshina/USFCA-Thesis-Template\n```\n\n\n\nThis will download all the necessary folders with the LaTeX files for your thesis. You can render your project from within your folder by running the following command in terminal:\n\n\n\n```{bash}\nquarto render\n```\n\n\n\n## Usage\n\nYour first chapter should be written in index.qmd, and you can add additional chapters to the /Chapters folder. You can add information about the document such as abstract in the `_quarto.yml`.\n\n> If you want to create your own template, I recommend starting with a Word template from pandoc and customizing it to your preferences, rather than dealing with LaTeX and pandoc variables.\n\n",
+    "supporting": [
+      "template_files/figure-pdf"
+    ],
+    "filters": []
+  }
+}
