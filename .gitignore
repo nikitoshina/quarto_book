@@ -1,15 +1,12 @@
 /.quarto/
 .*
-.Rproj.user
-.DS_Store
+!.gitignore
 _output/
-.RData
-.Rhistory
 *.Rproj
-.gitattributes
 _publish.yml
 encrypt.r
 *.aux
 *.toc
 *.tex
 *.log
+.Rproj.user

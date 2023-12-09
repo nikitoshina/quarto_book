@@ -118,6 +118,7 @@ if (condition) {
 
 Bad
 ```{r}
+#| eval: false
 if (condition) 
 {
 action1()
