@@ -1,6 +1,7 @@
 /.quarto/
-^.*
+.*
 .Rproj.user
+.DS_Store
 _output/
 .RData
 .Rhistory
