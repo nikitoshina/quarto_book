@@ -118,9 +118,13 @@ When a computer reads this data, it can't understand our intent, so all columns 
 
 In this format, data input is straightforward, and generating summary tables is as simple as creating a pivot table. A tidy data approach from the outset aids in creating robust tables and saves time during analysis.
 
-## `pivot_longer()`
+## `tidyr`
 
-A common problem arises in datasets where column names are not variable names, but *values* of a variable. This is the case for `pr_correct`, `tr_correct`, `ch_correct`, where the column names represent the `game` variable's name. Meanwhile, the values in the columns represent the number of correct answers, and each row denotes two observations, not one.
+Transforming your data into a tidy format initially demands some effort, but this upfront work pays off by saving time and reducing complications down the line. Tidy data works seamlessly with tidyverse packages in R, cutting down on the time needed for manipulating data across various formats. It's important to note that achieving a 'tidy data' state might sometimes be ambiguous. The key is to ensure the data format is effective for your specific analysis needs. In the following sections, we'll explore how to effectively achieve this tidy data format with `tidyr`, which is part of `tidyverse`.
+
+### `pivot_longer()`
+
+A common problem arises in datasets where column names are not variable names, but *values* of a variable. This is the case for `pr_correct`, `tr_correct`, `ch_correct`, where the column names represent the `game` variable's name. Meanwhile, the values in the columns represent the number of correct answers, and each row denotes three observations, not one.
 
 ```{r}
 (data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct))
@@ -139,7 +143,7 @@ data_raven %>%
   head(n = 5)
 ```
 
-## `pivot_wider()`
+### `pivot_wider()`
 
 `pivot_wider()` is the opposite of `pivot_longer()`. It is used when an observation is scattered across multiple rows. For instance, consider the `data_raven_accident` dataset, where `mean_temp_celsius` and `ch_tournament` are stacked. In this case, an observation is spread across two rows.
 
@@ -166,9 +170,9 @@ data_raven_accident %>%
 
 It is evident from their names that `pivot_wider()` and `pivot_longer()` are inverse functions. `pivot_longer()` converts wide tables to a longer and narrower format, while `pivot_wider()` converts long tables to a shorter and wider format.
 
-## `separate()` and `unite()`
+### `separate()` and `unite()`
 
-Sometimes, data may come with columns united, necessitating us to `separate()` them to maintain tidy data. The original function was superseded in favor of `separate_wider_position()` and `separate_wider_delim()`, there is also `separate_longer_*()` version.
+Sometimes, data may come with columns united, necessitating us to `separate` them to maintain tidy data. The original function was superseded in favor of `separate_wider_position()` and `separate_wider_delim()`, there is also `separate_longer_*()` version.
 
 ```{r include = F}
 data_raven_sep <- data_raven %>%
@@ -192,7 +196,7 @@ data_raven_sep %>%
   head(n = 5)
 ```
 
-What if we have one column that has been split across multiple columns? Consider a situation where our subject ID code, composed of site_id, session_n, and subject_n, has been broken down into three separate columns. In such a scenario, we would need to `unite()` these columns back into one.
+What if we have one variable that has been split across multiple columns? Consider a situation where our subject ID code, composed of site_id, session_n, and subject_n, has been broken down into three separate columns. In such a scenario, we would need to `unite()` these columns back into one.
 
 ```{r}
 data_raven_uni %>% head(n = 5)
@@ -206,7 +210,7 @@ data_raven_uni %>%
 
 ## `tibble()` and `tribble()`
 
-A tibble is a special kind of data frame in R. Tibbles are a modern re-imagining of the data frame, designed to be more friendly and consistent than traditional data frames. To create a tibble, we can use `tibble()`, similar to `data.frame()`. Here are some features that make tibbles unique:
+A tibble is a special kind of data frame in R as you learned from last chapter. Tibbles are a modern re-imagining of the data frame, designed to be more friendly and consistent than traditional data frames. To create a one, we can use `tibble()`, similar to `data.frame()`. Here are some features that make tibbles unique:
 
 -   By default, tibbles display only the first 10 rows when printed, making them easier to work with large datasets.
 
@@ -218,7 +222,7 @@ A tibble is a special kind of data frame in R. Tibbles are a modern re-imagining
 
 -   Most importantly, tibbles can have columns that consist of lists.
 
-In summary, Tibbles are a more modern and consistent version of data frames. They are less prone to errors and more readable, making them an excellent choice for data manipulation and exploration tasks.
+In summary, tibbles are a more modern and consistent version of data frames. They are less prone to errors and more readable, making them an excellent choice for data manipulation and exploration tasks.
 
 ```{r}
 tibble(

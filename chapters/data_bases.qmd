@@ -1,22 +1,26 @@
 ---
-title: "Relational Databases"
+title: "Relational Data"
 editor: visual
 ---
 
-A database is an organized collection of data that can be easily stored, managed, updated, and retrieved. One such type is the relational database, which structures data into tables consisting of rows and columns. Each row, also known as a record, encapsulates information about a single entity, while each column, or attribute, defines a specific aspect of that entity.
 
-Relational databases employ tables and relationships between these tables to store data. A row signifies a unique instance of a table's subject, while a column represents a distinct characteristic of the subject.
+A database is an organized collection of data that can be easily stored, managed, updated, and retrieved. One such type is the relational database, which structures data into tables consisting of rows and columns. In these tables, each row, or record, encapsulates information about a single entity, while each column, or attribute, defines a specific aspect of that entity.
 
-For example, consider the following table:
+Understanding the basic structure of relational databases sets the stage for a deeper exploration of how these tables interact and connect with each other. This interaction is fundamental to the power and versatility of relational databases.
 
-| Student ID | Student Name | HW1 | HW2 | MidTerm |
-|------------|--------------|-----|-----|---------|
-| 20101002   | Nikita       | 88  | 100 | 76      |
-| 20101003   | Nelson       | 78  | 98  | 100     |
-| 20101004   | Parsa        | 98  | 99  | 95      |
-| 20101005   | Shivani      | 56  | 80  | 76      |
+In relational databases, the true strength lies not just in the tables themselves but in the sophisticated way these tables relate and connect to one another. This interconnection is achieved through various types of relationships, enabling complex data structures to be efficiently organized and queried. By comprehending these relationships, you can unlock the full potential of relational databases in representing and manipulating data.
 
-When rows from one table can be associated with rows in another table, the tables are understood to share a relationship.
+Let's delve into these relationships, how they are used, and how visualize them.
+<!-- Let's delve into these relationships, starting with a simple example: -->
+
+<!-- | Student ID | Student Name | HW1 | HW2 | MidTerm | -->
+<!-- |------------|--------------|-----|-----|---------| -->
+<!-- | 20101002   | Nikita       | 88  | 100 | 76      | -->
+<!-- | 20101003   | Nelson       | 78  | 98  | 100     | -->
+<!-- | 20101004   | Parsa        | 98  | 99  | 95      | -->
+<!-- | 20101005   | Shivani      | 56  | 80  | 76      | -->
+
+<!-- When rows from one table can be associated with rows in another table, the tables are understood to share a relationship. -->
 
 ## Relationship Types {#sec-relationships}
 
@@ -285,6 +289,7 @@ knitr::kable(inner_join_result, caption = "Result of Inner Join")
 #### Anti Join
 
 An anti join returns the rows from the left table that do not find a corresponding match in the right table, without adding any new columns to the output. It's useful when you want to filter rows based on the absence of matching entries in the other table.
+
 ```{r, results='hide'}
 anti_join_result <- employees %>%
   anti_join(projects, by = "employee_id")
@@ -320,13 +325,15 @@ knitr::kable(semi_join_result, caption = "Result of Semi Join")
 
 ## Visualizing Databases
 
-We're going to Unified Modeling Language (UML) to visualize relationships in databases. This might be your first time hearing that there is a language behind diagrams. UML is a standard graphical notation to describe software designs. It is a powerful tools for planning, visualizing and documents your projects. There are different types of diagrams to depict structures, behaviors and interactions with the standard set of symbols and notation.
+We're going to use the Unified Modeling Language (UML) to visualize relationships in databases. This might be your first time hearing that there is a language behind diagrams. UML is a standard graphical notation used to describe software designs. It's a powerful tool for planning, visualizing, and documenting your projects. There are different types of diagrams to depict structures, behaviors, and interactions, using a standard set of symbols and notation.
 
-UML coding tools like Mermaid and Graphviz are great options, but I find that drag-and-drop web applications such as [LucidChart](https://www.lucidchart.com) and [Draw.io](https://app.diagrams.net/) are more user-friendly. First, let's introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, order, and product. Each entity possesses attributes, for example, a customer has `customer_id`, `name`, `email`, `address`, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing a line between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in @sec-relationships.
+UML coding tools like Mermaid and Graphviz are great options, but I find that drag-and-drop web applications such as [LucidChart](https://www.lucidchart.com) and [Draw.io](https://app.diagrams.net/) are more user-friendly.
+
+First, let's introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, an order, and a product. Each entity possesses attributes; for example, a customer has `customer_id`, `name`, `email`, `address`, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing lines between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in @sec-relationships.
 
 ![Cardinality](images/cardinality.png)
 
-For instance, let's examine the relationship between a customer and an order. We ask: what is the relationship between a customer and an order? Using the min, max framework, what is the minimum and maximum number of orders a customer can have? A customer can have zero orders (min = 0) and an indefinite amount of orders (max = many). So, the relationship from customer to order is 0 or many. Now, let's look in the opposite direction: how many customers can an order have? An order can have only one customer (min = 1, max = 1).
+For instance, let's examine the relationship between a customer and an order. We ask: What is the relationship between a customer and an order? Using the min, max framework, what is the minimum and maximum number of orders a customer can have? A customer can have zero orders (min = 0) and an indefinite amount of orders (max = many). So, the relationship from customer to order is 0 or many. Now, let's look in the opposite direction: How many customers can an order have? An order can have only one customer (min = 1, max = 1).
 
 ![Customer-Order Relationship](images/customer_order.png)
 
@@ -334,4 +341,6 @@ Next, let's examine the relationship between an order and a product. An order ca
 
 ![Entity-Relationship Diagram](images/ERD.png)
 
-Creating such a diagram is recommended whenever you're planning a project with a complex design. It clarifies the necessary tables and their relationships. You could also sketch a diagram whenever you're unsure about a data set. If you'd like to delve deeper into this topic, check out the [Lucid Software YouTube](https://www.youtube.com/@lucid_software) guides and [Neso Academy's Database Management Systems course](https://www.youtube.com/watch?v=6Iu45VZGQDke).
+Creating such a diagram is recommended whenever you're planning a project with a complex design. It clarifies the necessary tables and their relationships. You could also sketch a diagram whenever you're unsure about a dataset. If you'd like to delve deeper into this topic, check out the [Lucid Software YouTube](https://www.youtube.com/@lucid_software) guides and [Neso Academy's Database Management Systems course](https://www.youtube.com/watch?v=6Iu45VZGQDke).
+
+In this chapter, we delved into the essentials of relational databases, encompassing their structure, key relationships, and join operations. We examined how tables, rows, and columns constitute the backbone of these databases and explored the critical role of primary and foreign keys in linking these tables. Additionally, we discussed various types of relationships and joins. Moving forward, the next chapter will focus on the practice of data validation.

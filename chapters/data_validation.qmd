@@ -12,7 +12,10 @@ While this might seem daunting, there are numerous R packages, along with native
 
 ## Manual Inspection
 
-Despite the convenience of automation, remember that you can't address what you're not aware of. Sometimes, data may not be ready for immediate analysis and may require cleaning before validation. Therefore, it's essential to manually open the files, inspect the tables and their values, and conduct preliminary exploratory analysis. This approach not only gives you a comprehensive understanding of the data at hand but can also save time in the long run by helping you avoid unfit data for analysis. Lastly, always verify your results by reviewing the output table, an important yet simple step to remain fully engaged with the raw data.
+Despite the convenience of automation, remember that you can't address what you're not aware of. Sometimes, data may not be ready for immediate analysis and may require cleaning before validation. 
+Therefore, it's essential to manually open the files, inspect the tables and their values, and conduct preliminary exploratory analysis. 
+From my experience, the most crucial step is to meticulously examine each variable individually, building an understanding of their meanings and implications. This thorough process may consume a few hours, but the payoff is significant: you'll gain an enhanced familiarity with the dataset, coupled with a comprehensive list of aspects requiring attention and rectification.
+Lastly, always verify your results by reviewing the output table, an important yet simple step to remain fully engaged with the raw data.
 
 ![https://xkcd.com/2582/](https://imgs.xkcd.com/comics/data_trap.png)
 
@@ -118,3 +121,6 @@ agent <- agent %>%
 ```{r}
 interrogate(agent)
 ```
+
+
+We learned that data validation is crucial in data analysis, playing a key role in maintaining the integrity, accuracy, and cleanliness of data. This process requires regular checks, which can be automated using control flow functions, as well as `assertr` and `pointblank` packages in R. Despite the efficiency of automation, manual inspection still holds significant importance and should be the initial step in the validation process. Ensuring the validation of your data is essential for providing high-quality inputs in your reports. In the next chapter, we will explore strategies for dealing with missing values.

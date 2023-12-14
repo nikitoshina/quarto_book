@@ -15,9 +15,10 @@ to minimize them, enhancing the survey results' quality. Additionally,
 we will delve into survey design, covering goal setting, sample
 selection, and comprehension of the survey process.
 
-What is a survey? It may seem like a simple question, but it's crucial
-to comprehend our subject matter. As per the formal definition from
-@grovesSurveyMethodology2011.
+Let's start with a question: What is a survey? It may seem simple, but
+it's important to comprehend our subject matter.
+
+A formal definition from @grovesSurveyMethodology2011 is:
 
 > The survey is a
 >
@@ -36,7 +37,7 @@ to comprehend our subject matter. As per the formal definition from
 > of which the entities are members.
 
 A more human readable definition comes from Caroline
-@jarrettSurveysThatWork2021.
+@jarrettSurveysThatWork2021:
 
 > The survey is a
 >
@@ -55,15 +56,16 @@ A more human readable definition comes from Caroline
 ## Total Survey Error (TSE)
 
 What makes a survey credible? The answer lies in its accuracy, effective
-design, and minimal error. Total Survey Error (TSE) is a framework
-enabling researchers to identify and mitigate the various errors that
-can surface in surveys. By understanding these errors, proactive
-measures can be taken to minimize them in subsequent surveys.
+design, and minimal error. Total Survey Error (TSE)
+[@grovesSurveyMethodology2011] is a framework enabling researchers to
+identify and mitigate the various errors that can surface in surveys. By
+understanding these errors, proactive measures can be taken to minimize
+them in subsequent surveys.
 
 TSE consists of several components:
 
-Total Survey Error = Specification error + Processing error + Sampling
-error + Coverage error + Non-response error + Measurement error
+> Total Survey Error = Specification error + Processing error + Sampling
+> error + Coverage error + Non-response error + Measurement error
 
 1.  **Specification error**: Specification errors manifest when there's
     no distinct link between theoretical concepts or constructs and the
@@ -135,12 +137,14 @@ error might occur.
 We will delve into each of these stages and build an understanding of
 how to avoid common errors.
 
-Caroline @jarrettSurveysThatWork2021 provides one of my favorite
-depictions (a hit with marketers!).
+<!-- Caroline @jarrettSurveysThatWork2021 provides one of my favorite -->
 
-![Survey Octopus](images/survey_octopus.png)
+<!-- depictions (a hit with marketers!). -->
 
-<!-- Effective survey design is critical to minimizing the total survey error. It involves several key steps: -->
+<!-- ![Survey Octopus](images/survey_octopus.png) -->
+
+Effective survey design is critical to minimizing the total survey
+error. It involves several key steps:
 
 ### Establishing goals
 
@@ -160,6 +164,12 @@ identify gaps in the discussion, and determine why it's important to
 address these gaps. Then use theory to form hypotheses and decide on the
 testing methods.
 
+In a more business oriented setting, I prefer these three questions:
+
+1.  What decisions will the survey guide?
+2.  What information is needed for these decisions?
+3.  How will the survey improve understanding?
+
 ### Target Population and Sampling Frame
 
 For a successful survey, we must outline our target population and
@@ -167,21 +177,25 @@ sampling frame. The target population represents the group we aim to
 study, while the sampling frame is the source from which we draw our
 sample.
 
+> Better to ask the right people than many people.
+
 However, obtaining complete coverage can be challenging. Undercoverage
 happens when certain individuals or groups in the target population are
 inadequately represented in the sampling frame.
-
-![Undercoverage](images/undercoverage.png)
 
 This can result in biased outcomes. Conversely, overcoverage refers to
 the inclusion of individuals or groups in the sampling frame who are not
 part of the target population, potentially leading to extraneous data
 collection and biases.
 
+::: {layout-ncol="2"}
+![Undercoverage](images/undercoverage.png)
+
 ![Overcoverage](images/overcoverage.png)
+:::
 
 To ensure a representative sample, it's crucial to minimize
-undercoverage and overcoverage. This can be achieved by meticulously
+undercoverage and overcoverage. This can be achieved by methodically
 designing the sampling frame, considering aspects such as demographics,
 location, marketing strategy, and time constraints. Frequent evaluation
 and adjustments of the sampling frame are key to addressing any coverage
@@ -195,8 +209,9 @@ question on the internet is akin to asking a question to everyone, and
 things took an unexpected turn. The vote was hijacked, and Pitbull ended
 up being sent to Alaska. So, it's a reminder that when conducting
 surveys, it's crucial to ensure you're reaching the right people and
-avoiding any unintended outcomes. ![Overcoverage
-Pitbul](images/pitbul.png)
+avoiding any unintended outcomes.
+
+![Overcoverage Pitbul](images/pitbul.png)
 
 ### Representativeness
 
@@ -209,45 +224,54 @@ Aiming for representativeness helps portray a comprehensive image
 reflecting the true diversity of the study population.
 
 ![Is this sample Representative?](images/representativeness_1.png)
+
 ![What about this sample (Arctic Tundra Postage
 Stamps)](images/representativeness_2.png)
 
 ## Iterative Design
 
-> Better to ask the right people than many people.
+Iterative design provides valuable insights about the target population.
+This process involves repeated cycles of learning, refining, and
+scaling, aimed at increasing the effectiveness of surveys. The initial
+step is to create a rough draft of the survey and then interview someone
+from the target audience to determine if the questions are clear and
+relevant to them. Based on the feedback, the survey is edited and
+further refined through discussions with a larger group of people. It's
+important to avoid distributing the survey to the entire target pool
+initially. If changes are necessary after the initial distribution,
+there may not be enough participants left for a revised survey, not to
+mention the potential waste of resources.
 
-Iterative design is key in survey research, providing insights into the
-target population. It involves cycles of learning, refining, and scaling
-to enhance the effectiveness of surveys:
+The process can be outlined in three progressive steps:
 
-1.  Interview 1 person.
+> 1.  Conduct an interview with 1 person from the target audience.
+> 2.  Engage in discussions with a group of 10 people.
+> 3.  Distribute the survey to a broader group of 100 people.
 
-2.  Talk to 10 people.
-
-3.  Survey 100 people.
-
-This iterative process enables researchers to glean insights from
-interactions, refine survey instruments, and scale up for extensive
-analysis, thereby enhancing understanding, ensuring reliable data, and
-informing decision-making.
+This iterative approach allows researchers to extract valuable insights
+from each interaction, continuously improve their survey tools, and
+eventually scale up to a wider audience for comprehensive analysis. Such
+a methodology not only enhances the understanding of the subject matter
+but also ensures the reliability of the data collected, informing
+decision-making.
 
 ## The People You Ask and Those Who Respond
 
 In fieldwork, we interact with participants and collect their responses.
-However, it's crucial to address potential challenges in reaching the
+However, it's critical to address potential challenges in reaching the
 desired target group. Here are the key considerations:
 
-1.  Target Population: The specific group we aim to understand or
+1.  **Target Population**: The specific group we aim to understand or
     represent through the survey.
 
-2.  Sample Frame: The list or source used to select our survey sample,
-    ensuring it aligns with the target population.
+2.  **Sample Frame**: The list or source used to select our survey
+    sample, ensuring it aligns with the target population.
 
-3.  People you ask: Individuals approached to participate in the survey,
-    selected based on the sample frame and target population.
+3.  **People you ask**: Individuals approached to participate in the
+    survey, selected based on the sample frame and target population.
 
-4.  People who respond: The participants who voluntarily provide their
-    responses. The response rate plays a role in ensuring data quality.
+4.  **People who respond**: The participants who voluntarily provide
+    their responses.
 
 By carefully defining the target population, using an appropriate sample
 frame, effectively engaging participants, and analyzing respondent
@@ -267,20 +291,20 @@ form design, illustrates the interplay between these factors:
 
 ![Response Dependencies](images/triangle.png)
 
-1.  Effort: The amount of effort required from participants to complete
-    the survey can significantly impact their willingness to respond.
-    Long, complex, or time-consuming surveys may discourage
+1.  **Effort**: The amount of effort required from participants to
+    complete the survey can significantly impact their willingness to
+    respond. Long, complex, or time-consuming surveys may discourage
     participation, leading to lower response rates.
 
-2.  Reward: Participants often seek some form of incentive or benefit
-    for their involvement in the survey. This can include tangible
-    rewards, such as monetary compensation or gift cards, or intangible
-    rewards, such as the satisfaction of contributing to research or
-    personal interest in the survey topic. Offering appropriate rewards
-    can motivate participants to provide accurate and thoughtful
-    responses.
+2.  **Reward**: Participants often seek some form of incentive or
+    benefit for their involvement in the survey. This can include
+    tangible rewards, such as monetary compensation or gift cards, or
+    intangible rewards, such as the satisfaction of contributing to
+    research or personal interest in the survey topic. Offering
+    appropriate rewards can motivate participants to provide accurate
+    and thoughtful responses.
 
-3.  Trust: Building trust with survey participants is crucial for
+3.  **Trust**: Building trust with survey participants is important for
     encouraging open and honest responses. Participants need to feel
     confident that their privacy and confidentiality are respected,
     their data will be handled securely, and the survey is conducted by
@@ -289,8 +313,8 @@ form design, illustrates the interplay between these factors:
     increases the likelihood of obtaining reliable responses.
 
 By taking into account the effort required, providing appropriate
-rewards, and building trust in the survey process, researchers can
-foster an environment conducive to obtaining high-quality responses from
+rewards, and building trust in the survey process, you can foster an
+environment conducive to obtaining high-quality responses from
 participants.
 
 ## How BAD Are U???
@@ -395,14 +419,11 @@ support.
 ### Enhancing Question Quality
 
 The process of refining survey questions can drastically improve the
-quality of responses received. For instance, the original question:
-
-"In the last five days at work what percentage of time did you use
-corporate grade communication software?"
-
-can be revised into multiple more specific questions, enhancing clarity
-and ensuring accurate responses. An example of these revised questions
-are:
+quality of responses received. For instance, the original question: "In
+the last five days at work what percentage of time did you use corporate
+grade communication software?" can be revised into multiple more
+specific questions, enhancing clarity and ensuring accurate responses.
+An example of these revised questions are:
 
 > How would you improve the question?
 
@@ -422,3 +443,9 @@ Insights from survey response psychology can aid researchers in
 designing high-quality questionnaires that minimize respondent burden,
 enhance data quality, and create a better overall survey experience.
 
+In this chapter, we focused on reducing Total Survey Error and enhancing
+survey design, exploring various sources of survey errors and the
+importance of careful selection of target populations. Additionally, we
+examined factors influencing survey responses and the process of
+answering questions. In the next chapter, we will delve more deeply into
+question design.
