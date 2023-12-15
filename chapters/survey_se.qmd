@@ -57,10 +57,9 @@ A more human readable definition comes from Caroline
 
 What makes a survey credible? The answer lies in its accuracy, effective
 design, and minimal error. Total Survey Error (TSE)
-[@grovesSurveyMethodology2011] is a framework enabling researchers to
+@grovesSurveyMethodology2011 is a framework enabling researchers to
 identify and mitigate the various errors that can surface in surveys. By
-understanding these errors, proactive measures can be taken to minimize
-them in subsequent surveys.
+understanding these errors, proactive measures can be taken to minimize.
 
 TSE consists of several components:
 
@@ -170,6 +169,10 @@ In a more business oriented setting, I prefer these three questions:
 2.  What information is needed for these decisions?
 3.  How will the survey improve understanding?
 
+These questions are aimed at fucising on business goals.
+They make sure that the survey results are practical and
+really help us make better business decisions.
+
 ### Target Population and Sampling Frame
 
 For a successful survey, we must outline our target population and
@@ -249,11 +252,10 @@ The process can be outlined in three progressive steps:
 > 3.  Distribute the survey to a broader group of 100 people.
 
 This iterative approach allows researchers to extract valuable insights
-from each interaction, continuously improve their survey tools, and
+from each interaction, continuously improve their survey design, and
 eventually scale up to a wider audience for comprehensive analysis. Such
 a methodology not only enhances the understanding of the subject matter
-but also ensures the reliability of the data collected, informing
-decision-making.
+but also ensures the reliability of the data collected.
 
 ## The People You Ask and Those Who Respond
 

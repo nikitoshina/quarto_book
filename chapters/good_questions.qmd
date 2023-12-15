@@ -1,10 +1,19 @@
 ---
 title: Design Questions
 ---
+
+After exploring the broad topic of Survey Errors, we now shift our focus to the heart of any survey 
+- the questions themselves. We'll tackle common concerns such as
+the quality of questions, the critical role of their order, the implications of including 'N/A' responses,
+and the impact of survey length. 
+
 ## Guidelines for Effective Question Design
 
-To develop effective survey questions, @krosnickQuestionnaireDesign2018
-suggests the following guidelines:
+Question design is fundamentally a human-centric exercise. 
+It's about crafting questions that are easily understandable,
+allowing respondents to effortlessly process, judge, and articulate their answers.
+Drawing from the insights of @krosnickQuestionnaireDesign2018,
+here is a set of guidelines for developing survey questions:
 
 1.  Use simple and familiar words to ensure clarity and comprehension.
     Avoid technical terms, jargon, and slang.
@@ -26,8 +35,10 @@ suggests the following guidelines:
 
 ## The Impact of Question Order
 
-The sequence of questions in a survey can significantly impact responses
-and respondent engagement. Here are some considerations:
+The order in which questions are presented in a survey can
+profoundly influence the quality of responses and the level of engagement from respondents.
+Effective sequencing of questions is crucial for gathering reliable data.
+Here are some considerations:
 
 1.  Start with easy and pleasant questions to build rapport and boost
     respondent confidence.
@@ -50,6 +61,11 @@ If you're looking for tested questionnaires, I highly recommend the
 [repository created by Gabriel Gilmore & Sara
 Finney](https://www.jmu.edu/assessment/sass/_files/database_of_existing_measures_3.8.21.pdf),
 which offers a comprehensive collection of validated questionnaires.
+
+Additionally, great place for questions is 
+The Marketing Scales Handbook series @brunerMarketingScalesHandbook2019 
+, which is the longest-running set of books 
+that provides reviews of multi-item measures used in scholarly studies of consumer behavior.
 
 > Measurement error is a difference between answers you get and true
 > values. You can also think about it as mismatches between the
@@ -161,7 +177,11 @@ based on @vagiasLikerttypeScaleResponse2006.
 ## "I don't know" and N/A Options
 
 Including "I don't know" and N/A (not applicable) response options in
-surveys can impact data quality. Some considerations are:
+surveys can impact data quality.
+@krosnickImpactNoOpinion2002 explored the impact of "no opinion"
+response options and their effects on data quality, highlighting
+potential trade-offs associated with their inclusion.
+Some considerations are:
 
 1.  **Potential Impact on Data Quality:** Inclusion of "I don't know"
     and N/A options may not necessarily improve data quality. It can
@@ -182,14 +202,6 @@ surveys can impact data quality. Some considerations are:
 
 It's crucial to consider these factors when designing surveys and
 deciding whether to include "I don't know" and N/A response options.
-@krosnickImpactNoOpinion2002 explored the impact of "no opinion"
-response options and their effects on data quality, highlighting
-potential trade-offs associated with their inclusion.
-
-In summary, survey designers should consider the specific research
-goals, target population, and potential effects on response patterns
-when deciding whether to include these response options in their
-surveys.
 
 ## Survey Length
 
@@ -263,3 +275,14 @@ based on the findings.
 
 Incorporating these elements into your survey invitation can improve
 participant engagement and enhance the overall survey experience.
+
+## Summary
+
+In conclusion, this chapter has provided a comprehensive overview of question
+design, emphasizing the importance of crafting clear, strategically ordered
+questions. We delved into the careful selection of question formats and
+discussed the need to balance in-depth inquiry with maintaining respondent
+engagement. Additionally, you learned about the significance of managing survey
+length and crafting thoughtful invitations. By now, you should have a good
+grasp of how to create a survey. In the next chapter, we will explore the tools
+you can use to conduct them!
