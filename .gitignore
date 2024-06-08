@@ -17,9 +17,11 @@ add_to_output/
 *track_down_secret.json
 *cache*
 site_libs/
-chapters/
+chapters/*
 !chapters/*.qmd
+!chapters/images/
 !chapters/images/*
+!chapters/data/
 !chapters/data/*
 !chapters/table.tex
 !chapters/table.md
