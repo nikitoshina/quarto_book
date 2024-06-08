@@ -23,3 +23,6 @@ chapters/
 !chapters/data/*
 !chapters/table.tex
 !chapters/table.md
+index_files/
+node_modules/
+
