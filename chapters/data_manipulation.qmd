@@ -140,7 +140,8 @@ library(tidyverse)
 
 ```{r cache = TRUE}
 # Download data from GitHub
-data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/chapters/data/experiment_data.csv")
+data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/chapters/data/mexico_sample_data.csv")
+read_csv("../mexico_sample_data.csv")
 ```
 
 To get a glimpse of the data, we can use the `glimpse()` function, which will provide us with a sample and the type of the column. Another common method is to use `head()` to get a slice of the top rows or `tail()` to get a slice of the bottom rows. To view the entire data set, use `View()`.
@@ -159,6 +160,8 @@ The dataset contains 114 rows and 7 columns, along with data types, detailing su
 -   `tr_correct` is number of correct answers in *tournament* round.
 -   `ch_correct` is number of correct answers in *choice* round.
 -   `ch_tournament` is 1 if participant decided to play tournament and 0 if choice.
+-   `version` is either "A" or "B", we are not concerned with this variable.
+-   `treatment` is 1 if temperature was higher than 30 Celsius and 0 if below.
 
 ## Basic Data Management With `dplyr`
 
@@ -168,7 +171,7 @@ The dataset contains 114 rows and 7 columns, along with data types, detailing su
 
 ### `select()`
 
-`select()` selects only the columns that you want, removing all other columns. You can use column position (with numbers) or name. The columns will be displayed in the order you list them. We will select `subject_id`, `temperature`, `gender` and results of raven's matrices games.
+`select()` selects only the columns that you want, removing all other columns. You can use column position (with numbers) or name. The columns will be displayed in the order you list them. We will select `subject_id`, `mean_temp_celsius`, `gender` and results of raven's matrices games, excluding version and treatment.
 
 
 ```{r}

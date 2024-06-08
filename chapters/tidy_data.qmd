@@ -127,7 +127,7 @@ Transforming your data into a tidy format initially demands some effort, but thi
 A common problem arises in datasets where column names are not variable names, but *values* of a variable. This is the case for `pr_correct`, `tr_correct`, `ch_correct`, where the column names represent the `game` variable's name. Meanwhile, the values in the columns represent the number of correct answers, and each row denotes three observations, not one.
 
 ```{r}
-(data_raven <- readr::read_csv("https://gist.githubusercontent.com/nikitoshina/2c1f76a3489281393a0f8e34909201b3/raw/fdb42ecd6f0a1e523d2e83cd909aa6ced3757d5c/mexico_sample_data.csv"))
+(data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/raven_data.csv"))
 ```
 
 To tidy such a dataset, we need to pivot the problematic columns into new pairs of variables. We aim to have a column for the game names and a separate column for game results. This operation requires:
