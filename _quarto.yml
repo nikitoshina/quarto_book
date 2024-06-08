@@ -1,95 +1,130 @@
 project:
   type: book
   output-dir: "./_output"
-  post-render: encrypt.r
+  post-render:
+    - scripts/split_latex_book.r
+    - scripts/remove_unnamed_figures.r
+    - scripts/add_to_output.r
+    - scripts/move_to_root.r
+    - scripts/call-latexmk.r
+
+keep-tex: true
+# keep-md: true
+latex-clean: false
 
 execute:
   freeze: auto
-    
-code-annotations: hover
+
+# code-annotations: hover
 
 book:
   title: "Practical tools for modern research"
   author: "Nikita Tkachenko"
   date: today
   chapters:
-     - index.qmd
-     - chapters/intro.qmd
-     - chapters/acknowledgements.qmd
-     - chapters/summary.qmd
-     - chapters/setup.qmd
-     - part: "Working with Data"
-       chapters:
-         - chapters/data_manipulation.qmd
-         - chapters/tidy_data.qmd
-         - chapters/data_bases.qmd
-         - chapters/data_validation.qmd
-         - chapters/imputation.qmd
-     - part: "Reproducible Research"
-       chapters:
-         - chapters/repres.qmd
-         - chapters/renv.qmd
-         - chapters/modular_code.qmd
-         - chapters/linter_styler.qmd
-         - chapters/command_line.qmd
-         - chapters/version_control.qmd
-     - part: "Lit Review and Writing"
-       chapters:
-         - chapters/litreview.qmd
-         - chapters/write.qmd
-         - chapters/layout_refs.qmd
-         - chapters/template.qmd
-         - chapters/collaboration.qmd
-     - part: "Collecting the Data"
-       chapters:
-         - chapters/survey_se.qmd
-         - chapters/good_questions.qmd
-         - chapters/survey_tools.qmd
-         - chapters/api.qmd
-         - chapters/google.qmd
-         - chapters/qualtrics_api.qmd
-         - chapters/documentation.qmd
-     - part: "Presenting the Data"
-       chapters:
-         - chapters/visualization_theory.qmd
-         - chapters/data_viz.qmd
-         - chapters/color.qmd
-         - chapters/color_scheme.qmd
-         - chapters/which_graph.qmd # add annotations
-         - chapters/tables.qmd # Add maybe kable
-     # - part: "Run Your Models"
-         # Power Analysis and Simulations
-         # Modeling
-         # Vizualizing models and model assumption
-     - chapters/epilogue.qmd
-     - chapters/references.qmd
-    
-  repo-actions: [edit, issue]
-  repo-url: https://github.com/nikitoshina/quarto_book
-  issue-url: https://github.com/nikitoshina/quarto_book/issues/new/choose
+    - index.qmd
+    - chapters/intro.qmd
+    - chapters/acknowledgements.qmd
+    - chapters/summary.qmd
+    - chapters/setup.qmd
+    - part: "Working with Data"
+      chapters:
+        - chapters/data_manipulation.qmd
+        - chapters/tidy_data.qmd
+        - chapters/data_bases.qmd
+        - chapters/data_validation.qmd
+        - chapters/imputation.qmd
+    - part: "Reproducible Research"
+      chapters:
+        - chapters/repres.qmd
+        - chapters/renv.qmd
+        - chapters/command_line.qmd
+        - chapters/version_control.qmd
+        - chapters/linter_styler.qmd
+        - chapters/modular_code.qmd
+    - part: "Lit Review and Writing"
+      chapters:
+        - chapters/litreview.qmd
+        - chapters/write.qmd
+        - chapters/layout_refs.qmd
+        - chapters/collaboration.qmd
+        - chapters/template.qmd
+    - part: "Collecting the Data"
+      chapters:
+        - chapters/survey_se.qmd
+        - chapters/good_questions.qmd
+        - chapters/survey_tools.qmd
+        - chapters/documentation.qmd
+        - chapters/api.qmd
+        - chapters/APIs_in_r.qmd
+        - chapters/google.qmd
+        - chapters/qualtrics_api.qmd
+    - part: "Presenting the Data"
+      chapters:
+        - chapters/visualization_theory.qmd
+        - chapters/data_viz.qmd
+        - chapters/which_graph.qmd
+        - chapters/color.qmd
+        - chapters/color_scheme.qmd
+        - chapters/tables.qmd # Add maybe kable
+    # - part: "Run Your Models"
+    # Power Analysis and Simulations
+    # Modeling
+    # Vizualizing models and model assumption
+    - part: "Back Matter"
+      chapters:
+        - chapters/epilogue.qmd
+    - chapters/references.qmd
 
-bibliography: references.bib
+  # repo-actions: [edit, issue]
+  # repo-url: https://github.com/nikitoshina/quarto_book
+  # issue-url: https://github.com/nikitoshina/quarto_book/issues/new/choose
 
-output: md_document
+# bibliography: references.bib
+
+# output: md_document
 
 format:
-  html:
-    theme: cosmo
-    include-before-body: reading-time.html
-    css: styles.css
-  # pdf:
-  #  documentclass: book
-   
-code-link: true
+  # html:
+  #   theme: cosmo
+  #   include-before-body: scripts/reading-time.html
+  #   css: styles.css
+  latex:
+    documentclass: book
+    fig-format: pdf
+    fig-pos: "H"
+    fig-dpi: 300
+    out-height: 1.5in
+    toc: false
+    filters:
+      - scripts/extract-citations.lua
+      - quarto
+      - minted-quarto
 
-website:
-  comments:
-    giscus:
-      repo: nikitoshina/quarto_book
+minted:
+  include_listings: true
+  level_option: chapter
+  inline_code: true
+  options:
+    cachedir: _minted-cache
+    # lof: false
+# header-includes:
+#   - \usepackage{minted}
+# extra_dependencies: ["minted"]
+# pandoc_args: ["--pdf-engine-opt=-shell-escape"]
+# filters:
+#   - code-block.lua
 
-reference-location: margin
-citation-location: margin
+# code-link: true
+
+# website:
+#   comments:
+#     giscus:
+#       repo: nikitoshina/quarto_book
+#
+# reference-location: margin
+# citation-location: margin
 
 # get toc from files
 
- # cat _quarto.yml | grep -oE '\- chapters/([^[:space:]]+)'  | sed 's/- //' | xargs cat | sed '/^```/,/^```/d' | sed 's/^title:/#/' | grep '^\#' | sed 's/^\([^ ]*\) /\11. /' | sed 's/#/\t/g' | sed 's/"//g' | sed 's/^.//' > output3.qmd
+# cat _quarto.yml | grep -oE '\- chapters/([^[:space:]]+)'  | sed 's/- //' | xargs cat | sed '/^```/,/^```/d' | sed 's/^title:/#/' | grep '^\#' | sed 's/^\([^ ]*\) /\11. /' | sed 's/#/\t/g' | sed 's/"//g' | sed 's/^.//' > output3.qmd
