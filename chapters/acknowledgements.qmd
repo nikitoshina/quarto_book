@@ -1,0 +1,27 @@
+# Acknowledgements
+
+I dedicate this book to my late grandfather, Vladimir Zamashikov.
+
+I extend my deepest gratitude to Thomas Weinandy, who convinced me to transform my rough draft into a published book and guided me through the process. Without him, this would not have been possible.
+
+I am deeply indebted to Parsa Rahimi for his unwavering support and meticulous review of all my chapters, edits, and ideas.
+
+My thanks also go to Alessandra Cassar and Michael Jonas for their support throughout my academic journey. Special thanks to Peter Lorentzen, Ker Gibbs, and Jesse Anttila-Hughes for their invaluable guidance and support.
+
+I appreciate Shivani Shukla, Bruce Wydick, Misha Gipsman, Mario Lim, Steve Trettel, Mehmet Emre, Andrew Hobbs, Arman Khachiyan, Robizon Khubulashvili, and Konrad Posch for reviewing chapters and providing their support. Additionally, I am grateful to the faculty, librarians, writing center staff, and the Center for Business Studies and Innovation (CBSI) at the University of San Francisco for their guidance.
+
+Gordon Getty deserves thanks for inspiring me to write more confidently about my skills.
+
+The team at APress, especially Shaul Elson, Commissioning Editor, Laura Berendson, Development Editor, and Gryffin Winkler, Editorial Assistant, guided me through the publishing process. My technical reviewer, Sijo Manikandan, provided comments that significantly enriched the book with additional examples and explanations. Special thanks to everyone at APress whose efforts made this book a reality.
+
+I gratefully acknowledge John Chetwynd, Jake Consgrove, Timofei Lopukhov, and Alexander Rom, whose support, curiosity, and confidence in my work are deeply appreciated.
+
+I must acknowledge my family, including my mother Ekaterina Tkachenko, whose belief in me inspired me to start this project, my father Anton Tkachenko, stepmother Daria Tkachenko, and my grandparents Valentina and Alexander Trachenko, and Raisa Zamashikova.
+
+A special note of thanks goes to Anastasia Ternovskaya for her unwavering belief in me.
+
+I very much appreciate Maria Aksutenko for making the artwork for the cover.
+
+Special thanks also to the Posit team for their invaluable contributions and support to the community.
+
+Finally, my heartfelt appreciation goes to the open-source community and everyone who has generously shared their knowledge online. You made this possible, and I am thrilled to contribute to the conversation. I hope you find this book useful in your journey towards mastering research.

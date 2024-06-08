@@ -1,0 +1,30 @@
+---
+title: "Templating"
+---
+
+Formatting your document to meet specific requirements, such as those for journals, theses, reports, or corporate styles, is often necessary. There are numerous approaches to achieving this, and Quarto provides a range of default templates available upon rendering a Quarto document. These templates are both editable and expandable, though creating a custom template is no small feat. Instead of diving deep into customization, it's advisable to explore templates created by others.
+
+For a start, the Extensions section on Quarto's website is a great place to look for a specific journal template. If you're unsure which template to use, consider exploring those offered for [Elsevier](https://github.com/quarto-journals/elsevier), a major scientific publisher. If you already have a publication venue in mind, downloading its specific template early on can save you from a cumbersome transition later. Most templates come with clear installation instructions, so guidance is readily available.
+
+For those requiring further customization, especially with LaTeX documents, incorporating your LaTeX into an [Overleaf](https://www.overleaf.com/) template offers much more control over the document's appearance by allowing direct edits to the LaTeX code. However, navigating through formatting options can be overwhelming, so it's beneficial to keep things simple and build on the work of others whenever possible.
+
+If your organization mandates the use of Word documents, while it may seem daunting, solutions exist to ease this process. The pandoc word reference document simplifies the conversion of markdown to Word, enabling relatively straightforward document styling. For more intricate styling needs, the `officedown` and `officer` packages provide tools to precisely meet styling requirements, allowing you to concentrate on content rather than formatting.
+
+## Summary
+
+```
+flowchart LR
+    Gdoc("<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Google_Docs_logo_%282014-2020%29.svg/1481px-Google_Docs_logo_%282014-2020%29.svg.png';/>")
+    R("<img src='https://www.r-project.org/logo/Rlogo.svg';/>")
+    Quarto("<img src='https://rstudio.github.io/cheatsheets/html/images/logo-quarto.png'; />")
+    People("<img src='https://cdn-icons-png.flaticon.com/512/809/809522.png'; />")
+    Code("<img src='https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png'; />")
+   
+    R ---> |Tables \n Graphics| Quarto 
+    Quarto <---> |trackdown| Gdoc
+    Gdoc <--> |Narrative Editing| People
+    Code <--> |Code Editing| R
+```
+
+
+Meeting specific formatting requirements for documents is streamlined by Quarto's templates and external resources like [Elsevier](https://www.elsevier.com/researcher/author/policies-and-guidelines) for journals. For advanced customization, Overleaf provides control to LaTeX users, while tools such as pandoc and `officedown` simplify styling for Word documents, allowing authors to focus on content. Now, we will transition to the data collection section, beginning with a chapter on survey error.

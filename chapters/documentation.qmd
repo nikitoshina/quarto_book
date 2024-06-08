@@ -1,0 +1,220 @@
+---
+title: "Document"
+---
+
+Comprehensive documentation is pivotal to the success of any research project, ensuring consistent data collection and adherence to established procedures by field agents. This guide outlines the importance of documenting every process related to sampling, administration, data collection, and handling, thus supporting research reproducibility and quality.
+
+> Although universally disliked, bureaucracy is undeniably essential!
+
+## Principles of Documentation
+
+A robust documentation system rests on several foundational principles:
+
+1.  **Traceability**: Ensure traceability in every step of the research process. For instance, in project scenarios, each document should explicitly outline the necessary steps.
+
+2.  **Hierarchical Structure**: Adopt a clear hierarchical structure in documentation to enhance navigation and clarify the relationships among various documents.
+
+3.  **Physical and Digital Accessibility**: Ensure that documentation is accessible both physically and digitally. Organize physical surveys and documents for easy retrieval.
+
+4.  **Convertibility**: Enable easy conversion of all surveys and paper documents into electronic formats for efficient storage and subsequent use.
+
+5.  **Consistent Formatting**: Maintain consistent visual and semantic formatting across all documents. Utilize standardized templates and uniform typography to ensure coherence and enhance user experience.
+
+6.  **Ease of Implementation**: Design the documentation system to be easily maintainable and implementable, both in software terms and organizational structure.
+
+7.  **Centralization**: Centralize documentation to minimize ambiguity, ensuring everyone has access to a unified source of truth.
+
+8.  **Redundancy**: Introduce strategic redundancy by replicating key information across multiple formats or locations to reduce risks.
+
+9.  **Resilience**: Design documentation to preserve crucial information even in chaotic situations. This involves creating backups and using formats less prone to corruption or loss. Additionally, ensure that documents can be reorganized easily if pages become disordered.
+
+10. **Security and Privacy**: Emphasize securing sensitive information in documentation. This includes adhering to data protection laws and employing encryption methods.
+
+11. **Update and Review Process**: Establish a clear procedure for regularly updating and reviewing documents to maintain their relevance and accuracy.
+
+12. **Collaboration and Sharing Protocols**: Define protocols for collaborative document creation and sharing to ensure consistency and prevent conflicts or data loss.
+
+13. **User Training and Support**: Stress the importance of training and support for stakeholders to ensure effective use and contribution to the documentation system.
+
+### Hierarchical Structure of Documentation\[a\]
+
+The hierarchical structure of documentation is a crucial element in ensuring the efficient management and retrieval of data during research. This structure is typically divided into three primary levels: project, site, session, and subject, each marked by unique identifiers and variables to maintain order and clarity.
+
+![Documentation Hierarchy](images/triangle_levels.png){width="474"}
+
+At the top is the Project level, encompassing all aspects of the research including analysis, goals, methodologies, responsibilities, and documentation. This level provides an overarching view of the entire research initiative, outlining the scope and objectives.
+
+The Site level, following the project tier, represents the broadest categorization within the project. It usually pertains to the physical or conceptual location of the research, such as the site of an experiment. This level includes specific information that distinguishes one site from another, such as location details, dates of research activities, responsible personnel, local exchange rates, and population characteristics. The identifiers at this level are broad, offering a macro-view of the research landscape.
+
+Nestled within the site level is the Session level. This level offers a more focused categorization and is essential for documenting the chronological progression of the research. It may represent specific phases of the project or a series of observations. The session level details include specific experiments conducted, timeframes, methodologies employed, and treatments administered. It acts as a conduit, bridging the comprehensive scope of the site level with the detailed focus of the subsequent subject level.
+
+The most granular tier in the hierarchy is the Subject level. This level is concerned with individual subjects or units within the research, such as study participants or specific experimental samples. Each subject is assigned a unique identifier to ensure precise tracking and analysis. The subject level encompasses detailed data for each unit, including demographic information in human studies, specific characteristics of samples in laboratory research, or granular observations in field studies. A subject can be uniquely identified by their associated site, session, and subject number.
+
+![Labeling Example](images/label_example.png){#fig-label}
+
+This structured hierarchy effectively binds all materials and systems, providing a well-organized framework for your project. While it's acceptable to deviate from this structure, it's important to find a system that suits your specific research needs and supports productive and organized work.
+
+## Practical Implementation
+
+### Physical and Electronic Documentation
+
+Physical documentation is a crucial component of research, serving to ensure reliable and consistent data collection. Attention should be paid to structured formatting and strategic management of physical documents. Below is a brief overview of best practices:
+
+1.  **Consistency and Clarity**: It's important for physical documents to feature uniform formatting and clearly phrased questions to reduce interpretation errors. Such consistency aids in accurate data gathering and ensures a uniform understanding among participants.
+
+2.  **Efficient Paper Usage**: Conscious paper use helps control costs and lessens environmental impact. Employing strategies like two-sided printing and preferring digital copies where feasible can markedly cut down on paper waste. Moreover, excessive paper can become heavy and hinder the processing of results.
+
+3.  **Tracking Participation Agreements**: Assign unique subject identifiers on consent forms for effective tracking as in @fig-label . After sessions, collate these for easy reference, thus ensuring compliance with ethical protocols. Additionally, include the survey version to aid in future referencing. For electronic data collection, storage and labeling are mostly automatic. However, for paper-based data collection, careful labeling is crucial.
+
+4.  **Session-Specific Record Keeping**: Maintain detailed notes during each session. Such immediate documentation should cover any variances or significant occurrences, thereby improving the accuracy and comprehensiveness of data collection.
+
+Effective physical documentation is essential for upholding the integrity and traceability of research data. Post-data collection, it is advisable to preserve the original data sources for potential future clarification.
+
+> Maintain a field journal to record observations regarding the weather, political climate, experiment rounds, site, and other relevant factors!
+
+Electronic documentation is a critical step in safeguarding research data, ensuring both security and accessibility. After each research session, it's essential to promptly transfer all collected information to an electronic session sheet and scan physical documents to create digital copies.
+
+This approach helps in preventing data loss and improves data organization. Key practices include converting session data and documents into electronic formats (like PDFs or image files), using consistent naming conventions for organized storage, implementing regular data backups to external drives or cloud services, and employing encryption and secure passwords for data privacy. These streamlined processes not only enhance the reliability of research data management but reproducibility.
+
+### Data Protection, Privacy, and Quality Control
+
+In today's digital landscape, data protection and privacy are critical components of research:
+
+1.  **Data Protection Strategies**: Implement robust measures to protect collected data, especially personal information about subjects. This includes anonymizing data, secure storage solutions, and adherence to data protection laws, especially when dealing with personal identifiable information.
+
+2.  **Quality Assurance**: Develop a comprehensive strategy for data quality assurance. This involves:
+
+    -   Training programs for data collectors to ensure accuracy and consistency.
+    -   Regular data checks or audits to identify and correct any errors or inconsistencies.
+    -   Implementing feedback mechanisms for continuous improvement.
+
+### Data Organization in Spreadsheets
+
+Spreadsheets are ubiquitous, and often the first and the only way poeple learnt to interact with data. And while it is possible to do pretty much anything in them, it doesn't mean you should build a rollecoster simulator in Excel. Here we will focus on organizing spreadsheets for data entry and storage to reduce errors and simplify later analyses. It is largely based on my personal experience and advise of [@bromanDataOrganizationSpreadsheets2018].
+
+#### Spread Sheet Organization
+
+Consistency is the cornerstone of effective data entry and organization. It's crucial to maintain a uniform approach in data handling to prevent the need for time-consuming data harmonization later.
+
+Regarding the organization and storage of your data, consider how the data will be entered, transferred, and stored. Google Sheets is a recommended tool due to its accessibility and no-cost nature, but Excel or other software can also be effective. The principles outlined here are applicable regardless of the software used.
+
+For larger datasets, it’s advisable to distribute data across multiple sheets or workbooks rather than cramming everything into a single sheet. This approach prevents clutter and simplifies data management and export. Remember to avoid placing multiple tables on one sheet, as it complicates working with and exporting the data.
+
+Data should be organized in a [tidy](chapters/tidy_data.qmd), rectangular layout with rows representing subjects and columns for variables. The header (first row) should contain variable names – limit this to one row else it will be confusing and hard to work with, if you would like to improve navingation try using formatting. Avoid using formatting to convey key information; instead, opt for separate columns.
+
+When it comes to naming variables, especially in cases with a large number, the following guidelines are essential:
+
+1.  **Avoid Spaces**: Always use underscores (`_`) instead of spaces in variable names, following the tidyverse style. For example, use `temperature_15_minutes` instead of `temperature 15 minutes`.
+2.  **Descriptive and Concise Names**: Opt for names that are both short and informative. For instance, `tempc_15_min` is preferred over `temperature_15_minutes`, as it is concise and specifies the unit (Celsius). Although short names are preferred, don't be afraid to have longer names when needed.
+3.  **Consistency Across Files**: Use the same variable names consistently across all files (e.g., always use `temp_c` instead of variations like `temp_room_c` or `temp`).
+4.  **Avoid Special Characters**: Refrain from using emojis, LaTeX symbols, or other special characters like \~,!,#,\$,%,\^,&,\*,(,\\, etc., as they can cause errors.
+5.  **Structured Naming for Easy Analysis**: Start variable names with a section code (e.g., "q#\_" for question number, “p\_” for personality questions, “s\_” for status questions) to facilitate later analysis (easily select all personality questions `select(starts_with("p_"))`). For comment columns, append `_comment` to easily exclude them when necessary.
+
+All the above suggestions are also applicable to file names! Further more, It is also beneficial to name your files in a way that follows your preferred ordering. For example, if dates are crucial for sorting, placing the year-month-day format at the start of the file name can be effective. When dealing with numerical sequences, include leading zeros to ensure correct ordering, such as `004 < 015 < 030 < 200` rather than `15 < 200 < 30 < 4`. However, exercise caution when sequentially naming files, as renaming multiple files to include new additions or to reorder them can become challenging.
+
+Example of Good vs. Bad File Names:
+
+| Bad            | Good                              |
+|----------------|-----------------------------------|
+| table 1.tex    | tbl01_temperature-vs-dictator.tex |
+| My Thesis.docx | 2023-12-24_thesis-for-review.docx |
+
+When setting up your spreadsheets, it's important to separate data entry sheets from final data sheets. Avoid performing calculations in raw data files due to potential rounding issues and unexpected errors in spreadsheet programs. The primary file should contain only the data, and any calculations or graphical analysis should be done on a copy of the file.
+
+To ensure accuracy in data entry, use validation tools. Default validation capabilities are usually sufficient, but additional methods are available online. Apply validation to each column!
+
+Finally, if multiple people are accessing the files, assign permissions judiciously. Protect cells that shouldn’t be altered and maintain regular backups. Investing time in setting up these safeguards can save weeks of potential rework.
+
+#### Data Input
+
+Once you have established your organizational structure, the next step is to input your data. Here, we will discuss best practices for data recording:
+
+1.  **Uniform Codes**: Use a consistent coding system for each category. For example, if categorizing by gender, choose one label (like "Male") and stick with it. Avoid variations such as "M", "male", or "MALE".
+
+2.  **Fixed Code for Missing Values**: Establish a standard symbol or code for missing data, like “NA” or a hyphen. Avoid using numbers (e.g., 77 or 999) for missing numeric data and steer clear of leaving cells empty or using spaces, as these can be easily overlooked.
+
+3.  **Uniform Subject Identifiers**: Employ a consistent format for subject identifiers across all records. A composite key like "site_id_session_n_subject_n" is a good standard.
+
+4.  **Consistent Date Format**: To avoid confusion (like mistaking 2023/05/10 for either May 10th or October 5th), use a consistent date format. The ISO 8601 standard (YYYY-MM-DD) is universally recognized and reduces ambiguity. Be vigilant with spreadsheet software like Excel or Google Sheets, which may auto-format dates; set column data types to text to avoid this issue.
+
+
+5.  **Avoid Extra Spaces**: Pay attention to extra spaces within cells. They can lead to discrepancies, such as between “male” and “ male ”.
+
+6.  **Complete Cells**: Ensure all cells are filled. Use a standard code for missing data to distinguish between genuinely missing data and accidental blanks. This clarity helps in understanding whether data is missing, was omitted due to an entry error, or carries a different implication.
+
+7.  **Single Data per Cell**: Adhere to the principle of 'tidy data' by ensuring each cell contains only one piece of information. If a column contains multiple values, consider splitting it into separate columns. Likewise, store notes or comments in distinct columns rather than embedding them within data cells. Avoid using font styles or colors to convey information; instead, encode this data in separate, clearly labeled columns.
+
+8.  **Consistent Terminology in Comments**: When adding comments, use uniform terminology to facilitate easy searching and categorization.
+
+9.  **Avoid Merged Cells**: In preparation for data loading, unmerge any merged cells to prevent creating empty cells, which can complicate data processing and analysis.
+
+After finalizing the structure and understanding your data, create a data dictionary. This should include:
+
+-   Variable name
+-   Variable description
+-   Optionally, its category, name for visualization, and possible values.
+
+Example format:
+
+| Category    | Variable        | Visualization Name       | Values    | Description                             |
+|-------------|-----------------|--------------------------|-----------|-----------------------------------------|
+| Personality | q1_p_agreeable  | Agreeableness            | 1,2,3,4,5 | Assessment of agreeableness             |
+| Status      | q2_s_perception | Social Status Perception | 1,2,3,4,5 | Self-rated social status on a 1-5 scale |
+
+## In the Field
+
+### Sampling Strategy and Marketing
+
+While Sampling strategy and marketing strategy should go into the project plan usually they are decided on the spot. So, make sure to document the sampling strategy you used (random sampling, stratified, snowball, volunteer, etc.) should be explicitly outlined. Also document what marketing tools were used to reach the participants and plan out sessions. It is critical for the signup process for events to be simple and standardized. Using external services like Eventbrite is recommended.
+
+### Administration
+
+The administration process plays a pivotal role in shaping the efficiency, integrity, and overall success of the research. The foundation of the success builds on a series of well-defined protocols and procedures that are critical to maintaining consistency and reliability in data collection. Key elements of this approach include:
+
+1.  **Experimenter's Script**: Develop a detailed script for experimenters, outlining communication guidelines, participant interaction protocols, and responses to potential queries. This script should emphasize maintaining participant free will and effectively handling unforeseen circumstances.
+
+2.  **Adherence to Procedures**: On the day of data collection, it is imperative to strictly follow established procedures to ensure uniformity and efficiency across all sessions.
+
+3.  **Contingency Planning**: Prepare for unexpected scenarios with comprehensive contingency plans, ensuring they do not adversely affect the data's integrity.
+
+4.  **Administrative Flowchart**: Utilize a flowchart to clearly depict the research process, from participant arrival to data entry, delineating key steps and decision points.
+
+5.  **Feedback and Ethical Considerations**: Incorporate feedback mechanisms for continuous refinement and ensure all administration adheres to ethical standards, including participant confidentiality and data privacy.
+
+6.  **Team Training**: Conduct regular training and practice sessions for the research team to ensure proficiency with the research procedures and protocols.
+
+By adopting these streamlined administrative practices, research projects can significantly improve in terms of operational efficiency, consistency in data collection, and adherence to ethical principles, leading to more reliable and valid research outcomes.
+
+![Administration Flow](images/admin_flow.png)
+
+### Accounting in Research
+
+Effective accounting is as crucial in research as in running a startup. It demands rigorous bookkeeping and financial transparency. Key practices include:
+
+1.  **Transaction Documentation**: Meticulously document all transaction receipts. This involves keeping a detailed record of every financial transaction related to the research.
+
+2.  **Digital Record Keeping**: Utilize a Google Sheet or similar tool provided by your organization for systematic record-keeping. This should include detailed entries for each transaction.
+
+3.  **Cloud Storage**: Scan or take pictures of all receipts and financial documents. Upload these images to a cloud service, ensuring each file is named correspondingly to the table entries for easy cross-referencing.
+
+4.  **Currency Conversion**: Be diligent in recording currency conversions, especially when dealing with international transactions, to ensure accurate financial reporting.
+
+5.  **Regular Audits**: Conduct periodic audits to ensure accuracy and transparency of the financial records.
+
+## Communication
+
+Effective communication is integral to the success of any experiment. Detailed documents should be created providing clear instructions on the use of each component of your experiment's system.
+
+These documents should include:
+
+1.  **Procedure Manuals**: Outlining step-by-step processes for sampling, administration, data collection, and handling in clear, concise language.
+2.  **Training Materials**: Practical demonstrations of procedures to help your field agents familiarize with the processes before starting data collection.
+3.  **Reference Guides**: Quick-reference materials summarizing key points from the procedure manuals and training materials.
+4.  **Data Entry Guidelines**: Providing clear instructions on how to enter data into your electronic system.
+5.  **Data Protection Policies**: Explaining how personal data will be protected.
+6.  **Quality Control Procedures**: Outlining strategies for ensuring the quality of the data collected.
+7.  **Feedback Mechanisms**: Explaining how feedback will be collected and used to improve future research.
+
+By ensuring these documents are readily accessible to your field agents, your experiment can run smoothly, generating high-quality, reproducible data.
+
+A well-documented experiment is the key to successful research. By adhering to these guidelines, you can ensure your research is reproducible, traceable, and of high quality.

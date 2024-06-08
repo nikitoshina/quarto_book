@@ -1,0 +1,85 @@
+---
+title: "Reproducible Research"
+editor: visual
+---
+
+When authoring a research paper you are expanding the knowledge frontier. Good research doesn't simply discover something new, but does so in a systematic and reproducible way. You wouldn't believe a study that is impossible to confirm, right?
+
+> Non-reproducible single occurrences are of no significance to science. [@popper2002logic]
+
+A survey of Scientists conducted by Nature in 2016 [@baker500ScientistsLift2016] discovered that 70% of researchers were unable to replicate the experiments of other scientists, and more than 50% were unable to reproduce their own experiments.
+
+So, how do we provide all the information, so others can confirm the results of your study? We use the principles of reproducible research.
+
+
+The Turing Way [@communityTuringWayHandbook2022] define **reproducible** research as a process where work can be independently redone using the original team's data and code. This concept is distinct from **replicability**, which involves conducting the same analysis on different datasets; **robustness**, defined as applying different analysis workflows on the same dataset; and **generalisability**, which is the integration of replicable and robust findings to achieve broader applicability.
+
+<!-- ![Understanding Reproducible Research as defined by the Turing Way](images/turing_way_reproducible_research.jpeg) -->
+
+![Understanding Reproducible Research as defined by the Turing Way](images/reproducible_research_table.png)
+
+In addition, we can distinguish different types of reproducibility [@Victoria2014Reproducibility]: 
+
+- **Computational** reproducibility focuses on the details of code, software, implementation, and operating system. 
+- **Empirical** reproducibility emphasizes information on non-computational scientific experiments.
+- **Statistical** reproducibility involves the intricacies of statistical tests and model parameters.
+
+Replicability, while important, can be hindered by constraints such as time, resources, and opportunities. Therefore, it's often more feasible to focus on reproducibility --- ensuring that analytical data and code are available for others to confirm findings. Reproducibility is not just a goal but a standard, particularly for studies that are inherently difficult to replicate.
+
+For minimal reproducibility, you must provide the analytical data used in their analysis. Although having access to both raw data and processing code is advantageous, it's not always a prerequisite for reproducing an analysis. Crucially, you should also share the analytic code, including model specifications, used to derive the results. It is equally important to provide comprehensive documentation^[More on this in [Chapter Document](documentation.qmd)] of both data and code to demystify the dataset and explain the code's purpose and functionality. Finally, this information should be made readily accessible through common distribution channels like GitHub, for easy access and use by the broader research community.
+
+## Literate Programming
+
+```{mermaid, label = "fig-literate-programming"}
+%%| label: fig-literate-programming
+%%| fig-cap: "Literate Programming Flow"
+flowchart TD
+    A[Collected Data] -->|Processing Code| B(Analytic Data)
+    B --> |Analysis Code| C(Computational Results)
+    C --> D{Presentation Code}
+    D --> G[Figures]
+    D --> E[Tables]
+    D --> F[Summaries]
+    G --> H[Article]
+    E --> H
+    F --> H
+    I[Text] --> H
+```
+
+An important technology for building reproducible research is Literate programming. It integrates text and code chunks, creating a seamless blend of human-readable explanations and machine-executable code. The code loads data, generates graphs, and runs models, while the text provides context and interprets the results. This approach enables researchers to produce documents that are both human- and machine-readable.
+
+One of the earliest implementations of literate programming was Sweave, which combined LaTeX and R for documentation and programming. Since then, the field has evolved with the introduction of RMarkdown, Jupyter Notebooks, Python Markdown, etc. The latest development in this area is Quarto, which will be covered in this book. This tool continues to advance the concept of literate programming, offering researchers a comprehensive solution for creating transparent, reproducible, and well-documented research outputs.
+
+### Example: Customer Satisfaction Survey Analysis
+
+Let's explore how @fig-literate-programming can be applied to a hypothetical customer satisfaction survey analysis project. This project aims to assess customer satisfaction through a survey and effectively communicate the findings. Here's an overview of the workflow with detailed steps:
+
+1.  **Collected Data:** Gather survey responses on customer satisfaction, preferences, and feedback. Ensure to retain the raw data for reference.
+
+2.  **Processing Code:** Develop a separate code to clean the collected data, addressing inconsistencies, missing values, and irrelevant entries. Document assumptions and processes, avoiding opinionated methods that may influence results.
+
+3.  **Analytic Data:** The cleaned data serves as the basis for analysis, providing accurate insights. Share this cleaned data with stakeholders.
+
+4.  **Analysis Code:** Utilize various analytical techniques to derive meaningful insights from the clean data, unveiling trends, patterns, and correlations. Document this analysis code comprehensively for publication.
+
+5.  **Computational Results:** Generate computational results highlighting key findings such as average satisfaction scores, common complaints, and customer segments.
+
+6.  **Presentation Code:** Develop code to create visualizations, charts, and graphs that effectively communicate survey results to stakeholders and other analysts:
+
+    -   **Figures:** Visual representations illustrate trends and distributions, for instance, evolution of Net Promoter Scores over time and customer segment distribution.
+
+    -   **Tables:** Use tables to showcase snippets of data, including summaries and visual information.
+
+    -   **Summaries:** Summarize significant findings from tables, such as regression summaries and five-number summaries[^repres-1].
+
+7.  **Text:** Incorporate descriptive text to provide context and explanations for visual and tabular components.
+
+8.  **Article:** Leverage the insights extracted to compose a comprehensive article or report on customer satisfaction, encompassing trends, analysis, and actionable recommendations.
+
+[^repres-1]: Minimum, First Quartile (Q1), Median (Q2), Third Quartile (Q3), Maximum
+
+Remember that while this is a simplified representation, real projects may involve more intricate steps and considerations.
+
+## Summary
+
+I hope that you now appreciate the importance of reproducible research in scientific studies and recognize the challenges associated with replicating experiments. Hopefully, you're also eager to delve into literate programming^[This topic is covered in detail in [Chapter Write](write.qmd)]. But first, let's explore the concept of a reproducible environment, a foundational aspect of research reliability.

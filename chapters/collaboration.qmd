@@ -1,0 +1,38 @@
+---
+title: "Collaboration"
+---
+
+## Streamlining Collaboration with `trackdown`
+
+In projects that involve collaborators of varying technical proficiency, the use of markdown files may present a challenge to some stakeholders. While one might consider converting these files into a Microsoft Word document for easier editing and then transferring the edits back to markdown, this process can be cumbersome. Our aim is to streamline workflows and enhance productivity efficiently. `trackdown` offers a compelling solution by facilitating the collaborative editing of narrative text through Google Docs. For editing `.qmd` files, it's essential to have `trackdown` version 1.3 or higher, available for download from GitHub with the command:
+
+```{r eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("claudiozandonella/trackdown")
+library(trackdown)
+```
+
+Currently, the Google API credentials provided with the package are exhausted, requiring users to set up their own credentials. This setup is simplified by a guide from the developers, accessible here: <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>.
+
+```{r include = FALSE, eval = FALSE}
+trackdown_auth_configure(path = "/Users/nikitoshina/Documents/documents/trackdown.json")
+```
+
+Once configured, uploading your `.qmd` file to Google Docs is straightforward with `upload_file("your_file.qmd")`, allowing for seamless sharing and collaboration. For any last-minute changes, `update_file("your_file.qmd")` will refresh the Google Doc, overwriting its contents. Completing the review process is as simple as executing `download_file("your_file.qmd")`, which integrates all changes automatically.
+
+> If you want to use the files in a shared folder where you are not the owner, it will not work. You need to either be the owner of the folder or use a shared Drive.
+
+::: callout-note
+Remember to save your file before uploading or updating to avoid data loss.
+:::
+
+For incorporating code, figures, tables, or analysis results, these should not be added directly in Google Docs. Instead, ensure that the document is first downloaded and all suggested edits from collaborators are reviewed and accepted (or rejected) in Google Docs. To streamline this process, you can use the option "Tools \> Review suggested edits \> Accept all" before downloading the document through `download_file(file = "your_file.qmd")`. Implement the necessary changes locally, and if needed, use `update_file("your_file.qmd")` for further updates in Google Drive. A useful tip is to employ `render_file("your_file.qmd")` to download and render the file simultaneously, allowing for a quick review of the rendered document and an efficient way to manage edits.
+
+It's recommended to use Google Docs exclusively for narrative text and to rely on Git for code management. This approach prevents errors that can arise from editing code in Google Docs. Any coding should be done in an Integrated Development Environment (IDE) like RStudio. Be aware that formatting applied in Google Docs will not be preserved in `trackdown`; use Markdown or LaTeX syntax for formatting instead.
+
+This workflow encourages iterative collaboration, alternating between editing narrative text on Google Drive and coding locally with Git. It's important to note that `trackdown` does not support simultaneous editing of narrative text and code; thus, structuring the workflow sequentially is crucial for a smooth collaboration experience. To minimize potential conflicts between code and narrative text, limit the R code in the Quarto file and separate code into different files. This division creates two distinct systems for narrative and code, ensuring a seamless integration.
+
+## Summary
+
+`trackdown` enhances collaboration by integrating Google Docs for editing and simplifying the workflow, making it accessible and efficient for team members with varying technical skills. Once all the writing is done, it needs to be correctly formatted; we will briefly explore a few options in the next chapter.
+

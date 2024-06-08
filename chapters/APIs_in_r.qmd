@@ -1,0 +1,273 @@
+---
+title: "APIs in R"
+editor: visual
+message: false
+warning: false
+error: false
+echo: true
+
+
+eval: false
+---
+
+```{r}
+#| include: false
+library("tidyverse")
+library("scales")
+library("googlesheets4")
+library("gargle")
+```
+
+Now that you have some understanding of what are APIs and how to communicate with them, we will look at different packages that let us interact with useful services such as qualtrics, google sheets, and OpenAI.
+
+## Qualtrics API
+
+Instead of downloading your data through Qualtrics every time you want to update your survey results, we will load the data using Qualtrics API. For a complete guide refer to this [vignette](https://cran.r-project.org/web/packages/qualtRics/vignettes/qualtRics.html).
+
+If your university provides access to Qualtrics. You might still need to separately request API access from the information technology services.
+
+First, we need to install a package `qualtRics`.
+
+```{r}
+# install.packages("qualtRics")
+library("qualtRics")
+```
+
+### Core Functions
+
+The package contains three core functions:
+
+-   `all_surveys()` shows surveys you can access.
+-   `fetch_survey()` downloads the survey.
+-   `read_survey()` reads CSV files you downloaded manually from Qualtrics.
+
+It also contains a number of helper functions, including:
+
+-   `qualtrics_api_credentials()` stores your API key and base url in environment variables.
+-   `survey_questions()` retrieves a data frame containing questions and question IDs for a survey;
+-   `extract_colmap()` retrieves a similar data frame with more detailed mapping from columns to labels.
+-   `metadata()` retrieves metadata about your survey, such as questions, survey flow, number of responses etc.
+
+Note that you can only export surveys that you own, or to which you have been given administration rights.
+
+### Connecting to the API
+
+If you have received API access, now you can connect to the API. To get `api_key` and `base_url` go to Qualtrics Home Page \> Account Settings \> Qualtrics IDs or follow [this link](https://usfca.qualtrics.com/Q/QualtricsIdsSection/IdsSection) https://usfca.qualtrics.com/Q/QualtricsIdsSection/IdsSection. Under "API" click "Generate Topic" and you will be issued a Token. Copy this string a put in "YOUR_API_KEY". Then look at "User" module, copy "Datacenter ID" and ".qualtrics.com" after it. Your Base Url should look something like this: "lad2.qualtrics.com".
+
+```{r}
+#| eval: false
+qualtrics_api_credentials(
+  api_key = "YOUR_API_KEY",
+  base_url = "YOUR_BASE_URL",
+  install = TRUE,
+  # overwrite = TRUE # If you need to update your credentials
+)
+```
+
+After `qualtrics_api_credintials` stored your credentials, you can use `all_surveys()` to fetch information on your surveys.
+
+```{r}
+#| cache: true
+head(surveys <- all_surveys(),3) 
+```
+
+Once you select the questionnaire you want you can refer to it using `id`. If you want redownload the data set `force_request = TRUE`, otherwise it will load prior saved download. The dataset will likely have many columns depending on the number of questions.
+
+```{css, echo = FALSE}
+.output {
+max-height: 300px;
+overflow-y: scroll;
+}
+```
+
+```{r}
+#| cache: true
+#| class: output
+survey_data <- fetch_survey(
+  surveyID = "SV_bJIs8lwz4CfAAgS",
+  verbose = FALSE,
+  force_request = TRUE
+)
+survey_data %>% 
+  select(StartDate, `Duration (in seconds)`, 
+         Finished, Gender, offer, 
+         decision...81, participantRole) %>% 
+  glimpse()
+```
+
+In case you want to see text of the questions use `survey_questions()`.
+
+```{r}
+#| cache: true
+head(survey_questions <- survey_questions(surveyID = "SV_bJIs8lwz4CfAAgS"), n = 5)
+```
+
+
+## Integrating Google Services with R
+
+In this section, we will explore the integration of Google services with R, leveraging the versatility of Google's tools to enhance our data collection and analysis capabilities.
+
+### Utilizing Google Sheets with `googlesheets4`
+
+Google Sheets is a highly versatile, user-friendly, cloud-based tool, particularly effective for storing data collected via Google Forms. It is an ideal solution for data entry in projects that involve gathering physical data. By constructing a relational database in Google Sheets, complete with multiple tabs, validation rules, and explicit data entry guidelines, you can streamline the data entry process. This approach not only minimizes errors but also ensures the retention of meaningful variable names for subsequent analysis.
+
+> Adopt a systematic naming framework like `question#_questionName_section` to facilitate easy access to required questions when creating your indexes.
+
+`googlesheets4` is an R package that interacts with the Google Sheets API, offering a host of features to analysts and data scientists. Here are some common scenarios:
+
+1.  **Data Input:** Data is often input into Google Sheets by various people, thanks to its collaborative nature. `googlesheets4` allows you to pull this data directly into R.
+
+2.  **Real-Time Data Analysis:** If your data is continuously updated, `googlesheets4` allows real-time analysis by accessing and analyzing the latest data.
+
+3.  **Data Reporting:** Results from your analysis or model predictions can be written back to Google Sheets, making them accessible to non-technical stakeholders.
+
+4.  **Data Sharing:** Google Sheets makes data sharing easy. Your data can be accessed from anywhere, anytime.
+
+### Managing Secrets with `gargle`
+
+The `gargle` package simplifies authentication with Google APIs and safely manages authentication tokens. It is used by all R packages interacting with google's services. Using `gargle` enhances your workflow efficiency and security by storing tokens securely and simplifying re-authentication in future sessions.
+
+> Don't forget to add .secrets folder into .gitignore!
+
+```{r}
+#| eval: false
+options(gargle_oauth_cache = ".secrets")
+googlesheets4::gs4_auth()
+list.files(".secrets/")
+gs4_auth(cache = ".secrets", email="name@mail.com")
+```
+
+### Reading and Writing Data in Google Sheets with R
+
+To pull data from Google Sheets into R, use the `read_sheet()` function, providing the document's URL or identifier and the specific sheet name.
+
+```{r}
+#| eval: false
+library(googlesheets4)
+
+url <- "https://docs.google.com/spreadsheets/d/your_spreadsheet_id_here"
+data <- read_sheet(url, sheet = "Your Sheet Name")
+head(data)
+```
+
+Writing data back to Google Sheets is just as straightforward using the `write_sheet()` function.
+
+```{r}
+#| eval: false
+data_to_write <- data.frame(
+  Column1 = c("Data1", "Data2"),
+  Column2 = c("Data3", "Data4")
+)
+
+write_sheet(data = data_to_write, ss = url, sheet = "Your Sheet Name")
+```
+
+### Google Drive and R
+
+The `googledrive` package in R allows you to interact with Google Drive, making it easy to read, write, and manage files.
+
+```{r}
+#| eval: false
+library(googledrive)
+drive_auth(cache = ".secrets")
+print(drive_ls())
+file <- drive_get(path = "YourFileName")
+data <- read_csv(drive_download(file, overwrite = TRUE))
+```
+
+To write files to Google Drive, save the file locally, then upload it using `drive_upload()`:
+
+```{r}
+#| eval: false
+data_to_write <- data.frame(
+  Column1 = c("Data1", "Data2"),
+  Column2 = c("Data3", "Data4")
+)
+
+write.csv(data_to_write, "data_to_write.csv")
+drive_upload("data_to_write.csv", path = "FolderName/data_to_write.csv")
+```
+
+> You can also have google drive folder on your computer and simply write and read files from it.
+
+Remember to responsibly handle your files, especially those containing sensitive data.
+
+### Exploring Other Google Services
+
+Numerous Google services like Google Maps, Google Earth, Google Cloud, and others are readily accessible from within R. A quick online search will reveal various resources for your projects, and there's likely a pre-existing R package to simplify your access.
+
+## OPENAI's API
+
+It would be a criminal offense not to show how to use OPENAI's API's inside of R. Although, I have to admit package implementation in python is fuller and all around better. Nonetheless, I recommend you see what you can do in R.
+
+`openai` is an R package that serves as a wrapper for OpenAI's API services. It includes support for various endpoints such as Models, Completions, Chat, Edits, Images, Embeddings, Audio, Files, Fine-tunes, and Moderations.
+
+> Read the official OpenAI documentation—it's not too technical and is well worth your time.
+
+```{r}
+# install.packages("openai")
+library("openai")
+```
+
+### Authentication
+
+To access the OpenAI API, you must have an API key. Start by registering for the OpenAI API at https://openai.com/api/. After signing up and logging in, navigate to https://platform.openai.com \> select **Personal** \> choose **View API keys** \> copy the key by clicking the green **Copy** button.
+
+The package will look for `OPENAI_API_KEY` in the environment variables. To set this as a global environment variable, execute the command below, replacing `YOUR_KEY` with your actual key:
+
+```{r}
+#| eval: false
+Sys.setenv(
+    OPENAI_API_KEY = 'YOUR_KEY'
+)
+```
+
+> When using GitHub, you should specify the key in `.Renviron` and add it to your `.gitignore` file to keep the key secure.
+
+### Example
+
+With GPT-4, you can unlock a wide range of functionalities like summarizing, classifying, and editing text. Here's how to generate a chat completion:
+
+```{r}
+#| cache: true
+chat <- create_chat_completion(
+  # Specify a model to use
+  model = "gpt-4-1106-preview",
+  # Pass a list of messages based on roles.
+  messages = list(
+    list(
+      "role" = "system",
+      "content" = "As an expert summarizer, condense the following paragraph into one succinct sentence."
+    ),
+    list(
+      "role" = "user",
+      "content" = "R is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.[7] The core R language is augmented by a large number of extension packages containing reusable code and documentation."
+    )
+  )
+)
+
+chat$choices$message.content
+```
+
+You can create images based on textual descriptions. Here's an example of generating a grayscale cartoon:
+
+```{r}
+#| cache: true
+image <- create_image("Frog-blossom cartoon in greyscle color", size = "256x256")
+download.file(image$data$url, "images/openai_image.png", mode = 'wb')
+```
+
+![OPENAI Image Generation](images/openai_image.png) 
+
+Moreover, you can get audio transcription using the Whisper model:
+
+```{r}
+#| cache: true
+create_translation(file = "data/whisper_demo.m4a", model = "whisper-1")
+```
+
+## Summary
+
+We explored using `googlesheets4`, `gargle`, and `qualtRics` packages for streamlined data handling from Google services and Qualtrics surveys. Additionally, we looked at the `openai` package for advanced functionalities like text summarization, image generation, and audio transcription. In the next section, we will dive deep into the fundamentals of data visualization such as perception, color, plots, and tables!
+
+[b]Consider a brief explanation of the `create_chat_completion` function and its arguments to help understand the example below

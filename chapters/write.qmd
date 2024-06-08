@@ -1,0 +1,188 @@
+---
+title: "Write"
+engine: knitr
+---
+
+Following your comprehensive review of the existing literature, you should have developed a concept for your writing topic. This chapter delves into various technologies you'll likely encounter in your search for an effective text editor, and provides an overview of the basic syntax for Quarto.
+
+## WYSIWYG
+
+WYSIWYG (What You See Is What You Get) editors are programs that allow you to make and edit content visually without having to know how to code. This means that you can see how your content will look as you're creating it. They're very helpful for people who don't have experience with coding or markup languages. Examples of WYSIWYG editors that you may already be familiar with include Google Docs and Microsoft Word. Learning how to navigate these widely used tools will teach you valuable skills such as formatting and writing. Plus, after using them for a while, you'll start to appreciate the simplicity and efficiency of markup languages.
+
+I strongly recommend that you develop expertise in these tools, as the skills you acquire are highly transferable to other similar editors. Additionally, it's a valuable investment as your colleagues are likely to use them as well. To get started, I suggest checking out the MOS Certification Series on LinkedIn Learning. These tutorials are designed for those preparing to take MOS exams and cover a broad range of functionality in Word, Excel, and PowerPoint. Even if you don't plan on taking the exams, I highly encourage you to watch the tutorials. They're a great resource for building your skills and improving your proficiency with these essential tools!
+
+[Here is the link!](https://www.linkedin.com/learning-login/share?account=2204681&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcert-prep-word-associate-microsoft-office-specialist-for-office-2019%3Ftrk%3Dshare_ent_url%26shareId%3DSTM%252FLOpvQwOb0jWc9D%252FabQ%253D%253D)
+
+## Markup Languages
+
+Markup languages are sets of codes that provide structure and formatting to documents, such as web pages, eBooks, and scientific papers. Unlike WYSIWYG editors, which allow users to create content visually, markup languages require the use of specific tags or codes to indicate how the content should be displayed. These tags define the document structure, formatting, and other attributes. Some of the most commonly used markup languages include HTML, LaTeX, and Markdown. By learning a markup language, you will have greater control over the appearance and functionality of your digital documents. Additionally, markup languages can help you focus more on writing, allowing templates to handle all the formatting. I promise after you switch, there is no coming back! Your assignments and web pages will look beautiful every time.
+
+### HTML
+
+The term 'markup language' often brings to mind HTML (Hypertext Markup Language), a ubiquitous tool in web content creation. HTML employs tags to specify content display in web browsers. Tags such as `<br>` for line breaks and `<img>` for images are fundamental in HTML. It is a key skill in web development, providing the foundation for customizing web pages and applications. HTML is also frequently used for text manipulation in graphs.
+
+### LaTeX
+
+Have you ever wondered why academic papers look so beautiful or why every textbook looks the same? They are all written in LaTeX, a typesetting system used for academic and scientific publishing. It is a markup language that enables precise formatting of complex technical documents. It is also famous for beautiful mathematical equations. With LaTeX, users can create professional-looking documents with a high degree of customization and flexibility. It is easy to pick up, but hard to master. Introductory tutorials online and ChatGPT will assist you with most LaTeX questions. In case you have an equation you want to transfer into LaTeX, [MathPix](https://mathpix.com/image-to-latex) is a handy too that transforms pictures or screenshots into code.
+
+The commonly used LaTeX editor is [OverLeaf](https://www.overleaf.com/), an online platform that simplifies the writing process and offers extensive guides for any questions you might have.
+
+### Markdown
+
+Markdown stands out for its attention to detail and user-friendly design. It's a lightweight markup language created for generating formatted text in a plain-text editor. Its appeal lies in its simplicity and readability in source code form, in stark contrast to the complexity of traditional markup languages like HTML.
+
+Popular among developers, writers, and bloggers, Markdown is celebrated for its simplicity and adaptability. It supports a range of elements including links, images, and other multimedia features. Being widely supported, Markdown is compatible with numerous tools and platforms such as text editors, note-taking apps, and content management systems. Learning Markdown enables you to produce well-structured, readable content efficiently, without relying on complex formatting tools or specialized software. In fact, this book was written entirely in this format.
+
+For Markdown writing, I recommend MacDown for Mac, Markdown Pad for Windows, StackEdit for online use, or Typora for those who prefer a premium option.
+
+### Yet Another Markup Language (YAML)
+
+YAML (Yet Another Markup Language) is a human-readable data serialization language often used for configuration files and data exchange. It uses indentation, key-value pairs, and directories and supports different data types. Directories are used to organize data as key-value pairs with indentation to indicate hierarchy. The key represents a unique identifier or name, and the value represents associated data or content. YAML is easy to read and write and is popular in web development and software configuration.
+
+::: columns
+::: column
+``` 
+book:
+  title: "Dead Souls"
+  author: "Nikolai Gogol"
+  date: today
+  chapters:
+    - index.qmd
+    - chapter1.qmd
+  appendix:
+    - appendix1.qmd
+```
+:::
+
+::: column
+``` 
+% Key value pairs
+title: "Dead Souls"
+author: "Nikolai Gogol"
+date: today
+
+% Directory/Map  
+chapters:
+  - index.qmd
+  - chapter1.qmd
+```
+:::
+:::
+
+### Pandoc
+
+Pandoc (all documents) converts files from one markup format into another. It serves as a versatile tool for converting files between various markup formats, including HTML, Markdown, LaTeX, PDF, and Microsoft Word. This utility allows for swift and seamless document conversions across different languages without manual editing or reformatting.
+
+Pandoc's diverse applications range from converting Markdown files to HTML for web pages to transforming LaTeX documents into PDFs for printing. It also excels in merging multiple documents into a single file and extracting specific content formats. Its high customizability offers extensive control over the output's format and appearance, making Pandoc a staple in academic and scientific publishing, web development, and documentation. The automation of format conversions with Pandoc significantly reduces time and effort.
+
+Though a command-line tool, Pandoc integrates well with certain markdown editors, enhancing Markdown's functionality with features like tables, footnotes, citations, and more. For instance, this book was composed in Markdown and then transformed into HTML and PDF formats using Pandoc.
+
+## Quarto
+
+At this point, you might be wondering, "why did I have to read about these technologies?" Because the combination of LaTeX, Markdown, Pandoc, and YAML provides a powerful and flexible set for the creation of documents. Those familiar with Sweave, Rmarkdown, or Jupyter Notebooks will find Quarto to be a similar tool. Quarto builds upon the success of Rmarkdown and Jupyter Notebooks, combining the best features of Markdown with new functionality and eliminating the need for additional packages. It provides attractive default formatting options and easy customization. If you have experience writing in Markdown, Quarto will be a breeze to use.
+
+What can it do?
+
+- Creating Reproducible Documents and Reports.
+- Generating Dynamic Content with Python, R, Julia, and Observable.
+- Producing professional-grade content, such as articles, reports, presentations, websites, blogs, and books, in various formats including HTML, PDF, MS Word, ePub, and more.
+- Authoring with scientific markdown, featuring equations, citations, cross-references, figure panels, callouts, advanced layouts, and more.
+- Developing interactive tutorials and notebooks.
+
+### Installing
+
+To use Quarto you don't need any special software, if you would like, you can even use a text editor to create your .qmd files and command line to render the document. However, working in IDE will make your life much easier. I prefer to use RStudio, after all, Quarto is a product of Posit (former RStudio), but Visual Studio Code also works well. If you have not installed RStudio nor Visual Studio Code yet, follow [Set up](chapters/setup.qmd).
+
+#### RStudio
+
+From within Rstudio you can install Quarto as you install any other package. Additionally, you should install TinyTeX, a minimal set of packages required to compile LaTeX documents. You can get both by running the following command in R.
+
+```
+install.packages(c("quarto", "tinytex"))
+```
+
+#### Visual Studio Code
+
+Install the Quarto extension by going to Extensions -\> search for "Quarto" -\> install. Then run the following command in the terminal if you don't have TinyTeX installed:
+
+```
+quarto install tinytex
+```
+
+### Your First Document
+
+Write Create a Quarto project. Go to top panel -\> File -\> New Project -\> Directory -\> Quarto Project -\> Create
+
+File -\> Quarto Document -\> Write the Title of your document -\> Select the format you want (HTML is the default) -\> Create
+
+An (optional) YAML header is demarcated by three dashes (---) on either end. You can learn more about YAML on Quarto's website. There are a lot of useful options for display.
+
+```
+---
+title: "Title"
+editor: visual
+format: pdf
+---
+```
+
+If you prefer the WYSIWYG style, you can switch to the visual editor in the top left corner. Additionally, if you tick "Render to Save," a new document preview will be updated after each save.
+
+Now it is time to get writing! To start, H1 heading can be defined in yaml `title: "Title"` and as `# Title`.
+
+:::{.content-visible when-format="html"}
+{{< include table.md >}}
+:::
+
+:::{.content-visible when-format="latex"}
+{{< include table.tex >}}
+:::
+
+If you want to add a line break add an empty line between your paragraphs, otherwise it will continue as the same text.
+
+Use \`...\` to add inline code: `print(hi, friend)`
+
+Use \`\`\` to delimit blocks of source code:
+
+````text
+```
+print(hi, friend)
+```
+````
+
+Making tables in Markdown is not complicated. The most frequently used table is the pipe table. It allows you to see alignment and captions with `:`. Tables can get complicated pretty quickly, if you ever get stuck, refer to [Quarto's table documentation](https://quarto.org/docs/authoring/tables.html).
+
+::: columns
+::: column
+```
+| Default | Left | Middle | Right   | 
+|---------|:-----|:------:|--------:|
+| Hola    | Pitt | 3.141  | Nile    | 
+| Bonjour | Li   | 2.718  | Amazon  | 
+| Salut   | Roth | 4.123  | Yangtze | 
+
+: Table Demonstration
+```
+:::
+
+::: column
+| Default | Left | Middle |   Right |
+|---------|:-----|:------:|--------:|
+| Hola    | Pitt | 3.141  |    Nile |
+| Bonjour | Li   | 2.718  |  Amazon |
+| Salut   | Roth | 4.123  | Yangtze |
+
+: Table Demonstration
+:::
+:::
+
+If you ever feel lost or struggle with formatting, consider using the visual editor. It provides a familiar interface and is particularly useful for creating and previewing tables. To adjust options, for example, the number of list options, simply click on the circle icon with an ellipsis next to it, and a selection menu will appear. In addition to this, the visual editor offers extensive customization options for other elements, such as images and tables.
+
+::: callout-note
+You can copy-paste (Ctrl + C; Ctrl + V) a picture in Visual Mode!
+:::
+
+You can learn more at [Quarto's website](https://quarto.org/).
+
+## Summary
+
+In this chapter, we explored various text editing technologies, beginning with user-friendly WYSIWYG editors such as Google Docs and Microsoft Word, and then progressing to markup languages like HTML, LaTeX, and Markdown. Additionally, the chapter introduced YAML and Pandoc for format conversion, as well as Quarto, which integrates these technologies to provide a robust platform for creating diverse and professional documents. In the next chapter, we will delve deeper into Quarto's layout capabilities.

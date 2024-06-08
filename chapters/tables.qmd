@@ -1,0 +1,348 @@
+---
+title: "Make Tables"
+message: false
+warning: false
+---
+
+Honestly, I hate making tables. I do not know why, but they never turn out right. However, the `gt` (Grammar of Tables) package makes it easy and actually enjoyable. Therefore, this section will focus on creating simple summary tables using `gt`. It's essential to note that `gt` is just one of many available packages for table creation - others include `kableExtra` for more complex tables, `DT` tables for HTML interactive tables, `reactablefmtr` for reactive tables, and `flextable`, among others. Unlike visualization and data wrangling where the use of `ggplot`, `plotly`, `dplyr`, and `data.table` is nearly universal, there is no default package for table creation. Hence, we'll look at `gt` due to its ease of use and ability to handle a range of basic tasks. The `gt` package simplifies the creation of elegant, customizable tables, making it a versatile tool for reports, presentations, and web applications.
+
+> Ask ten R users about their preferred table package, and you'll likely receive twenty different answers.
+
+![GT Table Parts](images/gt_table_parts.png)
+
+## `gt` Tables 
+
+To start, ensure you have the `gt` package installed. We'll also use the `gtExtras` package to expand the `gt` package's capabilities with custom themes, conditional formatting, and more. In addition, we'll use the `emojifont` package for accessing emojis and `dplyr` from `tidyverse` for data manipulation.
+
+```{r}
+# install.packages(c("gt","gtExtras","emojifont"))
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(emojifont)
+```
+
+As an example we will use built-in `gtcars` dataset which contains information on various automobiles. Let's look at it using `gt()`.
+
+```{r}
+dplyr::sample_n(gt::gtcars, size = 4) %>% gt()
+```
+
+### Prepare your data
+
+The `gt` package works seamlessly with `dplyr`, allowing us to utilize familiar verbs for table formatting. Let's start by focusing on the top auto industry country, Germany. We'll group cars by their manufacturer (mfr) and sort them based on their price (msrp). During table creation, the `rowname_col` parameter allows us to designate a column as row names - for this example, we'll use the 'model' column.
+
+```{r}
+# Start with the `gtcars` dataset from the `gt` package.
+(table_grouped <- gt::gtcars %>%
+# Filter the data to include only cars that originated from Germany.
+dplyr::filter(ctry_origin == "Germany") %>%
+dplyr::group_by(mfr) %>% # Group the data by the manufacturer.
+# Arrange the data in descending order based on the Manufacturer's
+# Suggested Retail Price (MSRP).
+dplyr::arrange(desc(msrp)) %>%
+# Select only the top two cars (based on the previous sorting).
+dplyr::slice_head(n = 2) %>%
+# Filter to include only cars from Audi and BMW.
+dplyr::filter(mfr %in% c("Audi", "BMW")) %>%
+# Start a new `gt` table using the car models as row names.
+gt::gt(rowname_col = "model"))
+```
+
+The table contains many columns, and to make it more readable, we can hide some columns using `cols_hide`. Why use `cols_hide` instead of dropping the columns with `dplyr`? Sometimes, we may need to utilize a column in conditional statements but we do not want to display it. To group performance-related columns together, we can use `cols_move`. Though this could be done with `dplyr`, integrating it into our table-creation process makes the workflow more streamlined. We can distinguish these grouped columns by adding a header spanner with `tab_spanner`, specifying the `columns` and setting the `label`.
+
+```{r}
+# Start with the previously created `table_grouped`.
+(table_span <- table_grouped %>%
+# Hide certain columns that aren't needed in the final table.
+gt::cols_hide(columns = c(trim, bdy_style, drivetrain, ctry_origin, trsmn)) %>%
+# Move specific columns to appear after the `year` column.
+gt::cols_move(columns = c(msrp, trsmn, mpg_c, mpg_h), after = year) %>%
+# Create a spanner header for performance-related columns.
+gt::tab_spanner(columns = c(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), label = "Performance"))
+```
+At times, we may want to combine pairs of related columns into a single column. For that, we can use the `cols_merge()` function. We'll merge horsepower (hp) with associated rpm (hp_rpm), torque (trq) with associated rpm (trq_rpm), and city miles per gallon (mpg_c) with highway miles per gallon (mpg_h). The function takes `columns`, which can be referenced in `text` with `{#}` of column. Since we are working with HTML tables, we can use HTML tags, specifically `<br>`, to add a line break. Alternatively for LaTeX/PDF documents, you can use `\shortstack{first \\ second}` or, even better, `\makecell{first \\ second}` from the LaTeX `makecell` package. Note that the joined column will use the first column's name, and the labels are purely cosmetic and can't be used as reference. We'll then use the `cols_label()` function to assign custom labels to the columns, using the `column_name = "column_label"` syntax.
+
+```{r, eval=knitr::is_html_output()}
+# Start with the previously created `table_span`.
+(table_merge <- table_span %>%
+# Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.
+cols_merge(columns = c(hp, hp_rpm), pattern = "{1}<br>@{2}rpm") %>%
+# cols_merge(columns = c(hp, hp_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+# Merge the torque (trq) and torque rpm (trq_rpm) columns.
+cols_merge(columns = c(trq, trq_rpm), pattern = "{1}<br>@{2}rpm") %>%
+# cols_merge(columns = c(trq, trq_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+# Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.
+cols_merge(columns = c(mpg_c, mpg_h), pattern = "{1}c<br>{2}h") %>%
+# cols_merge(columns = c(mpg_c, mpg_h), pattern = r"(\makecell{{{1}c \\ {2}h}})") %>%
+cols_label( # Set custom labels for specific columns.
+year = "Year",
+msrp = "MSRP",
+mpg_c = "MPG",
+hp = "Horse Power",
+trq = "Torque"
+))
+```
+
+```{r, eval=knitr::is_latex_output(), echo=FALSE}
+# Start with the previously created `table_span`.
+(table_merge <- table_span %>%
+# Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.
+cols_merge(columns = c(hp, hp_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+# cols_merge(columns = c(hp, hp_rpm), pattern = "{1}<br>@{2}rpm") %>%
+# Merge the torque (trq) and torque rpm (trq_rpm) columns.
+cols_merge(columns = c(trq, trq_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+# cols_merge(columns = c(trq, trq_rpm), pattern = "{1}<br>@{2}rpm") %>%
+# Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.
+cols_merge(columns = c(mpg_c, mpg_h), pattern = r"(\makecell{{{1}c \\ {2}h}})") %>%
+# cols_merge(columns = c(mpg_c, mpg_h), pattern = "{1}c<br>{2}h") %>%
+cols_label( # Set custom labels for specific columns.
+year = "Year",
+msrp = "MSRP",
+mpg_c = "MPG",
+hp = "Horse Power",
+trq = "Torque"
+))
+```
+
+The `gt` package provides a variety of `fmt_*` formatting functions that are useful for adjusting the display of numeric and text columns. For example, we can set the `msrp` column to display currency in USD without decimals. We can adjust the alignment of columns using `cols_align`, allowing us to select columns and set alignments to "right", "left", or "center". Since the merged columns appear bulky with two lines, we can decrease the text size using `tab_style`. This function utilizes a `style` definition, provided by helper functions such as `cell_styles` that include supported style information. In this example, we use `cell_text` to set the text size to "12px". The second argument, `locations`, uses another helper function `cells_*()`. To target cells in the body, we apply `cells_body` to the columns `mpg_c`, `hp`, and `trq`. To enhance our tables with color, we can use the `data_color` function, which supports the creation of a simple gradient or the application of a solid color to the data. The function can specify a `domain` and use prebuilt palettes. For more functionality, consider `gt_color_rows()` from `gtExtras`. For more information, refer to the package's documentation.
+
+```{r}
+(table_format <- table_merge %>%
+# Format the msrp column as currency
+fmt_currency(columns = msrp, decimals = 0, currency = "USD") %>%
+# Center align specific columns
+cols_align(columns = c(mpg_c, hp, trq), align = "center") %>%
+tab_style( # Apply cell text style to specific columns
+# Apply a data-driven color scale to the msrp column
+style = cell_text(size = "12px"),
+locations = cells_body(columns = c(mpg_c, hp, trq))
+) %>%
+data_color(columns = msrp, colors = c("white", "aquamarine")))
+```
+
+The table is now quite good looking! We can set a title "German Automobiles" and emoji-inclusive subtitle with the `tab_header()` function. To clarify the term "MSRP" for unfamiliar readers, we can use a footnote. Footnotes can be added to individual cells either by specifying the row number or using expressions -- here, the most expensive car is the **BMW i8**, which is also electric! Like `tab_style`, you need to provide the `location` and `footnote` text. Don't forget to add your data source with the `tab_source_note` function. Wrapping text in `md()` allows us to utilize Markdown syntax for formatting, including adding links.
+
+```{r}
+# Start with the previously formatted table.
+(table_header <- table_format %>%
+# Add a title and a subtitle to the table with an emoji.
+tab_header(title = "German Automobiles", subtitle = paste0("These are some nice ", emojifont::emoji("car"), "s")) %>%
+# Add a footnote to clarify what MSRP stands for.
+tab_footnote(locations = cells_column_labels(columns = msrp), footnote = "Manufacturer's Suggested Retail Price in USD") %>%
+# Add a specific footnote to the most expensive car, noting that
+# electric cars used to be expensive.
+tab_footnote(locations = cells_body(msrp, msrp == max(msrp)), footnote = "Electric cars used to be expensive") %>%
+# Add a source note to cite the source of the data.
+tab_source_note(source_note = md("Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)")))
+```
+To take your `gt` tables a step further, you can apply themes using the `gtExtras` package. This package offers a variety of pre-built themes that can be easily added to your tables. After installing and loading the `gtExtras` package, you can use one of its theme functions to apply a specific style to your table. Let's add a theme similar to the Five Thirty Eight website.
+
+```{r}
+(table_themed <- table_header %>%
+# Add Five Thirty Eight theme to the table
+gtExtras::gt_theme_538())
+```
+
+After creating a beautiful table, you'll likely want to save it. Although there isn't a direct method for saving to Excel, the `gt` package supports saving the table in various formats such as `.html` for embedding in websites or emails, `.png` for images, `.tex` for LaTeX documents, `.pdf` for PDF files, `.rtf` for RTF files, and `.docx` for Microsoft Word documents.
+
+```{r eval = FALSE}
+# Save the `gt` table as an HTML file using `gtsave()`. Use the `inline_css = TRUE` option for inlining CSS, which is useful when embedding the table in an HTML email. Without the `inline_css` option, the HTML file will have embedded CSS styles instead.
+
+table_themed %>% gtsave(filename = "tab_1.html", inline_css = TRUE)
+table_themed %>% gtsave(filename = "tab_1.html")
+
+# Saving a table as a PNG file creates a cropped image of the HTML table, and you can adjust the whitespace around it using the expand option. You also need to install.package("webshot2").
+table_themed %>% gtsave("tab_1.png", expand = 10)
+
+# LaTeX
+table_themed %>% gtsave("tab_1.tex")
+# RTF
+table_themed %>% gtsave("tab_1.rtf")
+# Microsoft Word
+table_themed %>% gtsave("tab_1.doc")
+```
+
+And the final output will look something like this:
+
+```{r, eval=knitr::is_html_output()}
+# Load the necessary libraries for data manipulation and
+# visualization.
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(emojifont)
+
+# Create a formatted table of German automobiles
+gt::gtcars %>% # Load the data.
+  # Filter the data to include only cars that originated from Germany.
+  filter(ctry_origin == "Germany") %>%
+  group_by(mfr) %>% # Group the data by the manufacturer.
+  # Arrange the data in descending order based on the Manufacturer's
+  # Suggested Retail Price (MSRP).
+  arrange(desc(msrp)) %>%
+  # Start a new gt table using the car models as row names.
+  gt(rowname_col = "model") %>%
+  # Hide certain columns that aren't needed in the final table.
+  cols_hide(columns = c(trim, bdy_style, drivetrain, ctry_origin, trsmn)) %>%
+  # Move specific columns to appear after the trim column.
+  cols_move(columns = c(msrp, trsmn, mpg_c, mpg_h), after = trim) %>%
+  # Create a spanner header for performance-related columns.
+  tab_spanner(columns = c(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), label = "Performance") %>%
+  # Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.
+  cols_merge(columns = c(hp, hp_rpm), pattern = "{1}<br>@{2}rpm") %>%
+  # cols_merge(columns = c(hp, hp_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+  # Merge the torque (trq) and torque rpm (trq_rpm) columns.
+  cols_merge(columns = c(trq, trq_rpm), pattern = "{1}<br>@{2}rpm") %>%
+  # cols_merge(columns = c(trq, trq_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+  # Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.
+  cols_merge(columns = c(mpg_c, mpg_h), pattern = "{1}c<br>{2}h") %>%
+  # cols_merge(columns = c(mpg_c, mpg_h), pattern = r"(\makecell{{{1}c \\ {2}h}})") %>%
+  cols_label( # Set custom labels for specific columns.
+    year = "Year",
+    msrp = "MSRP",
+    mpg_c = "MPG",
+    hp = "Horse Power",
+    trq = "Torque"
+  ) %>%
+  # Format the MSRP column as currency in USD.
+  fmt_currency(columns = msrp, decimals = 0, currency = "USD") %>%
+  # Center align specific columns.
+  cols_align(columns = c(mpg_c, hp, trq), align = "center") %>%
+  tab_style( # Apply a specific text style to certain columns.
+    style = cell_text(size = "12px"),
+    locations = cells_body(columns = c(mpg_c, hp, trq))
+  ) %>%
+  # Apply a data-driven color scale to the MSRP column.
+  data_color(columns = msrp, colors = c("white", "aquamarine")) %>%
+  # Add a title and subtitle to the table.
+  tab_header(title = "German Automobiles", subtitle = paste0("These are some nice ", emojifont::emoji("car"), "s")) %>%
+  # Add a footnote to clarify what MSRP stands for.
+  tab_footnote(locations = cells_column_labels(columns = msrp), footnote = "Manufacturer's Suggested Retail Price in USD") %>%
+  # Add a footnote to the most expensive car, noting that electric cars
+  # used to be expensive.
+  tab_footnote(locations = cells_body(msrp, msrp == max(msrp)), footnote = "Electric cars used to be expensive") %>%
+  # Add a source note to cite the source of the data.
+  tab_source_note(source_note = md("Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)")) %>%
+  # Apply a theme to the table for a more polished look.
+  gtExtras::gt_theme_538()
+```
+
+```{r, eval=knitr::is_latex_output(), echo=FALSE}
+# Load the necessary libraries for data manipulation and
+# visualization.
+library(tidyverse)
+library(gt)
+library(gtExtras)
+library(emojifont)
+
+# Create a formatted table of German automobiles
+gt::gtcars %>% # Load the data.
+  # Filter the data to include only cars that originated from Germany.
+  filter(ctry_origin == "Germany") %>%
+  group_by(mfr) %>% # Group the data by the manufacturer.
+  # Arrange the data in descending order based on the Manufacturer's
+  # Suggested Retail Price (MSRP).
+  arrange(desc(msrp)) %>%
+  # Start a new gt table using the car models as row names.
+  gt(rowname_col = "model") %>%
+  # Hide certain columns that aren't needed in the final table.
+  cols_hide(columns = c(trim, bdy_style, drivetrain, ctry_origin, trsmn)) %>%
+  # Move specific columns to appear after the trim column.
+  cols_move(columns = c(msrp, trsmn, mpg_c, mpg_h), after = trim) %>%
+  # Create a spanner header for performance-related columns.
+  tab_spanner(columns = c(mpg_c, mpg_h, hp, hp_rpm, trq, trq_rpm), label = "Performance") %>%
+  # Merge the horsepower (hp) and horsepower rpm (hp_rpm) columns.
+  # cols_merge(columns = c(hp, hp_rpm), pattern = "{1}<br>@{2}rpm") %>%
+   cols_merge(columns = c(hp, hp_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+  # Merge the torque (trq) and torque rpm (trq_rpm) columns.
+  # cols_merge(columns = c(trq, trq_rpm), pattern = "{1}<br>@{2}rpm") %>%
+   cols_merge(columns = c(trq, trq_rpm), pattern = r"(\makecell{{{1} \\ @{2}rpm}})") %>%
+  # Merge the city mpg (mpg_c) and highway mpg (mpg_h) columns.
+  # cols_merge(columns = c(mpg_c, mpg_h), pattern = "{1}c<br>{2}h") %>%
+   cols_merge(columns = c(mpg_c, mpg_h), pattern = r"(\makecell{{{1}c \\ {2}h}})") %>%
+  cols_label( # Set custom labels for specific columns.
+    year = "Year",
+    msrp = "MSRP",
+    mpg_c = "MPG",
+    hp = "Horse Power",
+    trq = "Torque"
+  ) %>%
+  # Format the MSRP column as currency in USD.
+  fmt_currency(columns = msrp, decimals = 0, currency = "USD") %>%
+  # Center align specific columns.
+  cols_align(columns = c(mpg_c, hp, trq), align = "center") %>%
+  tab_style( # Apply a specific text style to certain columns.
+    style = cell_text(size = "12px"),
+    locations = cells_body(columns = c(mpg_c, hp, trq))
+  ) %>%
+  # Apply a data-driven color scale to the MSRP column.
+  data_color(columns = msrp, colors = c("white", "aquamarine")) %>%
+  # Add a title and subtitle to the table.
+  tab_header(title = "German Automobiles", subtitle = paste0("These are some nice ", emojifont::emoji("car"), "s")) %>%
+  # Add a footnote to clarify what MSRP stands for.
+  tab_footnote(locations = cells_column_labels(columns = msrp), footnote = "Manufacturer's Suggested Retail Price in USD") %>%
+  # Add a footnote to the most expensive car, noting that electric cars
+  # used to be expensive.
+  tab_footnote(locations = cells_body(msrp, msrp == max(msrp)), footnote = "Electric cars used to be expensive") %>%
+  # Add a source note to cite the source of the data.
+  tab_source_note(source_note = md("Source: **gtcars** [dataset from gt package](https://gt.rstudio.com/articles/gt-datasets.html)")) %>%
+  # Apply a theme to the table for a more polished look.
+  gtExtras::gt_theme_538()
+```
+
+
+## DT Tables
+
+When you need to present data to important stakeholders, static HTML tables can sometimes fall short. The `DT` package in R can be a great solution for this, as it lets you include interactive tables in your reports or analyses. `DT` is an interface to the JavaScript library DataTables. It's a flexible tool for displaying data in tables, with lots of customization options. Unlike the `gt` package, which is designed more for creating tables ready for publication, `DT` is really about making tables interactive for better data exploration.
+
+The `DT` package lets you sort, filter, and paginate tables, which is really useful when you're dealing with larger datasets. It also has features like filters for individual columns, and the ability to hide or rearrange columns. Plus, there are several options for how you present your data. Let's see how to use the `DT` package to create a table with a dataset of German automobiles:
+
+
+```{r, eval = knitr::is_html_output()}
+library(DT)
+
+german_cars <- gt::gtcars %>%
+  # Filter the `gtcars` dataset to include only cars from Germany.
+  filter(ctry_origin == "Germany") %>%
+  select(mfr, model, year, trim, bdy_style, hp)
+
+
+# Display the data as a DT table
+datatable(
+  # Pass the `german_cars` dataframe to the `datatable` function to
+  # display it as a DT table.
+  german_cars,
+  # Enable the `Buttons` extension, which adds various functionalities
+  # to the table.
+  extensions = "Buttons",
+  options = list(
+    # The `dom` option is used to define the table control elements to be
+    # displayed on the page and their order.
+    dom = "Bfrtip",
+    # Add buttons to the table that allow for various actions, such as
+    # copying the table data and exporting it in different formats.
+    buttons = c("copy", "csv", "excel", "pdf", "print"),
+    # Set the number of rows to be displayed per page.
+    pageLength = 5,
+    # Automatically adjust the column width to the content.
+    autoWidth = TRUE,
+    # Set the initial sorting order for the table.
+    order = list(list(1, "asc")),
+    # Enable the ability to filter data in the table.
+    searching = TRUE,
+    # Highlight any text in the table that matches the filter.
+    searchHighlight = TRUE,
+    # Allow the user to change the number of entries shown per page.
+    lengthChange = TRUE
+  )
+)
+```
+
+:::{.content-visible when-format="latex"}
+![](images/german_cars.png)
+:::
+
+## Summary
+
+In this chapter, we explored table creation in R using the `gt` package and walked through an example with the `gtcars` dataset, covering data manipulation, styling, and theming. Additionally, we introduced the `DT` package for interactive tables. At this point you should be ready to start with your own project!

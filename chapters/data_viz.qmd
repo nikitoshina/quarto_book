@@ -1,0 +1,436 @@
+---
+title: "Data Visualization"
+editor: visual
+---
+
+```{r include = F}
+library(datasauRus)
+library(tidyverse)
+library(patchwork)
+library(gridExtra)
+knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
+data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/ECON-623-Lab-2023/main/data/mexico_sample_data.csv?token=GHSAT0AAAAAAB5WTPULI26TZP545VNUFQE6Y6O4XVA") %>%
+  select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct)
+```
+
+Data visualization is undeniably the most thrilling aspect of analysis -- everyone loves colorful graphs! It's also a crucial tool for conveying complex information. In this chapter, we'll delve into two use cases of data visualization, explore the grammar of graphics, and introduce methods for creating interactive plots. Let's begin by examining the two main types.
+
+## Exploratory
+
+When you start working with a new dataset, you're essentially learning about it and the relationships between its various variables. This approach is known as exploratory data analysis, where we test assumptions about the data and search for potentially interesting connections. While it's common to rely on summary statistics like mean and standard deviation, these numbers can obscure individual data points, masking the true shape of our datasets. Therefore, directly observing the actual data is irreplaceable. For example, Matejka and Fitzmaurice \[\@inproceedings\] created datasets with identical statistics that appear distinctly different. These diverse patterns are accessible through the `datasauRus` package.
+
+```{r echo = FALSE}
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(
+    mean_x = round(mean(x), 2),
+    mean_y = round(mean(y), 2),
+    std_dev_x = round(sd(x), 2),
+    std_dev_y = round(sd(y), 2),
+    corr_x_y = round(cor(x, y), 2)
+  ) %>%
+  filter(dataset == "dino") %>%
+  select(-dataset) %>%
+  kableExtra::kable()
+```
+
+```{r}
+#| label: fig-datasaurus_dozen
+#| code-fold: true
+#| code-summary: "Show the code"
+
+datasauRus::datasaurus_dozen %>%
+  filter(dataset %in% c("away", "dino", "star")) %>%
+  mutate(dataset = str_to_upper(dataset)) %>%
+  ggplot(aes(x = x, y = y, colour = dataset)) +
+  geom_point() +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold")
+  ) +
+  facet_wrap(~dataset, ncol = 3) +
+  coord_fixed(ratio = 0.8)
+```
+
+## Explanatory
+
+So, you've compiled your results and now face the challenge of presenting them to a non-technical audience. This audience isn't concerned with the technicalities, such as whether your model used cross-validation or how you optimized your gradient-boosted forest. What they seek is a clear and convincing message. This is why you won't find fancy, overloaded graphs in client-facing presentations; it's all about delivering the message effectively. Consider the simplicity of a graph a fictional tech company used to demonstrate the superiority of their P100 processors. They focus on conveying the key message in an accessible and compelling way. Personally, I may not know the exact extent of the P100's improvement, but I am completely convinced that it is indeed better.
+
+
+```{r}
+#| label: fig-explanatory_graph
+old_pc_fun <- function(x) (x - 0.9)^(1 / 3)
+inv_old_pc_fun <- function(y) y^3 + 0.9
+new_pc_fun <- function(x) (x - 0.9)^(1 / 1.5) + 1
+inv_new_pc_fun <- function(y) (y - 1)^(1.5) + 0.9
+line_fun_h <- function(x, const) {
+  old_y <- old_pc_fun(const)
+  new_x <- inv_new_pc_fun(old_y)
+  old_x <- const
+  out <- if_else(!between(x, new_x, old_x), NA, old_y)
+  return(out)
+}
+
+
+
+old_y <- old_pc_fun(4)
+new_x <- inv_new_pc_fun(old_y)
+
+ggplot() +
+  geom_function(fun = \(x) if_else(!between(x, 1, 3), NA, new_pc_fun(x)), color = "black", linewidth = 2) +
+  geom_function(fun = \(x) if_else(!between(x, 1, 5), NA, old_pc_fun(x)), color = "lightgrey", linewidth = 1) +
+  geom_segment(aes(x = new_x, y = old_y, xend = 4, yend = old_y),
+    linetype = 3,
+    color = "black",
+    linewidth = 1
+  ) +
+  geom_segment(aes(x = new_x, y = old_pc_fun(new_x), xend = new_x, yend = old_y),
+    linetype = 3,
+    color = "black",
+    linewidth = 1
+  ) +
+  geom_segment(aes(x = new_x, y = 0.5, xend = new_x, yend = old_pc_fun(new_x)),
+    color = "lightgrey",
+    linetype = 3,
+    linewidth = 1
+  ) +
+  xlim(0.9, 4) +
+  ylim(0.4, 3) +
+  geom_text(aes(x = new_x, y = 0.45, label = "13W"),
+    hjust = 0.5,
+    vjust = 1,
+    color = "black",
+    family = "mono",
+    face = "bold",
+    size = 14 / .pt
+  ) +
+  geom_text(aes(x = 4 - .02, y = old_y + 0.05, label = "other chips"),
+    hjust = 1, vjust = 0,
+    family = "mono",
+    color = "black",
+    face = "bold",
+    size = 14 / .pt
+  ) +
+  geom_text(aes(x = 2.7, y = 2.6, label = "P100 chip"),
+    hjust = 1, vjust = 0,
+    family = "mono",
+    color = "black",
+    face = "bold",
+    size = 18 / .pt
+  ) +
+  theme_void() +
+  theme(
+    axis.title.x = element_text(
+      family = "mono", size = 16, colour = "darkgrey", face = "bold", vjust = 0.5, hjust = 0.9,
+      margin = margin(5, 0, 5, 0)
+    ),
+    axis.title.y = element_text(family = "mono", size = 16, colour = "darkgrey", face = "bold", vjust = 0.5, hjust = 0.9, angle = 90, margin = margin(0, 5, 0, 5)),
+    axis.line = element_line(color = "lightgrey", linewidth = 1),
+  ) +
+  labs(
+    x = "power consumption lower is better",
+    y = "chip performance hihger is better"
+  )
+
+
+```
+
+
+R offers a variety of packages for creating visually appealing and informative plots. One of the most popular and versatile packages for data visualization in R is `ggplot2`. We will explore the basics of using `ggplot2` to create different types of plots and customize them to suit your needs. We can load it separately `libary(ggplot2)` or with `libary(tidyverse)`.
+
+## The Grammar of Graphics
+
+The `ggplot2` package in R is founded on the principles of The Grammar of Graphics, a framework developed by Leland Wilkinson in his 1999 book, "The Grammar of Graphics" [@wilkinsonGrammarGraphics1999]. This system outlines rules for visually representing data through a combination of graphical elements and mappings between data variables and visual properties. Hadley Wickham later adapted these concepts for R [@hadleygrammar2010].
+
+Excel users might be accustomed to its straightforward plotting workflow: you simply choose a plot type, and it generates the graph for you.
+
+![Excel Plotting Interface](images/Excel_Plotting.png)
+
+In traditional plotting frameworks, scatter plots and bar plots seem entirely distinct:
+
+```{r}
+#| label: fig-scatter_bar_plots
+#| code-fold: true
+#| code-summary: "Show the code"
+point_plot <- data_raven %>%
+  count(pr_correct, name = "count") %>%
+  ggplot(aes(x = pr_correct, y = count)) +
+  geom_point(size = 3) +
+  theme_minimal()
+col_plot <- data_raven %>%
+  count(pr_correct, name = "count") %>%
+  ggplot(aes(x = pr_correct, y = count)) +
+  geom_col() +
+  theme_minimal()
+point_plot + col_plot
+```
+
+However, through the lens of the Grammar of Graphics, we observe the striking similarity between these charts. They differ only in their geometries – the first uses points, and the second columns, to represent data!
+
+The `ggplot()` function establishes the base structure of a plot in `ggplot2`. Additional layers, such as points, lines, and facets, are added using the `+` operator. This layering approach simplifies code understanding, modification, and the construction of complex, multi-layered plots that can reveal intricate patterns in the data. Gaining proficiency in `ggplot()` is invaluable, as it enhances your understanding of graphical construction. For instance, let’s refine an earlier histogram:
+
+```{r}
+#| label: fig-piece_rate_plot
+# Count occurrences of each `pr_correct` value and calculate their percentages
+count_data <- count(data_raven, pr_correct) %>% mutate(perc = n/sum(n))
+  
+# Plotting the distribution of correct answers
+count_data %>%
+  ggplot(aes(x = as.factor(pr_correct), y = perc)) + # Mapping `pr_correct` as factor to x and its percentage to y
+  geom_col(fill = "steelblue") + # Create bars with steelblue color
+  geom_text(data = filter(count_data, n > 3), aes(label = n, y = perc), nudge_y = -0.02, color = "white", fontface = "bold", size = 16/.pt) + # Add labels to bars if count > 3
+  theme_minimal(base_size = 16) + # Use minimal theme with base size 16 for aesthetics
+  theme(
+    panel.grid = element_blank(), # Remove gridlines
+    panel.grid.major.y = element_line(linewidth = 0.5, linetype = 2, color = "darkgrey"), # Style major y gridlines
+    axis.title = element_text(color = "darkgrey"), # Style axis titles
+    plot.title.position = "plot" # Position the title inside the plot area
+  ) +
+  scale_y_continuous(labels = scales::label_percent(), expand = c(0,0,0.1,0)) + # Format y axis as percentage
+  scale_x_discrete(expand = c(0,0,0,0)) + # Control expansion of x axis
+  labs(
+    x = "Number of Correct Answers", # X axis label
+    y = "Percentage of Total", # Y axis label
+    title = "Distribution of Correct Answers in Piece-rate Game" # Chart title
+  )
+```
+
+This enhanced version now includes labels, minimized grid lines, and a splash of color. For those eager to delve deeper into `ggplot2`, resources like [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org) [@hadleyGgplot22016] and [the ggplot2 cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf) are highly recommended.
+
+Next, we'll explore how to create complex plots by deconstructing the visualization process into manageable components.
+
+1. **Data**: This is the foundational layer where we specify the dataset to visualize. In `ggplot2`, we'll use the `iris` dataset, a built-in collection of iris flower measurements.
+
+```{r echo = F}
+   head(iris)
+```
+
+At the Data layer, we essentially have a blank canvas as no graphical elements have yet been defined.
+
+```{r}
+#| label: fig-data_layer
+   data_layer <- ggplot(data = iris)
+   data_layer
+```
+
+2. **Aesthetics**: This layer involves defining the visual properties that represent the data, such as x, y, color, or size. When aesthetics are added, the plotting area is set up. For example, mapping `Sepal.Length` to `x` and `Sepal.Width` to `y`:
+
+```{r}
+#| label: fig-aes_layer
+   aes_layer <- ggplot(
+     data = iris,
+     aes(x = Sepal.Length, y = Sepal.Width)
+   )
+   aes_layer
+   aes_layer$mapping
+```
+
+3. **Geometries**: Here, we decide the type of visual elements used to display the data, like points or bars. Adding geometry brings the data to visual life.
+
+```{r}
+#| label: fig-geometry_layer
+   geometry_layer <- aes_layer + geom_point()
+   geometry_layer
+```
+
+4. **Scales**: This layer defines how data values are translated into visual properties. There are different scales for aspects like color, size, or log(x). Adding a scale can change the appearance based on data attributes. For instance, mapping `Species` to color:
+
+```{r}
+#| label: fig-scales_layer
+   scales_layer <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+     geom_point() +
+     scale_color_manual(values = c("red", "orange", "pink"))
+   scales_layer
+   scales_layer$mapping
+```
+
+5. **Statistics**: Before visualizing, the data can undergo mathematical transformations, such as computing summary statistics. Histograms, for example, divide data into bins and count observations.
+
+```{r}
+#| label: fig-stat_layer
+   stat_layer <- ggplot(data = iris, aes(x = Sepal.Length)) +
+     geom_histogram(bins = 20, color = "white")
+   stat_layer
+```
+
+6. **Facets**: This involves breaking down the data into subgroups for separate visualizations. Facets can provide a clearer comparison between different categories.
+
+```{r}
+#| label: fig-facets_layer
+   facets_layer <- geometry_layer + facet_wrap(vars(Species), ncol = 3)
+   facets_layer
+```
+
+7. **Theme**: The final touches that polish your visual, tailoring its appearance to your exact preferences. This can include adjustments to fonts, colors, grid lines, and more, enhancing the overall aesthetic and readability of the plot.
+
+```{r}
+#| label: fig-theme_layer
+theme_layer <- facets_layer +
+# Apply the `theme_minimal` function to start with a blank slate but
+# with minimal default aesthetics. The `base_size` argument specifies
+# the base font size.
+theme_minimal(base_size = 18) +
+# Add points to the plot with the `geom_point` function. The color and
+# size of the points are customized.
+geom_point(size = 2, color = "#ffb86c") +
+theme(
+# Set the background color of the plot with `element_rect` inside the
+# `theme` function.
+plot.background = element_rect(fill = "#282a36", color = "#44475A"),
+# Customize the color of the axis text with `element_text`.
+axis.text = element_text(color = "#f8f8f2"),
+# Customize the color of the axis title with `element_text`.
+axis.title = element_text(color = "#f8f8f2"),
+# Customize the color of the facet label text with `element_text`.
+strip.text = element_text(color = "#f8f8f2"),
+# Remove minor grid lines with `element_blank`.
+panel.grid.minor = element_blank(),
+# Customize the color of major grid lines with `element_line`.
+panel.grid.major = element_line(colour = "#44475a")
+) +
+# Set the labels for the x and y axes with `labs`.
+labs(x = "Sepal Length", y = "Sepal Width")
+
+theme_layer
+```
+### Graphical Interfaces for `ggplot2`
+
+We can use an amazing package `esquisse` to build our plots with drag-and-drop! It let's you select data, geom, and do almost any edits you need! And at the end you will get a read to go plot!
+
+```{r}
+#| eval: false
+# install.packages('esquisse')
+library(esquisse)
+esquisser(iris)
+```
+
+![Iris Plot Made with esquisse UI](images/esquisse.png)
+You can also access `esquisse` by going to "Addins" in the top panel or with `esquisser(your_data)`. Now go learn more about this package [here](https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html).
+
+And if you are looking for more theming capabilities you can style the plot with a GUI from `ggThemeAssist`!
+
+```{r}
+# install.packages("ggThemeAssist")
+library(ggThemeAssist)
+```
+
+![ggThemeAssist in Action](images/ggthemeassist.png)
+
+You can access `ggThemeAssist` by selecting the output ggplot2 plot object and going to "Addins" and clicking on "ggplot Theme Assistant". You can see more about the package [here](https://github.com/calligross/ggthemeassist).
+
+## Interactive Plots
+
+While `ggplot2` is amazing, it doesn't offer much in terms on interactivity by default, which would enchace more dense plots and could improve user experience. However, I urge you to master the art of static visualizations and not rely on interactivity to convey your message.
+
+And if you would like to add minimal interactivity, check out `ggiraph` package. It has a number ggplot2-like function that add an additional level of interactivity such as tool tips, selections, and more.
+
+The easiest way to add interactivity is the `ggplotly` function in `plotly`. It offers an easy way to convert `ggplot2` figures into interactive visuals. This feature is particularly handy when you're dealing with a large number of data points that would be difficult to distinguish in a static plot.
+
+```{r}
+#| label: fig-ggplotly
+library(plotly) # Load the necessary libraries.
+library(ggplot2)
+
+p <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+geom_point(size = 1, alpha = 1) +
+# Create a scatter plot using `ggplot2`. The plot is of Sepal Length
+# against Sepal Width, with data points colored by Species and sized
+# by Petal Length.
+theme_minimal()
+
+# Convert the `ggplot2` plot to a `plotly` plot using the `ggplotly`
+# function.
+pp <- ggplotly(p)
+
+pp # Display the interactive plot.
+```
+### HTML Widgets
+
+For those seeking advanced web interactivity in R, `htmlwidgets` is a must see project. It seamlessly integrates R with powerful JavaScript libraries, enabling the use of prominent visualization tools like `plotly`, `leaflet`, and `DT` (Data Tables). This integration not only enriches R's capabilities but also fosters a vibrant community-driven development of various library conversions.
+
+`ggplotly` lets you convert `ggplot2` figures into interactive plots, but Plotly also lets you create these visuals from scratch. However, directly creating visuals via Plotly offers enhanced flexibility and access to features that might be unavailable through `ggplot2` conversion.
+
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-plotly
+library(plotly) # Load the `plotly` library.
+
+# Create a scatter plot using `plot_ly`, where Sepal Length is plotted
+# against Sepal Width, and color of points are determined by Species.
+p <- plot_ly(
+  data = iris,
+  x = ~Sepal.Length,
+  y = ~Sepal.Width,
+  color = ~Species,
+  type = "scatter",
+  mode = "markers",
+  marker = list(size = 6),
+  hovertemplate = paste0(
+    'Sepal Length: %{x}<br>',
+    'Sepal Width: %{y}<br>',
+    '<extra></extra>' # This line removes the additional trace info
+  )
+)
+
+# Customize the plot layout, including the title and axis labels,
+# and setting the hover mode to display information about the nearest
+# point.
+p <- layout(
+  p,
+  title = "Sepal Measurements",
+  xaxis = list(title = "Sepal Length"),
+  yaxis = list(title = "Sepal Width")
+)
+
+p # Display the plot.
+```
+::: {.content-visible when-format="latex"}
+![](images/plotly_plot.png)
+:::
+
+The `echarts4r` package in R serves as a wrapper for ECharts, a versatile JavaScript library. It supports an array of chart types such as bar, line, scatter, pie, and radar. ECharts is particularly powerful for creating complex, multi-series, interactive charts and supports a broad range of customization options. The package offers pretty animations and interactivity and can be a great alternative to plotly.
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-echarts
+library(echarts4r) # Load the `echarts4r` library.
+
+e_chart <- iris %>%
+group_by(Species) %>% # Group the data by the Species variable.
+# Initialize an Echarts plot with Sepal.Length as the x-axis.
+e_charts(Sepal.Length) %>%
+# Add a scatter plot to the existing Echarts plot with Sepal.Width as
+# the y-axis.
+e_scatter(Sepal.Width, symbol_size = 7) %>%
+# Set the range for the y-axis (Sepal.Length) from 1.5 to 5.
+e_y_axis(min = 1.5, max = 5) %>%
+# Set the range for the x-axis (Sepal.Width) from 4 to 8.
+e_x_axis(min = 4, max = 8) %>%
+e_axis_labels(
+x = "Sepal Width",
+y = "Sepal Length"
+# Label the x-axis as "Sepal Width" and the y-axis as "Sepal Length".
+) %>%
+# Add a tooltip to the plot that appears when hovering over data
+# points and displays both the Sepal Length and Sepal Width.
+e_tooltip(
+trigger = "item",
+formatter = htmlwidgets::JS("
+function(params){
+return('Sepal Length: ' + params.value[0] + '<br />Sepal Width: ' + params.value[1])
+}
+")
+)
+
+e_chart # Display the plot.
+```
+::: {.content-visible when-format="latex"}
+![](images/echarts_plot.png)
+:::
+
+
+## Summary
+
+This chapter has provided a comprehensive guide to data visualization in R, highlighting the importance of both exploratory and explanatory approaches. We've explored the versatility of `ggplot2` based on the Grammar of Graphics, and examined how to bring interactivity to visualizations. The upcoming chapter will showcase a variety of graph types and their practical applications.
+
+

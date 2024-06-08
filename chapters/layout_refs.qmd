@@ -1,0 +1,134 @@
+---
+title: "Layout and References"
+editor: visual
+---
+
+Now we look at a few basic layout features of quarto as well as how to reference literature with Zotero.
+
+## Knitr
+
+`knitr` is a package that bridges the gap between code execution and the generation of PDF/HTML documents. It executes your code and integrates its output into a markdown file, which pandoc then converts.
+
+With `knitr`, you can set cell options to manage code blocks' behavior and output. These options are placed at the start of a block within comments. For instance:
+
+```{r}
+#| echo: "fenced"
+#| label: fig-plots
+#| fig-cap: Plots
+#| fig-subcap: 
+#|   - "Sunspot"
+#|   - "US Population"
+#| layout-ncol: 2
+#| code-fold: show
+#| code-summary: "Collapse Code"
+
+# sunspot.year and uspop are built-in datasets in R
+plot(sunspot.year)
+plot(uspop)
+```
+
+A wide range of options is available, but let's focus on the most common ones. The `label`, like `fig-plots`, serves as a unique identifier for a code cell, allowing for text references such as `@fig-plots`. This is applicable to tables, chapters, and files as well. `fig-cap` and `fig-subcap` provide captions for the entire plot and individual sub-captions for each plot, respectively. The `layout-ncol` option displays plots or images in separate columns. `plot()` generates the plots. Use `code-fold = true` to enable code folding; in the example above, `show` is used to keep it open by default. The `code-summary` option offers a description for collapsed code blocks.
+
+Other frequently used code block options include:
+
+| Option   | Value    | Description                                                 |
+|----------|----------|-------------------------------------------------------------|
+| eval     | true     | Dictates whether the code should be evaluated and included  |
+| echo     | true     | Determines whether to display code alongside results        |
+| warning  | true     | Controls the display of warnings                            |
+| error    | false    | Governs the display of errors                               |
+| message  | true     | Manages the display of messages                             |
+| include  | true     | Prevents any output (code, results) from being included     |
+| tidy     | false    | Formats code neatly when displayed                          |
+| results  | "markup" | Specifies output format (markup, asis, hold, hide)          |
+| cache    | false    | Caches results for future rendering                         |
+
+: R Markdown Cheat Sheet
+
+`tidy: true` is particularly helpful for neatly formatting code included in your document.
+
+## Div Blocks
+
+For those acquainted with HTML, `<div>` blocks will be familiar. You can create div blocks by wrapping text with three `:::` or more semicolons. This is useful for arranging images in a grid, as shown below:
+
+
+``` 
+::: {layout-ncol="2"}
+![Mellow](./images/mellow_jess.png)
+
+![Angry](./images/angry_jess.png)
+:::
+```
+
+Div blocks should be isolated from adjacent blocks by blank lines. They can also be nested within other Divs. Here's an example of placing a note and additional text in the margin:
+
+```         
+:::: column-margin
+
+::: callout-note
+Here is a Note!
+:::
+
+More content.
+::::
+```
+
+The `pagebreak` shortcode allows for the insertion of a native page break, compatible across various formats:
+
+```{.markdown shortcodes="false"}
+First Page
+
+{{< pagebreak >}}
+
+Second Page
+```
+
+Different languages like R, YAML, HTML, and LaTeX have their own commenting syntaxes. The universal commenting syntax in Quarto is the HTML-style `<!-- comment here -->`.^[In RStudio, use Ctrl + Shift + C (or Command + Shift + C on macOS) to comment out a line of text.]
+
+## Diagrams
+
+Create elegant [UML](https://www.uml.org/) (Unified Modeling Language) diagrams within Quarto using tools like [Mermaid](https://mermaid.js.org/) and [Graphviz](https://graphviz.org/). For example, the following flowchart was created with Mermaid:
+
+```{mermaid, label = "fig-mermaid_example"}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+```
+
+## Citations
+
+> "Proper citation adds credibility to your work and acknowledges the work of others." - *ChatGPT*
+
+Citing sources in your work is streamlined with Quarto's integration with Zotero. Quarto uses Pandoc to generate citations and bibliographies in your chosen style. To source your citations, include a .bib or .bibtex file, and optionally a .csl file for citation style, in your YAML header:
+
+```
+bibliography: references.bib
+```
+
+Cite sources in your document using `@yourcitation9999`, the moment you cite your first source Quarto will make a citation file for you. Visual mode offers suggestions, and inputting an article's DOI will insert it even if not in your bibliography. For detailed citation methods, see [Quarto Citation](https://quarto.org/docs/authoring/footnotes-and-citations.html) and [Pandoc Citations](https://pandoc.org/MANUAL.html#citations).
+
+| Markdown Format                               | Output (author-date format)               |
+|-----------------------------------------------|-------------------------------------------|
+| \@abadie2017 says cluster you SE.             | @abadie2017 says cluster you SE.          |
+| Some thing smart \[\@abadie2017; \@bai2009\]. | Some thing smart [@abadie2017; @bai2009]. |
+| Abadie says cluster \[-\@abadie2017\].        | Abadie says cluster [-@abadie2017].       |
+
+Zotero simplifies adding citations to your document. As you type, Zotero suggests citations for your bibliography file. For documents with over 10 citations, consider using Better Bibtex, just make sure  Zotero is open.
+
+To generate citations from a document (e.g., cited in Obsidian) without manual reciting, use the `bbt_update_bib()` function from the [rbbt](https://github.com/paleolimbot/rbbt) package. Ensure Zotero is active and you're in the markdown document you wish to update. The `bbt_update_bib()` function will create a bibliography, with additional arguments as needed.
+
+```{r, eval=FALSE}
+bbt_update_bib(
+  path_rmd, # Path to your Markdown document.
+  path_bib = bbt_guess_bib_file(path_rmd), # Path to the references.bib file
+  translator = bbt_guess_translator(path_bib), # Bibliography file type: CSL-JSON, BibLaTeX, BibTeX, CSL YAML.
+)
+```
+
+## Summary
+
+This chapter covered `knitr`, a tool for integrating code into documents, highlighting features like code block options and div block layouts. It also discussed creating UML diagrams with Mermaid and Graphviz, and the use of Zotero for citations in Quarto. In the next chapter, you will learn how to effectively collaborate with less technical stakeholders using Google Docs.
+
+

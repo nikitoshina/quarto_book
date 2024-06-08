@@ -1,0 +1,164 @@
+---
+title: "APIs"
+---
+
+In this chapter, we will explore what APIs are, how to effectively make API requests, and their application in R for efficient data gathering.
+APIs are invaluable! They provide a streamlined method of interacting with other servers to obtain data. Imagine needing to manually collect songs from Spotify or web scrape weather data instead of simply making an API request. So, what exactly is an API?
+
+Consider it this way: when you enter a restaurant, you take a seat and order food from the menu. You don't march into the kitchen to instruct the chef - that would be chaotic and inefficient. Instead, your order is delivered by a waiter.
+
+In this analogy, you're the client, the kitchen is the server, your order is the request, the food prepared is the response, and the waiter is the API.
+
+Much like a waiter knows the protocols of taking your order, conveying it to the kitchen, and serving you, an API dictates how to make requests, which are valid, the delivery method of responses, and their format.
+
+The waiter shields you from the kitchen's complexity and heat, similar to how an API safeguards you from the server-side operations' intricacies. You're not required to understand the chef's cooking process; all you need to do is relay your order to the waiter and wait for your meal. Likewise, using an API doesn't necessitate an understanding of the server-side procedures, just make the request correctly and handle the response received.
+
+## Monsieur!
+
+Communicating with an API involves sending a request with the required data. There are several types of requests you can make:
+
+1. **GET Request**: This is akin to asking a waiter for a meal. It involves requesting data without making changes. In the context of APIs, a GET request fetches information from the server.
+
+2. **POST Request**: This is analogous to ordering a new dish to be added to a menu. It entails giving the API precise instructions to ask the server to add a new item. In API terminology, a POST request transmits data to the server, generating a new entry.
+
+3. **PUT or PATCH Request**: Suppose you want to adjust your order, say, add extra cheese to your burger. This action corresponds to a PUT or PATCH request in the API domain, used to update existing information. While PUT updates the entire record, PATCH only updates the specific parts indicated.
+
+4. **DELETE Request**: Imagine canceling and removing an item from your order after receiving your meal. This action aligns with a DELETE request, which deletes existing data from the server.
+
+These basic types of HTTP requests are similar to your interaction with a waiter at a restaurant. Just as clear communication with the waiter is necessary for a correct order, using the appropriate request type is crucial when dealing with APIs to obtain the required data or perform the desired operation.
+
+## Your First Order
+
+Fundamentally, an API request is similar to your browser downloading a webpage when you open a link. For instance, you can fetch data from the US Census ACS 2021 by following this link: <https://api.census.gov/data/2021/acs/acs5?get=NAME,group(B01001)&for=us:1>
+
+Usually, an interface is needed to interact with an API, rather than constructing a text link. There's a plethora of them, but I'm partial to [HTTPie](https://httpie.io/cli), a CLI tool that also provides online and local applications!
+
+To install it, simply run `brew install httpie` in a terminal if you have Homebrew or follow the [instructions on their website](https://httpie.io/cli), where you can also access their applications.
+
+Whether you use `http` in your terminal or go to their website, you can easily make your first API request.
+
+`https httpie.io/hello`
+
+This command will return a header with information and a return message formatted as a JSON string:
+
+```json
+{
+    "ahoy"` [
+        "Hello, World! 👋 Thank you for trying out HTTPie 🥳",
+        "We hope this will become a friendship."
+    ],
+    "links"` {
+        "discord"` "https://httpie.io/discord",
+        "github"` "https://github.com/httpie",
+        "homepage"` "https://httpie.io",
+        "twitter"` "https://twitter.com/httpie"
+    }
+}
+```
+
+> JSON (JavaScript Object Notation) is a light, readable data format that both humans and machines can readily parse and generate. Its structure consists of key-value pairs and arrays, making it a prevalent choice in web APIs and data interchange.
+
+An API request mainly includes three components: the request endpoint, header, and body.
+
+1. **An API endpoint** refers to a specific URL or URI of a web service, serving as the access point for making requests and receiving responses from the API.
+
+2. **Request Header:** This contains supplemental details about the request, such as metadata or server instructions. It includes information like the HTTP method (GET, POST, PUT, DELETE), content type, authentication credentials, and more. Headers provide context or control the behavior of the API request.
+
+3. **Request Body:** This carries any data or parameters that need to be sent to the server with the API request. Primarily used for methods like POST, PUT, or PATCH, the body can contain various data formats such as JSON, XML, form data, or binary data, depending on the API's requirements.
+
+Together, the request header and body allow for effective communication with an API, specifying the necessary information, desired action, data to be sent, and any additional instructions or authentication details.
+
+Let's add a header and body to a request:
+
+`http PUT pie.dev/put X-API-Token:123 name=John`
+
+Here, we're using a `PUT` *method* to send data to an API *endpoint* `pie.dev/put`, adding an X-API-Token `123` *header*, and specifying a 'name' field value as 'John' in the *body*. You will receive a JSON response with details on the successful POST request!
+
+If this seems overwhelming, or you prefer a more convenient way to interact with APIs, I recommend using the HTTPie application or a service like PostMan, which provides a GUI.
+
+## Utilizing APIs in R
+
+In R, APIs open the door to a wealth of intriguing datasets for your data analysis projects. Let's delve into API implementation in R using the `httr` and `jsonlite` packages.
+
+```{r}
+#| eval: false
+install.packages(c("httr", "jsonlite"))
+```
+
+Once installed, load the packages:
+
+```{r}
+library(httr)
+library(jsonlite)
+```
+
+Let's start interacting with APIs using the `GET()` function from the `httr` package. We'll extract data from the [Gutendex API](https://gutendex.com/), offering access to Project [Gutenberg](https://www.gutenberg.org/) ebook metadata. The code below fetches data from the API, particularly authors alive before 500 BCE (?author_year_end=-499):
+
+```{r}
+res <- GET("https://gutendex.com/books?author_year_end=-499") 
+```
+
+The `GET()` function dispatches the HTTP GET request to the specified URL, and the API response gets stored in the `res` variable.
+
+Inspect the response by printing the `res` object:
+
+```{r}
+print(res)
+```
+
+The next step is to parse the JSON response using `jsonlite`'s `fromJSON()` function:
+
+```{r}
+data <- fromJSON(rawToChar(res$content))
+```
+
+`rawToChar()` transmutes the raw Unicode content of the response into a character vector. Subsequently, `fromJSON()` transforms the character vector into a structured R object, such as a list or a data frame.
+
+Look into the data by accessing its elements. For instance, you can display the book titles:
+
+```{r}
+head(data$results$title, n = 5)
+```
+
+Voila! You've successfully made an API request in R and fetched data for further exploration.
+
+### Incorporating Request Body and Headers
+
+To fine-tune our API request, we can use the `query` parameter to specify the request body, targeting authors alive before 500 BCE and their works in Epic Poetry in French. The `add_headers()` function is employed to append necessary request header information, while the `getElement()` function is used within the pipeline to extract specific elements from a list similar to `$` and `[[`.
+
+
+```{r}
+library(httr)
+library(jsonlite)
+
+# Execute the GET request with query parameters
+response <- GET(
+  url = "https://gutendex.com/books",
+  query = list(
+    author_year_end = -499, # Authors alive before 500 BCE
+    topic = "Epic Poetry", # Focused on Epic Poetry
+    languages = "fr" # Books in French
+  ),
+  add_headers("Key" = "Your Key") # API key if needed
+)
+
+# Parsing and extracting the title from the response
+titles <- response |>
+  content(as = "text") |> # Convert raw response to text
+  fromJSON() |> # Parse JSON text to R list
+  getElement("results") |> # Access the 'results' part of the list
+  getElement("title") # Access the 'title' part of each item in 'results'
+
+# Display the titles
+print(titles)
+
+```
+
+By incorporating a request body or headers, you can furnish extra data or authentication details to your API requests.
+
+Always refer to the API documentation for specific requirements and the headers available.
+
+## Summary
+
+In this chapter, you gained a fundamental understanding of API requests, including GET, POST, PUT/PATCH, and DELETE. You also made your first API request in R, learning about the technical aspects of API communication such as endpoints, headers, and bodies. In the next chapter, we'll build on this knowledge by exploring how to interact with Google Sheets and Google Drive using R!
+

@@ -1,0 +1,203 @@
+---
+title: Modular Code
+eval: false
+code-annotations: hover
+---
+
+Working within a single file is a smooth ride until you hit a couple of hundred lines and searching for bugs, edits, and simply understanding your location in the file becomes rather problematic. We can add comments and have something like Table of Contents, use search to move around the file, but all of this is just a bandaid and will be completely useless when sharing the code with others. More problems araise when you have to download multiple libraries and you get name-space conflicts or when all the names that make sense for variables and functions are taken and you end up with `very_important_variable_2_winz`. 
+
+The solution to this is using modules. Usually, in R we use functions and packages to organize our projects. However, projects are pretty complicated and often it is not worth squeezing your code into a package. So we would like to turn towards modules as they provide local environment, meaning all the packages you load and all the variables you define do not leak and clash in the global environment. Additionally, modules make it easy to extend your code to different files and reuse them in different projects. Each file is self contained, so change in one doesn't affect the other.
+
+
+## Reuse Functions
+
+One of the easiest steps to improve your code and make it easier to maintain and understand is to put all the repeating actions into functions. While it might be tempting to break your code down into small functions for each tiny task, such as creating separate functions for mean, standard deviation, t-score, and p-score calculations, the rule of thumb should be to focus on the goal of a function.
+
+If you find that you need to reuse a portion of the larger function, it's a good practice to go ahead and split it into a separate function. By abstracting your code into functions, you gain the benefits of code reusability and improved modularity. Additionally, abstracting code into functions helps break down deeply nested code into more manageable pieces, making it easier to read and understand.
+
+The goal is to strike a balance between creating functions that serve a specific purpose and avoiding an excessive number of small functions. The purpose-driven approach ensures that each function communicates its intended goal effectively, leading to improved code readability. By abstracting your code and organizing it into purposeful functions, you'll achieve code that is easier to comprehend and maintain.
+If you are doing something more then a few times it likely belongs into a function.
+
+We want to calculate mean, standard deviation, on our a multiple datasets. We could run mean and sd on each separately, but lets define a single function.
+
+Benefits of encapsulating code into functions for reusability and abstraction.
+Example: Creating a function to calculate the mean and standard deviation of a numeric vector.
+
+```{r}
+calculate_stats <- function(data) {
+  mean_value <- mean(data)
+  sd_value <- sd(data)
+  return(list(mean = mean_value, sd = sd_value))
+}
+```
+
+
+
+## Split It 
+
+Once your file exceeds 100+ lines it makes sense to separate it into multiple files based on the function. 
+This will drastically improve your code's readability. You can use `source` to load the files, creating separate modules for data loading, data preprocessing, and data visualization.
+
+You can run these scripts separately, for instance you first run a `load_data` script that saves the loaded data and then run the `data_preprocessing` and `data_visualization` scripts. Or you can source the files and use the functions in the main file. Additionally, you can load the scripts into the same local environment with `local = TRUE`.
+
+> TODO pull file names into a proper file-name format
+
+```{r}
+# data_loading.r
+load_data <- function(file_path) {
+  # Code to load data from a file
+}
+
+# data_preprocessing.r
+preprocess_data <- function(data) {
+  # Code to preprocess data
+}
+
+# data_visualization.r
+visualize_data <- function(data) {
+  # Code to visualize data
+}
+```
+
+```{r}
+source(data_loading.r, local = TRUE)
+source(data_preprocessing.r, local = TRUE)
+source(data_visualization.r, local = TRUE)
+```
+
+Now let's delve into the functionality of the `source` command in R, particularly when dealing with multiple files. The example shows the process through snippets encompassed in distinct files: "name.csv" holds a single entry, "Dima"; "load_data.r" loads the data from the csv; "add_title.r" defines the `add_title` function, combining a name and a title; "say_hi.r" defines `say_hi`, appending "Hi" to a name; and "main.r" utilizes the source command to load these modules and showcases their utilization in a sequence of chained operations. Ultimately, the code yields the output "Hi Mr. Dima," highlighting how `source` integrates functions across multiple files.
+
+```{r}
+# name.csv
+Dima # CSV file named "name.csv" with a single entry, "Dima".
+```
+
+```{r}
+# load_data.r
+# Read `name.csv` and get the name of the column (name is stored and
+# column name).
+my_name <- read.csv("name.csv", header = FALSE)
+```
+
+```{r}
+# add_title.r
+source("load_data.r")
+# Defines a function called `add_title`, which concatenates a title
+# and name to create a new string.
+add_title <- function(name, title) {
+return(paste(title, name))
+}
+```
+
+```{r}
+# say_hi.r
+# Defines a function called `say_hi`, which concatenates a name and
+# "Hi".
+say_hi <- function(name) {
+return(paste("Hi", name))
+}
+```
+
+```{r}
+# main.r
+# Named "main.r," loads the `say_hi` and `add_title` modules from
+# their respective files using the source function.
+source("say_hi.r")
+source("add_title.r")
+
+title <- "Mr."
+
+add_title(myName, title) |>
+say_hi() |>
+print()
+```
+
+```{r}
+#| eval: true
+#| echo: false
+print("Hi Mr. Dima")
+```
+
+## `box` It 
+
+The 'box' system in R allows you to convert regular R files into reusable modules, enabling simplified code sharing without packaging. You can export functions by placing the `#' @export` directive before the function's name. For instance:
+
+```{r}
+# say_hi.r
+#' @export
+say_hi <- function(name) {
+  return(paste("Hi", name))
+}
+```
+
+The `box::use` function serves as a universal import declaration, superseding traditional library or require functions in base R. It provides more explicit and flexible loading of packages or modules, reducing errors.
+
+For example, instead of loading entire libraries:
+
+```{r}
+library(ggplot2)
+```
+
+You'd use:
+
+```{r}
+box::use(ggplot2[...])
+```
+
+`Box::use` allows specific function loading, which avoids name clashes and improves traceability of function origin. It allows aliasing to assign a different name to a package or its functions when imported:
+
+```{r}
+# load_data.r
+# Load `read.csv` function from `utils` and rename it to `read`
+box::use(
+  utils[read = read.csv]
+)
+
+#' @export
+my_name <- read("name.csv", header = FALSE) 
+```
+
+```{r}
+# add_title.r
+#' @export
+add_title <- function(name, title) {
+  return(paste(title, name))
+}
+```
+
+These modules can be stored in a central location or within individual projects and can be imported and used with the `box::use` function, like:
+
+```{r}
+# main.r
+box::use( # Load the files
+./say_hi,
+./add_title,
+./load_data[my_name]
+)
+
+box::use(
+stringr[str_split_1] # Load function from `stringr` package.
+)
+
+title <- "Mr."
+
+# Access the function and the variable using `module$variable`.
+add_title$add_title(my_name, title) |>
+say_hi$say_hi() |>
+# `str_split_1` splits a string by space and returns a character
+# vector.
+str_split_1(pattern = " ")
+```
+```{r}
+#| eval: true
+#| echo: false
+"Hi Mr. Dima !" |> stringr::str_split_1(pattern = " ")
+```
+
+Modules in `box` share similarities with R packages, but are simpler to create and use, and offer features such as hierarchical nesting.
+
+`box` is an amazing package that will greatly aid you on larger projects. It is also a part of `rhino` shiny framework. There is a lot more to it, so make sure to read the official [ documentation ](https://klmr.me/box/articles/box.html).
+
+## Summary
+
+In this chapter, we explored managing complex R scripts by modularizing them into functions and separate files. We discussed using functions for repetitive tasks, dividing lengthy scripts into smaller, targeted files, and utilizing the `box` system for creating reusable modules. These strategies enhance code readability, maintainability, and prevent namespace conflicts, proving beneficial for managing larger R projects. In the next section, we will delve deeper into the research process, beginning with literature research.

@@ -1,0 +1,547 @@
+---
+title: "Data Visualization Fundamentals"
+editor: visual
+format:
+  html:
+    echo: false
+    warning: false
+    # code-fold: true
+    # code-summary: "Show the code"
+tidy: true
+---
+
+```{r include=FALSE}
+library(patchwork)
+library(tidyverse)
+```
+
+We are about to embark on a wonderful journey into the world of data visualization. This chapter was not originally planned, but the more I thought about the importance of basic psychophysics concepts, their relationship to design, and data visualization, the more I felt compelled to include them.
+
+Let's start with a simple question: What is data visualization? Data visualization is the graphical representation of information and data.
+
+Next question: What are the goals of data visualization?
+
+1.  Effective communication of information and insights
+2.  Analysis and exploration
+3.  Decision-making
+
+It may sound obvious, but the complexity lies in how we achieve these goals. The main power of data visualization lies in its ability to present large, multidimensional datasets in a succinct, easy-to-consume form. Our memory has limits, as we can typically hold about 5±2 things in our heads at one time. Visuals can help us reduce and simplify information.
+
+So, how do we reach the point where our visuals help with better understanding of the data?
+
+## Perceptual Processing
+
+To answer that question, we'll start with how humans perceive the world, or more accurately, how our brains process visual information. Understanding perceptual processing will help us distinguish why certain visual techniques are more effective than others, reveal the inherent limitations in human visual perception. Moreover, knowledge of perceptual processing is instrumental in guiding design decisions.
+
+Visual perception occurs in two phases (similar to Daniel Kahneman's systems 1 and 2 [@kahnemanThinkingFastSlow2011]):
+
+Human visual system has an extraordinary ability to detect certain elements instantly and simultaneously as soon as an object is seen without deliberate attention or conscious effort. This **Preattentive Processing** stage is primarily concerned with the immediate perception of fundamental visual attributes such as orientation, color, texture, and motion. During this phase, visual data is temporarily held in the iconic memory, a form of transient storage that is constantly refreshed with new visual input.
+
+Contrasting with the instantaneous nature of preattentive processing, the subsequent stage of **Serial Processing** involves a more deliberate and sequential approach to processing visual information. It is slower, allowing for a more thorough and detailed analysis of the visual data. This stage engages both working memory and long-term memory, facilitating the assimilation of new information with existing knowledge stored in the brain.
+
+### Pre-attentive Processing
+
+Our current focus is on System 1, as it is the system that "sees" and directs our attention. Intriguingly, certain elements within a visual scene are processed pre-attentively, without conscious attention, in less than 200-250 milliseconds -- same duration as an eye movement. This rapid processing is managed in parallel by the low-level vision system, which allows for the simultaneous analysis of multiple visual elements. The pre-attentive system is performing several tasks:
+
+-   **Target detection**: Users rapidly and accurately detect the presence or absence of a "target" element with a unique visual feature within a field of distractor elements.
+-   **Boundary detection**: Users rapidly and accurately detect a texture boundary between two groups of elements, where all the elements in each group have a common visual property.
+-   **Region tracking**: Users track one or more elements with a unique visual feature as they move in time and space.
+-   **Counting and estimation**: Users count or estimate the number of elements with a unique visual feature.
+
+Let's consider an example with a number wall, try to count all number "2":
+
+|     |     |     |     |     |     |
+|-----|-----|-----|-----|-----|-----|
+| 1   | 2   | 7   | 9   | 8   | 3   |
+| 5   | 6   | 4   | 1   | 7   | 9   |
+| 6   | 7   | 4   | 2   | 3   | 6   |
+| 2   | 7   | 5   | 7   | 9   | 0   |
+| 1   | 3   | 8   | 5   | 8   | 3   |
+| 2   | 0   | 0   | 3   | 7   | 4   |
+
+Now, with highlights, finding the number 2 becomes much faster, doesn't it?
+
+|       |       |     |       |     |     |
+|-------|-------|-----|-------|-----|-----|
+| 1     | **2** | 7   | 9     | 8   | 3   |
+| 5     | 6     | 4   | 1     | 7   | 9   |
+| 6     | 7     | 4   | **2** | 3   | 6   |
+| **2** | 7     | 5   | 7     | 9   | 0   |
+| 1     | 3     | 8   | 5     | 8   | 3   |
+| **2** | 0     | 0   | 3     | 7   | 4   |
+
+Pre-attentive processing equips our visual system with the remarkable ability to quickly and accurately discern specific visual properties, even before we consciously register them. This includes identifying whether a target is present or absent in a visual field, detecting texture boundaries between two groups of elements with ease, and smoothly tracking an element distinguished by a unique visual feature as it moves across space and time.
+
+Example: Can you rapidly detect the presence of a red circle?
+
+```{r}
+#| label: fig-red_dot
+#| layout-ncol: 2
+set.seed(42)
+points = 40
+coords <- data.frame(x = runif(n = points, min = 0, max = 1),
+                     y = runif(n = points, min = 0, max = 1),
+                     color = c(rep(F,times = points - 1),T))
+no_red <- coords |> ggplot(aes(x, y)) +
+    geom_point(size = 8, show.legend = F, color = "steelblue") +
+    theme_void() +
+    coord_cartesian(clip = "off") 
+with_red <- coords |> ggplot(aes(x, y, color = color)) +
+    geom_point(size = 8, show.legend = F) +
+    theme_void() +
+    coord_cartesian(clip = "off") +
+    scale_color_manual(values = c("steelblue","red"))
+no_red
+with_red
+```
+
+<!-- https://www.csc2.ncsu.edu/faculty/healey/PP/#:\~:text=A%20simple%20example%20of%20a,target%20is%20present%20or%20absent. -->
+
+<!-- ```          -->
+
+<!-- We do not attend to everything we see -->
+
+<!-- We do not have good working memeory for what we see -->
+
+<!-- ``` -->
+
+The variety of visual features that we can detect is remarkably large[@healeyPerceptionVisualization2012]. Here are some types that are most often used in visualizations involving preattentive processing:
+
+::: {layout-ncol="4"}
+
+![Line (blob) orientation](images/data_viz_fundamentals_png/tg_orient.png)
+
+![Length, width](images/data_viz_fundamentals_png/tg_len.png)
+
+![Closure](images/data_viz_fundamentals_png/tg_closure.png)
+
+![Size](images/data_viz_fundamentals_png/tg_size.png)
+
+![Curvature](images/data_viz_fundamentals_png/tg_curve.png)
+
+![Density, contrast](images/data_viz_fundamentals_png/tg_den.png)
+
+![Number, estimation](images/data_viz_fundamentals_png/tg_num.png)
+
+![Color (hue)](images/data_viz_fundamentals_png/tg_hue.png)
+
+![Intensity, luminosity, binocular lustre](images/data_viz_fundamentals_png/tg_lum.png)
+
+![Intersection](images/data_viz_fundamentals_png/tg_isect.png)
+
+![Terminators](images/data_viz_fundamentals_png/tg_term.png)
+
+![2D depth cues](images/data_viz_fundamentals_png/tg_3d_depth.png)
+
+::::{.content-visible when-format="html"}
+![Flicker](images/data_viz_fundamentals/tg_flick.gif)
+
+![Direction of motion](images/data_viz_fundamentals/tg_dir.gif)
+
+![Velocity of motion](images/data_viz_fundamentals/tg_vel.gif)
+
+![Lighting direction](images/data_viz_fundamentals/tg_3d_light.gif)
+::::
+
+:::
+
+#### Feature Hierarchy
+
+Multiple features such as color and shape can represent multiple types of data in a single image. But, it's important to make sure that these visual features don't mix up and hide the data we want to show. Think of it like trying to find a red apple in a bowl full of green apples -- it's easy because the color stands out.
+
+Sometimes, our eyes like one visual feature more than another. For example, when we're looking at shapes, colors can be distracting and make it harder to see the shape patterns. But, if the colors are all the same, the shapes stand out clearly. We struggle to perceive more then two categories. Try to find the groups of points below, which groups do you spot first?
+
+```{r}
+color_points <- complete(tibble(x = 1:6, y = 1:6), x, y) %>%
+  mutate(color = ifelse(x >= 1 & x <=2, T,F)) %>%
+  ggplot(aes(x,y, color = color)) + 
+  geom_point(size = 4, show.legend = F) +
+  xlim(c(1,6)) +
+  ylim(c(1,6)) +
+  coord_fixed(ratio = 1, expand = T, clip = "off") +
+  theme_void()
+color_shape_points <- complete(tibble(x = 1:6, y = 1:6), x, y) %>%
+  mutate(color = ifelse(y > 2 & y < 5, T,F)) %>%
+  mutate(shape = ifelse(x > 2 & x < 5, T,F)) %>%
+  ggplot(aes(x,y, color = color, shape = shape)) + 
+  geom_point(size = 4, show.legend = F) +
+  xlim(c(1,6)) +
+  ylim(c(1,6)) +
+  coord_fixed(ratio = 1, expand = T, clip = "off") +
+  theme_void()
+color_mix_shape_points <-complete(tibble(x = 1:6, y = 1:6), x, y) %>%
+  mutate(color = ifelse(y <= 2, T,F)) %>%
+  mutate(shape = ifelse(sample(0:1,size = nrow(.),replace = TRUE), T,F)) %>%
+  ggplot(aes(x,y, color = color, shape = shape)) + 
+  geom_point(size = 4, show.legend = F) +
+  xlim(c(1,6)) +
+  ylim(c(1,6)) +
+  coord_fixed(ratio = 1, expand = T, clip = "off") +
+  theme_void()
+mix_color_shape_points <- complete(tibble(x = 1:6, y = 1:6), x, y) %>%
+  mutate(shape = ifelse(x >= 5, T,F)) %>%
+  mutate(color = ifelse(sample(0:1,size = nrow(.),replace = TRUE), T,F)) %>%
+  ggplot(aes(x,y, color = color, shape = shape)) + 
+  geom_point(size = 4, show.legend = F) +
+  xlim(c(1,6)) +
+  ylim(c(1,6)) +
+  coord_fixed(ratio = 1, expand = T, clip = "off") +
+  theme_void()
+```
+
+```{r}
+#| label: fig-feature-hierarchy
+#| fig-cap: "Examples for Feature Hierarchy"
+#| fig-subcap: 
+#|   - ""
+#|   - ""
+#|   - ""
+#|   - ""
+#| layout-ncol: 2
+color_points
+color_mix_shape_points
+color_shape_points
+mix_color_shape_points
+```
+
+
+@fig-feature-hierarchy outlines the hierarchy of hue and form features in perception: (a) Horizontal hue boundaries are easily noticed with constant form, demonstrating preattentive detection of hue differences. (b) Vertical hue boundaries stand out against varied forms, showing hue's preattentive visibility despite form changes. (c) Vertical form boundaries are detectable with uniform hue, indicating preattentive sensitivity to form variations. (d) However, horizontal form boundaries are not preattentively identifiable amid random hue variations, highlighting challenges in detecting form changes without focused attention.
+
+
+So, when we're deciding how to visually represent our data, we should pick the features that make the most important information stand out. This way, we avoid hiding the data we want to show. Common ways to visually encode numbers in order from most easily perceived to least:
+
+1.  Position along a common scale, axis, and baseline
+2.  Position along non-aligned axes
+3.  Length, direction, angles of relative lines/ slope
+4.  Area
+5.  Volume, curvature, arcs / angles within a shape
+6.  Color or shading
+
+
+#### Integral vs Separable
+
+We previously focused on accurately extracting a number from a visual representation, our current concept centers on whether symbols can be rapidly identified and differentiated.
+
+Consider a scenario where we encode two separate variables in a discrete dataset using two distinct visual properties, handling three is more complex, say: color and shape. For instance, when presented with red squares, blue squares, red circles, and blue circles, will our perception categorize them into four distinct groups based on both color and shape, or will we primarily perceive them as two broader groups divided by color (red/blue) and shape (square/circle)? The critical question is how these different properties interact. Will they make it easier or harder to differentiate and understand the data?
+
+Integral: Here, the two properties are perceived as a whole. The interaction between them is such that they are viewed as a single, unified element. Separable: In this case, each property is judged independently. The viewer can easily separate and evaluate each characteristic without interference from the other.
+
+![@wareInformationVisualizationPerception2021](images/integral_vs_separable.png)
+
+<!-- ware 2000 picture, munzer 2015 -->
+
+#### Nonlinear Perception
+
+Perception is not uniformly linear. There are some things we perceive accurately, such as length, while there are others that we tend to underestimate, such as the true difference between two values due to our ability to sense ratios.
+
+For example, you are pretty good at estimating lengths and temperatures after a little practice. However, in some domains, we tend to underestimate differences and miss the ratios. Our perception adjusts to the strength of the signal; for instance, our eyes adjust to bright daylight and to darkness in a room.
+
+Visualization is about turning numbers into pictures. However, the goal is for the user to be able to translate these pictures back into numbers accurately.
+
+One tricky task in visualization is translating numbers into areas. This is not only difficult to decipher but also to encode. What are we comparing when we look at areas---radius, area, or sensation?
+
+Let's consider an example. If you have three red circles and one green circle, which red circle represents a number that is twice as big as the green one?
+
+```{r}
+#| label: fig-circle_accuracy
+make_a_circle <- function(radius, color, label){
+  ggplot() + 
+  xlim(c(0,5)) +
+  ylim(c(0,5)) +
+  coord_fixed(ratio = 1, expand = T) +
+  theme_void() +
+  ggforce::geom_circle(aes(x0 = 2.5, y0 = 2.5 ,r= radius), fill=color) +
+  geom_text(aes(x = 2.5, y = 2.5, label = label), fontface = "bold", color = "black", size = 12)
+}  
+# Original
+circle_1 <- make_a_circle(radius=1, color = "green", label = 1)
+# Area
+circle_2 <- make_a_circle(radius=1*sqrt(2), color = "red", label = 2)
+# Steven's Law
+circle_3 <- make_a_circle(radius=1*sqrt(2)^(1/0.7), color = "red", label = 3)
+# Radius
+circle_4 <- make_a_circle(radius=1*2, color = "red", label = 4)
+circle_1 + circle_2 + circle_3 + circle_4
+```
+
+Funny enough, all three are correct! The second circle has twice the area of the original, the third circle appears to have twice the area according to Stevens' Law (which we will discuss shortly), and the fourth circle has twice the radius. Yes, it is indeed confusing! The way we perceive proportional differences in sensation is not a one-to-one relationship with the measurement.
+
+Our goal in data visualization is to transform visuals into numbers in a way that makes it easy for the reader to understand.
+
+Now, let's talk about Stevens' power law. Stevens was interested in this exact question and formulated Stevens' Law in 1960.
+
+$$
+s(x) = ax^{b}
+$$ {#eq-stevens}
+
+$s$ is sensation, $x$ is intensity of the attribute (ratio) $a$ is a multiplicative constant (usually 1 or close to 1), and $b$ is the exponent.
+
+$b > 1$: overestimate;
+
+$b < 1$: underestimate
+
+Experimental results for $b$ center around 1 for lengths, 0.9 for area, and 0.7 for volume.
+
+```{r}
+#| label: fig-stevens_power_law
+stevens_function_factory <- function(b) {
+    function(x) {
+        1 * x ^ b
+    }
+}
+plot_functions <- function(x,y,b,category,angle) {
+    list(
+    list(geom_function(fun = stevens_function_factory(b), linewidth = 1.2)),
+    list(geom_text(aes(x=x,y=y, label = category), angle=angle))
+    )
+}
+stevens_data <- tribble(
+  ~category         , ~b  , ~x , ~y , ~angle,
+  "Saturation (1.7)", 1.7 , 2.0, 4.0, 72,
+  "Length (1)"      , 1.0 , 4.1, 3.9, 45,
+  "Area (0.87)"     , 0.87, 4.0, 3.1, 35,
+  "Brightness (0.5)", 0.5 , 4.2, 1.8, 14.5,
+  "Duration (1.1)"  , 1.1 , 3.4, 4.3, 53
+)
+ggplot() +
+    ylim(0,5) +
+    pmap(stevens_data,plot_functions)+
+    xlim(0,5) +
+    coord_fixed(ratio = 1, expand = F) + 
+    theme_minimal() +
+    labs(x="Intensity", y = "Sensation") + 
+    theme(panel.grid.minor = element_blank())
+```
+
+So, how would we apply this apparent scaling in practice? Let's consider an example where we want to draw circles of different areas. Imagine the largest circle has an area twelve times bigger than the smallest one. To counteract our tendency to underestimate, we could increase the area by approximately $\sqrt[0.87]{12} \div 12 \approx 1.44$. However, it's important to consider the context and whether these adjustments will truly benefit your visualization. Nonetheless, if you were to make these adjustments, this is how it would look, using beta from [@flanneryRELATIVEEFFECTIVENESSCOMMON1971].
+
+```{r}
+#| label: fig-area_comparison
+#| code-fold: true
+#| echo: true
+base <- 100
+beta <- 0.87
+circle_comparison <- tribble(
+  ~id, ~area, 
+  1, base,
+  2, 4*base,
+  3, 9*base,
+  4, 16*base,
+) %>%
+  mutate(x = 1, 
+         r = sqrt(area/pi),
+         adj_area = base*(area/base)^(1/0.87),
+         adj_r = sqrt(adj_area/pi),
+         y = r,
+         adj_y = adj_r,
+         ) %>%
+  arrange(desc(area))
+custom_colors <- c("Piggy Pink" = "#F7DAE5",
+                   "Old Lace" = "#FFF2E1",
+                   "Columbia Blue" = "#C3E2E6",
+                   "Languid Lavender" = "#D0CCE0")
+actual_circles <- circle_comparison %>% 
+  ggplot() + 
+  ylim(c(0,56)) +
+  xlim(c(-28,28)) +
+  coord_fixed(ratio = 1, expand = T)+
+  theme_void()+
+  ggforce::geom_circle(aes(x0 = 0, y0 = y, r= r, fill = id), show.legend = F) +
+  geom_label(aes(x=0, y = 2*y-4, label = area)) +
+  scale_fill_continuous(type = "viridis")
+adjusted_circles <- circle_comparison %>% 
+  ggplot() + 
+  ylim(c(0,56)) +
+  xlim(c(-28,28)) +
+  coord_fixed(ratio = 1, expand = T)+
+  theme_void()+
+  ggforce::geom_circle(aes(x0 = 0, y0 = adj_y, r= adj_r, fill = id), show.legend = F) +
+  geom_label(aes(x=0, y = 2*adj_y-4, label = area)) +
+  scale_fill_continuous(type = "viridis")
+actual_circles + adjusted_circles
+# source https://files.eric.ed.gov/fulltext/ED045469.pdf
+```
+
+#### Purpose of Color
+
+Now let's outline the purposes of using color in data visualization. Firstly, color is an excellent tool for drawing attention to specific data points, guiding the viewer's eye to important information. Secondly, the use of color can significantly enhance the aesthetic appeal and memorability of a dataset. A visually appealing color scheme makes the data not only more engaging but also easier to remember. Lastly, color serves as an effective means for representing discrete categories.
+
+When using color opt for pastel shades as these hues are generally softer and less straining on the eyes. Additionally, you should avoid high saturation because overly saturated colors can be distracting and may overshadow the data itself. It's also important to be mindful of the use of spectral colors, as they can cause afterimages and potentially distort the viewer's perception. Finally, color can be strategically utilized for grouping and searching purposes within a visualization. By using color to group similar items or to differentiate between different types of data, it becomes much easier for viewers to navigate and understand the information being presented.
+
+#### Gestalt Principles
+
+Gestalt Principles explain how the human brain perceives visual patterns from grouped elements. These principles encompass concepts like proximity, similarity, continuity, closure, connection, and enclosure.
+
+::: columns
+::: column
+```{r}
+#| label: fig-proximity
+#| echo: false
+group1 <- tibble(x = runif(10, 0, 3)+7,
+                 y = runif(10, 0, 3),
+                 group = 1)
+group2 <- tibble(x = runif(10, 0, 3),
+                 y = runif(10, 0, 3)+6,
+                 group = 2)
+bind_rows(group1, group2) %>%
+  ggplot(aes(x,y)) + 
+  geom_point(size = 4, color = "steelblue") +
+  theme_void() +
+  xlim(0,10) +
+  ylim(0,10)
+```
+:::
+
+::: column
+**Proximity**: When objects are close together, we often perceive them as a group
+:::
+:::
+
+::: columns
+::: column
+**Similarity**: When objects share similar attributes (color, shape, etc.), we often perceive them as a group
+:::
+
+::: column
+```{r}
+#| label: fig-similarity
+#| echo: false
+group1 <- tibble(x = runif(10, 0, 10),
+                 y = runif(10, 0, 10),
+                 group = "1")
+group2 <- tibble(x = runif(10, 0, 10),
+                 y = runif(10, 0, 10),
+                 group = "2")
+bind_rows(group1, group2) %>%
+  ggplot(aes(x,y, shape = group)) + 
+  geom_point(size = 4, show.legend = F, color = "steelblue") +
+  theme_void() +
+  xlim(0,10) +
+  ylim(0,10)
+```
+:::
+:::
+
+::: columns
+::: column
+```{r}
+#| label: fig-enclosure
+#| echo: false
+set.seed(4249)
+tibble(
+  x = runif(20, 0, 10),
+  y = runif(20, 0, 10)
+) %>%
+  ggplot(aes(x, y)) +
+  ggforce::geom_ellipse((aes(x0 = 6.5, y0 = 7, a = 3, b = 3, angle = 0)), fill = "lightblue", color = "white") +
+  geom_point(size = 4, show.legend = F, color = "steelblue") +
+  theme_void() +
+  xlim(0, 10) +
+  ylim(0, 10)
+```
+:::
+
+::: column
+**Enclosure**: When objects are surrounded by a boundary, we often perceive them as a group
+:::
+:::
+
+::: columns
+::: column
+**Closure**: Sometimes partially open structures can still be perceived as a grouping metaphor (e.g., "\[...\]")
+:::
+
+::: column
+```{r}
+#| label: fig-closure
+#| echo: false
+set.seed(228)
+tibble(
+  x = runif(20, 0, 10),
+  y = runif(20, 0, 10)
+) %>%
+  ggplot() +
+  geom_point(aes(x, y),size = 4, show.legend = F, color = "steelblue") +
+  geom_text(aes(x = 7, y = 4, label = "(       )"), size = 30, fontface = "plain", color = "red") +
+theme_void() +
+  xlim(0, 10) +
+  ylim(0, 10) 
+```
+:::
+:::
+
+::: columns
+::: column
+```{r}
+#| label: fig-connectivity
+#| echo: false
+set.seed(1337)
+group1 <- tibble(x = runif(15, 0, 10),
+                 y = runif(15, 0, 10),
+                 group = 1)
+group2 <- tibble(x = runif(6, 0, 10),
+                 y = runif(6, 0, 10),
+                 group = 2)
+bind_rows(group1, group2) %>%
+  ggplot(aes(x, y)) +
+  geom_line(data = group2, aes(group = group), linewidth =1.5, color = "red") +
+  geom_point(size = 5, show.legend = F, color = "steelblue") +
+  theme_void() +
+  xlim(0, 10) +
+  ylim(0, 10)
+```
+:::
+
+::: column
+**Connectivity**: When you draw curves or lines through data elements, this is often perceived as creating a connection between them
+:::
+:::
+
+### Visual Encoding
+
+After learning about the basics of how our eyes and brain quickly process visuals, it's time to talk about visual encoding, which is about turning data into visuals that are easy to understand.
+
+When visually encoding information we need to tackle the following tasks:
+
+-   Turning numeric data into visuals
+-   Turning categorical data into visuals
+-   Showing the differences between pieces of information
+-   Showing how data or information relates to some context
+
+Humans have different types of memory like long-term, working, verbal, and visual memory, each stored in various parts of the brain. Our working memory, which temporarily holds information, can only keep around three chunks of information at a time. Visualizations can help group or "chunk" information together, making it easier for us to process and remember.
+
+It's essential to keep related information close together in a visualization to avoid fragmentation, which is when we separate things that should be remembered together. By doing this, we help people remember and understand the information better. We can highlight or annotate important points to draw attention to them.
+
+Good design in visualizations helps people quickly understand what they're looking at. It's not about just putting numbers into shapes, but making those shapes tell a story. A well-designed visualization will help people easily scan through the information and also go deeper if they want to.
+
+> The goal is to make it easy for the reader to decode the visual information without making errors.
+
+Different visual attributes like position, length, angle, or color help represent data. Some attributes, like position and length, are better for showing precise data, while others like color or size are less precise. It's crucial to match the right attribute with the type of data we're showing.
+
+Using familiar chart types, intuitive colors, and shapes help make the visualization easy to understand. Avoid making people remember too many new symbols or having large legends, as it can be overwhelming.
+
+Lastly, knowing who will be looking at the visualization will inform your decisions resulting in visuals that are easy to understand, remember, and interpret.
+
+## Evaluating your Graphs
+
+How do we evaluate our graphics to enlighten and engage our audience, rather than deceive them? Several practical frameworks have been proposed for this purpose.
+
+One of the popular ideas in data visualization is the Data-ink ratio [@tufteVisualDisplayQuantitative2001], introduced by Edward Tufte. This idea is all about keeping things simple and getting rid of any extras that don't help convey the main message. As Tufte suggests, it's good to "erase non-data-ink, within reason" and "erase redundant data-ink, within reason." It might be tempting to remove too much, but it's better to take it slow. Trust your gut feeling on whether the chart still makes sense. The suggestions we'll discuss next are based on having clean and clear graphics.
+
+:::{layout-ncol=2}
+![](images/data_ink_1.pdf)
+![](images/data_ink_2.pdf)
+:::
+
+In "Levers of Chart-Making" [@wareInformationVisualizationPerception2021], Ware proposes several critical factors that influence the effectiveness of a graph. These factors include the **speed to primary insight**, which measures how quickly an audience can understand the key message from a graph. **Granularity** refers to the level of detail presented in the chart's data. The dichotomy between **explore or explain** reflects whether the visualization is designed for interactive exploration by users or is accompanied by explanatory content. The **dry or emotional** aspect deals with the tone of the data presentation, ranging from serious to informal, with the potential to make presentations more emotionally engaging to attract a less data-savvy audience. Lastly, the balance between **ambiguity and accuracy** is crucial, determining how clearly the chart conveys its message versus any intentional ambiguity.
+
+The "Cognitive Load" framework, introduced by Sibinga [@sibingaCognitiveLoadGuide2021], categorizes cognitive demands into three types. The **intrinsic load** concerns the complexity inherent in the data itself, with aspects like the type of data (quantitative vs. qualitative), its certainty (certain vs. uncertain), clarity of data categories (precise vs. ambiguous), and its relatability to everyday life (concrete vs. abstract). The **germane load** focuses on the audience's readiness to process the information, including their initial connection to the visualization (intentional vs. coincidental), the time they have to view it (slow vs. fast), their familiarity with the subject (expert vs. novice), and their comfort with the data format (confident vs. anxious). Finally, the **extraneous load** addresses how new information is presented, considering aspects like the commonality of the chart type (common vs. rare), precision of the chart's values (accurate vs. approximate), information density (concise vs. detailed), and whether the data report is self-explanatory or requires exploration (explanatory vs. exploratory).
+
+These frameworks complement each other in the broad field of data visualization. While data-ink ratio principles offer a strong start, blending these frameworks enhances your approach, addressing varied needs and audiences. The key to effectively integrating these frameworks lies in understanding the visualization's context, audience, message, and medium.
+
+> Finally, the most tried and true method of testing graphics is asking others to have a look at it!
+
+## Summary
+
+This chapter on "Data Visualization Fundamentals" has guided us through the essentials of visual perception in data presentation, highlighting the importance of preattentive processing and serial processing in understanding visuals. We've explored how to effectively use visual attributes like color, shape, and size to highlight key information and discussed the interplay of integral and separable perception in design. Emphasizing the role of cognitive load, we examined how to tailor visualizations to the audience’s context and needs. In the next chapter, we will build upon this fundamental understanding by exploring how graphics are created.
+

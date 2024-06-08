@@ -1,0 +1,51 @@
+---
+title: "Literature Research"
+editor: visual
+---
+
+Every great adventure starts with a literature review. Literature review is an indispensable step in any research, identifying knowledge gaps and shaping your research question. This section introduces powerful tools to supercharge your literature review process, guiding you from initial topic exploration to organizing your final notes.
+
+## Search
+
+Begin your literature hunt by seeking advice from a professor or field expert. An excellent starting point is to delve into review articles, as they offer comprehensive overviews of recent developments, summarize pivotal findings, and pinpoint existing gaps in the field.
+
+Proceed by exploring peer-reviewed databases accessible through your university's subscription, such as [Scopus](https://www.scopus.com/home.uri) and [Web of Science](https://mjl.clarivate.com/search-results). These databases are renowned for their high-quality articles, backed by rigorous peer-review processes. Additionally, don't overlook your school or university library as a rich source of diverse academic materials, often available at no cost.
+
+::: callout-warning
+Beware of predatory journals! Although they may seem legitimate, these journals are known to publish any material for a fee. If you're uncertain, review the journal's website and consult [Beall's List](https://beallslist.net/) for verification.
+:::
+
+Once you've tapped into these resources, expand your search with [Google Scholar](https://scholar.google.com/) for its extensive collection of articles. Exercise caution with potentially dubious publications. For book resources, consider visiting the author's personal website, which might offer free chapters or even the complete book.
+
+To jump-start your review, harness the power of AI platforms like [Elicit](https://elicit.org/) for quick topic overviews and identification of relevant papers. Tools such as [Research Rabbit](https://www.researchrabbit.ai/)[^This is my favorite] and [Lit Maps](https://app.litmaps.com/) are invaluable for visualizing connections between articles, enhancing your search. Seamlessly manage your literature collection by integrating these resources with Zotero. 
+
+Lastly, for optimal organization of your research, look into the [Arc browser](https://arc.net/). This tool facilitates the creation of structured spaces for each project, allowing for efficient navigation through folders containing all your links and notes.
+
+## Reference Management
+
+Citation managers are essential in the realm of academic research for organizing and managing your literature sources effectively. Among these, [Zotero](https://www.zotero.org/) stands out as the most comprehensive tool. It's a free, open-source, and cross-platform application equipped with a wide range of extensions. Zotero allows you to add tags, link related references, insert notes, and annotate, with the added convenience of exporting all this information into your preferred note-taking app. Its compatibility with numerous writing programs simplifies the citation process across different environments. Enhance your experience by using the [Zotero web extension](https://www.zotero.org/download/connectors) for easy reference collection from the web. For even greater functionality, install the [BetterBibTeX](https://retorque.re/zotero-better-bibtex/) plugin, which improves Zotero by generating precise citation keys and facilitating the automatic export of your library to BibTeX. A plethora of online resources are available to help you maximize Zotero's potential.
+
+## Reading
+
+With your literature collection now ready, it's essential to sift through the papers, prioritizing them based on their quality, impact, and relevance. Begin by quickly reviewing each paper's title, abstract, conclusions, and figures to gauge its significance. This initial screening will help the most pertinent papers rise to the forefront, setting the stage for in-depth analysis.
+
+To further enhance the process, explore [DocAnalyzer.ai](https://docanalyzer.ai/), [Zotero QA](https://huggingface.co/spaces/lifan0127/zotero-qa) on Hugging Face, or [ARIA](https://github.com/lifan0127/ai-research-assistant) developed by the same author for asking questions about your Zotero library. Additionally, consider loading PDFs into ChatGPT to ask questions and browse collection of custom GPTs.
+
+Contrary to common practice, academic papers need not be read in the order they are presented. When engaging with a paper, consider reading the conclusion, discussion, and methods sections towards the end. This approach allows you to grasp the core findings and implications before exploring the more detailed technical aspects. For a more engaging reading experience, especially with lengthy or complex texts, use [Speechify](https://speechify.com/), a text-to-speech application that vocalizes the articles. This tool not only helps maintain your reading pace but also facilitates better comprehension. It's a common strategy to keep both Speechify and Zotero open simultaneously, enabling you to listen to the article while taking structured notes in Zotero.
+
+## Note-Taking
+
+Effective note-taking is a vital part of the literature review process, and its approach should align with the scope of your project. For concise papers, a simple method like jotting down notes in a Google document may suffice. These notes can later be refined and structured into a cohesive essay. However, for more extensive research endeavors, a systematic approach to note-taking and organization is crucial.
+
+Consider employing tools like [Obsidian](https://obsidian.md/) for managing your notes. Obsidian is excellent for creating interconnected idea networks using markdown files. It allows for a more organized and interconnected understanding of your research. Alternatively, [Notion](https://www.notion.so/) offers a dynamic platform for organizing notes, tasks, and databases, catering to a variety of organizational needs. These platforms can be further enhanced by integrating with Zotero's export capabilities, allowing for a seamless transition of references and notes into your chosen note-taking application.
+
+In addition to these tools, AI solutions like [ChatGPT](https://openai.com/blog/chatgpt) can significantly augment your literature review process. ChatGPT excels in summarizing text, enhancing writing styles, and converting text into structured markdown tables. It's particularly useful for transforming stream-of-consciousness thoughts into polished academic language. This AI tool can also analyze visual elements like tables, graphics, and diagrams, offering a deeper understanding of complex data. Furthermore, it assists in planning academic papers and providing critical feedback.
+
+By leveraging these cutting-edge tools, you'll avoid slowing down your work and ensure a more efficient review process. However, do not overly depend on them to do your work, always proofread, edit the output and paraphrase the output. It is a tool not a replacement of you expertise.While these advanced tools can greatly enhance efficiency and insight during the review process, it's important to maintain a balance. Use them as aids to complement your expertise, but remember to critically engage with the output. Always proofread, edit, and paraphrase to ensure that the final work authentically reflects your understanding and perspective. These tools are designed to assist, not replace, your academic skill and judgment.
+
+## Summary
+
+> In short, use Zotero, Research Rabbit, Speechify, and ChatGPT.
+
+In this chapter, we covered several useful resources that will drastically simplify your literature review process and help you organize all this knowledge. In the next chapter, we will cover technologies and tools for writing your paper!
+

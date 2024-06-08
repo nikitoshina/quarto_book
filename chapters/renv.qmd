@@ -1,0 +1,58 @@
+---
+title: "Reproducible Environment"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+Reproducible environments are crucial in modern software development, as they guarantee consistent outputs, regardless of the system or execution time. These environments are key to achieving reliability, scalability, and robustness, essential for smooth collaboration and efficient problem diagnosis and maintenance.
+
+In today's complex software projects, burdened with intricate dependencies, the necessity for reproducibility is undeniable Changes or updates in these dependencies can lead to code malfunctions or portability issues.
+
+Understanding package versioning is helpful in this context. Version numbers, such as 1.2.3, indicate the scale and nature of updates: Major versions (1.x.x) introduce breaking changes, minor versions (x.2.x) add backwards-compatible features, and patch versions (x.x.3) fix bugs while maintaining backward compatibility.
+
+The term "dependency hell," often encountered in machine learning projects, refers to the challenge of managing conflicting, unreliable, or incompatible dependencies. Reproducible environments, which  record all code dependencies, offer a robust solution to this issue.
+
+Package updates that introduce breaking changes can significantly disrupt a codebase. This risk can be mitigated by diligently recording specific package versions and staying aware of release notes and news.
+
+The R package `renv` (**r**eproducible **env**ironment) addresses these challenges by creating isolated, project-specific environments. It effectively manages R package dependencies, documenting the exact versions needed for your project and restoring them as required. This ensures the consistency of package versions across different R sessions and projects.
+
+## `renv`
+`renv` greatly enhances the isolation, portability, and reproducibility of R projects. It ensures **isolation** by assigning a private library to each project, preventing conflicts between packages across different projects. The **portability** of `renv` facilitates the easy transfer of projects between various computers and platforms, streamlining package installation. Moreover, `renv` aids in **reproducibility** by recording exact package versions, crucial for maintaining consistency and reliability in different environments and enabling precise replication of project setups.
+
+### Workflow
+
+![[renv
+workflow](https://github.com/rstudio/renv/tree/main)](images/renv_graphic.png)[a]
+
+Integrating `renv` into an existing project or starting a new one is a straightforward process. Initiate the environment using `renv::init()`, which creates a lock file 'renv.lock' and detects your code dependencies. To capture the current state of dependencies, use `renv::snapshot()`.
+
+> Note: `renv` automatically excludes files listed in your .gitignore.
+
+To install specific packages within an `renv`-managed project, use `renv::install()`, which ensures that the installed packages are recorded in your project's lock file. When updates are available for your packages, `renv::update()` helps you seamlessly apply these updates while also updating the lock file to reflect the new versions.
+
+For a quick check on your project's dependency status, `renv::status()` provides an immediate overview of any discrepancies between your current project environment and the recorded state in 'renv.lock'.
+
+For sharing code or running it in a new environment, `renv::restore()` reinstalls packages from the lockfile. Implementing reproducible environments in your projects is highly beneficial. As you become more familiar with `renv`, delve into its documentation to discover more about its capabilities and additional functionalities.
+
+The value of setting up a reproducible environment becomes crystal clear after spending hours resolving bugs caused by package updates. 
+
+## Computational Environments
+
+In the realm of computational research, simply tracking package versions might not suffice. Factors like the operating system version and the interactions between external packages can significantly influence the outcomes of analyses. For those aiming to elevate their reproducibility practices, exploring virtual machines and containerization is a worthwhile next step.
+
+### Virtual Machines
+
+Virtual Machines, essentially simulated computers, offer a versatile solution. They allow to create a "virtual" computer, choosing its operating system and other attributes, and operate it much like any regular application. Inside this virtual environment, you'll find a desktop, file system, standard software libraries, and more, all of which behave as they would on a physical computer. Researchers can configure a Virtual Machine, conduct their research within this controlled environment, and then preserve its state—complete with files, settings, and outputs. This preserved state can then be distributed as a comprehensive, fully-functional project. If you would like to learn more about container look into [VirtualBox](https://www.virtualbox.org/).
+
+### Containers
+
+Containers share many advantages with Virtual Machines but are distinct in their approach and efficiency. While Virtual Machines replicate an entire operating system and its bundled software (regardless of its necessity for the project), containers are more selective. They encapsulate only the specific software and files required for a project, making them considerably more lightweight and efficient than Virtual Machines. If you would like to learn more about container look into [Docker](https://www.docker.com/).
+
+## Summary
+
+Navigating the intricacies of creating reproducible analyses can quickly become complex. It's important to gauge the level of technical expertise required and the likely technical proficiency of your collaborators. If there's no pressing need for advanced solutions like virtual machines, containers, or declarative operating systems, it might be more practical to avoid delving too deep into these areas. Many collaborators may not be sufficiently tech-savvy to comfortably navigate these more complex solutions.
+
+Begin by building a habit of using tools like `renv`. Once you and your team are comfortable with these foundational practices, you can gradually explore more advanced options like containers and virtual machines. 
+
+In the next two chapters you will get a brief introduction to command line and use it to learn version control with git and github.

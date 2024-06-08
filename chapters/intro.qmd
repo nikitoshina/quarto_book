@@ -1,0 +1,19 @@
+---
+title: "Introduction"
+---
+<!-- See @knuth84 for additional discussion of literate programming. -->
+ <!-- cat _quarto.yml | grep -oE '\- chapters/([^[:space:]]+)'  | sed 's/- //' | xargs cat | sed '/^```/,/^```/d' | sed 's/^title:/#/' | grep '^\#' | sed 's/^\([^ ]*\) /\11. /' | sed 's/#/\t/g' | sed 's/"//g' | sed 's/^.//' > output3.qmd -->
+
+## About the book
+
+This book originated from a collection of notes and reading materials I developed for a Survey Design course I taught in Spring 2023. The enthusiastic response and insightful questions from my students inspired me to organize and expand these resources into the comprehensive guide you hold today.
+
+This book is not a comprehensive guide; if that's what you're seeking, you may want to look elsewhere. Instead, this book serves as a map that outlines the necessary tools and topics for your research journey. We'll delve into the basics of data collection, cleaning, validation, and presentation, all while underpinning these concepts with relevant theory. The goal is to build your intuition and provide pointers for where to find more detailed information. The chapters are deliberately concise and to the point, as my objective isn't to bore you, but to enlighten.
+
+## Who Should Read This Book
+
+Initially inspired by my journey through graduate school in Economics, this book is crafted to be of value across disciplines. It contains essential insights for anyone engaged in data-related work. This includes, but is not limited to, fields such as the humanities, data analytics, and the sciences. Whether you are refining your expertise or are new to the world of data analytics, this book promises to offer something of value.
+
+The examples provided are primarily in R, making a basic understanding of the language advantageous but not essential. Several chapters, especially those focusing on theory, require no programming knowledge at all. Over time, a diverse audience including web developers, mathematicians, data analysts, and economists have found the material beneficial. This book is designed to be inclusive, offering insights irrespective of your programming proficiency or professional background.
+
+It is structured to allow for flexible reading paths; you may explore the chapters in sequence for a more systematic learning experience or navigate directly to the topics most relevant to you. 
