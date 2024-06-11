@@ -12,6 +12,12 @@ format:
     echo: false 
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Color plays an essential role in data visualization. It holds the power to stir emotions, highlight patterns, and convey information that may otherwise be challenging to communicate. For instance, in the U.S., red is often associated with danger or passion, blue with tranquility or sadness, and green with nature or health. Keep in mind that the cultural interpretations of colors vary, so color usage should be adjusted based on your audience's perspective. The impact of color is considered so significant that since 1979, the locker room at Iowa's Kinnick Stadium has been painted pink with the goal of lowering opponents' testosterone levels.
 
 A skillful application of color in data visualization can enhance a viewer's understanding and engagement with the data, while inappropriate use may hide important details and lead to confusion. This discussion will guide you through the creation of various color schemes and palettes.

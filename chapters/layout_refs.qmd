@@ -3,6 +3,12 @@ title: "Layout and References"
 editor: visual
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Now we look at a few basic layout features of quarto as well as how to reference literature with Zotero.
 
 ## Knitr

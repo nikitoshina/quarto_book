@@ -1,7 +1,14 @@
 ---
 title: "Relational Data"
 editor: visual
+format: latex
 ---
+
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
 
 
 A database is an organized collection of data that can be easily stored, managed, updated, and retrieved. One such type is the relational database, which structures data into tables consisting of rows and columns. In these tables, each row, or record, encapsulates information about a single entity, while each column, or attribute, defines a specific aspect of that entity.
@@ -28,8 +35,11 @@ Let's delve into these relationships, how they are used, and how visualize them.
 
 In a one-to-one relationship, a single row in the first table corresponds to just one row in the second table, and vice versa. For example, the relationship between Countries and their respective Capitals:
 
+:::{.content-visible when-format="html"}
 ```{dot}
-#| label: fig-country_capital_rel
+//| label: fig-country_capital_rel
+//| fig-cap: One to One Example
+//| fig-height: 1.5
 digraph G {
 rankdir = "LR";
 node [shape=plaintext];
@@ -71,13 +81,22 @@ Table1:row13:e -> Table2:row23:w;
 
 }
 ```
+:::
+
+:::{.content-visible when-format="latex"}
+![One to One Example](images/one_to_one.tex)
+:::
 
 ### One to Many (1:M)
 
 In a one-to-many relationship, a single row in the first table can be linked to multiple rows in the second table, but a row in the second table is related to only one row in the first table. For instance, one Professor can teach several Classes:
 
+
+:::{.content-visible when-format="html"}
 ```{dot}
-#| label: fig-professor_class_rel
+//| label: fig-professor_class_rel
+//| fig-cap: One to Many Example
+//| fig-height: 1.5
 digraph G {
 rankdir = "LR";
 node [shape=plaintext];
@@ -117,13 +136,21 @@ Table1:row12:e -> Table2:row22:w;
 Table1:row11:e -> Table2:row23:w;
 }
 ```
+:::
+
+:::{.content-visible when-format="latex"}
+![One to Many Example](images/one_to_many.tex)
+:::
 
 ### Many to Many (M:N)
 
 In a many-to-many relationship, a single row in the first table can be associated with many rows in the second table, and similarly, a row in the second table can be associated with many rows in the first table. For example, multiple Students can be enrolled in multiple Classes:
 
+:::{.content-visible when-format="html"}
 ```{dot}
-#| label: fig-student_class_rel
+//| label: fig-student_class_rel
+//| fig-cap: Many to Many Example
+//| fig-height: 1.5
 digraph G {
 rankdir = "LR";
 node [shape=plaintext];
@@ -171,6 +198,11 @@ Table1:row13:e -> Table2:row23:w [color=orange];
 
 }
 ```
+:::
+
+:::{.content-visible when-format="latex"}
+![Many to Many Example](images/many_to_many.tex)
+:::
 
 ## The Concept of Keys
 
@@ -223,7 +255,15 @@ Outer joins are utilized to return matched data and unmatched data from one or b
 
 A left join retrieves all rows from the left table, along with matched rows from the right table, adding information to the left table. When performing a left join on employees and projects tables, it shows which employees are assigned to which projects. If there's no corresponding match in the right table, the result displays `NA`, indicating, for instance, that Tom has no project assigned.
 
-![Left Join Illustration](images/Left_Join.png)
+:::{.content-visible when-format="html"}
+![Left Join Illustration](images/Left_Join.png){height=1.5in}
+:::
+
+:::{.content-visible when-format="latex"}
+![Left Join Illustration](images/left_join.tex)
+:::
+
+
 
 ```{r}
 left_join_result <- employees %>%
@@ -240,7 +280,13 @@ knitr::kable(left_join_result, caption = "Result of Left Join")
 
 A right join operates similarly to a left join but retrieves all rows from the right table and only the matched rows from the left table. Below, we perform a right join on the employees and projects tables, showing which projects are assigned to which employees. It is akin to doing a left join between the projects and employees tables. It appears that project 6 does not have anyone assigned to it.
 
-![Right Join Illustration](images/Right_Join.png)
+:::{.content-visible when-format="html"}
+![Right Join Illustration](images/Right_Join.png){height=1.5in}
+:::
+
+:::{.content-visible when-format="latex"}
+![Right Join Illustration](images/right_join.tex)
+:::
 
 ```{r}
 right_join_result <- employees %>%
@@ -249,7 +295,7 @@ right_join_result <- employees %>%
 
 
 ```{r}
-# echo: false
+#| echo: false
 knitr::kable(right_join_result, caption = "Result of Right Join")
 ```
 
@@ -257,7 +303,13 @@ knitr::kable(right_join_result, caption = "Result of Right Join")
 
 A full join combines all rows from both the left and right tables, filling in `NA` values for non-matching rows. This merge offers a complete overview of the combined data. We can observe that project 6 and Tom are unpaired.
 
-![Full Join Illustration](images/Full_Join.png)
+:::{.content-visible when-format="html"}
+![Full Join Illustration](images/Full_Join.png){height=1.5in}
+:::
+
+:::{.content-visible when-format="latex"}
+![Full Join Illustration](images/full_join.tex)
+:::
 
 ```{r}
 full_join_result <- employees %>%
@@ -274,7 +326,13 @@ knitr::kable(full_join_result, caption = "Result of Full Join")
 
 An inner join returns only the matched rows between two tables, retaining only those rows that have a match in both tables and creating a complete dataset. As a result, we have no `NA` values because rows without pairs were dropped.
 
-![Inner Join Illustration](images/Inner_Join.png)
+:::{.content-visible when-format="html"}
+![Inner Join Illustration](images/Inner_Join.png){height=1.5in}
+:::
+
+:::{.content-visible when-format="latex"}
+![Inner Join Illustration](images/inner_join.tex)
+:::
 
 ```{r}
 inner_join_result <- employees %>%
@@ -334,15 +392,15 @@ UML coding tools like Mermaid and Graphviz are great options, but I find that dr
 
 First, let's introduce an entity, which is an object (place, person, thing) that we want to track in our database. In our case, these will be a customer, an order, and a product. Each entity possesses attributes; for example, a customer has `customer_id`, `name`, `email`, `address`, etc., and other entities also have a list of attributes. These entities and attributes are represented as rows and columns, respectively, in your tables. Tables can be interconnected, and these relationships are visualized by drawing lines between the tables. Cardinality is used to describe these relationships in numeric terms, akin to our discussion in @sec-relationships.
 
-![Cardinality](images/cardinality.png)
+![Cardinality](images/cardinality.png){height=2in}
 
 For instance, let's examine the relationship between a customer and an order. We ask: What is the relationship between a customer and an order? Using the min, max framework, what is the minimum and maximum number of orders a customer can have? A customer can have zero orders (min = 0) and an indefinite amount of orders (max = many). So, the relationship from customer to order is 0 or many. Now, let's look in the opposite direction: How many customers can an order have? An order can have only one customer (min = 1, max = 1).
 
-![Customer-Order Relationship](images/customer_order.png)
+![Customer-Order Relationship](images/customer_order.png){height=1in}
 
 Next, let's examine the relationship between an order and a product. An order can include one or many products, and each product can be in zero or many orders. The complete diagram would resemble the following:
 
-![Entity-Relationship Diagram](images/ERD.png)
+![Entity-Relationship Diagram](images/ERD.png){height=1.5in}
 
 Creating such a diagram is recommended whenever you're planning a project with a complex design. It clarifies the necessary tables and their relationships. You could also sketch a diagram whenever you're unsure about a dataset. If you'd like to delve deeper into this topic, check out the [Lucid Software YouTube](https://www.youtube.com/@lucid_software) guides and [Neso Academy's Database Management Systems course](https://www.youtube.com/watch?v=6Iu45VZGQDke).
 

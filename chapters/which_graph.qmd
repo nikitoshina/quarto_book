@@ -12,6 +12,12 @@ format:
     echo: false
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 ```{r include = FALSE}
 library(tidyverse)
 library(gapminder)

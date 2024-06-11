@@ -12,6 +12,12 @@ eval: false
 
 ```{r}
 #| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
+```{r}
+#| include: false
 library("tidyverse")
 library("scales")
 library("googlesheets4")

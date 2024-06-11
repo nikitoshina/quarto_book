@@ -4,6 +4,12 @@ message: false
 warning: false
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Honestly, I hate making tables. I do not know why, but they never turn out right. However, the `gt` (Grammar of Tables) package makes it easy and actually enjoyable. Therefore, this section will focus on creating simple summary tables using `gt`. It's essential to note that `gt` is just one of many available packages for table creation - others include `kableExtra` for more complex tables, `DT` tables for HTML interactive tables, `reactablefmtr` for reactive tables, and `flextable`, among others. Unlike visualization and data wrangling where the use of `ggplot`, `plotly`, `dplyr`, and `data.table` is nearly universal, there is no default package for table creation. Hence, we'll look at `gt` due to its ease of use and ability to handle a range of basic tasks. The `gt` package simplifies the creation of elegant, customizable tables, making it a versatile tool for reports, presentations, and web applications.
 
 > Ask ten R users about their preferred table package, and you'll likely receive twenty different answers.

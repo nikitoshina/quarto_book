@@ -4,6 +4,12 @@ editor: visual
 engine: knitr 
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Picture yourself working tirelessly on your thesis or a final paper. You've invested days in brainstorming ideas, writing the story, coding, reviewing, and adding visuals. After hours of refining, it's nearly perfect -- until your trusty laptop decides to self-destruct. If only you'd saved your work online, you wouldn't be scrambling to find the latest emailed version or rewriting from a printed copy annotated by your advisor. Or even worse, starting from scratch! \~ based on my story.
 
 Undeterred, you begin storing everything on Google Drive, thinking you're now safe. You tackle a big coding project, crafting an impressive model with a sleek frontend. But when you try to neaten your messy code, the entire application crashes and becomes a bug-infested nightmare. If only there was an easy way to revert to a previous version, or work on new changes without disrupting the main codebase... \~ another life story of mine.

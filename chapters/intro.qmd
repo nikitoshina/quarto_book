@@ -1,6 +1,7 @@
 ---
 title: "Introduction"
 ---
+
 <!-- See @knuth84 for additional discussion of literate programming. -->
  <!-- cat _quarto.yml | grep -oE '\- chapters/([^[:space:]]+)'  | sed 's/- //' | xargs cat | sed '/^```/,/^```/d' | sed 's/^title:/#/' | grep '^\#' | sed 's/^\([^ ]*\) /\11. /' | sed 's/#/\t/g' | sed 's/"//g' | sed 's/^.//' > output3.qmd -->
 

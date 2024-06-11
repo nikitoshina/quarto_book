@@ -3,6 +3,12 @@ title: "Write"
 engine: knitr
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Following your comprehensive review of the existing literature, you should have developed a concept for your writing topic. This chapter delves into various technologies you'll likely encounter in your search for an effective text editor, and provides an overview of the basic syntax for Quarto.
 
 ## WYSIWYG

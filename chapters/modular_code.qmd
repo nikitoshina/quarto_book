@@ -4,6 +4,12 @@ eval: false
 code-annotations: hover
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Working within a single file is a smooth ride until you hit a couple of hundred lines and searching for bugs, edits, and simply understanding your location in the file becomes rather problematic. We can add comments and have something like Table of Contents, use search to move around the file, but all of this is just a bandaid and will be completely useless when sharing the code with others. More problems araise when you have to download multiple libraries and you get name-space conflicts or when all the names that make sense for variables and functions are taken and you end up with `very_important_variable_2_winz`. 
 
 The solution to this is using modules. Usually, in R we use functions and packages to organize our projects. However, projects are pretty complicated and often it is not worth squeezing your code into a package. So we would like to turn towards modules as they provide local environment, meaning all the packages you load and all the variables you define do not leak and clash in the global environment. Additionally, modules make it easy to extend your code to different files and reuse them in different projects. Each file is self contained, so change in one doesn't affect the other.

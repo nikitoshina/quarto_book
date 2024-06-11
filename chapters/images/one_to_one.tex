@@ -1,0 +1,29 @@
+
+\begin{tikzpicture}
+  % Define styles for the nodes
+  \tikzstyle{box} = [rectangle, draw, minimum width=2.5cm, minimum height=0.8cm, text centered]
+  \tikzstyle{header} = [rectangle, draw, fill=gray!20, minimum width=2.5cm, minimum height=0.8cm, text centered, font=\bfseries]
+
+  % Create nodes for the columns
+  \node (header1) [header] {Country};
+  \node (header2) [header, right=2.5cm of header1] {Capital};
+
+  \node (country1) [box, below=0cm of header1, draw=none] {China};
+  \node (country2) [box, below=0cm of country1, draw=none] {France};
+  \node (country3) [box, below=0cm of country2, draw=none] {Italy};
+
+  \node (capital1) [box, below=0cm of header2, draw=none] {Beijing};
+  \node (capital2) [box, below=0cm of capital1, draw=none] {Paris};
+  \node (capital3) [box, below=0cm of capital2, draw=none] {Rome};
+
+  % Draw box around Country column
+  \draw[thick] (header1.north west) -- (header1.north east) -- (country3.south east) -- (country3.south west) -- cycle;
+
+  % Draw box around Capital column
+  \draw[thick] (header2.north west) -- (header2.north east) -- (capital3.south east) -- (capital3.south west) -- cycle;
+
+  % Draw arrows between the nodes
+  \draw[line width = 0.1cm, ->, >=stealth] (country1.east) -- (capital1.west);
+  \draw[line width = 0.1cm, ->, >=stealth] (country2.east) -- (capital2.west);
+  \draw[line width = 0.1cm, ->, >=stealth] (country3.east) -- (capital3.west);
+\end{tikzpicture}

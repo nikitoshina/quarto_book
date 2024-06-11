@@ -3,13 +3,21 @@ title: "Data Visualization"
 editor: visual
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 ```{r include = F}
 library(datasauRus)
 library(tidyverse)
 library(patchwork)
 library(gridExtra)
 knitr::opts_chunk$set(echo = T, warning = F, message = F, error = F)
-data_raven <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/raven_data.csv")
+data_raven <- readr::read_csv(
+  "https://raw.githubusercontent.com/nikitoshina/quarto_book/main/raven_data.csv"
+  )
 ```
 
 Data visualization is undeniably the most thrilling aspect of analysis -- everyone loves colorful graphs! It's also a crucial tool for conveying complex information. In this chapter, we'll delve into two use cases of data visualization, explore the grammar of graphics, and introduce methods for creating interactive plots. Let's begin by examining the two main types.

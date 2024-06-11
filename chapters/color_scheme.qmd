@@ -9,6 +9,12 @@ format:
     echo: false
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Several popular color systems are commonly used in digital design and data visualization. The standard color space for displaying images and graphics on digital displays is the sRGB color system, a device-dependent color space designed to provide consistent color reproduction across a wide range of devices. The HCV color system, based on hue, chroma, and value, is employed to create visually distinct color palettes for use in data visualization. The HSL color system, founded on hue, saturation, and lightness, is frequently used to devise color palettes for web design and user interfaces. Meanwhile, the LAB color system is a device-independent color space intended to accurately represent colors across various devices and environments. This system focuses on the accurate representation of human perception of color and often finds use in professional printing and color management applications. Each of these color systems has its unique strengths and weaknesses, with the choice depending on the specific needs of the project.
 
 To see how these spaces look, check out this amazing video!

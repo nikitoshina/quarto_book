@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+  % Define styles for the nodes
+  \tikzstyle{box} = [rectangle, draw, minimum width=2.5cm, minimum height=0.8cm, text centered]
+  \tikzstyle{header} = [rectangle, draw, fill=gray!20, minimum width=2.5cm, minimum height=0.8cm, text centered, font=\bfseries]
+
+  % Create nodes for the columns
+  \node (header1) [header] {Student};
+  \node (header2) [header, right=2.5cm of header1] {Class};
+
+  \node (student1) [box, below=0cm of header1, draw=none] {John};
+  \node (student2) [box, below=0cm of student1, draw=none] {David};
+  \node (student3) [box, below=0cm of student2, draw=none] {Celeste};
+
+  \node (class1) [box, below=0cm of header2, draw=none] {690-02};
+  \node (class2) [box, below=0cm of class1, draw=none] {692-01};
+  \node (class3) [box, below=0cm of class2, draw=none] {405-01};
+
+  % Draw box around Student column
+  \draw[thick] (header1.north west) -- (header1.north east) -- (student3.south east) -- (student3.south west) -- cycle;
+
+  % Draw box around Class column
+  \draw[thick] (header2.north west) -- (header2.north east) -- (class3.south east) -- (class3.south west) -- cycle;
+
+  % Draw arrows between the nodes with different line styles
+  \draw[line width = 0.05cm, ->, >=stealth, solid] (student1.east) -- (class1.west);
+  \draw[line width = 0.05cm, ->, >=stealth, dashed] (student1.east) -- (class2.west);
+  \draw[line width = 0.05cm, ->, >=stealth, dashed] (student2.east) -- (class2.west);
+  \draw[line width = 0.05cm, ->, >=stealth, solid] (student2.east) -- (class3.west);
+  \draw[line width = 0.05cm, ->, >=stealth,  dotted] (student3.east) -- (class3.west);
+  \draw[line width = 0.05cm, ->, >=stealth,  dotted] (student3.east) -- (class1.west);
+\end{tikzpicture}
+

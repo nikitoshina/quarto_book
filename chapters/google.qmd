@@ -3,6 +3,12 @@ title: Google Services in R
 eval: false
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 This chapter delves into how we can integrate Google services with R, harnessing the flexibility of Google's tools to enhance our data collection and analysis.
 
 ## Constructing a Database in Google Sheets

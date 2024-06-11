@@ -5,6 +5,12 @@ warning: false
 ---
 
 ```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
+```{r}
 #| echo: false
 #| warning: false
 #| message: false
@@ -115,14 +121,7 @@ By using `nesting()`, which creates all combinations present data, within `compl
 
 To explore different imputations we will use "airquality" dataset that contains daily measurements of air pollutants and weather conditions in New York City during a five-month period in 1973. It includes data on ozone concentration, solar radiation, temperature, wind speed, and relative humidity. To simplify the example, we will remove all rows with missing `Solar.R` values and focus on `Ozone`. We will also define `head_na` to view the values that were imputed.
 
-
 ```{r}
-#| label: fig-missing_pattern
-# Remove rows with missing values in `Solar.R`.
-airquality <- drop_na(airquality, Solar.R)
-# `md.pattern` makes a matrix of missing values. `invisible` to only
-# show plot, without matrix output.
-invisible(mice::md.pattern(airquality))
 head_na <- function(data, n = 5) {
 data %>%
 filter(is.na(Ozone)) %>%  # Filter rows with NA in `Ozone`.
@@ -132,10 +131,23 @@ head(n)                   # Display the first `n` rows.
 head(airquality)
 ```
 
+```{r}
+#| label: fig-missing_pattern
+#| fig-cap: Missing Data
+#| fig-height: 1.5
+# Remove rows with missing values in `Solar.R`.
+airquality <- drop_na(airquality, Solar.R)
+# `md.pattern` makes a matrix of missing values. `invisible` to only
+# show plot, without matrix output.
+invisible(mice::md.pattern(airquality))
+```
+
 Another good way is to use a premade function from `visdat` called `vismiss`. It will show distribution of missing data, you can prearrange data and facet to better identify missing data. The graph below is arranged by day and each months has its own facet, so we can see a pattern of missing values. Looks like June (6) has many missing values for Ozone.
 
 ```{r}
 #| label: fig-vis_miss
+#| fig-cap: vizmiss() Plot
+#| fig-height: 2
 airquality %>%
   arrange(Month, Day) %>%
   visdat::vis_miss(facet = Month)

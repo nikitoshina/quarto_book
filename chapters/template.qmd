@@ -2,6 +2,12 @@
 title: "Templating"
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Formatting your document to meet specific requirements, such as those for journals, theses, reports, or corporate styles, is often necessary. There are numerous approaches to achieving this, and Quarto provides a range of default templates available upon rendering a Quarto document. These templates are both editable and expandable, though creating a custom template is no small feat. Instead of diving deep into customization, it's advisable to explore templates created by others.
 
 For a start, the Extensions section on Quarto's website is a great place to look for a specific journal template. If you're unsure which template to use, consider exploring those offered for [Elsevier](https://github.com/quarto-journals/elsevier), a major scientific publisher. If you already have a publication venue in mind, downloading its specific template early on can save you from a cumbersome transition later. Most templates come with clear installation instructions, so guidance is readily available.

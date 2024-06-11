@@ -7,8 +7,33 @@ message: false
 error: false
 ---
 
+```{r}
+plot_hook <- knitr::knit_hooks$get("plot")
+
+knitr::knit_hooks$set(
+    source = function(x, options) {
+        paste0(
+            "\\begin{listing}\n",
+            "\\begin{minted}", "{", options$engine, "}", "\n",
+            x,
+            "\n\\end{minted}\n"
+        )
+    },
+    output = function(x, options) {
+        paste0(x, "\\end{listing}\n")
+    },
+    plot = function(x, options) {
+        paste0("\\end{listing}\n", plot_hook(x, options))
+    }
+    # inlines are handed by panoc lua filter
+)
+```
+
+
 ```{r include=FALSE}
 library("tidyverse")
+# Set print option for tibble to be 5
+options(pillar.print_min = 5)
 ```
 
 ```{css, echo = FALSE}
@@ -85,7 +110,7 @@ class(true_or_false)
 ```
 
 ```{r}
-(name <- "Parsa Rahimi") 
+(name <- "Parsa Rahimi")
 class(name)
 ```
 Note that `name` is stored as a single character string. If we want to store the name and surname separately in the same object, we can employ `c()` to concatenate objects of similar class into a vector.
@@ -140,8 +165,9 @@ library(tidyverse)
 
 ```{r cache = TRUE}
 # Download data from GitHub
-data <- readr::read_csv("https://raw.githubusercontent.com/nikitoshina/quarto_book/main/chapters/data/mexico_sample_data.csv")
-read_csv("../mexico_sample_data.csv")
+data <- readr::read_csv(
+  "https://raw.githubusercontent.com/nikitoshina/quarto_book/main/mexico_sample_data.csv"
+)
 ```
 
 To get a glimpse of the data, we can use the `glimpse()` function, which will provide us with a sample and the type of the column. Another common method is to use `head()` to get a slice of the top rows or `tail()` to get a slice of the bottom rows. To view the entire data set, use `View()`.
@@ -151,7 +177,7 @@ To get a glimpse of the data, we can use the `glimpse()` function, which will pr
 data %>% glimpse()
 ```
 
-The dataset contains 114 rows and 7 columns, along with data types, detailing subjects' performances and choices in an experiment:
+The dataset contains `r nrow(data)` rows and `r ncol(data)` columns, along with data types, detailing subjects' performances and choices in an experiment:
 
 -   `id` is a unique subject identification number, where site_id.session_n.subject_n (001.001.001).
 -   `mean_temp_celsius` is mean temperature through the session
@@ -167,7 +193,9 @@ The dataset contains 114 rows and 7 columns, along with data types, detailing su
 
 `dplyr` uses a collection of verbs to manipulate data that are piped (chained) into each other with a piping operator `%>%` from `magrittr` package. The way you use functions in base R is you wrap new function over the previous one, such as `k(g(f(x)))`[e], where `x` is processed by `f()`, then `g()`, and finally `k()`. This will become impossible to read very quickly as you stack up functions and their arguments. To solve this we will use pipes `x %>% f() %>% g() %>% k()`! Now you can clearly see that we take `x` and apply `f()`, then `g()`, then `k()`. 
 
-> Note: base R now also has its own pipe `|>`, but we will stick to `%>%` for compatibility across packages.
+::: {.callout-note}
+base R now also has its own pipe `|>`, but we will stick to `%>%`.
+:::
 
 ### `select()`
 
@@ -175,7 +203,10 @@ The dataset contains 114 rows and 7 columns, along with data types, detailing su
 
 
 ```{r}
-data_raven <- data %>% select(id, mean_temp_celsius, gender, pr_correct, tr_correct, ch_tournament, ch_correct)
+data_raven <- data %>% select(
+  id, mean_temp_celsius, gender, pr_correct,
+  tr_correct, ch_tournament, ch_correct
+)
 tail(data_raven)
 ```
 
@@ -183,8 +214,8 @@ You can also exclude columns or select everything else with select using `-`.
 
 ```{r}
 data_raven %>%
-select(-gender) %>% # Selects all columns except 'gender'
-head() # Displays the first few rows
+  select(-gender) %>% # Selects all columns except 'gender'
+  head() # Displays the first few rows
 ```
 
 
@@ -201,12 +232,15 @@ head(data_female)
 
 You can chain multiple criteria. In the example below, we filter for Males with temperatures above 30 degrees Celsius and Females with temperatures below 30 degrees Celsius. We use `&` for "and" and `|` for "or", and enclose the conditions in parentheses to avoid confusion.
 
+:::{.callout-note}
+I have set `pillar.print_min = 5`, so printing tibbles will only show 5 rows (instead of the default 10). This way, we don't have to use `head` after each call.
+:::
+
 ```{r}
 data_raven %>%
   filter(
     (gender == "Male" & mean_temp_celsius > 30) | (gender == "Female" & mean_temp_celsius < 30)
-  ) %>%
-  head()
+  )
 ```
 
 ### `arrange()`
@@ -215,16 +249,14 @@ The `arrange()` function orders the table using a variable. For example, to see 
 
 ```{r}
 data_raven %>%
-  arrange(pr_correct) %>%
-  head()
+  arrange(pr_correct)
 ```
 
 To sort in descending order, use the `desc()` modifier. For example, to find the subject with the highest score in pr_correct:
 
 ```{r}
 data_raven %>%
-  arrange(desc(pr_correct)) %>%
-  head()
+  arrange(desc(pr_correct))
 ```
 
 ### `mutate()`
@@ -247,8 +279,7 @@ data_raven %>% mutate(
   mean_temp_fahrenheit = (mean_temp_celsius * 9 / 5) + 32,
   impovement = tr_correct - pr_correct,
   pr_deviation = pr_correct - mean(pr_correct)
-) %>% 
-  head()
+)
 ```
 
 Notice how we can nest functions within `mutate()` to first calculate the mean of an entire column and then subtract it from `pr_correct`.
@@ -258,7 +289,7 @@ Notice how we can nest functions within `mutate()` to first calculate the mean o
 The `case_match()` function modifies values within a variable. For example, we can use `case_match()` to change "Male" to "M" and "Female" to "F":
 
 ```{r}
-data_raven <- data_raven %>% 
+data_raven <- data_raven %>%
   mutate(gender = case_match(gender, "Male" ~ "M", "Female" ~ "F"))
 ```
 
@@ -271,7 +302,7 @@ In dplyr 1.0.0, `reframe()` was introduced. Unlike `summarize()`, `reframe()` ca
 ```{r}
 data_raven %>%
   summarize(
-    prop_male = sum(gender == "M", na.rm = T) / n(),
+    prop_male = sum(gender == "M", na.rm = TRUE) / n(),
     pr_median = median(pr_correct),
     tr_max = max(tr_correct),
     ch_ratio = sum(ch_tournament) / n(),
@@ -293,7 +324,7 @@ data_raven %>%
     ch_mean = mean(ch_correct),
     pr_sd = sd(pr_correct),
     n = n()
-  ) 
+  )
 ```
 
 Now, let's group by gender and choice in the choice round to look at points in the choice round!
@@ -319,7 +350,7 @@ data_raven %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
   summarize(mean_male = mean(gender == "M")) %>%
-  ungroup() 
+  ungroup()
 ```
 
 Notice how `mean_male` (the ratio of males to the total) is 0 for Female and 1 for Male. That's because the data was grouped, and we performed operations on Males and Females separately.
@@ -330,7 +361,7 @@ data_raven %>%
   group_by(gender) %>%
   mutate(n = n()) %>%
   ungroup() %>%
-  summarize(mean_male = mean(gender == "M")) 
+  summarize(mean_male = mean(gender == "M"))
 ```
 
 This time, we ungrouped the data before calculating the ratio, which gives us the correct result!
@@ -342,10 +373,10 @@ Grouping is a commonly performed operation. Having to repeatedly group and ungro
 ```{r}
 #| output: false
 data_raven %>%
-drop_na(gender) %>%
-# same as `group_by %>% mutate %>% ungroup`
-mutate(n = n(), .by = gender) %>%
-summarize(mean_male = mean(gender == "M"))
+  drop_na(gender) %>%
+  # same as `group_by %>% mutate %>% ungroup`
+  mutate(n = n(), .by = gender) %>%
+  summarize(mean_male = mean(gender == "M"))
 ```
 
 
@@ -395,8 +426,7 @@ The `rename()` function allows you to change column names, with the new name on 
 
 ```{r}
 data_raven %>%
-  rename(subject_id = id, sex = gender) %>%
-  head(5)
+  rename(subject_id = id, sex = gender)
 ```
 
 ### `row_number()`
@@ -407,8 +437,7 @@ data_raven %>%
 data_raven %>%
   select(-id) %>%
   mutate(id = row_number()) %>%
-  relocate(id) %>%
-  head(5)
+  relocate(id)
 ```
 
 
@@ -417,6 +446,7 @@ data_raven %>%
 `skim()` from the `skimr` package provides an extensive summary of a data frame. It offers more than `summary()`, detailing quartiles, missing values, and histograms. Use it during exploratory data analysis to understand your data. 
 
 ```{r}
+#| column: body-outset-left
 library(skimr)
 skim(data_raven)
 ```
@@ -439,7 +469,7 @@ day_year_month <- "31/2001/01"
 month_day_year_hour_minute <- "Jan 31st 2001 6:05PM"
 (date_time <- mdy_hm(month_day_year_hour_minute))
 
-sentence_with_date <- "Elizabeth II was Queen of the United Kingdom and other Commonwealth realms from 6 February 1952."
+sentence_with_date <- "Elizabeth II was Queen of the United Kingdom from 6 February 1952."
 # Impressive, isn't it? `lubridate` can identify the date within text
 # and parse it for you!
 dmy(sentence_with_date)
@@ -460,5 +490,3 @@ month(date_time, label = TRUE, abbr = FALSE)
 ## Summary
 
 We explored basic operations in R and delved into the key features of Tidyverse for data manipulation. This included learning how to load, manage, and handle basic date and time data. This chapter lays a solid foundation for beginners. Next, we will delve into what constitutes tidy data and how to organize data effectively.
-
-

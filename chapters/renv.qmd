@@ -5,6 +5,11 @@ editor:
     wrap: 72
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
 Reproducible environments are crucial in modern software development, as they guarantee consistent outputs, regardless of the system or execution time. These environments are key to achieving reliability, scalability, and robustness, essential for smooth collaboration and efficient problem diagnosis and maintenance.
 
 In today's complex software projects, burdened with intricate dependencies, the necessity for reproducibility is undeniable Changes or updates in these dependencies can lead to code malfunctions or portability issues.
@@ -56,3 +61,4 @@ Navigating the intricacies of creating reproducible analyses can quickly become 
 Begin by building a habit of using tools like `renv`. Once you and your team are comfortable with these foundational practices, you can gradually explore more advanced options like containers and virtual machines. 
 
 In the next two chapters you will get a brief introduction to command line and use it to learn version control with git and github.
+```{r}

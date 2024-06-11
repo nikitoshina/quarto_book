@@ -2,6 +2,11 @@
 title: Survey Tools 
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
 Researchers have a wide array of survey tools to choose from, each offering
 unique features and advantages. Understanding these options is useful for data collection.
 In this chapter we will look at different ways for physical and digital surveying

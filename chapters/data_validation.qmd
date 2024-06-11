@@ -3,7 +3,14 @@ title: "Data Validation"
 code-annotations: hover
 error: false
 message: false
+warning: false
 ---
+
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
 Data validation is a crucial part of data analysis, encompassing the maintenance of data integrity, accuracy, and cleanliness for computational tasks. Since the results of analysis are heavily dependent on the quality of the input data, having a robust validation process is essential. A lack of such a process can lead to the effect of "Garbage in, garbage out".
 
 Imagine dedicating hours to an analysis only to discover a duplicate row or sporadic NAs. The key to avoid such scenarios lies in regular data checks. With dynamic data, automating these checks becomes the solution. You can write a function to perform these checks or set up data validation pipelines for multiple checks. If the requirement includes sharing validation results, generate reports accordingly.
@@ -85,7 +92,7 @@ The `pointblank` package in R is specifically tailored for data validation. It's
 
 Pointblank has a plethora of functionality built into it and is a great fit for important projects as it lets you create validation pipelines, HTML reports, and even distribute the reports to stakeholders. Below, we'll create an agent and investigate the `mtcars` dataset. It's worth noting that you're not required to create an agent - you can use the functions similarly to `assertr`.
 
-![[point blank workflow](https://github.com/rich-iannone/pointblank)](images/pointblank_pipeline.png)
+![[Point Blank Workflow](https://github.com/rich-iannone/pointblank)](images/pointblank_pipeline.png){height=2in}
 
 #### Step 1: Create a Validation Plan (an Agent)
 
@@ -132,7 +139,7 @@ col_vals_not_null(vars(cyl, gear))
 report <- interrogate(agent, extract_failed = T)
 ```
 
-![](./images/point_blank_screenshot.png) 
+![](./images/point_blank_screenshot.png){height=3.5in, width=6in}
 :::
 
 The interrogation revealed that all checks were correctly evaluated (EVAL), with almost all checks passing. The exception was a single row that failed due to the horsepower being over 300. Additionally, there is no column named `absent`. You can view the proportion of PASS/FAIL in the respective columns. The columns with failed checks are highlighted in color on the far left side of the table. The results can be downloaded as a CSV, which is particularly helpful for sharing the report with others, and there's a built-in functionality for sharing via email. To examine the failed rows, use `extract_failed = TRUE` and access them with `$extracts`. Below, we observe the failed row: 335 horsepower, indicating a very fast car (Maserati Bora)!

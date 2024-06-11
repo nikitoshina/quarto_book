@@ -3,4 +3,10 @@ title: "Power Analysis and Simulations"
 editor: visual
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 ## Power Analysis and Simulations

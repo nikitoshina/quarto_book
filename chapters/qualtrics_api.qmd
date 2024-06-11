@@ -11,6 +11,12 @@ format:
     echo: true
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Instead of downloading your data through Qualtrics every time we will load data using Qualtrics API. For a complete guide refer to this [vignette](https://cran.r-project.org/web/packages/qualtRics/vignettes/qualtRics.html), which this guide is based on.
 
 University of San Francisco provides access to Qualtrics; however you need to separately request API access. Good news, I have talked to ITS and you should already have it! If not let me know!

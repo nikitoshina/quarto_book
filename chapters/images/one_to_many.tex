@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+  % Define styles for the nodes
+  \tikzstyle{box} = [rectangle, draw, minimum width=2.5cm, minimum height=0.8cm, text centered]
+  \tikzstyle{header} = [rectangle, draw, fill=gray!20, minimum width=2.5cm, minimum height=0.8cm, text centered, font=\bfseries]
+
+  % Create nodes for the columns
+  \node (header1) [header] {Professor};
+  \node (header2) [header, right=2.5cm of header1] {Class};
+
+  \node (professor1) [box, below=0cm of header1, draw=none] {Hobbs};
+  \node (professor2) [box, below=0cm of professor1, draw=none] {Doe};
+
+  \node (class1) [box, below=0cm of header2, draw=none] {690-02};
+  \node (class2) [box, below=0cm of class1, draw=none] {692-01};
+  \node (class3) [box, below=0cm of class2, draw=none] {405-01};
+
+  % Draw box around Professor column
+  \draw[thick] (header1.north west) -- (header1.north east) -- (professor2.south east) -- (professor2.south west) -- cycle;
+
+  % Draw box around Class column
+  \draw[thick] (header2.north west) -- (header2.north east) -- (class3.south east) -- (class3.south west) -- cycle;
+
+  % Draw arrows between the nodes
+  \draw[line width = 0.1cm, ->, >=stealth] (professor1.east) -- (class1.west);
+  \draw[line width = 0.1cm, ->, >=stealth] (professor1.east) -- (class2.west);
+  \draw[line width = 0.1cm, ->, >=stealth] (professor2.east) -- (class2.west);
+\end{tikzpicture}
+

@@ -1,1 +1,1 @@
-system("cd ./latex_output && latexmk -shell-escape -f -pv -pdf main.tex")
+system("cd ./latex_output && latexmk -xelatex -shell-escape -f -pv -pdf main.tex")

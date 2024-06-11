@@ -1,6 +1,10 @@
 ---
 title: "Document"
 ---
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
 
 Comprehensive documentation is pivotal to the success of any research project, ensuring consistent data collection and adherence to established procedures by field agents. This guide outlines the importance of documenting every process related to sampling, administration, data collection, and handling, thus supporting research reproducibility and quality.
 

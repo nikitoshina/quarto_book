@@ -10,6 +10,12 @@ format:
 tidy: true
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 ```{r include=FALSE}
 library(patchwork)
 library(tidyverse)

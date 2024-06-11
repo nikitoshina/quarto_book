@@ -2,6 +2,12 @@
 title: "APIs"
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 In this chapter, we will explore what APIs are, how to effectively make API requests, and their application in R for efficient data gathering.
 APIs are invaluable! They provide a streamlined method of interacting with other servers to obtain data. Imagine needing to manually collect songs from Spotify or web scrape weather data instead of simply making an API request. So, what exactly is an API?
 

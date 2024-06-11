@@ -2,6 +2,12 @@
 title: "Setting Up R and RStudio"
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 Welcome to the exciting world of data analysis with R, a language crafted specifically for statistical analysis and data visualization. R's user-friendly syntax and reproducibility make it an ideal choice for both novices and professionals. However, before diving into data exploration and modeling, it's essential to differentiate between R, the programming language, and RStudio, the Integrated Development Environment (IDE) that enhances R's functionality.
 
 ## Download and Install R

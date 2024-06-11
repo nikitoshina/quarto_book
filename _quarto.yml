@@ -26,55 +26,55 @@ book:
     - chapters/intro.qmd
     - chapters/acknowledgements.qmd
     - chapters/summary.qmd
-    - chapters/setup.qmd
+    # - chapters/setup.qmd
     - part: "Working with Data"
       chapters:
         - chapters/data_manipulation.qmd
-        - chapters/tidy_data.qmd
-        - chapters/data_bases.qmd
-        - chapters/data_validation.qmd
-        - chapters/imputation.qmd
-    - part: "Reproducible Research"
-      chapters:
-        - chapters/repres.qmd
-        - chapters/renv.qmd
-        - chapters/command_line.qmd
-        - chapters/version_control.qmd
-        - chapters/linter_styler.qmd
-        - chapters/modular_code.qmd
-    - part: "Lit Review and Writing"
-      chapters:
-        - chapters/litreview.qmd
-        - chapters/write.qmd
-        - chapters/layout_refs.qmd
-        - chapters/collaboration.qmd
-        - chapters/template.qmd
-    - part: "Collecting the Data"
-      chapters:
-        - chapters/survey_se.qmd
-        - chapters/good_questions.qmd
-        - chapters/survey_tools.qmd
-        - chapters/documentation.qmd
-        - chapters/api.qmd
-        - chapters/APIs_in_r.qmd
-        - chapters/google.qmd
-        - chapters/qualtrics_api.qmd
-    - part: "Presenting the Data"
-      chapters:
-        - chapters/visualization_theory.qmd
-        - chapters/data_viz.qmd
-        - chapters/which_graph.qmd
-        - chapters/color.qmd
-        - chapters/color_scheme.qmd
-        - chapters/tables.qmd # Add maybe kable
-    # - part: "Run Your Models"
-    # Power Analysis and Simulations
-    # Modeling
-    # Vizualizing models and model assumption
-    - part: "Back Matter"
-      chapters:
-        - chapters/epilogue.qmd
-    - chapters/references.qmd
+    #     - chapters/tidy_data.qmd
+    #     - chapters/data_bases.qmd
+    #     - chapters/data_validation.qmd
+    #     - chapters/imputation.qmd
+    # - part: "Reproducible Research"
+    #   chapters:
+    #     - chapters/repres.qmd
+    #     - chapters/renv.qmd
+    #     - chapters/command_line.qmd
+    #     - chapters/version_control.qmd
+    #     - chapters/linter_styler.qmd
+    #     - chapters/modular_code.qmd
+    # - part: "Lit Review and Writing"
+    #   chapters:
+    #     - chapters/litreview.qmd
+    #     - chapters/write.qmd
+    #     - chapters/layout_refs.qmd
+    #     - chapters/collaboration.qmd
+    #     - chapters/template.qmd
+    # - part: "Collecting the Data"
+    #   chapters:
+    #     - chapters/survey_se.qmd
+    #     - chapters/good_questions.qmd
+    #     - chapters/survey_tools.qmd
+    #     - chapters/documentation.qmd
+    #     - chapters/api.qmd
+    #     - chapters/APIs_in_r.qmd
+    #     - chapters/google.qmd
+    #     - chapters/qualtrics_api.qmd
+    # - part: "Presenting the Data"
+    #   chapters:
+    #     - chapters/visualization_theory.qmd
+    #     - chapters/data_viz.qmd
+    #     - chapters/which_graph.qmd
+    #     - chapters/color.qmd
+    #     - chapters/color_scheme.qmd
+    #     - chapters/tables.qmd # Add maybe kable
+    # # - part: "Run Your Models"
+    # # Power Analysis and Simulations
+    # # Modeling
+    # # Vizualizing models and model assumption
+    # - part: "Back Matter"
+    #   chapters:
+    #     - chapters/epilogue.qmd
+    # - chapters/references.qmd
 
   # repo-actions: [edit, issue]
   # repo-url: https://github.com/nikitoshina/quarto_book
@@ -94,20 +94,20 @@ format:
     fig-format: pdf
     fig-pos: "H"
     fig-dpi: 300
-    out-height: 1.5in
     toc: false
     filters:
       - scripts/extract-citations.lua
       - quarto
-      - minted-quarto
-
-minted:
-  include_listings: true
-  level_option: chapter
-  inline_code: true
-  options:
-    cachedir: _minted-cache
-    # lof: false
+      # - minted-quarto
+      # - scripts/minted-inline.lua
+# minted:
+#   include_listings: true
+#   level_option: chapter
+#   inline_code: true
+#   options:
+#     cachedir: _minted-cache
+#
+# lof: false
 # header-includes:
 #   - \usepackage{minted}
 # extra_dependencies: ["minted"]

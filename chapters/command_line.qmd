@@ -2,6 +2,12 @@
 title: "Introduction to Command Line"
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 The Command Line Interface (CLI), also known as the terminal or shell, is a powerful tool used by developers and system administrators for manipulating files, executing programs, and managing system settings. Unlike graphical user interfaces (GUI) where users interact with visual elements, in a CLI, you interact with the computer by typing text commands. Despite its seemingly daunting appearance, understanding the command line can unlock powerful methods for performing tasks more efficiently.
 
 In the command line, your workspace is a `current directory` or `working directory`. You navigate between directories using `cd` (change directory). For example, `cd Documents` moves you into the Documents directory inside your current directory.

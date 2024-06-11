@@ -5,6 +5,12 @@ editor:
     wrap: 72
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 If you are reading this book, you are likely familiar with basic
 statistics, especially the standard error. And if you are an economist,
 you know how challenging it can be to handle biases and variables

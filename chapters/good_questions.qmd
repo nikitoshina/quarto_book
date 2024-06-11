@@ -5,6 +5,12 @@ editor:
     wrap: 80
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 After exploring the broad topic of Survey Errors, we now shift our focus to the
 heart of any survey - the questions themselves. We'll tackle common concerns
 such as the quality of questions, the critical role of their order, the

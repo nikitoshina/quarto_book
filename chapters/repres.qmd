@@ -3,6 +3,12 @@ title: "Reproducible Research"
 editor: visual
 ---
 
+```{r}
+#| include: false
+source("../scripts/knitr-minted-listed-hook.r")
+```
+
+
 When authoring a research paper you are expanding the knowledge frontier. Good research doesn't simply discover something new, but does so in a systematic and reproducible way. You wouldn't believe a study that is impossible to confirm, right?
 
 > Non-reproducible single occurrences are of no significance to science. [@popper2002logic]
